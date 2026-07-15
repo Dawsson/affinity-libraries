@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  | 
-**DateOfBirth** | **string** |  | 
-**Email** | Pointer to **string** |  | [optional] 
-**ExternalPatientId** | **string** |  | 
-**Name** | **string** |  | 
-**Phone** | Pointer to **string** |  | [optional] 
-**State** | **string** |  | 
+**Address** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  |
+**DateOfBirth** | **string** |  |
+**Email** | Pointer to **string** |  | [optional]
+**ExternalPatientId** | **string** |  |
+**Name** | **string** |  |
+**Phone** | Pointer to **string** |  | [optional]
+**State** | **string** |  |
 
 ## Methods
 

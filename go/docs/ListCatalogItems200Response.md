@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | [**[]ListCatalogItems200ResponseItemsInner**](ListCatalogItems200ResponseItemsInner.md) |  | 
+**Items** | [**[]ListCatalogItems200ResponseItemsInner**](ListCatalogItems200ResponseItemsInner.md) |  |
 
 ## Methods
 

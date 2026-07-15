@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**catalog_item_id** | **str** |  | 
-**practice_id** | **str** |  | 
-**directions** | **str** |  | 
-**external_order_id** | **str** |  | 
-**patient** | [**CreateOrderRequestAnyOfPatient**](CreateOrderRequestAnyOfPatient.md) |  | 
-**prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  | 
-**prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  | 
+**catalog_item_id** | **str** |  |
+**practice_id** | **str** |  |
+**directions** | **str** |  |
+**external_order_id** | **str** |  |
+**patient** | [**CreateOrderRequestAnyOfPatient**](CreateOrderRequestAnyOfPatient.md) |  |
+**prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  |
+**prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  |
 **quantity** | **int** |  | [optional] [default to 1]
-**replaces_order_id** | **UUID** |  | [optional] 
+**replaces_order_id** | **UUID** |  | [optional]
 
 ## Example
 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**events** | [**List[ListWebhookEvents200ResponseEventsInner]**](ListWebhookEvents200ResponseEventsInner.md) |  | 
+**events** | [**List[ListWebhookEvents200ResponseEventsInner]**](ListWebhookEvents200ResponseEventsInner.md) |  |
 
 ## Example
 

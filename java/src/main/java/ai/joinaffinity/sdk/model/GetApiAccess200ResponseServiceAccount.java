@@ -89,7 +89,7 @@ public class GetApiAccess200ResponseServiceAccount {
   @javax.annotation.Nonnull
   private String subjectType;
 
-  public GetApiAccess200ResponseServiceAccount() { 
+  public GetApiAccess200ResponseServiceAccount() {
   }
 
   public GetApiAccess200ResponseServiceAccount id(@javax.annotation.Nonnull String id) {

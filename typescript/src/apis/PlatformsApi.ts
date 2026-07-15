@@ -18,13 +18,18 @@ import {
     GetPlatformOrganization200ResponseFromJSON,
     GetPlatformOrganization200ResponseToJSON,
 } from '../models/GetPlatformOrganization200Response';
+import {
+    type ListOrders400Response,
+    ListOrders400ResponseFromJSON,
+    ListOrders400ResponseToJSON,
+} from '../models/ListOrders400Response';
 
 export interface GetPlatformOrganizationRequest {
     orgId?: string;
 }
 
 /**
- * 
+ *
  */
 export class PlatformsApi extends runtime.BaseAPI {
 

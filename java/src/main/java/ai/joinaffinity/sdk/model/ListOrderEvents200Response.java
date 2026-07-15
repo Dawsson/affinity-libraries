@@ -44,7 +44,7 @@ public class ListOrderEvents200Response {
   @javax.annotation.Nonnull
   private List<ListOrderEvents200ResponseEventsInner> events = new ArrayList<>();
 
-  public ListOrderEvents200Response() { 
+  public ListOrderEvents200Response() {
   }
 
   public ListOrderEvents200Response events(@javax.annotation.Nonnull List<ListOrderEvents200ResponseEventsInner> events) {

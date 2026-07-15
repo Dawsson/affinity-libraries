@@ -17,7 +17,7 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 ## createPractice
 
-> CreatePractice200Response createPractice(createPracticeRequest)
+> CreatePractice200Response createPractice(idempotencyKey, createPracticeRequest)
 
 Create practice
 
@@ -38,7 +38,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -50,9 +50,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
-        CreatePracticeRequest createPracticeRequest = new CreatePracticeRequest(); // CreatePracticeRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        CreatePracticeRequest createPracticeRequest = new CreatePracticeRequest(); // CreatePracticeRequest |
         try {
-            CreatePractice200Response result = apiInstance.createPractice(createPracticeRequest);
+            CreatePractice200Response result = apiInstance.createPractice(idempotencyKey, createPracticeRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PracticesApi#createPractice");
@@ -70,6 +71,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createPracticeRequest** | [**CreatePracticeRequest**](CreatePracticeRequest.md)|  | |
 
 ### Return type
@@ -84,23 +86,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## createPracticeWithHttpInfo
 
-> ApiResponse<CreatePractice200Response> createPracticeWithHttpInfo(createPracticeRequest)
+> ApiResponse<CreatePractice200Response> createPracticeWithHttpInfo(idempotencyKey, createPracticeRequest)
 
 Create practice
 
@@ -122,7 +125,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -134,9 +137,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
-        CreatePracticeRequest createPracticeRequest = new CreatePracticeRequest(); // CreatePracticeRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        CreatePracticeRequest createPracticeRequest = new CreatePracticeRequest(); // CreatePracticeRequest |
         try {
-            ApiResponse<CreatePractice200Response> response = apiInstance.createPracticeWithHttpInfo(createPracticeRequest);
+            ApiResponse<CreatePractice200Response> response = apiInstance.createPracticeWithHttpInfo(idempotencyKey, createPracticeRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -156,6 +160,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createPracticeRequest** | [**CreatePracticeRequest**](CreatePracticeRequest.md)|  | |
 
 ### Return type
@@ -170,19 +175,20 @@ ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## getPractice
@@ -208,7 +214,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -220,7 +226,7 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
-        String practiceId = "practiceId_example"; // String | 
+        String practiceId = "practiceId_example"; // String |
         try {
             CreatePractice200Response result = apiInstance.getPractice(practiceId);
             System.out.println(result);
@@ -254,19 +260,20 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## getPracticeWithHttpInfo
 
@@ -292,7 +299,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -304,7 +311,7 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
-        String practiceId = "practiceId_example"; // String | 
+        String practiceId = "practiceId_example"; // String |
         try {
             ApiResponse<CreatePractice200Response> response = apiInstance.getPracticeWithHttpInfo(practiceId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -340,19 +347,20 @@ ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## listPractices
@@ -376,7 +384,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -418,19 +426,20 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## listPracticesWithHttpInfo
 
@@ -454,7 +463,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -498,24 +507,25 @@ ApiResponse<[**ListPractices200Response**](ListPractices200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## updatePractice
 
-> CreatePractice200Response updatePractice(practiceId)
+> CreatePractice200Response updatePractice(practiceId, idempotencyKey)
 
 Update practice
 
@@ -536,7 +546,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -548,9 +558,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
-        String practiceId = "practiceId_example"; // String | 
+        String practiceId = "practiceId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreatePractice200Response result = apiInstance.updatePractice(practiceId);
+            CreatePractice200Response result = apiInstance.updatePractice(practiceId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PracticesApi#updatePractice");
@@ -569,6 +580,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **practiceId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -582,23 +594,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## updatePracticeWithHttpInfo
 
-> ApiResponse<CreatePractice200Response> updatePracticeWithHttpInfo(practiceId)
+> ApiResponse<CreatePractice200Response> updatePracticeWithHttpInfo(practiceId, idempotencyKey)
 
 Update practice
 
@@ -620,7 +633,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -632,9 +645,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
-        String practiceId = "practiceId_example"; // String | 
+        String practiceId = "practiceId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreatePractice200Response> response = apiInstance.updatePracticeWithHttpInfo(practiceId);
+            ApiResponse<CreatePractice200Response> response = apiInstance.updatePracticeWithHttpInfo(practiceId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -655,6 +669,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **practiceId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -668,17 +683,18 @@ ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 

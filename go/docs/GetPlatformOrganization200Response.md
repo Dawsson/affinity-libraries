@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Account** | [**GetPlatformOrganization200ResponseAccount**](GetPlatformOrganization200ResponseAccount.md) |  | 
-**Membership** | [**GetPlatformOrganization200ResponseMembership**](GetPlatformOrganization200ResponseMembership.md) |  | 
-**User** | [**GetPlatformOrganization200ResponseUser**](GetPlatformOrganization200ResponseUser.md) |  | 
+**Account** | [**GetPlatformOrganization200ResponseAccount**](GetPlatformOrganization200ResponseAccount.md) |  |
+**Membership** | [**GetPlatformOrganization200ResponseMembership**](GetPlatformOrganization200ResponseMembership.md) |  |
+**User** | [**GetPlatformOrganization200ResponseUser**](GetPlatformOrganization200ResponseUser.md) |  |
 
 ## Methods
 

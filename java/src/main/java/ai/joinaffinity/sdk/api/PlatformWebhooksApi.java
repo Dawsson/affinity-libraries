@@ -23,6 +23,7 @@ import ai.joinaffinity.sdk.model.CreateWebhookEndpointRequest;
 import ai.joinaffinity.sdk.model.DeleteWebhookEndpoint200Response;
 import ai.joinaffinity.sdk.model.Error;
 import ai.joinaffinity.sdk.model.GetWebhookEvent200Response;
+import ai.joinaffinity.sdk.model.ListOrders400Response;
 import ai.joinaffinity.sdk.model.ListWebhookEndpoints200Response;
 import ai.joinaffinity.sdk.model.ListWebhookEvents200Response;
 import ai.joinaffinity.sdk.model.ReplayWebhookEvent200Response;
@@ -172,49 +173,53 @@ public class PlatformWebhooksApi {
 
   /**
    * Create webhook endpoint
-   * 
+   *
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createWebhookEndpointRequest  (required)
    * @return CreateWebhookEndpoint200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateWebhookEndpoint200Response createWebhookEndpoint(@javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest) throws ApiException {
-    return createWebhookEndpoint(createWebhookEndpointRequest, null);
+  public CreateWebhookEndpoint200Response createWebhookEndpoint(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest) throws ApiException {
+    return createWebhookEndpoint(idempotencyKey, createWebhookEndpointRequest, null);
   }
 
   /**
    * Create webhook endpoint
-   * 
+   *
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createWebhookEndpointRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateWebhookEndpoint200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateWebhookEndpoint200Response createWebhookEndpoint(@javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateWebhookEndpoint200Response> localVarResponse = createWebhookEndpointWithHttpInfo(createWebhookEndpointRequest, headers);
+  public CreateWebhookEndpoint200Response createWebhookEndpoint(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateWebhookEndpoint200Response> localVarResponse = createWebhookEndpointWithHttpInfo(idempotencyKey, createWebhookEndpointRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Create webhook endpoint
-   * 
+   *
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createWebhookEndpointRequest  (required)
    * @return ApiResponse&lt;CreateWebhookEndpoint200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateWebhookEndpoint200Response> createWebhookEndpointWithHttpInfo(@javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest) throws ApiException {
-    return createWebhookEndpointWithHttpInfo(createWebhookEndpointRequest, null);
+  public ApiResponse<CreateWebhookEndpoint200Response> createWebhookEndpointWithHttpInfo(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest) throws ApiException {
+    return createWebhookEndpointWithHttpInfo(idempotencyKey, createWebhookEndpointRequest, null);
   }
 
   /**
    * Create webhook endpoint
-   * 
+   *
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createWebhookEndpointRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateWebhookEndpoint200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateWebhookEndpoint200Response> createWebhookEndpointWithHttpInfo(@javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createWebhookEndpointRequestBuilder(createWebhookEndpointRequest, headers);
+  public ApiResponse<CreateWebhookEndpoint200Response> createWebhookEndpointWithHttpInfo(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createWebhookEndpointRequestBuilder(idempotencyKey, createWebhookEndpointRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -236,11 +241,11 @@ public class PlatformWebhooksApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreateWebhookEndpoint200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateWebhookEndpoint200Response>() {});
-        
+
 
         return new ApiResponse<CreateWebhookEndpoint200Response>(
             localVarResponse.statusCode(),
@@ -261,7 +266,11 @@ public class PlatformWebhooksApi {
     }
   }
 
-  private HttpRequest.Builder createWebhookEndpointRequestBuilder(@javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createWebhookEndpointRequestBuilder(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateWebhookEndpointRequest createWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling createWebhookEndpoint");
+    }
     // verify the required parameter 'createWebhookEndpointRequest' is set
     if (createWebhookEndpointRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'createWebhookEndpointRequest' when calling createWebhookEndpoint");
@@ -273,8 +282,11 @@ public class PlatformWebhooksApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createWebhookEndpointRequest);
@@ -295,49 +307,53 @@ public class PlatformWebhooksApi {
 
   /**
    * Disable webhook endpoint
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return DeleteWebhookEndpoint200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteWebhookEndpoint200Response deleteWebhookEndpoint(@javax.annotation.Nullable String endpointId) throws ApiException {
-    return deleteWebhookEndpoint(endpointId, null);
+  public DeleteWebhookEndpoint200Response deleteWebhookEndpoint(@javax.annotation.Nullable String endpointId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return deleteWebhookEndpoint(endpointId, idempotencyKey, null);
   }
 
   /**
    * Disable webhook endpoint
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return DeleteWebhookEndpoint200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteWebhookEndpoint200Response deleteWebhookEndpoint(@javax.annotation.Nullable String endpointId, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteWebhookEndpoint200Response> localVarResponse = deleteWebhookEndpointWithHttpInfo(endpointId, headers);
+  public DeleteWebhookEndpoint200Response deleteWebhookEndpoint(@javax.annotation.Nullable String endpointId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteWebhookEndpoint200Response> localVarResponse = deleteWebhookEndpointWithHttpInfo(endpointId, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Disable webhook endpoint
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return ApiResponse&lt;DeleteWebhookEndpoint200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteWebhookEndpoint200Response> deleteWebhookEndpointWithHttpInfo(@javax.annotation.Nullable String endpointId) throws ApiException {
-    return deleteWebhookEndpointWithHttpInfo(endpointId, null);
+  public ApiResponse<DeleteWebhookEndpoint200Response> deleteWebhookEndpointWithHttpInfo(@javax.annotation.Nullable String endpointId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return deleteWebhookEndpointWithHttpInfo(endpointId, idempotencyKey, null);
   }
 
   /**
    * Disable webhook endpoint
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteWebhookEndpoint200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteWebhookEndpoint200Response> deleteWebhookEndpointWithHttpInfo(@javax.annotation.Nullable String endpointId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteWebhookEndpointRequestBuilder(endpointId, headers);
+  public ApiResponse<DeleteWebhookEndpoint200Response> deleteWebhookEndpointWithHttpInfo(@javax.annotation.Nullable String endpointId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteWebhookEndpointRequestBuilder(endpointId, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -359,11 +375,11 @@ public class PlatformWebhooksApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         DeleteWebhookEndpoint200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteWebhookEndpoint200Response>() {});
-        
+
 
         return new ApiResponse<DeleteWebhookEndpoint200Response>(
             localVarResponse.statusCode(),
@@ -384,10 +400,14 @@ public class PlatformWebhooksApi {
     }
   }
 
-  private HttpRequest.Builder deleteWebhookEndpointRequestBuilder(@javax.annotation.Nullable String endpointId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deleteWebhookEndpointRequestBuilder(@javax.annotation.Nullable String endpointId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'endpointId' is set
     if (endpointId == null) {
       throw new ApiException(400, "Missing the required parameter 'endpointId' when calling deleteWebhookEndpoint");
+    }
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling deleteWebhookEndpoint");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -397,7 +417,10 @@ public class PlatformWebhooksApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -413,7 +436,7 @@ public class PlatformWebhooksApi {
 
   /**
    * Read webhook event attempts
-   * 
+   *
    * @param eventId  (required)
    * @return GetWebhookEvent200Response
    * @throws ApiException if fails to make API call
@@ -424,7 +447,7 @@ public class PlatformWebhooksApi {
 
   /**
    * Read webhook event attempts
-   * 
+   *
    * @param eventId  (required)
    * @param headers Optional headers to include in the request
    * @return GetWebhookEvent200Response
@@ -437,7 +460,7 @@ public class PlatformWebhooksApi {
 
   /**
    * Read webhook event attempts
-   * 
+   *
    * @param eventId  (required)
    * @return ApiResponse&lt;GetWebhookEvent200Response&gt;
    * @throws ApiException if fails to make API call
@@ -448,7 +471,7 @@ public class PlatformWebhooksApi {
 
   /**
    * Read webhook event attempts
-   * 
+   *
    * @param eventId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWebhookEvent200Response&gt;
@@ -477,11 +500,11 @@ public class PlatformWebhooksApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         GetWebhookEvent200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWebhookEvent200Response>() {});
-        
+
 
         return new ApiResponse<GetWebhookEvent200Response>(
             localVarResponse.statusCode(),
@@ -515,7 +538,7 @@ public class PlatformWebhooksApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -531,7 +554,7 @@ public class PlatformWebhooksApi {
 
   /**
    * List webhook endpoints
-   * 
+   *
    * @return ListWebhookEndpoints200Response
    * @throws ApiException if fails to make API call
    */
@@ -541,7 +564,7 @@ public class PlatformWebhooksApi {
 
   /**
    * List webhook endpoints
-   * 
+   *
    * @param headers Optional headers to include in the request
    * @return ListWebhookEndpoints200Response
    * @throws ApiException if fails to make API call
@@ -553,7 +576,7 @@ public class PlatformWebhooksApi {
 
   /**
    * List webhook endpoints
-   * 
+   *
    * @return ApiResponse&lt;ListWebhookEndpoints200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -563,7 +586,7 @@ public class PlatformWebhooksApi {
 
   /**
    * List webhook endpoints
-   * 
+   *
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWebhookEndpoints200Response&gt;
    * @throws ApiException if fails to make API call
@@ -591,11 +614,11 @@ public class PlatformWebhooksApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         ListWebhookEndpoints200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWebhookEndpoints200Response>() {});
-        
+
 
         return new ApiResponse<ListWebhookEndpoints200Response>(
             localVarResponse.statusCode(),
@@ -624,7 +647,7 @@ public class PlatformWebhooksApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -640,7 +663,7 @@ public class PlatformWebhooksApi {
 
   /**
    * List webhook events
-   * 
+   *
    * @return ListWebhookEvents200Response
    * @throws ApiException if fails to make API call
    */
@@ -650,7 +673,7 @@ public class PlatformWebhooksApi {
 
   /**
    * List webhook events
-   * 
+   *
    * @param headers Optional headers to include in the request
    * @return ListWebhookEvents200Response
    * @throws ApiException if fails to make API call
@@ -662,7 +685,7 @@ public class PlatformWebhooksApi {
 
   /**
    * List webhook events
-   * 
+   *
    * @return ApiResponse&lt;ListWebhookEvents200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -672,7 +695,7 @@ public class PlatformWebhooksApi {
 
   /**
    * List webhook events
-   * 
+   *
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWebhookEvents200Response&gt;
    * @throws ApiException if fails to make API call
@@ -700,11 +723,11 @@ public class PlatformWebhooksApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         ListWebhookEvents200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWebhookEvents200Response>() {});
-        
+
 
         return new ApiResponse<ListWebhookEvents200Response>(
             localVarResponse.statusCode(),
@@ -733,7 +756,7 @@ public class PlatformWebhooksApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -749,49 +772,53 @@ public class PlatformWebhooksApi {
 
   /**
    * Replay webhook event
-   * 
+   *
    * @param eventId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return ReplayWebhookEvent200Response
    * @throws ApiException if fails to make API call
    */
-  public ReplayWebhookEvent200Response replayWebhookEvent(@javax.annotation.Nonnull String eventId) throws ApiException {
-    return replayWebhookEvent(eventId, null);
+  public ReplayWebhookEvent200Response replayWebhookEvent(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return replayWebhookEvent(eventId, idempotencyKey, null);
   }
 
   /**
    * Replay webhook event
-   * 
+   *
    * @param eventId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return ReplayWebhookEvent200Response
    * @throws ApiException if fails to make API call
    */
-  public ReplayWebhookEvent200Response replayWebhookEvent(@javax.annotation.Nonnull String eventId, Map<String, String> headers) throws ApiException {
-    ApiResponse<ReplayWebhookEvent200Response> localVarResponse = replayWebhookEventWithHttpInfo(eventId, headers);
+  public ReplayWebhookEvent200Response replayWebhookEvent(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplayWebhookEvent200Response> localVarResponse = replayWebhookEventWithHttpInfo(eventId, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Replay webhook event
-   * 
+   *
    * @param eventId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return ApiResponse&lt;ReplayWebhookEvent200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ReplayWebhookEvent200Response> replayWebhookEventWithHttpInfo(@javax.annotation.Nonnull String eventId) throws ApiException {
-    return replayWebhookEventWithHttpInfo(eventId, null);
+  public ApiResponse<ReplayWebhookEvent200Response> replayWebhookEventWithHttpInfo(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return replayWebhookEventWithHttpInfo(eventId, idempotencyKey, null);
   }
 
   /**
    * Replay webhook event
-   * 
+   *
    * @param eventId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ReplayWebhookEvent200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ReplayWebhookEvent200Response> replayWebhookEventWithHttpInfo(@javax.annotation.Nonnull String eventId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = replayWebhookEventRequestBuilder(eventId, headers);
+  public ApiResponse<ReplayWebhookEvent200Response> replayWebhookEventWithHttpInfo(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replayWebhookEventRequestBuilder(eventId, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -813,11 +840,11 @@ public class PlatformWebhooksApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         ReplayWebhookEvent200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReplayWebhookEvent200Response>() {});
-        
+
 
         return new ApiResponse<ReplayWebhookEvent200Response>(
             localVarResponse.statusCode(),
@@ -838,10 +865,14 @@ public class PlatformWebhooksApi {
     }
   }
 
-  private HttpRequest.Builder replayWebhookEventRequestBuilder(@javax.annotation.Nonnull String eventId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder replayWebhookEventRequestBuilder(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'eventId' is set
     if (eventId == null) {
       throw new ApiException(400, "Missing the required parameter 'eventId' when calling replayWebhookEvent");
+    }
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling replayWebhookEvent");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -851,7 +882,10 @@ public class PlatformWebhooksApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -867,49 +901,53 @@ public class PlatformWebhooksApi {
 
   /**
    * Rotate webhook signing secret
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return CreateWebhookEndpoint200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateWebhookEndpoint200Response rotateWebhookEndpointSecret(@javax.annotation.Nonnull String endpointId) throws ApiException {
-    return rotateWebhookEndpointSecret(endpointId, null);
+  public CreateWebhookEndpoint200Response rotateWebhookEndpointSecret(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return rotateWebhookEndpointSecret(endpointId, idempotencyKey, null);
   }
 
   /**
    * Rotate webhook signing secret
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return CreateWebhookEndpoint200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateWebhookEndpoint200Response rotateWebhookEndpointSecret(@javax.annotation.Nonnull String endpointId, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateWebhookEndpoint200Response> localVarResponse = rotateWebhookEndpointSecretWithHttpInfo(endpointId, headers);
+  public CreateWebhookEndpoint200Response rotateWebhookEndpointSecret(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateWebhookEndpoint200Response> localVarResponse = rotateWebhookEndpointSecretWithHttpInfo(endpointId, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Rotate webhook signing secret
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return ApiResponse&lt;CreateWebhookEndpoint200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateWebhookEndpoint200Response> rotateWebhookEndpointSecretWithHttpInfo(@javax.annotation.Nonnull String endpointId) throws ApiException {
-    return rotateWebhookEndpointSecretWithHttpInfo(endpointId, null);
+  public ApiResponse<CreateWebhookEndpoint200Response> rotateWebhookEndpointSecretWithHttpInfo(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return rotateWebhookEndpointSecretWithHttpInfo(endpointId, idempotencyKey, null);
   }
 
   /**
    * Rotate webhook signing secret
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateWebhookEndpoint200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateWebhookEndpoint200Response> rotateWebhookEndpointSecretWithHttpInfo(@javax.annotation.Nonnull String endpointId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = rotateWebhookEndpointSecretRequestBuilder(endpointId, headers);
+  public ApiResponse<CreateWebhookEndpoint200Response> rotateWebhookEndpointSecretWithHttpInfo(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = rotateWebhookEndpointSecretRequestBuilder(endpointId, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -931,11 +969,11 @@ public class PlatformWebhooksApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreateWebhookEndpoint200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateWebhookEndpoint200Response>() {});
-        
+
 
         return new ApiResponse<CreateWebhookEndpoint200Response>(
             localVarResponse.statusCode(),
@@ -956,10 +994,14 @@ public class PlatformWebhooksApi {
     }
   }
 
-  private HttpRequest.Builder rotateWebhookEndpointSecretRequestBuilder(@javax.annotation.Nonnull String endpointId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder rotateWebhookEndpointSecretRequestBuilder(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'endpointId' is set
     if (endpointId == null) {
       throw new ApiException(400, "Missing the required parameter 'endpointId' when calling rotateWebhookEndpointSecret");
+    }
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling rotateWebhookEndpointSecret");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -969,7 +1011,10 @@ public class PlatformWebhooksApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -985,53 +1030,57 @@ public class PlatformWebhooksApi {
 
   /**
    * Update webhook endpoint
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param updateWebhookEndpointRequest  (required)
    * @return DeleteWebhookEndpoint200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteWebhookEndpoint200Response updateWebhookEndpoint(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest) throws ApiException {
-    return updateWebhookEndpoint(endpointId, updateWebhookEndpointRequest, null);
+  public DeleteWebhookEndpoint200Response updateWebhookEndpoint(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest) throws ApiException {
+    return updateWebhookEndpoint(endpointId, idempotencyKey, updateWebhookEndpointRequest, null);
   }
 
   /**
    * Update webhook endpoint
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param updateWebhookEndpointRequest  (required)
    * @param headers Optional headers to include in the request
    * @return DeleteWebhookEndpoint200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteWebhookEndpoint200Response updateWebhookEndpoint(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteWebhookEndpoint200Response> localVarResponse = updateWebhookEndpointWithHttpInfo(endpointId, updateWebhookEndpointRequest, headers);
+  public DeleteWebhookEndpoint200Response updateWebhookEndpoint(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteWebhookEndpoint200Response> localVarResponse = updateWebhookEndpointWithHttpInfo(endpointId, idempotencyKey, updateWebhookEndpointRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Update webhook endpoint
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param updateWebhookEndpointRequest  (required)
    * @return ApiResponse&lt;DeleteWebhookEndpoint200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteWebhookEndpoint200Response> updateWebhookEndpointWithHttpInfo(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest) throws ApiException {
-    return updateWebhookEndpointWithHttpInfo(endpointId, updateWebhookEndpointRequest, null);
+  public ApiResponse<DeleteWebhookEndpoint200Response> updateWebhookEndpointWithHttpInfo(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest) throws ApiException {
+    return updateWebhookEndpointWithHttpInfo(endpointId, idempotencyKey, updateWebhookEndpointRequest, null);
   }
 
   /**
    * Update webhook endpoint
-   * 
+   *
    * @param endpointId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param updateWebhookEndpointRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteWebhookEndpoint200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteWebhookEndpoint200Response> updateWebhookEndpointWithHttpInfo(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateWebhookEndpointRequestBuilder(endpointId, updateWebhookEndpointRequest, headers);
+  public ApiResponse<DeleteWebhookEndpoint200Response> updateWebhookEndpointWithHttpInfo(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateWebhookEndpointRequestBuilder(endpointId, idempotencyKey, updateWebhookEndpointRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1053,11 +1102,11 @@ public class PlatformWebhooksApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         DeleteWebhookEndpoint200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteWebhookEndpoint200Response>() {});
-        
+
 
         return new ApiResponse<DeleteWebhookEndpoint200Response>(
             localVarResponse.statusCode(),
@@ -1078,10 +1127,14 @@ public class PlatformWebhooksApi {
     }
   }
 
-  private HttpRequest.Builder updateWebhookEndpointRequestBuilder(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateWebhookEndpointRequestBuilder(@javax.annotation.Nonnull String endpointId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateWebhookEndpointRequest updateWebhookEndpointRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'endpointId' is set
     if (endpointId == null) {
       throw new ApiException(400, "Missing the required parameter 'endpointId' when calling updateWebhookEndpoint");
+    }
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling updateWebhookEndpoint");
     }
     // verify the required parameter 'updateWebhookEndpointRequest' is set
     if (updateWebhookEndpointRequest == null) {
@@ -1095,8 +1148,11 @@ public class PlatformWebhooksApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWebhookEndpointRequest);

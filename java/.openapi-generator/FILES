@@ -34,6 +34,7 @@ docs/Error.md
 docs/GetApiAccess200Response.md
 docs/GetApiAccess200ResponseApiKey.md
 docs/GetApiAccess200ResponseServiceAccount.md
+docs/GetApiAccess400Response.md
 docs/GetPlatformOrganization200Response.md
 docs/GetPlatformOrganization200ResponseAccount.md
 docs/GetPlatformOrganization200ResponseMembership.md
@@ -44,11 +45,13 @@ docs/GetWebhookEvent200ResponseDeliveriesInner.md
 docs/GetWebhookEvent200ResponseEvent.md
 docs/ListCatalogItems200Response.md
 docs/ListCatalogItems200ResponseItemsInner.md
+docs/ListCatalogItems400Response.md
 docs/ListOrderEvents200Response.md
 docs/ListOrderEvents200ResponseEventsInner.md
 docs/ListOrders200Response.md
 docs/ListOrders200ResponseOrdersInner.md
 docs/ListOrders200ResponseOrdersInnerRouting.md
+docs/ListOrders400Response.md
 docs/ListPractices200Response.md
 docs/ListPractices200ResponseDataInner.md
 docs/ListPractices200ResponseDataInnerAddress.md
@@ -123,6 +126,7 @@ src/main/java/ai/joinaffinity/sdk/model/Error.java
 src/main/java/ai/joinaffinity/sdk/model/GetApiAccess200Response.java
 src/main/java/ai/joinaffinity/sdk/model/GetApiAccess200ResponseApiKey.java
 src/main/java/ai/joinaffinity/sdk/model/GetApiAccess200ResponseServiceAccount.java
+src/main/java/ai/joinaffinity/sdk/model/GetApiAccess400Response.java
 src/main/java/ai/joinaffinity/sdk/model/GetPlatformOrganization200Response.java
 src/main/java/ai/joinaffinity/sdk/model/GetPlatformOrganization200ResponseAccount.java
 src/main/java/ai/joinaffinity/sdk/model/GetPlatformOrganization200ResponseMembership.java
@@ -133,11 +137,13 @@ src/main/java/ai/joinaffinity/sdk/model/GetWebhookEvent200ResponseDeliveriesInne
 src/main/java/ai/joinaffinity/sdk/model/GetWebhookEvent200ResponseEvent.java
 src/main/java/ai/joinaffinity/sdk/model/ListCatalogItems200Response.java
 src/main/java/ai/joinaffinity/sdk/model/ListCatalogItems200ResponseItemsInner.java
+src/main/java/ai/joinaffinity/sdk/model/ListCatalogItems400Response.java
 src/main/java/ai/joinaffinity/sdk/model/ListOrderEvents200Response.java
 src/main/java/ai/joinaffinity/sdk/model/ListOrderEvents200ResponseEventsInner.java
 src/main/java/ai/joinaffinity/sdk/model/ListOrders200Response.java
 src/main/java/ai/joinaffinity/sdk/model/ListOrders200ResponseOrdersInner.java
 src/main/java/ai/joinaffinity/sdk/model/ListOrders200ResponseOrdersInnerRouting.java
+src/main/java/ai/joinaffinity/sdk/model/ListOrders400Response.java
 src/main/java/ai/joinaffinity/sdk/model/ListPractices200Response.java
 src/main/java/ai/joinaffinity/sdk/model/ListPractices200ResponseDataInner.java
 src/main/java/ai/joinaffinity/sdk/model/ListPractices200ResponseDataInnerAddress.java

@@ -73,7 +73,7 @@ public class CreateOrderRequestAnyOfPatient {
   @javax.annotation.Nonnull
   private String state;
 
-  public CreateOrderRequestAnyOfPatient() { 
+  public CreateOrderRequestAnyOfPatient() {
   }
 
   public CreateOrderRequestAnyOfPatient address(@javax.annotation.Nonnull CreateOrderRequestAnyOfPatientAddress address) {

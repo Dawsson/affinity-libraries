@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CancelOrder
 
-> CreateOrder200Response CancelOrder(ctx, orderId).CancelOrderRequest(cancelOrderRequest).Execute()
+> CreateOrder200Response CancelOrder(ctx, orderId).IdempotencyKey(idempotencyKey).CancelOrderRequest(cancelOrderRequest).Execute()
 
 Cancel order
 
@@ -35,12 +35,13 @@ import (
 )
 
 func main() {
-	orderId := "orderId_example" // string | 
-	cancelOrderRequest := *openapiclient.NewCancelOrderRequest("Reason_example") // CancelOrderRequest | 
+	orderId := "orderId_example" // string |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	cancelOrderRequest := *openapiclient.NewCancelOrderRequest("Reason_example") // CancelOrderRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformOrdersAPI.CancelOrder(context.Background(), orderId).CancelOrderRequest(cancelOrderRequest).Execute()
+	resp, r, err := apiClient.PlatformOrdersAPI.CancelOrder(context.Background(), orderId).IdempotencyKey(idempotencyKey).CancelOrderRequest(cancelOrderRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformOrdersAPI.CancelOrder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,7 +57,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orderId** | **string** |  | 
+**orderId** | **string** |  |
 
 ### Other Parameters
 
@@ -66,7 +67,8 @@ Other parameters are passed through a pointer to a apiCancelOrderRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cancelOrderRequest** | [**CancelOrderRequest**](CancelOrderRequest.md) |  | 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
+ **cancelOrderRequest** | [**CancelOrderRequest**](CancelOrderRequest.md) |  |
 
 ### Return type
 
@@ -79,7 +81,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -88,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrder
 
-> CreateOrder200Response CreateOrder(ctx).CreateOrderRequest(createOrderRequest).Execute()
+> CreateOrder200Response CreateOrder(ctx).IdempotencyKey(idempotencyKey).CreateOrderRequest(createOrderRequest).Execute()
 
 Create order
 
@@ -108,11 +110,12 @@ import (
 )
 
 func main() {
-	createOrderRequest := *openapiclient.NewCreateOrderRequest("CatalogItemId_example", "PracticeId_example", "Directions_example", "ExternalOrderId_example", *openapiclient.NewCreateOrderRequestAnyOfPatient(*openapiclient.NewCreateOrderRequestAnyOfPatientAddress("City_example", "Line1_example", "PostalCode_example", "State_example"), time.Now(), "ExternalPatientId_example", "Name_example", "State_example"), *openapiclient.NewCreateOrderRequestAnyOfPrescriber([]string{"LicenseStates_example"}, "Name_example", "Npi_example"), *openapiclient.NewCreateOrderRequestAnyOfPrescription(false, time.Now()), "PharmacyOrganizationId_example", "PrescriptionId_example", "PrescriptionVersionId_example", "RegisteredLocationId_example", *openapiclient.NewCreateOrderRequestAnyOf1ShippingAddress("City_example", "Line1_example", "PostalCode_example", "State_example")) // CreateOrderRequest | 
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	createOrderRequest := *openapiclient.NewCreateOrderRequest("CatalogItemId_example", "PracticeId_example", "Directions_example", "ExternalOrderId_example", *openapiclient.NewCreateOrderRequestAnyOfPatient(*openapiclient.NewCreateOrderRequestAnyOfPatientAddress("City_example", "Line1_example", "PostalCode_example", "State_example"), time.Now(), "ExternalPatientId_example", "Name_example", "State_example"), *openapiclient.NewCreateOrderRequestAnyOfPrescriber([]string{"LicenseStates_example"}, "Name_example", "Npi_example"), *openapiclient.NewCreateOrderRequestAnyOfPrescription(false, time.Now()), "PharmacyOrganizationId_example", "PrescriptionId_example", "PrescriptionVersionId_example", "RegisteredLocationId_example", *openapiclient.NewCreateOrderRequestAnyOf1ShippingAddress("City_example", "Line1_example", "PostalCode_example", "State_example")) // CreateOrderRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformOrdersAPI.CreateOrder(context.Background()).CreateOrderRequest(createOrderRequest).Execute()
+	resp, r, err := apiClient.PlatformOrdersAPI.CreateOrder(context.Background()).IdempotencyKey(idempotencyKey).CreateOrderRequest(createOrderRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformOrdersAPI.CreateOrder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -133,7 +136,8 @@ Other parameters are passed through a pointer to a apiCreateOrderRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createOrderRequest** | [**CreateOrderRequest**](CreateOrderRequest.md) |  | 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
+ **createOrderRequest** | [**CreateOrderRequest**](CreateOrderRequest.md) |  |
 
 ### Return type
 
@@ -146,7 +150,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -172,7 +176,7 @@ import (
 )
 
 func main() {
-	orderId := "orderId_example" // string | 
+	orderId := "orderId_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -192,7 +196,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orderId** | **string** |  | 
+**orderId** | **string** |  |
 
 ### Other Parameters
 
@@ -214,7 +218,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -240,7 +244,7 @@ import (
 )
 
 func main() {
-	orderId := "orderId_example" // string | 
+	orderId := "orderId_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -260,7 +264,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orderId** | **string** |  | 
+**orderId** | **string** |  |
 
 ### Other Parameters
 
@@ -282,7 +286,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -334,8 +338,8 @@ Other parameters are passed through a pointer to a apiListOrdersRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **externalOrderId** | **string** |  | 
- **patientExternalId** | **string** |  | 
+ **externalOrderId** | **string** |  |
+ **patientExternalId** | **string** |  |
 
 ### Return type
 
@@ -348,7 +352,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -357,7 +361,7 @@ Name | Type | Description  | Notes
 
 ## SubmitOrder
 
-> CreateOrder200Response SubmitOrder(ctx, orderId).Execute()
+> CreateOrder200Response SubmitOrder(ctx, orderId).IdempotencyKey(idempotencyKey).Execute()
 
 Submit order
 
@@ -376,11 +380,12 @@ import (
 )
 
 func main() {
-	orderId := "orderId_example" // string | 
+	orderId := "orderId_example" // string |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformOrdersAPI.SubmitOrder(context.Background(), orderId).Execute()
+	resp, r, err := apiClient.PlatformOrdersAPI.SubmitOrder(context.Background(), orderId).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformOrdersAPI.SubmitOrder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -396,7 +401,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orderId** | **string** |  | 
+**orderId** | **string** |  |
 
 ### Other Parameters
 
@@ -406,6 +411,7 @@ Other parameters are passed through a pointer to a apiSubmitOrderRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -418,7 +424,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -427,7 +433,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrder
 
-> CreateOrder200Response UpdateOrder(ctx, orderId).UpdateOrderRequest(updateOrderRequest).Execute()
+> CreateOrder200Response UpdateOrder(ctx, orderId).IdempotencyKey(idempotencyKey).UpdateOrderRequest(updateOrderRequest).Execute()
 
 Update draft order
 
@@ -446,12 +452,13 @@ import (
 )
 
 func main() {
-	orderId := "orderId_example" // string | 
-	updateOrderRequest := *openapiclient.NewUpdateOrderRequest() // UpdateOrderRequest | 
+	orderId := "orderId_example" // string |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	updateOrderRequest := *openapiclient.NewUpdateOrderRequest() // UpdateOrderRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformOrdersAPI.UpdateOrder(context.Background(), orderId).UpdateOrderRequest(updateOrderRequest).Execute()
+	resp, r, err := apiClient.PlatformOrdersAPI.UpdateOrder(context.Background(), orderId).IdempotencyKey(idempotencyKey).UpdateOrderRequest(updateOrderRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformOrdersAPI.UpdateOrder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -467,7 +474,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orderId** | **string** |  | 
+**orderId** | **string** |  |
 
 ### Other Parameters
 
@@ -477,7 +484,8 @@ Other parameters are passed through a pointer to a apiUpdateOrderRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrderRequest** | [**UpdateOrderRequest**](UpdateOrderRequest.md) |  | 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
+ **updateOrderRequest** | [**UpdateOrderRequest**](UpdateOrderRequest.md) |  |
 
 ### Return type
 
@@ -490,7 +498,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

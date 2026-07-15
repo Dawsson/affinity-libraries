@@ -16,7 +16,7 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 ## cancelOrder
 
-> CreateOrder200Response cancelOrder(orderId, cancelOrderRequest)
+> CreateOrder200Response cancelOrder(orderId, idempotencyKey, cancelOrderRequest)
 
 Cancel order
 
@@ -33,7 +33,7 @@ import type { CancelOrderOperationRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // Configure HTTP bearer authorization: bearerAuth
     accessToken: "YOUR BEARER TOKEN",
     // To configure API key authorization: affinityApiKey
@@ -44,6 +44,8 @@ async function example() {
   const body = {
     // string
     orderId: orderId_example,
+    // string | Unique operation key required for every mutation.
+    idempotencyKey: idempotencyKey_example,
     // CancelOrderRequest
     cancelOrderRequest: ...,
   } satisfies CancelOrderOperationRequest;
@@ -66,6 +68,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | `string` |  | [Defaults to `undefined`] |
+| **idempotencyKey** | `string` | Unique operation key required for every mutation. | [Defaults to `undefined`] |
 | **cancelOrderRequest** | [CancelOrderRequest](CancelOrderRequest.md) |  | |
 
 ### Return type
@@ -79,27 +82,28 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## createOrder
 
-> CreateOrder200Response createOrder(createOrderRequest)
+> CreateOrder200Response createOrder(idempotencyKey, createOrderRequest)
 
 Create order
 
@@ -116,7 +120,7 @@ import type { CreateOrderOperationRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // Configure HTTP bearer authorization: bearerAuth
     accessToken: "YOUR BEARER TOKEN",
     // To configure API key authorization: affinityApiKey
@@ -125,6 +129,8 @@ async function example() {
   const api = new PlatformOrdersApi(config);
 
   const body = {
+    // string | Unique operation key required for every mutation.
+    idempotencyKey: idempotencyKey_example,
     // CreateOrderRequest
     createOrderRequest: {"catalogItemId":"catalog_item_123","practiceId":"3f4bd943-a34d-4d4c-aa41-00556569a71d","directions":"Inject 0.25 mL subcutaneously once weekly.","externalOrderId":"order_123","patient":{"address":{"city":"Los Angeles","country":"US","line1":"100 Main Street","line2":null,"postalCode":"90001","state":"CA"},"dateOfBirth":"1988-05-12","email":"patient@example.com","externalPatientId":"patient_123","name":"Example Patient","state":"CA"},"prescriber":{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"},"prescription":{"authorized":true,"signedAt":"2026-07-10T12:00:00.000Z"},"quantity":1},
   } satisfies CreateOrderOperationRequest;
@@ -146,6 +152,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | `string` | Unique operation key required for every mutation. | [Defaults to `undefined`] |
 | **createOrderRequest** | [CreateOrderRequest](CreateOrderRequest.md) |  | |
 
 ### Return type
@@ -159,20 +166,21 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -194,7 +202,7 @@ import type { GetOrderRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // Configure HTTP bearer authorization: bearerAuth
     accessToken: "YOUR BEARER TOKEN",
     // To configure API key authorization: affinityApiKey
@@ -237,20 +245,21 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -272,7 +281,7 @@ import type { ListOrderEventsRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // Configure HTTP bearer authorization: bearerAuth
     accessToken: "YOUR BEARER TOKEN",
     // To configure API key authorization: affinityApiKey
@@ -315,20 +324,21 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -350,7 +360,7 @@ import type { ListOrdersRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // Configure HTTP bearer authorization: bearerAuth
     accessToken: "YOUR BEARER TOKEN",
     // To configure API key authorization: affinityApiKey
@@ -396,27 +406,28 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## submitOrder
 
-> CreateOrder200Response submitOrder(orderId)
+> CreateOrder200Response submitOrder(orderId, idempotencyKey)
 
 Submit order
 
@@ -433,7 +444,7 @@ import type { SubmitOrderRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // Configure HTTP bearer authorization: bearerAuth
     accessToken: "YOUR BEARER TOKEN",
     // To configure API key authorization: affinityApiKey
@@ -444,6 +455,8 @@ async function example() {
   const body = {
     // string
     orderId: orderId_example,
+    // string | Unique operation key required for every mutation.
+    idempotencyKey: idempotencyKey_example,
   } satisfies SubmitOrderRequest;
 
   try {
@@ -464,6 +477,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | `string` |  | [Defaults to `undefined`] |
+| **idempotencyKey** | `string` | Unique operation key required for every mutation. | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -476,27 +490,28 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## updateOrder
 
-> CreateOrder200Response updateOrder(orderId, updateOrderRequest)
+> CreateOrder200Response updateOrder(orderId, idempotencyKey, updateOrderRequest)
 
 Update draft order
 
@@ -513,7 +528,7 @@ import type { UpdateOrderOperationRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // Configure HTTP bearer authorization: bearerAuth
     accessToken: "YOUR BEARER TOKEN",
     // To configure API key authorization: affinityApiKey
@@ -524,6 +539,8 @@ async function example() {
   const body = {
     // string
     orderId: orderId_example,
+    // string | Unique operation key required for every mutation.
+    idempotencyKey: idempotencyKey_example,
     // UpdateOrderRequest
     updateOrderRequest: ...,
   } satisfies UpdateOrderOperationRequest;
@@ -546,6 +563,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | `string` |  | [Defaults to `undefined`] |
+| **idempotencyKey** | `string` | Unique operation key required for every mutation. | [Defaults to `undefined`] |
 | **updateOrderRequest** | [UpdateOrderRequest](UpdateOrderRequest.md) |  | |
 
 ### Return type
@@ -559,20 +577,21 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

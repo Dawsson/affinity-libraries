@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RoleName** | **NullableString** |  | 
+**RoleName** | **NullableString** |  |
 
 ## Methods
 

@@ -42,7 +42,7 @@ public class DeleteWebhookEndpoint200Response {
   @javax.annotation.Nonnull
   private CreateWebhookEndpoint200ResponseEndpoint endpoint;
 
-  public DeleteWebhookEndpoint200Response() { 
+  public DeleteWebhookEndpoint200Response() {
   }
 
   public DeleteWebhookEndpoint200Response endpoint(@javax.annotation.Nonnull CreateWebhookEndpoint200ResponseEndpoint endpoint) {

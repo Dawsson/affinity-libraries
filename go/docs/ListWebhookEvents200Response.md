@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | [**[]ListWebhookEvents200ResponseEventsInner**](ListWebhookEvents200ResponseEventsInner.md) |  | 
+**Events** | [**[]ListWebhookEvents200ResponseEventsInner**](ListWebhookEvents200ResponseEventsInner.md) |  |
 
 ## Methods
 

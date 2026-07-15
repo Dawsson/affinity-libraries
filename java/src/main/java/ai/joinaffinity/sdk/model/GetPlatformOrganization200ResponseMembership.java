@@ -41,7 +41,7 @@ public class GetPlatformOrganization200ResponseMembership {
   @javax.annotation.Nullable
   private String roleName;
 
-  public GetPlatformOrganization200ResponseMembership() { 
+  public GetPlatformOrganization200ResponseMembership() {
   }
 
   public GetPlatformOrganization200ResponseMembership roleName(@javax.annotation.Nullable String roleName) {

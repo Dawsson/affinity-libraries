@@ -44,7 +44,7 @@ public class ListOrders200Response {
   @javax.annotation.Nonnull
   private List<ListOrders200ResponseOrdersInner> orders = new ArrayList<>();
 
-  public ListOrders200Response() { 
+  public ListOrders200Response() {
   }
 
   public ListOrders200Response orders(@javax.annotation.Nonnull List<ListOrders200ResponseOrdersInner> orders) {

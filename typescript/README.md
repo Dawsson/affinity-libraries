@@ -1,3 +1,19 @@
+<!-- affinity-facade:start -->
+## Recommended client
+
+Start with the resource-oriented client. The generated API classes documented below are the
+low-level transport surface.
+
+```ts
+import { Affinity } from "@affinity/sdk";
+const affinity = new Affinity(process.env.AFFINITY_API_KEY!);
+const catalog = await affinity.catalog.list({ query: "semaglutide" });
+```
+
+Resources are available through account, catalog, practices, orders, and webhooks. Mutation calls
+require an idempotency key.
+<!-- affinity-facade:end -->
+
 # @affinity/sdk@0.1.0
 
 A TypeScript SDK client for the api.joinaffinityai.com API.
@@ -22,7 +38,7 @@ import type { GetApiAccessRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // Configure HTTP bearer authorization: bearerAuth
     accessToken: "YOUR BEARER TOKEN",
     // To configure API key authorization: affinityApiKey
@@ -103,6 +119,7 @@ All URIs are relative to *https://api.joinaffinityai.com*
 - [GetApiAccess200Response](docs/GetApiAccess200Response.md)
 - [GetApiAccess200ResponseApiKey](docs/GetApiAccess200ResponseApiKey.md)
 - [GetApiAccess200ResponseServiceAccount](docs/GetApiAccess200ResponseServiceAccount.md)
+- [GetApiAccess400Response](docs/GetApiAccess400Response.md)
 - [GetPlatformOrganization200Response](docs/GetPlatformOrganization200Response.md)
 - [GetPlatformOrganization200ResponseAccount](docs/GetPlatformOrganization200ResponseAccount.md)
 - [GetPlatformOrganization200ResponseMembership](docs/GetPlatformOrganization200ResponseMembership.md)
@@ -113,11 +130,13 @@ All URIs are relative to *https://api.joinaffinityai.com*
 - [GetWebhookEvent200ResponseEvent](docs/GetWebhookEvent200ResponseEvent.md)
 - [ListCatalogItems200Response](docs/ListCatalogItems200Response.md)
 - [ListCatalogItems200ResponseItemsInner](docs/ListCatalogItems200ResponseItemsInner.md)
+- [ListCatalogItems400Response](docs/ListCatalogItems400Response.md)
 - [ListOrderEvents200Response](docs/ListOrderEvents200Response.md)
 - [ListOrderEvents200ResponseEventsInner](docs/ListOrderEvents200ResponseEventsInner.md)
 - [ListOrders200Response](docs/ListOrders200Response.md)
 - [ListOrders200ResponseOrdersInner](docs/ListOrders200ResponseOrdersInner.md)
 - [ListOrders200ResponseOrdersInnerRouting](docs/ListOrders200ResponseOrdersInnerRouting.md)
+- [ListOrders400Response](docs/ListOrders400Response.md)
 - [ListPractices200Response](docs/ListPractices200Response.md)
 - [ListPractices200ResponseDataInner](docs/ListPractices200ResponseDataInner.md)
 - [ListPractices200ResponseDataInnerAddress](docs/ListPractices200ResponseDataInnerAddress.md)

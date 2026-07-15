@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_practice**
-> CreatePractice200Response create_practice(create_practice_request)
+> CreatePractice200Response create_practice(idempotency_key, create_practice_request)
 
 Create practice
 
@@ -55,11 +55,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PracticesApi(api_client)
-    create_practice_request = {"address":{"city":"Los Angeles","country":"US","line1":"100 Practice Way","line2":null,"postalCode":"90001","state":"CA"},"attestations":{"authorizedPracticeRelationship":true,"authorizedPhiTransfer":true,"minimumNecessaryPhi":true,"providerDataAccuracy":true},"complianceContact":null,"externalId":"practice_123","legalName":"Example Medical Group PLLC","metadata":{},"name":"Example Medical Group","prescribers":[{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"}],"primaryContact":{"email":"operations@example-practice.com","name":"Jordan Lee","phone":null},"supportEmail":"support@example-practice.com","supportPhone":null,"timezone":"America/Los_Angeles"} # CreatePracticeRequest | 
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    create_practice_request = {"address":{"city":"Los Angeles","country":"US","line1":"100 Practice Way","line2":null,"postalCode":"90001","state":"CA"},"attestations":{"authorizedPracticeRelationship":true,"authorizedPhiTransfer":true,"minimumNecessaryPhi":true,"providerDataAccuracy":true},"complianceContact":null,"externalId":"practice_123","legalName":"Example Medical Group PLLC","metadata":{},"name":"Example Medical Group","prescribers":[{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"}],"primaryContact":{"email":"operations@example-practice.com","name":"Jordan Lee","phone":null},"supportEmail":"support@example-practice.com","supportPhone":null,"timezone":"America/Los_Angeles"} # CreatePracticeRequest |
 
     try:
         # Create practice
-        api_response = api_instance.create_practice(create_practice_request)
+        api_response = api_instance.create_practice(idempotency_key, create_practice_request)
         print("The response of PracticesApi->create_practice:\n")
         pprint(api_response)
     except Exception as e:
@@ -73,7 +74,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_practice_request** | [**CreatePracticeRequest**](CreatePracticeRequest.md)|  | 
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **create_practice_request** | [**CreatePracticeRequest**](CreatePracticeRequest.md)|  |
 
 ### Return type
 
@@ -86,20 +88,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -147,7 +150,7 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PracticesApi(api_client)
-    practice_id = 'practice_id_example' # str | 
+    practice_id = 'practice_id_example' # str |
 
     try:
         # Read practice
@@ -165,7 +168,7 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **practice_id** | **str**|  | 
+ **practice_id** | **str**|  |
 
 ### Return type
 
@@ -178,20 +181,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -264,25 +268,26 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_practice**
-> CreatePractice200Response update_practice(practice_id)
+> CreatePractice200Response update_practice(practice_id, idempotency_key)
 
 Update practice
 
@@ -325,11 +330,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PracticesApi(api_client)
-    practice_id = 'practice_id_example' # str | 
+    practice_id = 'practice_id_example' # str |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
 
     try:
         # Update practice
-        api_response = api_instance.update_practice(practice_id)
+        api_response = api_instance.update_practice(practice_id, idempotency_key)
         print("The response of PracticesApi->update_practice:\n")
         pprint(api_response)
     except Exception as e:
@@ -343,7 +349,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **practice_id** | **str**|  | 
+ **practice_id** | **str**|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -356,20 +363,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -29,19 +29,19 @@ import {
 } from './ListPractices200ResponseDataInnerContactsCompliance';
 
 /**
- * 
+ *
  * @export
  * @interface ListPractices200ResponseDataInnerContacts
  */
 export interface ListPractices200ResponseDataInnerContacts {
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerContactsCompliance}
      * @memberof ListPractices200ResponseDataInnerContacts
      */
     compliance: ListPractices200ResponseDataInnerContactsCompliance | null;
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerContactsPrimary}
      * @memberof ListPractices200ResponseDataInnerContacts
      */
@@ -66,7 +66,7 @@ export function ListPractices200ResponseDataInnerContactsFromJSONTyped(json: any
         return json;
     }
     return {
-        
+
         'compliance': ListPractices200ResponseDataInnerContactsComplianceFromJSON(json['compliance']),
         'primary': ListPractices200ResponseDataInnerContactsPrimaryFromJSON(json['primary']),
     };
@@ -82,7 +82,7 @@ export function ListPractices200ResponseDataInnerContactsToJSONTyped(value?: Lis
     }
 
     return {
-        
+
         'compliance': ListPractices200ResponseDataInnerContactsComplianceToJSON(value['compliance']),
         'primary': ListPractices200ResponseDataInnerContactsPrimaryToJSON(value['primary']),
     };

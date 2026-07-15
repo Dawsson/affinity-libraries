@@ -113,7 +113,7 @@ public class ListCatalogItems200ResponseItemsInner {
   @javax.annotation.Nullable
   private String strength;
 
-  public ListCatalogItems200ResponseItemsInner() { 
+  public ListCatalogItems200ResponseItemsInner() {
   }
 
   public ListCatalogItems200ResponseItemsInner allowedStates(@javax.annotation.Nonnull List<String> allowedStates) {

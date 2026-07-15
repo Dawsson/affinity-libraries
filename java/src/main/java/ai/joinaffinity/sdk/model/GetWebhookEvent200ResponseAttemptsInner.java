@@ -67,7 +67,7 @@ public class GetWebhookEvent200ResponseAttemptsInner {
   @javax.annotation.Nonnull
   private Boolean success;
 
-  public GetWebhookEvent200ResponseAttemptsInner() { 
+  public GetWebhookEvent200ResponseAttemptsInner() {
   }
 
   public GetWebhookEvent200ResponseAttemptsInner attemptedAt(@javax.annotation.Nullable String attemptedAt) {

@@ -22,13 +22,13 @@ import {
 } from './CreateOrder200ResponseOrder';
 
 /**
- * 
+ *
  * @export
  * @interface CreateOrder200Response
  */
 export interface CreateOrder200Response {
     /**
-     * 
+     *
      * @type {CreateOrder200ResponseOrder}
      * @memberof CreateOrder200Response
      */
@@ -52,7 +52,7 @@ export function CreateOrder200ResponseFromJSONTyped(json: any, ignoreDiscriminat
         return json;
     }
     return {
-        
+
         'order': CreateOrder200ResponseOrderFromJSON(json['order']),
     };
 }
@@ -67,7 +67,7 @@ export function CreateOrder200ResponseToJSONTyped(value?: CreateOrder200Response
     }
 
     return {
-        
+
         'order': CreateOrder200ResponseOrderToJSON(value['order']),
     };
 }

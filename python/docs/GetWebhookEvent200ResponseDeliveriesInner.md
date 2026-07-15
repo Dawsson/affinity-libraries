@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attempt_count** | **float** |  | 
-**endpoint_id** | **str** |  | 
-**id** | **str** |  | 
-**last_error** | **str** |  | 
+**attempt_count** | **float** |  |
+**endpoint_id** | **str** |  |
+**id** | **str** |  |
+**last_error** | **str** |  |
 
 ## Example
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]ListPractices200ResponseDataInner**](ListPractices200ResponseDataInner.md) |  | 
-**HasMore** | **bool** |  | 
-**Object** | **string** |  | 
+**Data** | [**[]ListPractices200ResponseDataInner**](ListPractices200ResponseDataInner.md) |  |
+**HasMore** | **bool** |  |
+**Object** | **string** |  |
 
 ## Methods
 

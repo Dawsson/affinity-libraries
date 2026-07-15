@@ -14,31 +14,31 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreateOrder200ResponseOrderRouting
  */
 export interface CreateOrder200ResponseOrderRouting {
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof CreateOrder200ResponseOrderRouting
      */
     blockedReasons: Array<string>;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof CreateOrder200ResponseOrderRouting
      */
     candidateCompounderIds: Array<string>;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof CreateOrder200ResponseOrderRouting
      */
     coldShip: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrderRouting
      */
@@ -65,7 +65,7 @@ export function CreateOrder200ResponseOrderRoutingFromJSONTyped(json: any, ignor
         return json;
     }
     return {
-        
+
         'blockedReasons': json['blockedReasons'],
         'candidateCompounderIds': json['candidateCompounderIds'],
         'coldShip': json['coldShip'],
@@ -83,7 +83,7 @@ export function CreateOrder200ResponseOrderRoutingToJSONTyped(value?: CreateOrde
     }
 
     return {
-        
+
         'blockedReasons': value['blockedReasons'],
         'candidateCompounderIds': value['candidateCompounderIds'],
         'coldShip': value['coldShip'],

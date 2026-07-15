@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **str** | Stable machine-readable error code. | 
-**message** | **str** | Human-readable error summary. | 
-**request_id** | **str** | Request identifier for support. | 
+**code** | **str** | Stable machine-readable error code. |
+**message** | **str** | Human-readable error summary. |
+**request_id** | **str** | Request identifier for support. |
 
 ## Example
 

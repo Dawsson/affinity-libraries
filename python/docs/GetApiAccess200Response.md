@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**api_key** | [**GetApiAccess200ResponseApiKey**](GetApiAccess200ResponseApiKey.md) |  | 
-**livemode** | **bool** |  | 
-**object** | **str** |  | 
-**scopes** | **List[str]** |  | 
-**service_account** | [**GetApiAccess200ResponseServiceAccount**](GetApiAccess200ResponseServiceAccount.md) |  | 
+**api_key** | [**GetApiAccess200ResponseApiKey**](GetApiAccess200ResponseApiKey.md) |  |
+**livemode** | **bool** |  |
+**object** | **str** |  |
+**scopes** | **List[str]** |  |
+**service_account** | [**GetApiAccess200ResponseServiceAccount**](GetApiAccess200ResponseServiceAccount.md) |  |
 
 ## Example
 

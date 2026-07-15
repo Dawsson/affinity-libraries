@@ -4,35 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CancellationReason** | **NullableString** |  | 
-**Carrier** | **NullableString** |  | 
-**CatalogItemId** | **NullableString** |  | 
-**CompounderId** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**Currency** | **string** |  | 
-**DeliveredAt** | **NullableString** |  | 
-**Directions** | **string** |  | 
-**DosageForm** | **NullableString** |  | 
-**ExternalOrderId** | **string** |  | 
-**ExternalSubmissionAttempted** | **bool** |  | 
-**ExternalSubmissionBlockedReason** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Livemode** | **bool** |  | 
-**MedicationName** | **string** |  | 
-**PatientExternalId** | **string** |  | 
-**PatientName** | **string** |  | 
-**PatientState** | **string** |  | 
-**PracticeId** | **NullableString** |  | 
-**PrescriberName** | **NullableString** |  | 
-**PrescriberNpi** | **NullableString** |  | 
-**Quantity** | **float32** |  | 
-**QuoteCents** | **NullableFloat32** |  | 
-**ReplacesOrderId** | **NullableString** |  | 
-**Routing** | [**NullableCreateOrder200ResponseOrderRouting**](CreateOrder200ResponseOrderRouting.md) |  | 
-**ShippedAt** | **NullableString** |  | 
-**Strength** | **NullableString** |  | 
-**TrackingNumber** | **NullableString** |  | 
-**UpdatedAt** | **string** |  | 
+**CancellationReason** | **NullableString** |  |
+**Carrier** | **NullableString** |  |
+**CatalogItemId** | **NullableString** |  |
+**CompounderId** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**Currency** | **string** |  |
+**DeliveredAt** | **NullableString** |  |
+**Directions** | **string** |  |
+**DosageForm** | **NullableString** |  |
+**ExternalOrderId** | **string** |  |
+**ExternalSubmissionAttempted** | **bool** |  |
+**ExternalSubmissionBlockedReason** | **NullableString** |  |
+**Id** | **string** |  |
+**Livemode** | **bool** |  |
+**MedicationName** | **string** |  |
+**PatientExternalId** | **string** |  |
+**PatientName** | **string** |  |
+**PatientState** | **string** |  |
+**PracticeId** | **NullableString** |  |
+**PrescriberName** | **NullableString** |  |
+**PrescriberNpi** | **NullableString** |  |
+**Quantity** | **float32** |  |
+**QuoteCents** | **NullableFloat32** |  |
+**ReplacesOrderId** | **NullableString** |  |
+**Routing** | [**NullableCreateOrder200ResponseOrderRouting**](CreateOrder200ResponseOrderRouting.md) |  |
+**ShippedAt** | **NullableString** |  |
+**Strength** | **NullableString** |  |
+**TrackingNumber** | **NullableString** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 

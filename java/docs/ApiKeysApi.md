@@ -32,7 +32,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -74,19 +74,20 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## getApiAccessWithHttpInfo
 
@@ -112,7 +113,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -156,17 +157,18 @@ ApiResponse<[**GetApiAccess200Response**](GetApiAccess200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 

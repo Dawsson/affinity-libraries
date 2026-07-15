@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** |  | 
-**EventType** | **string** |  | 
-**Id** | **string** |  | 
-**Livemode** | **bool** |  | 
-**ObjectId** | **string** |  | 
-**ObjectType** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**CreatedAt** | **string** |  |
+**EventType** | **string** |  |
+**Id** | **string** |  |
+**Livemode** | **bool** |  |
+**ObjectId** | **string** |  |
+**ObjectType** | **string** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 

@@ -98,7 +98,7 @@ public class GetApiAccess200Response {
   @javax.annotation.Nonnull
   private GetApiAccess200ResponseServiceAccount serviceAccount;
 
-  public GetApiAccess200Response() { 
+  public GetApiAccess200Response() {
   }
 
   public GetApiAccess200Response apiKey(@javax.annotation.Nonnull GetApiAccess200ResponseApiKey apiKey) {

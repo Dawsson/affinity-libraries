@@ -14,43 +14,43 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreateWebhookEndpoint200ResponseEndpoint
  */
 export interface CreateWebhookEndpoint200ResponseEndpoint {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateWebhookEndpoint200ResponseEndpoint
      */
     createdAt: string;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof CreateWebhookEndpoint200ResponseEndpoint
      */
     enabledEvents: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateWebhookEndpoint200ResponseEndpoint
      */
     id: string;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof CreateWebhookEndpoint200ResponseEndpoint
      */
     livemode: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateWebhookEndpoint200ResponseEndpoint
      */
     updatedAt: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateWebhookEndpoint200ResponseEndpoint
      */
@@ -79,7 +79,7 @@ export function CreateWebhookEndpoint200ResponseEndpointFromJSONTyped(json: any,
         return json;
     }
     return {
-        
+
         'createdAt': json['createdAt'],
         'enabledEvents': json['enabledEvents'],
         'id': json['id'],
@@ -99,7 +99,7 @@ export function CreateWebhookEndpoint200ResponseEndpointToJSONTyped(value?: Crea
     }
 
     return {
-        
+
         'createdAt': value['createdAt'],
         'enabledEvents': value['enabledEvents'],
         'id': value['id'],

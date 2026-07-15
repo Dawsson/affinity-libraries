@@ -56,7 +56,7 @@ public class GetWebhookEvent200Response {
   @javax.annotation.Nonnull
   private GetWebhookEvent200ResponseEvent event;
 
-  public GetWebhookEvent200Response() { 
+  public GetWebhookEvent200Response() {
   }
 
   public GetWebhookEvent200Response attempts(@javax.annotation.Nonnull List<GetWebhookEvent200ResponseAttemptsInner> attempts) {

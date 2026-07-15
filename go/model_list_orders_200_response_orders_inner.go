@@ -42,7 +42,7 @@ type ListOrders200ResponseOrdersInner struct {
 	PracticeId                      NullableString                                  `json:"practiceId"`
 	PrescriberName                  NullableString                                  `json:"prescriberName"`
 	PrescriberNpi                   NullableString                                  `json:"prescriberNpi"`
-	Quantity                        float32                                         `json:"quantity"`
+	Quantity                        NullableFloat32                                 `json:"quantity"`
 	QuoteCents                      NullableFloat32                                 `json:"quoteCents"`
 	ReplacesOrderId                 NullableString                                  `json:"replacesOrderId"`
 	Routing                         NullableListOrders200ResponseOrdersInnerRouting `json:"routing"`
@@ -59,7 +59,7 @@ type _ListOrders200ResponseOrdersInner ListOrders200ResponseOrdersInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOrders200ResponseOrdersInner(cancellationReason NullableString, carrier NullableString, catalogItemId NullableString, compounderId NullableString, createdAt NullableString, currency NullableString, deliveredAt NullableString, directions NullableString, dosageForm NullableString, externalOrderId NullableString, externalSubmissionAttempted bool, externalSubmissionBlockedReason NullableString, id NullableString, livemode bool, medicationName NullableString, patientExternalId NullableString, patientName NullableString, patientState NullableString, practiceId NullableString, prescriberName NullableString, prescriberNpi NullableString, quantity float32, quoteCents NullableFloat32, replacesOrderId NullableString, routing NullableListOrders200ResponseOrdersInnerRouting, shippedAt NullableString, strength NullableString, trackingNumber NullableString, updatedAt NullableString) *ListOrders200ResponseOrdersInner {
+func NewListOrders200ResponseOrdersInner(cancellationReason NullableString, carrier NullableString, catalogItemId NullableString, compounderId NullableString, createdAt NullableString, currency NullableString, deliveredAt NullableString, directions NullableString, dosageForm NullableString, externalOrderId NullableString, externalSubmissionAttempted bool, externalSubmissionBlockedReason NullableString, id NullableString, livemode bool, medicationName NullableString, patientExternalId NullableString, patientName NullableString, patientState NullableString, practiceId NullableString, prescriberName NullableString, prescriberNpi NullableString, quantity NullableFloat32, quoteCents NullableFloat32, replacesOrderId NullableString, routing NullableListOrders200ResponseOrdersInnerRouting, shippedAt NullableString, strength NullableString, trackingNumber NullableString, updatedAt NullableString) *ListOrders200ResponseOrdersInner {
 	this := ListOrders200ResponseOrdersInner{}
 	this.CancellationReason = cancellationReason
 	this.Carrier = carrier
@@ -644,27 +644,29 @@ func (o *ListOrders200ResponseOrdersInner) SetPrescriberNpi(v string) {
 }
 
 // GetQuantity returns the Quantity field value
+// If the value is explicit nil, the zero value for float32 will be returned
 func (o *ListOrders200ResponseOrdersInner) GetQuantity() float32 {
-	if o == nil {
+	if o == nil || o.Quantity.Get() == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Quantity
+	return *o.Quantity.Get()
 }
 
 // GetQuantityOk returns a tuple with the Quantity field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ListOrders200ResponseOrdersInner) GetQuantityOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Quantity, true
+	return o.Quantity.Get(), o.Quantity.IsSet()
 }
 
 // SetQuantity sets field value
 func (o *ListOrders200ResponseOrdersInner) SetQuantity(v float32) {
-	o.Quantity = v
+	o.Quantity.Set(&v)
 }
 
 // GetQuoteCents returns the QuoteCents field value
@@ -880,7 +882,7 @@ func (o ListOrders200ResponseOrdersInner) ToMap() (map[string]interface{}, error
 	toSerialize["practiceId"] = o.PracticeId.Get()
 	toSerialize["prescriberName"] = o.PrescriberName.Get()
 	toSerialize["prescriberNpi"] = o.PrescriberNpi.Get()
-	toSerialize["quantity"] = o.Quantity
+	toSerialize["quantity"] = o.Quantity.Get()
 	toSerialize["quoteCents"] = o.QuoteCents.Get()
 	toSerialize["replacesOrderId"] = o.ReplacesOrderId.Get()
 	toSerialize["routing"] = o.Routing.Get()

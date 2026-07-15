@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreatePractice
 
-> CreatePractice200Response CreatePractice(ctx).CreatePracticeRequest(createPracticeRequest).Execute()
+> CreatePractice200Response CreatePractice(ctx).IdempotencyKey(idempotencyKey).CreatePracticeRequest(createPracticeRequest).Execute()
 
 Create practice
 
@@ -32,11 +32,12 @@ import (
 )
 
 func main() {
-	createPracticeRequest := *openapiclient.NewCreatePracticeRequest(*openapiclient.NewCreatePracticeRequestAddress("City_example", "Line1_example", "PostalCode_example", "State_example"), *openapiclient.NewCreatePracticeRequestAttestations(false, false, false, false), "Name_example") // CreatePracticeRequest | 
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	createPracticeRequest := *openapiclient.NewCreatePracticeRequest(*openapiclient.NewCreatePracticeRequestAddress("City_example", "Line1_example", "PostalCode_example", "State_example"), *openapiclient.NewCreatePracticeRequestAttestations(false, false, false, false), "Name_example") // CreatePracticeRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PracticesAPI.CreatePractice(context.Background()).CreatePracticeRequest(createPracticeRequest).Execute()
+	resp, r, err := apiClient.PracticesAPI.CreatePractice(context.Background()).IdempotencyKey(idempotencyKey).CreatePracticeRequest(createPracticeRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PracticesAPI.CreatePractice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,7 +58,8 @@ Other parameters are passed through a pointer to a apiCreatePracticeRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createPracticeRequest** | [**CreatePracticeRequest**](CreatePracticeRequest.md) |  | 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
+ **createPracticeRequest** | [**CreatePracticeRequest**](CreatePracticeRequest.md) |  |
 
 ### Return type
 
@@ -70,7 +72,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -98,7 +100,7 @@ import (
 )
 
 func main() {
-	practiceId := "practiceId_example" // string | 
+	practiceId := "practiceId_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**practiceId** | **string** |  | 
+**practiceId** | **string** |  |
 
 ### Other Parameters
 
@@ -140,7 +142,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -199,7 +201,7 @@ Other parameters are passed through a pointer to a apiListPracticesRequest struc
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -208,7 +210,7 @@ Other parameters are passed through a pointer to a apiListPracticesRequest struc
 
 ## UpdatePractice
 
-> CreatePractice200Response UpdatePractice(ctx, practiceId).Execute()
+> CreatePractice200Response UpdatePractice(ctx, practiceId).IdempotencyKey(idempotencyKey).Execute()
 
 Update practice
 
@@ -227,11 +229,12 @@ import (
 )
 
 func main() {
-	practiceId := "practiceId_example" // string | 
+	practiceId := "practiceId_example" // string |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PracticesAPI.UpdatePractice(context.Background(), practiceId).Execute()
+	resp, r, err := apiClient.PracticesAPI.UpdatePractice(context.Background(), practiceId).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PracticesAPI.UpdatePractice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -247,7 +250,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**practiceId** | **string** |  | 
+**practiceId** | **string** |  |
 
 ### Other Parameters
 
@@ -257,6 +260,7 @@ Other parameters are passed through a pointer to a apiUpdatePracticeRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -269,7 +273,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

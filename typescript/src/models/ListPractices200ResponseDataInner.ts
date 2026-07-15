@@ -36,79 +36,79 @@ import {
 } from './ListPractices200ResponseDataInnerPrescribersInner';
 
 /**
- * 
+ *
  * @export
  * @interface ListPractices200ResponseDataInner
  */
 export interface ListPractices200ResponseDataInner {
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerAddress}
      * @memberof ListPractices200ResponseDataInner
      */
     address: ListPractices200ResponseDataInnerAddress | null;
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerContacts}
      * @memberof ListPractices200ResponseDataInner
      */
     contacts: ListPractices200ResponseDataInnerContacts;
     /**
-     * 
+     *
      * @type {number}
      * @memberof ListPractices200ResponseDataInner
      */
     created: number | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInner
      */
     externalId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInner
      */
     id: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInner
      */
     legalName: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInner
      */
     name: string | null;
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerObjectEnum}
      * @memberof ListPractices200ResponseDataInner
      */
     object: ListPractices200ResponseDataInnerObjectEnum;
     /**
-     * 
+     *
      * @type {Array<ListPractices200ResponseDataInnerPrescribersInner>}
      * @memberof ListPractices200ResponseDataInner
      */
     prescribers: Array<ListPractices200ResponseDataInnerPrescribersInner>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInner
      */
     supportEmail: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInner
      */
     supportPhone: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInner
      */
@@ -153,7 +153,7 @@ export function ListPractices200ResponseDataInnerFromJSONTyped(json: any, ignore
         return json;
     }
     return {
-        
+
         'address': ListPractices200ResponseDataInnerAddressFromJSON(json['address']),
         'contacts': ListPractices200ResponseDataInnerContactsFromJSON(json['contacts']),
         'created': json['created'],
@@ -179,7 +179,7 @@ export function ListPractices200ResponseDataInnerToJSONTyped(value?: ListPractic
     }
 
     return {
-        
+
         'address': ListPractices200ResponseDataInnerAddressToJSON(value['address']),
         'contacts': ListPractices200ResponseDataInnerContactsToJSON(value['contacts']),
         'created': value['created'],

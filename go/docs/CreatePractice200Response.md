@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | [**NullableCreatePractice200ResponseAddress**](CreatePractice200ResponseAddress.md) |  | 
-**Contacts** | [**CreatePractice200ResponseContacts**](CreatePractice200ResponseContacts.md) |  | 
-**Created** | **NullableFloat32** |  | 
-**ExternalId** | **NullableString** |  | 
-**Id** | **NullableString** |  | 
-**LegalName** | **NullableString** |  | 
-**Name** | **NullableString** |  | 
-**Object** | **string** |  | 
-**Prescribers** | [**[]CreatePracticeRequestPrescribersInner**](CreatePracticeRequestPrescribersInner.md) |  | 
-**SupportEmail** | **NullableString** |  | 
-**SupportPhone** | **NullableString** |  | 
-**Timezone** | **NullableString** |  | 
+**Address** | [**NullableCreatePractice200ResponseAddress**](CreatePractice200ResponseAddress.md) |  |
+**Contacts** | [**CreatePractice200ResponseContacts**](CreatePractice200ResponseContacts.md) |  |
+**Created** | **NullableFloat32** |  |
+**ExternalId** | **NullableString** |  |
+**Id** | **NullableString** |  |
+**LegalName** | **NullableString** |  |
+**Name** | **NullableString** |  |
+**Object** | **string** |  |
+**Prescribers** | [**[]CreatePracticeRequestPrescribersInner**](CreatePracticeRequestPrescribersInner.md) |  |
+**SupportEmail** | **NullableString** |  |
+**SupportPhone** | **NullableString** |  |
+**Timezone** | **NullableString** |  |
 
 ## Methods
 

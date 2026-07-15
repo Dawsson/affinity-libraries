@@ -66,7 +66,7 @@ public class GetPlatformOrganization200ResponseUser {
   @javax.annotation.Nullable
   private String userId;
 
-  public GetPlatformOrganization200ResponseUser() { 
+  public GetPlatformOrganization200ResponseUser() {
   }
 
   public GetPlatformOrganization200ResponseUser email(@javax.annotation.Nullable String email) {

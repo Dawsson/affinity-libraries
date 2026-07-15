@@ -22,13 +22,13 @@ import {
 } from './ListOrders200ResponseOrdersInner';
 
 /**
- * 
+ *
  * @export
  * @interface ListOrders200Response
  */
 export interface ListOrders200Response {
     /**
-     * 
+     *
      * @type {Array<ListOrders200ResponseOrdersInner>}
      * @memberof ListOrders200Response
      */
@@ -52,7 +52,7 @@ export function ListOrders200ResponseFromJSONTyped(json: any, ignoreDiscriminato
         return json;
     }
     return {
-        
+
         'orders': ((json['orders'] as Array<any>).map(ListOrders200ResponseOrdersInnerFromJSON)),
     };
 }
@@ -67,7 +67,7 @@ export function ListOrders200ResponseToJSONTyped(value?: ListOrders200Response |
     }
 
     return {
-        
+
         'orders': ((value['orders'] as Array<any>).map(ListOrders200ResponseOrdersInnerToJSON)),
     };
 }

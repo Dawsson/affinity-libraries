@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreateWebhookEndpoint
 
-> CreateWebhookEndpoint200Response CreateWebhookEndpoint(ctx).CreateWebhookEndpointRequest(createWebhookEndpointRequest).Execute()
+> CreateWebhookEndpoint200Response CreateWebhookEndpoint(ctx).IdempotencyKey(idempotencyKey).CreateWebhookEndpointRequest(createWebhookEndpointRequest).Execute()
 
 Create webhook endpoint
 
@@ -34,11 +34,12 @@ import (
 )
 
 func main() {
-	createWebhookEndpointRequest := *openapiclient.NewCreateWebhookEndpointRequest() // CreateWebhookEndpointRequest | 
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	createWebhookEndpointRequest := *openapiclient.NewCreateWebhookEndpointRequest() // CreateWebhookEndpointRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.CreateWebhookEndpoint(context.Background()).CreateWebhookEndpointRequest(createWebhookEndpointRequest).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.CreateWebhookEndpoint(context.Background()).IdempotencyKey(idempotencyKey).CreateWebhookEndpointRequest(createWebhookEndpointRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.CreateWebhookEndpoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +60,8 @@ Other parameters are passed through a pointer to a apiCreateWebhookEndpointReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createWebhookEndpointRequest** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md) |  | 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
+ **createWebhookEndpointRequest** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md) |  |
 
 ### Return type
 
@@ -72,7 +74,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -81,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWebhookEndpoint
 
-> DeleteWebhookEndpoint200Response DeleteWebhookEndpoint(ctx, endpointId).Execute()
+> DeleteWebhookEndpoint200Response DeleteWebhookEndpoint(ctx, endpointId).IdempotencyKey(idempotencyKey).Execute()
 
 Disable webhook endpoint
 
@@ -98,11 +100,12 @@ import (
 )
 
 func main() {
-	endpointId := "endpointId_example" // string | 
+	endpointId := "endpointId_example" // string |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.DeleteWebhookEndpoint(context.Background(), endpointId).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.DeleteWebhookEndpoint(context.Background(), endpointId).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.DeleteWebhookEndpoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **string** |  | 
+**endpointId** | **string** |  |
 
 ### Other Parameters
 
@@ -128,6 +131,7 @@ Other parameters are passed through a pointer to a apiDeleteWebhookEndpointReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -140,7 +144,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -166,7 +170,7 @@ import (
 )
 
 func main() {
-	eventId := "eventId_example" // string | 
+	eventId := "eventId_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -186,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **string** |  | 
+**eventId** | **string** |  |
 
 ### Other Parameters
 
@@ -208,7 +212,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -267,7 +271,7 @@ Other parameters are passed through a pointer to a apiListWebhookEndpointsReques
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -326,7 +330,7 @@ Other parameters are passed through a pointer to a apiListWebhookEventsRequest s
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -335,7 +339,7 @@ Other parameters are passed through a pointer to a apiListWebhookEventsRequest s
 
 ## ReplayWebhookEvent
 
-> ReplayWebhookEvent200Response ReplayWebhookEvent(ctx, eventId).Execute()
+> ReplayWebhookEvent200Response ReplayWebhookEvent(ctx, eventId).IdempotencyKey(idempotencyKey).Execute()
 
 Replay webhook event
 
@@ -352,11 +356,12 @@ import (
 )
 
 func main() {
-	eventId := "eventId_example" // string | 
+	eventId := "eventId_example" // string |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.ReplayWebhookEvent(context.Background(), eventId).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.ReplayWebhookEvent(context.Background(), eventId).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.ReplayWebhookEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -372,7 +377,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**eventId** | **string** |  | 
+**eventId** | **string** |  |
 
 ### Other Parameters
 
@@ -382,6 +387,7 @@ Other parameters are passed through a pointer to a apiReplayWebhookEventRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -394,7 +400,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -403,7 +409,7 @@ Name | Type | Description  | Notes
 
 ## RotateWebhookEndpointSecret
 
-> CreateWebhookEndpoint200Response RotateWebhookEndpointSecret(ctx, endpointId).Execute()
+> CreateWebhookEndpoint200Response RotateWebhookEndpointSecret(ctx, endpointId).IdempotencyKey(idempotencyKey).Execute()
 
 Rotate webhook signing secret
 
@@ -420,11 +426,12 @@ import (
 )
 
 func main() {
-	endpointId := "endpointId_example" // string | 
+	endpointId := "endpointId_example" // string |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.RotateWebhookEndpointSecret(context.Background(), endpointId).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.RotateWebhookEndpointSecret(context.Background(), endpointId).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.RotateWebhookEndpointSecret``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -440,7 +447,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **string** |  | 
+**endpointId** | **string** |  |
 
 ### Other Parameters
 
@@ -450,6 +457,7 @@ Other parameters are passed through a pointer to a apiRotateWebhookEndpointSecre
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -462,7 +470,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -471,7 +479,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWebhookEndpoint
 
-> DeleteWebhookEndpoint200Response UpdateWebhookEndpoint(ctx, endpointId).UpdateWebhookEndpointRequest(updateWebhookEndpointRequest).Execute()
+> DeleteWebhookEndpoint200Response UpdateWebhookEndpoint(ctx, endpointId).IdempotencyKey(idempotencyKey).UpdateWebhookEndpointRequest(updateWebhookEndpointRequest).Execute()
 
 Update webhook endpoint
 
@@ -488,12 +496,13 @@ import (
 )
 
 func main() {
-	endpointId := "endpointId_example" // string | 
-	updateWebhookEndpointRequest := *openapiclient.NewUpdateWebhookEndpointRequest([]string{"EnabledEvents_example"}) // UpdateWebhookEndpointRequest | 
+	endpointId := "endpointId_example" // string |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	updateWebhookEndpointRequest := *openapiclient.NewUpdateWebhookEndpointRequest([]string{"EnabledEvents_example"}) // UpdateWebhookEndpointRequest |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.UpdateWebhookEndpoint(context.Background(), endpointId).UpdateWebhookEndpointRequest(updateWebhookEndpointRequest).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.UpdateWebhookEndpoint(context.Background(), endpointId).IdempotencyKey(idempotencyKey).UpdateWebhookEndpointRequest(updateWebhookEndpointRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.UpdateWebhookEndpoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -509,7 +518,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**endpointId** | **string** |  | 
+**endpointId** | **string** |  |
 
 ### Other Parameters
 
@@ -519,7 +528,8 @@ Other parameters are passed through a pointer to a apiUpdateWebhookEndpointReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateWebhookEndpointRequest** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md) |  | 
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
+ **updateWebhookEndpointRequest** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md) |  |
 
 ### Return type
 
@@ -532,7 +542,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

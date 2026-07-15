@@ -5,18 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**CreatePractice200ResponseAddress**](CreatePractice200ResponseAddress.md) |  | 
-**contacts** | [**CreatePractice200ResponseContacts**](CreatePractice200ResponseContacts.md) |  | 
-**created** | **float** |  | 
-**external_id** | **str** |  | 
-**id** | **str** |  | 
-**legal_name** | **str** |  | 
-**name** | **str** |  | 
-**object** | **str** |  | 
-**prescribers** | [**List[CreatePracticeRequestPrescribersInner]**](CreatePracticeRequestPrescribersInner.md) |  | 
-**support_email** | **str** |  | 
-**support_phone** | **str** |  | 
-**timezone** | **str** |  | 
+**address** | [**CreatePractice200ResponseAddress**](CreatePractice200ResponseAddress.md) |  |
+**contacts** | [**CreatePractice200ResponseContacts**](CreatePractice200ResponseContacts.md) |  |
+**created** | **float** |  |
+**external_id** | **str** |  |
+**id** | **str** |  |
+**legal_name** | **str** |  |
+**name** | **str** |  |
+**object** | **str** |  |
+**prescribers** | [**List[CreatePracticeRequestPrescribersInner]**](CreatePracticeRequestPrescribersInner.md) |  |
+**support_email** | **str** |  |
+**support_phone** | **str** |  |
+**timezone** | **str** |  |
 
 ## Example
 

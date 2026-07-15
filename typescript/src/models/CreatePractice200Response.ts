@@ -36,79 +36,79 @@ import {
 } from './CreatePractice200ResponseContacts';
 
 /**
- * 
+ *
  * @export
  * @interface CreatePractice200Response
  */
 export interface CreatePractice200Response {
     /**
-     * 
+     *
      * @type {CreatePractice200ResponseAddress}
      * @memberof CreatePractice200Response
      */
     address: CreatePractice200ResponseAddress | null;
     /**
-     * 
+     *
      * @type {CreatePractice200ResponseContacts}
      * @memberof CreatePractice200Response
      */
     contacts: CreatePractice200ResponseContacts;
     /**
-     * 
+     *
      * @type {number}
      * @memberof CreatePractice200Response
      */
     created: number | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200Response
      */
     externalId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200Response
      */
     id: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200Response
      */
     legalName: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200Response
      */
     name: string | null;
     /**
-     * 
+     *
      * @type {CreatePractice200ResponseObjectEnum}
      * @memberof CreatePractice200Response
      */
     object: CreatePractice200ResponseObjectEnum;
     /**
-     * 
+     *
      * @type {Array<CreatePracticeRequestPrescribersInner>}
      * @memberof CreatePractice200Response
      */
     prescribers: Array<CreatePracticeRequestPrescribersInner>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200Response
      */
     supportEmail: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200Response
      */
     supportPhone: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200Response
      */
@@ -153,7 +153,7 @@ export function CreatePractice200ResponseFromJSONTyped(json: any, ignoreDiscrimi
         return json;
     }
     return {
-        
+
         'address': CreatePractice200ResponseAddressFromJSON(json['address']),
         'contacts': CreatePractice200ResponseContactsFromJSON(json['contacts']),
         'created': json['created'],
@@ -179,7 +179,7 @@ export function CreatePractice200ResponseToJSONTyped(value?: CreatePractice200Re
     }
 
     return {
-        
+
         'address': CreatePractice200ResponseAddressToJSON(value['address']),
         'contacts': CreatePractice200ResponseContactsToJSON(value['contacts']),
         'created': value['created'],

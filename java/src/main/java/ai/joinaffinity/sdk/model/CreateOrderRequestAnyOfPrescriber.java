@@ -58,7 +58,7 @@ public class CreateOrderRequestAnyOfPrescriber {
   @javax.annotation.Nonnull
   private String npi;
 
-  public CreateOrderRequestAnyOfPrescriber() { 
+  public CreateOrderRequestAnyOfPrescriber() {
   }
 
   public CreateOrderRequestAnyOfPrescriber credentials(@javax.annotation.Nullable String credentials) {

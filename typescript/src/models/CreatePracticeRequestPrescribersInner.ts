@@ -14,31 +14,31 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreatePracticeRequestPrescribersInner
  */
 export interface CreatePracticeRequestPrescribersInner {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequestPrescribersInner
      */
     credentials?: string | null;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof CreatePracticeRequestPrescribersInner
      */
     licenseStates: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequestPrescribersInner
      */
     name: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequestPrescribersInner
      */
@@ -64,7 +64,7 @@ export function CreatePracticeRequestPrescribersInnerFromJSONTyped(json: any, ig
         return json;
     }
     return {
-        
+
         'credentials': json['credentials'] == null ? undefined : json['credentials'],
         'licenseStates': json['licenseStates'],
         'name': json['name'],
@@ -82,7 +82,7 @@ export function CreatePracticeRequestPrescribersInnerToJSONTyped(value?: CreateP
     }
 
     return {
-        
+
         'credentials': value['credentials'],
         'licenseStates': value['licenseStates'],
         'name': value['name'],

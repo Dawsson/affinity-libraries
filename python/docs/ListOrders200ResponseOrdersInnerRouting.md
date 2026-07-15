@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**blocked_reasons** | **List[str]** |  | 
-**candidate_compounder_ids** | **List[str]** |  | 
-**cold_ship** | **bool** |  | 
-**selected_compounder_id** | **str** |  | 
+**blocked_reasons** | **List[str]** |  |
+**candidate_compounder_ids** | **List[str]** |  |
+**cold_ship** | **bool** |  |
+**selected_compounder_id** | **str** |  |
 
 ## Example
 

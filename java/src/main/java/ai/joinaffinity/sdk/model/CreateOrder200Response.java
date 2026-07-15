@@ -42,7 +42,7 @@ public class CreateOrder200Response {
   @javax.annotation.Nonnull
   private CreateOrder200ResponseOrder order;
 
-  public CreateOrder200Response() { 
+  public CreateOrder200Response() {
   }
 
   public CreateOrder200Response order(@javax.annotation.Nonnull CreateOrder200ResponseOrder order) {

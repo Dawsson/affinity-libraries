@@ -73,7 +73,7 @@ public class CreateOrderRequestAnyOf1 {
   @javax.annotation.Nonnull
   private CreateOrderRequestAnyOf1ShippingAddress shippingAddress;
 
-  public CreateOrderRequestAnyOf1() { 
+  public CreateOrderRequestAnyOf1() {
   }
 
   public CreateOrderRequestAnyOf1 practiceId(@javax.annotation.Nullable String practiceId) {

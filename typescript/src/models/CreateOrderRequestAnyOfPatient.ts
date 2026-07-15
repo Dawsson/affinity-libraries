@@ -22,49 +22,49 @@ import {
 } from './CreateOrderRequestAnyOfPatientAddress';
 
 /**
- * 
+ *
  * @export
  * @interface CreateOrderRequestAnyOfPatient
  */
 export interface CreateOrderRequestAnyOfPatient {
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOfPatientAddress}
      * @memberof CreateOrderRequestAnyOfPatient
      */
     address: CreateOrderRequestAnyOfPatientAddress;
     /**
-     * 
+     *
      * @type {Date}
      * @memberof CreateOrderRequestAnyOfPatient
      */
     dateOfBirth: Date;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatient
      */
     email?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatient
      */
     externalPatientId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatient
      */
     name: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatient
      */
     phone?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatient
      */
@@ -92,7 +92,7 @@ export function CreateOrderRequestAnyOfPatientFromJSONTyped(json: any, ignoreDis
         return json;
     }
     return {
-        
+
         'address': CreateOrderRequestAnyOfPatientAddressFromJSON(json['address']),
         'dateOfBirth': (new Date(json['dateOfBirth'])),
         'email': json['email'] == null ? undefined : json['email'],
@@ -113,7 +113,7 @@ export function CreateOrderRequestAnyOfPatientToJSONTyped(value?: CreateOrderReq
     }
 
     return {
-        
+
         'address': CreateOrderRequestAnyOfPatientAddressToJSON(value['address']),
         'dateOfBirth': value['dateOfBirth'].toISOString().substring(0,10),
         'email': value['email'],

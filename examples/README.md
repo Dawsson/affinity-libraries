@@ -1,6 +1,7 @@
 # Quick-start examples
 
-Each example reads `AFFINITY_API_KEY` and runs the same read-only first-client workflow:
+Each example uses the resource-oriented `Affinity` client and runs the same read-only first-client
+workflow:
 
 1. Inspect the service key's organization, mode, and scopes.
 2. Refuse to run with a live-mode key.

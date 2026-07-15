@@ -36,25 +36,25 @@ import {
 } from './ReplayWebhookEvent200ResponseAttemptsInner';
 
 /**
- * 
+ *
  * @export
  * @interface ReplayWebhookEvent200Response
  */
 export interface ReplayWebhookEvent200Response {
     /**
-     * 
+     *
      * @type {Array<ReplayWebhookEvent200ResponseAttemptsInner>}
      * @memberof ReplayWebhookEvent200Response
      */
     attempts: Array<ReplayWebhookEvent200ResponseAttemptsInner>;
     /**
-     * 
+     *
      * @type {Array<ReplayWebhookEvent200ResponseDeliveriesInner>}
      * @memberof ReplayWebhookEvent200Response
      */
     deliveries: Array<ReplayWebhookEvent200ResponseDeliveriesInner>;
     /**
-     * 
+     *
      * @type {GetWebhookEvent200ResponseEvent}
      * @memberof ReplayWebhookEvent200Response
      */
@@ -80,7 +80,7 @@ export function ReplayWebhookEvent200ResponseFromJSONTyped(json: any, ignoreDisc
         return json;
     }
     return {
-        
+
         'attempts': ((json['attempts'] as Array<any>).map(ReplayWebhookEvent200ResponseAttemptsInnerFromJSON)),
         'deliveries': ((json['deliveries'] as Array<any>).map(ReplayWebhookEvent200ResponseDeliveriesInnerFromJSON)),
         'event': GetWebhookEvent200ResponseEventFromJSON(json['event']),
@@ -97,7 +97,7 @@ export function ReplayWebhookEvent200ResponseToJSONTyped(value?: ReplayWebhookEv
     }
 
     return {
-        
+
         'attempts': ((value['attempts'] as Array<any>).map(ReplayWebhookEvent200ResponseAttemptsInnerToJSON)),
         'deliveries': ((value['deliveries'] as Array<any>).map(ReplayWebhookEvent200ResponseDeliveriesInnerToJSON)),
         'event': GetWebhookEvent200ResponseEventToJSON(value['event']),

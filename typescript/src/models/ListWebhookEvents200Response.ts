@@ -22,13 +22,13 @@ import {
 } from './ListWebhookEvents200ResponseEventsInner';
 
 /**
- * 
+ *
  * @export
  * @interface ListWebhookEvents200Response
  */
 export interface ListWebhookEvents200Response {
     /**
-     * 
+     *
      * @type {Array<ListWebhookEvents200ResponseEventsInner>}
      * @memberof ListWebhookEvents200Response
      */
@@ -52,7 +52,7 @@ export function ListWebhookEvents200ResponseFromJSONTyped(json: any, ignoreDiscr
         return json;
     }
     return {
-        
+
         'events': ((json['events'] as Array<any>).map(ListWebhookEvents200ResponseEventsInnerFromJSON)),
     };
 }
@@ -67,7 +67,7 @@ export function ListWebhookEvents200ResponseToJSONTyped(value?: ListWebhookEvent
     }
 
     return {
-        
+
         'events': ((value['events'] as Array<any>).map(ListWebhookEvents200ResponseEventsInnerToJSON)),
     };
 }

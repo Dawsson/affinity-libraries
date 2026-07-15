@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**practice_id** | **str** |  | 
-**external_order_id** | **str** |  | 
-**pharmacy_organization_id** | **UUID** |  | 
-**prescription_id** | **UUID** |  | 
-**prescription_version_id** | **UUID** |  | 
-**registered_location_id** | **UUID** |  | 
-**shipping_address** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  | 
+**practice_id** | **str** |  |
+**external_order_id** | **str** |  |
+**pharmacy_organization_id** | **UUID** |  |
+**prescription_id** | **UUID** |  |
+**prescription_version_id** | **UUID** |  |
+**registered_location_id** | **UUID** |  |
+**shipping_address** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  |
 
 ## Example
 

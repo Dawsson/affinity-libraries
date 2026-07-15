@@ -22,13 +22,13 @@ import {
 } from './ListOrderEvents200ResponseEventsInner';
 
 /**
- * 
+ *
  * @export
  * @interface ListOrderEvents200Response
  */
 export interface ListOrderEvents200Response {
     /**
-     * 
+     *
      * @type {Array<ListOrderEvents200ResponseEventsInner>}
      * @memberof ListOrderEvents200Response
      */
@@ -52,7 +52,7 @@ export function ListOrderEvents200ResponseFromJSONTyped(json: any, ignoreDiscrim
         return json;
     }
     return {
-        
+
         'events': ((json['events'] as Array<any>).map(ListOrderEvents200ResponseEventsInnerFromJSON)),
     };
 }
@@ -67,7 +67,7 @@ export function ListOrderEvents200ResponseToJSONTyped(value?: ListOrderEvents200
     }
 
     return {
-        
+
         'events': ((value['events'] as Array<any>).map(ListOrderEvents200ResponseEventsInnerToJSON)),
     };
 }

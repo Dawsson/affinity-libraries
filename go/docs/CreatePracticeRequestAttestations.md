@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorizedPhiTransfer** | **bool** |  | 
-**AuthorizedPracticeRelationship** | **bool** |  | 
-**MinimumNecessaryPhi** | **bool** |  | 
-**ProviderDataAccuracy** | **bool** |  | 
+**AuthorizedPhiTransfer** | **bool** |  |
+**AuthorizedPracticeRelationship** | **bool** |  |
+**MinimumNecessaryPhi** | **bool** |  |
+**ProviderDataAccuracy** | **bool** |  |
 
 ## Methods
 

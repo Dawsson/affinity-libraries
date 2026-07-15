@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enabled_events** | **List[str]** |  | 
+**enabled_events** | **List[str]** |  |
 
 ## Example
 

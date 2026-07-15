@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order** | [**CreateOrder200ResponseOrder**](CreateOrder200ResponseOrder.md) |  | 
+**order** | [**CreateOrder200ResponseOrder**](CreateOrder200ResponseOrder.md) |  |
 
 ## Example
 

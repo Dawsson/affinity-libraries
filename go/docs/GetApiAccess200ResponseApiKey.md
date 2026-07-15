@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**KeyPrefix** | **string** |  | 
-**Object** | **string** |  | 
+**Id** | **string** |  |
+**KeyPrefix** | **string** |  |
+**Object** | **string** |  |
 
 ## Methods
 

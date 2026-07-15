@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **str** |  | 
-**event_type** | **str** |  | 
-**id** | **str** |  | 
-**message** | **str** |  | 
+**created_at** | **str** |  |
+**event_type** | **str** |  |
+**id** | **str** |  |
+**message** | **str** |  |
 
 ## Example
 

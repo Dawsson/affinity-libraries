@@ -16,8 +16,9 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictStr
+from pydantic import Field, StrictStr
 from typing import Optional
+from typing_extensions import Annotated
 from affinity_sdk.models.create_webhook_endpoint200_response import CreateWebhookEndpoint200Response
 from affinity_sdk.models.create_webhook_endpoint_request import CreateWebhookEndpointRequest
 from affinity_sdk.models.delete_webhook_endpoint200_response import DeleteWebhookEndpoint200Response
@@ -48,6 +49,7 @@ class PlatformWebhooksApi:
     @validate_call
     def create_webhook_endpoint(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_webhook_endpoint_request: CreateWebhookEndpointRequest,
         _request_timeout: Union[
             None,
@@ -65,6 +67,8 @@ class PlatformWebhooksApi:
         """Create webhook endpoint
 
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_webhook_endpoint_request: (required)
         :type create_webhook_endpoint_request: CreateWebhookEndpointRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -90,6 +94,7 @@ class PlatformWebhooksApi:
         """ # noqa: E501
 
         _param = self._create_webhook_endpoint_serialize(
+            idempotency_key=idempotency_key,
             create_webhook_endpoint_request=create_webhook_endpoint_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -99,13 +104,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -121,6 +127,7 @@ class PlatformWebhooksApi:
     @validate_call
     def create_webhook_endpoint_with_http_info(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_webhook_endpoint_request: CreateWebhookEndpointRequest,
         _request_timeout: Union[
             None,
@@ -138,6 +145,8 @@ class PlatformWebhooksApi:
         """Create webhook endpoint
 
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_webhook_endpoint_request: (required)
         :type create_webhook_endpoint_request: CreateWebhookEndpointRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -163,6 +172,7 @@ class PlatformWebhooksApi:
         """ # noqa: E501
 
         _param = self._create_webhook_endpoint_serialize(
+            idempotency_key=idempotency_key,
             create_webhook_endpoint_request=create_webhook_endpoint_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -172,13 +182,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -194,6 +205,7 @@ class PlatformWebhooksApi:
     @validate_call
     def create_webhook_endpoint_without_preload_content(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_webhook_endpoint_request: CreateWebhookEndpointRequest,
         _request_timeout: Union[
             None,
@@ -211,6 +223,8 @@ class PlatformWebhooksApi:
         """Create webhook endpoint
 
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_webhook_endpoint_request: (required)
         :type create_webhook_endpoint_request: CreateWebhookEndpointRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -236,6 +250,7 @@ class PlatformWebhooksApi:
         """ # noqa: E501
 
         _param = self._create_webhook_endpoint_serialize(
+            idempotency_key=idempotency_key,
             create_webhook_endpoint_request=create_webhook_endpoint_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -245,13 +260,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -262,6 +278,7 @@ class PlatformWebhooksApi:
 
     def _create_webhook_endpoint_serialize(
         self,
+        idempotency_key,
         create_webhook_endpoint_request,
         _request_auth,
         _content_type,
@@ -286,6 +303,8 @@ class PlatformWebhooksApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if create_webhook_endpoint_request is not None:
@@ -296,7 +315,8 @@ class PlatformWebhooksApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
@@ -316,7 +336,7 @@ class PlatformWebhooksApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -342,6 +362,7 @@ class PlatformWebhooksApi:
     def delete_webhook_endpoint(
         self,
         endpoint_id: Optional[StrictStr],
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -360,6 +381,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -384,6 +407,7 @@ class PlatformWebhooksApi:
 
         _param = self._delete_webhook_endpoint_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -392,13 +416,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -415,6 +440,7 @@ class PlatformWebhooksApi:
     def delete_webhook_endpoint_with_http_info(
         self,
         endpoint_id: Optional[StrictStr],
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -433,6 +459,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -457,6 +485,7 @@ class PlatformWebhooksApi:
 
         _param = self._delete_webhook_endpoint_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -465,13 +494,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -488,6 +518,7 @@ class PlatformWebhooksApi:
     def delete_webhook_endpoint_without_preload_content(
         self,
         endpoint_id: Optional[StrictStr],
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -506,6 +537,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -530,6 +563,7 @@ class PlatformWebhooksApi:
 
         _param = self._delete_webhook_endpoint_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -538,13 +572,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -556,6 +591,7 @@ class PlatformWebhooksApi:
     def _delete_webhook_endpoint_serialize(
         self,
         endpoint_id,
+        idempotency_key,
         _request_auth,
         _content_type,
         _headers,
@@ -581,6 +617,8 @@ class PlatformWebhooksApi:
             _path_params['endpointId'] = endpoint_id
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
 
@@ -589,14 +627,15 @@ class PlatformWebhooksApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -672,13 +711,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetWebhookEvent200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -745,13 +785,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetWebhookEvent200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -818,13 +859,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetWebhookEvent200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -869,14 +911,15 @@ class PlatformWebhooksApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -948,13 +991,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListWebhookEndpoints200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1017,13 +1061,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListWebhookEndpoints200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1086,13 +1131,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListWebhookEndpoints200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1134,14 +1180,15 @@ class PlatformWebhooksApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -1213,13 +1260,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListWebhookEvents200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1282,13 +1330,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListWebhookEvents200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1351,13 +1400,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListWebhookEvents200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1399,14 +1449,15 @@ class PlatformWebhooksApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -1432,6 +1483,7 @@ class PlatformWebhooksApi:
     def replay_webhook_event(
         self,
         event_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1450,6 +1502,8 @@ class PlatformWebhooksApi:
 
         :param event_id: (required)
         :type event_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1474,6 +1528,7 @@ class PlatformWebhooksApi:
 
         _param = self._replay_webhook_event_serialize(
             event_id=event_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1482,13 +1537,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ReplayWebhookEvent200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1505,6 +1561,7 @@ class PlatformWebhooksApi:
     def replay_webhook_event_with_http_info(
         self,
         event_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1523,6 +1580,8 @@ class PlatformWebhooksApi:
 
         :param event_id: (required)
         :type event_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1547,6 +1606,7 @@ class PlatformWebhooksApi:
 
         _param = self._replay_webhook_event_serialize(
             event_id=event_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1555,13 +1615,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ReplayWebhookEvent200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1578,6 +1639,7 @@ class PlatformWebhooksApi:
     def replay_webhook_event_without_preload_content(
         self,
         event_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1596,6 +1658,8 @@ class PlatformWebhooksApi:
 
         :param event_id: (required)
         :type event_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1620,6 +1684,7 @@ class PlatformWebhooksApi:
 
         _param = self._replay_webhook_event_serialize(
             event_id=event_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1628,13 +1693,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ReplayWebhookEvent200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1646,6 +1712,7 @@ class PlatformWebhooksApi:
     def _replay_webhook_event_serialize(
         self,
         event_id,
+        idempotency_key,
         _request_auth,
         _content_type,
         _headers,
@@ -1671,6 +1738,8 @@ class PlatformWebhooksApi:
             _path_params['eventId'] = event_id
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
 
@@ -1679,14 +1748,15 @@ class PlatformWebhooksApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -1712,6 +1782,7 @@ class PlatformWebhooksApi:
     def rotate_webhook_endpoint_secret(
         self,
         endpoint_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1730,6 +1801,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1754,6 +1827,7 @@ class PlatformWebhooksApi:
 
         _param = self._rotate_webhook_endpoint_secret_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1762,13 +1836,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1785,6 +1860,7 @@ class PlatformWebhooksApi:
     def rotate_webhook_endpoint_secret_with_http_info(
         self,
         endpoint_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1803,6 +1879,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1827,6 +1905,7 @@ class PlatformWebhooksApi:
 
         _param = self._rotate_webhook_endpoint_secret_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1835,13 +1914,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1858,6 +1938,7 @@ class PlatformWebhooksApi:
     def rotate_webhook_endpoint_secret_without_preload_content(
         self,
         endpoint_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1876,6 +1957,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1900,6 +1983,7 @@ class PlatformWebhooksApi:
 
         _param = self._rotate_webhook_endpoint_secret_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1908,13 +1992,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1926,6 +2011,7 @@ class PlatformWebhooksApi:
     def _rotate_webhook_endpoint_secret_serialize(
         self,
         endpoint_id,
+        idempotency_key,
         _request_auth,
         _content_type,
         _headers,
@@ -1951,6 +2037,8 @@ class PlatformWebhooksApi:
             _path_params['endpointId'] = endpoint_id
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
 
@@ -1959,14 +2047,15 @@ class PlatformWebhooksApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -1992,6 +2081,7 @@ class PlatformWebhooksApi:
     def update_webhook_endpoint(
         self,
         endpoint_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         update_webhook_endpoint_request: UpdateWebhookEndpointRequest,
         _request_timeout: Union[
             None,
@@ -2011,6 +2101,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param update_webhook_endpoint_request: (required)
         :type update_webhook_endpoint_request: UpdateWebhookEndpointRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -2037,6 +2129,7 @@ class PlatformWebhooksApi:
 
         _param = self._update_webhook_endpoint_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             update_webhook_endpoint_request=update_webhook_endpoint_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2046,13 +2139,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2069,6 +2163,7 @@ class PlatformWebhooksApi:
     def update_webhook_endpoint_with_http_info(
         self,
         endpoint_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         update_webhook_endpoint_request: UpdateWebhookEndpointRequest,
         _request_timeout: Union[
             None,
@@ -2088,6 +2183,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param update_webhook_endpoint_request: (required)
         :type update_webhook_endpoint_request: UpdateWebhookEndpointRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -2114,6 +2211,7 @@ class PlatformWebhooksApi:
 
         _param = self._update_webhook_endpoint_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             update_webhook_endpoint_request=update_webhook_endpoint_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2123,13 +2221,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2146,6 +2245,7 @@ class PlatformWebhooksApi:
     def update_webhook_endpoint_without_preload_content(
         self,
         endpoint_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         update_webhook_endpoint_request: UpdateWebhookEndpointRequest,
         _request_timeout: Union[
             None,
@@ -2165,6 +2265,8 @@ class PlatformWebhooksApi:
 
         :param endpoint_id: (required)
         :type endpoint_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param update_webhook_endpoint_request: (required)
         :type update_webhook_endpoint_request: UpdateWebhookEndpointRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -2191,6 +2293,7 @@ class PlatformWebhooksApi:
 
         _param = self._update_webhook_endpoint_serialize(
             endpoint_id=endpoint_id,
+            idempotency_key=idempotency_key,
             update_webhook_endpoint_request=update_webhook_endpoint_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2200,13 +2303,14 @@ class PlatformWebhooksApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteWebhookEndpoint200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2218,6 +2322,7 @@ class PlatformWebhooksApi:
     def _update_webhook_endpoint_serialize(
         self,
         endpoint_id,
+        idempotency_key,
         update_webhook_endpoint_request,
         _request_auth,
         _content_type,
@@ -2244,6 +2349,8 @@ class PlatformWebhooksApi:
             _path_params['endpointId'] = endpoint_id
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if update_webhook_endpoint_request is not None:
@@ -2254,7 +2361,8 @@ class PlatformWebhooksApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
@@ -2274,7 +2382,7 @@ class PlatformWebhooksApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 

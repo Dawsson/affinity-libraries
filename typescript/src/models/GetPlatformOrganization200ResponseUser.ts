@@ -14,43 +14,43 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface GetPlatformOrganization200ResponseUser
  */
 export interface GetPlatformOrganization200ResponseUser {
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseUser
      */
     email: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof GetPlatformOrganization200ResponseUser
      */
     emailVerified?: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseUser
      */
     image: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseUser
      */
     name: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof GetPlatformOrganization200ResponseUser
      */
     twoFactorEnabled?: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseUser
      */
@@ -77,7 +77,7 @@ export function GetPlatformOrganization200ResponseUserFromJSONTyped(json: any, i
         return json;
     }
     return {
-        
+
         'email': json['email'],
         'emailVerified': json['emailVerified'] == null ? undefined : json['emailVerified'],
         'image': json['image'],
@@ -97,7 +97,7 @@ export function GetPlatformOrganization200ResponseUserToJSONTyped(value?: GetPla
     }
 
     return {
-        
+
         'email': value['email'],
         'emailVerified': value['emailVerified'],
         'image': value['image'],

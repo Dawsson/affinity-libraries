@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Orders** | [**[]ListOrders200ResponseOrdersInner**](ListOrders200ResponseOrdersInner.md) |  | 
+**Orders** | [**[]ListOrders200ResponseOrdersInner**](ListOrders200ResponseOrdersInner.md) |  |
 
 ## Methods
 

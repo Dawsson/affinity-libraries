@@ -61,7 +61,7 @@ public class CreatePracticeRequestPrescribersInner {
   @javax.annotation.Nonnull
   private String npi;
 
-  public CreatePracticeRequestPrescribersInner() { 
+  public CreatePracticeRequestPrescribersInner() {
   }
 
   public CreatePracticeRequestPrescribersInner credentials(@javax.annotation.Nullable String credentials) {
@@ -85,7 +85,7 @@ public class CreatePracticeRequestPrescribersInner {
   public JsonNullable<String> getCredentials_JsonNullable() {
     return credentials;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_CREDENTIALS)
   public void setCredentials_JsonNullable(JsonNullable<String> credentials) {
     this.credentials = credentials;

@@ -3,7 +3,11 @@
   "private": true,
   "scripts": {
     "check": "bash scripts/validate.sh",
+    "facades:check": "bun scripts/generate-facades.ts --check",
     "generate": "bash scripts/generate.sh",
     "spec:check": "bash scripts/validate-spec.sh"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.59.0"
   }
 }

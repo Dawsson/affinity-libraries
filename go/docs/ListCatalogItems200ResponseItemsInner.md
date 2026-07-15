@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AllowedStates** | **[]string** |  | 
-**CatalogKind** | **NullableString** |  | 
-**ColdShip** | **bool** |  | 
-**CompounderId** | **NullableString** |  | 
-**CompounderName** | **NullableString** |  | 
-**Description** | **NullableString** |  | 
-**DosageForm** | **NullableString** |  | 
-**FacilityType** | **NullableString** |  | 
-**Id** | **NullableString** |  | 
-**IsOrderable** | **bool** |  | 
-**Name** | **NullableString** |  | 
-**PatientSpecificRequired** | **bool** |  | 
-**RestrictedStates** | **[]string** |  | 
-**Route** | **NullableString** |  | 
-**Strength** | **NullableString** |  | 
+**AllowedStates** | **[]string** |  |
+**CatalogKind** | **NullableString** |  |
+**ColdShip** | **bool** |  |
+**CompounderId** | **NullableString** |  |
+**CompounderName** | **NullableString** |  |
+**Description** | **NullableString** |  |
+**DosageForm** | **NullableString** |  |
+**FacilityType** | **NullableString** |  |
+**Id** | **NullableString** |  |
+**IsOrderable** | **bool** |  |
+**Name** | **NullableString** |  |
+**PatientSpecificRequired** | **bool** |  |
+**RestrictedStates** | **[]string** |  |
+**Route** | **NullableString** |  |
+**Strength** | **NullableString** |  |
 
 ## Methods
 

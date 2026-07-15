@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **create_webhook_endpoint**
-> CreateWebhookEndpoint200Response create_webhook_endpoint(create_webhook_endpoint_request)
+> CreateWebhookEndpoint200Response create_webhook_endpoint(idempotency_key, create_webhook_endpoint_request)
 
 Create webhook endpoint
 
@@ -57,11 +57,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
-    create_webhook_endpoint_request = affinity_sdk.CreateWebhookEndpointRequest() # CreateWebhookEndpointRequest | 
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    create_webhook_endpoint_request = affinity_sdk.CreateWebhookEndpointRequest() # CreateWebhookEndpointRequest |
 
     try:
         # Create webhook endpoint
-        api_response = api_instance.create_webhook_endpoint(create_webhook_endpoint_request)
+        api_response = api_instance.create_webhook_endpoint(idempotency_key, create_webhook_endpoint_request)
         print("The response of PlatformWebhooksApi->create_webhook_endpoint:\n")
         pprint(api_response)
     except Exception as e:
@@ -75,7 +76,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_webhook_endpoint_request** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md)|  | 
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **create_webhook_endpoint_request** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md)|  |
 
 ### Return type
 
@@ -88,25 +90,26 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_webhook_endpoint**
-> DeleteWebhookEndpoint200Response delete_webhook_endpoint(endpoint_id)
+> DeleteWebhookEndpoint200Response delete_webhook_endpoint(endpoint_id, idempotency_key)
 
 Disable webhook endpoint
 
@@ -147,11 +150,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
-    endpoint_id = 'endpoint_id_example' # str | 
+    endpoint_id = 'endpoint_id_example' # str |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
 
     try:
         # Disable webhook endpoint
-        api_response = api_instance.delete_webhook_endpoint(endpoint_id)
+        api_response = api_instance.delete_webhook_endpoint(endpoint_id, idempotency_key)
         print("The response of PlatformWebhooksApi->delete_webhook_endpoint:\n")
         pprint(api_response)
     except Exception as e:
@@ -165,7 +169,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **endpoint_id** | **str**|  | 
+ **endpoint_id** | **str**|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -178,20 +183,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -237,7 +243,7 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
-    event_id = 'event_id_example' # str | 
+    event_id = 'event_id_example' # str |
 
     try:
         # Read webhook event attempts
@@ -255,7 +261,7 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **event_id** | **str**|  | 
+ **event_id** | **str**|  |
 
 ### Return type
 
@@ -268,20 +274,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -354,20 +361,21 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -440,25 +448,26 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replay_webhook_event**
-> ReplayWebhookEvent200Response replay_webhook_event(event_id)
+> ReplayWebhookEvent200Response replay_webhook_event(event_id, idempotency_key)
 
 Replay webhook event
 
@@ -499,11 +508,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
-    event_id = 'event_id_example' # str | 
+    event_id = 'event_id_example' # str |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
 
     try:
         # Replay webhook event
-        api_response = api_instance.replay_webhook_event(event_id)
+        api_response = api_instance.replay_webhook_event(event_id, idempotency_key)
         print("The response of PlatformWebhooksApi->replay_webhook_event:\n")
         pprint(api_response)
     except Exception as e:
@@ -517,7 +527,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **event_id** | **str**|  | 
+ **event_id** | **str**|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -530,25 +541,26 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rotate_webhook_endpoint_secret**
-> CreateWebhookEndpoint200Response rotate_webhook_endpoint_secret(endpoint_id)
+> CreateWebhookEndpoint200Response rotate_webhook_endpoint_secret(endpoint_id, idempotency_key)
 
 Rotate webhook signing secret
 
@@ -589,11 +601,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
-    endpoint_id = 'endpoint_id_example' # str | 
+    endpoint_id = 'endpoint_id_example' # str |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
 
     try:
         # Rotate webhook signing secret
-        api_response = api_instance.rotate_webhook_endpoint_secret(endpoint_id)
+        api_response = api_instance.rotate_webhook_endpoint_secret(endpoint_id, idempotency_key)
         print("The response of PlatformWebhooksApi->rotate_webhook_endpoint_secret:\n")
         pprint(api_response)
     except Exception as e:
@@ -607,7 +620,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **endpoint_id** | **str**|  | 
+ **endpoint_id** | **str**|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -620,25 +634,26 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_webhook_endpoint**
-> DeleteWebhookEndpoint200Response update_webhook_endpoint(endpoint_id, update_webhook_endpoint_request)
+> DeleteWebhookEndpoint200Response update_webhook_endpoint(endpoint_id, idempotency_key, update_webhook_endpoint_request)
 
 Update webhook endpoint
 
@@ -680,12 +695,13 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
-    endpoint_id = 'endpoint_id_example' # str | 
-    update_webhook_endpoint_request = affinity_sdk.UpdateWebhookEndpointRequest() # UpdateWebhookEndpointRequest | 
+    endpoint_id = 'endpoint_id_example' # str |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    update_webhook_endpoint_request = affinity_sdk.UpdateWebhookEndpointRequest() # UpdateWebhookEndpointRequest |
 
     try:
         # Update webhook endpoint
-        api_response = api_instance.update_webhook_endpoint(endpoint_id, update_webhook_endpoint_request)
+        api_response = api_instance.update_webhook_endpoint(endpoint_id, idempotency_key, update_webhook_endpoint_request)
         print("The response of PlatformWebhooksApi->update_webhook_endpoint:\n")
         pprint(api_response)
     except Exception as e:
@@ -699,8 +715,9 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **endpoint_id** | **str**|  | 
- **update_webhook_endpoint_request** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md)|  | 
+ **endpoint_id** | **str**|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **update_webhook_endpoint_request** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md)|  |
 
 ### Return type
 
@@ -713,20 +730,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

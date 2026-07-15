@@ -22,13 +22,13 @@ import {
 } from './CreateWebhookEndpoint200ResponseEndpoint';
 
 /**
- * 
+ *
  * @export
  * @interface DeleteWebhookEndpoint200Response
  */
 export interface DeleteWebhookEndpoint200Response {
     /**
-     * 
+     *
      * @type {CreateWebhookEndpoint200ResponseEndpoint}
      * @memberof DeleteWebhookEndpoint200Response
      */
@@ -52,7 +52,7 @@ export function DeleteWebhookEndpoint200ResponseFromJSONTyped(json: any, ignoreD
         return json;
     }
     return {
-        
+
         'endpoint': CreateWebhookEndpoint200ResponseEndpointFromJSON(json['endpoint']),
     };
 }
@@ -67,7 +67,7 @@ export function DeleteWebhookEndpoint200ResponseToJSONTyped(value?: DeleteWebhoo
     }
 
     return {
-        
+
         'endpoint': CreateWebhookEndpoint200ResponseEndpointToJSON(value['endpoint']),
     };
 }

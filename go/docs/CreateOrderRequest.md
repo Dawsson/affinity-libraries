@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CatalogItemId** | **string** |  | 
-**PracticeId** | **string** |  | 
-**Directions** | **string** |  | 
-**ExternalOrderId** | **string** |  | 
-**Patient** | [**CreateOrderRequestAnyOfPatient**](CreateOrderRequestAnyOfPatient.md) |  | 
-**Prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  | 
-**Prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  | 
+**CatalogItemId** | **string** |  |
+**PracticeId** | **string** |  |
+**Directions** | **string** |  |
+**ExternalOrderId** | **string** |  |
+**Patient** | [**CreateOrderRequestAnyOfPatient**](CreateOrderRequestAnyOfPatient.md) |  |
+**Prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  |
+**Prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  |
 **Quantity** | Pointer to **int32** |  | [optional] [default to 1]
-**ReplacesOrderId** | Pointer to **string** |  | [optional] 
-**PharmacyOrganizationId** | **string** |  | 
-**PrescriptionId** | **string** |  | 
-**PrescriptionVersionId** | **string** |  | 
-**RegisteredLocationId** | **string** |  | 
-**ShippingAddress** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  | 
+**ReplacesOrderId** | Pointer to **string** |  | [optional]
+**PharmacyOrganizationId** | **string** |  |
+**PrescriptionId** | **string** |  |
+**PrescriptionVersionId** | **string** |  |
+**RegisteredLocationId** | **string** |  |
+**ShippingAddress** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  |
 
 ## Methods
 

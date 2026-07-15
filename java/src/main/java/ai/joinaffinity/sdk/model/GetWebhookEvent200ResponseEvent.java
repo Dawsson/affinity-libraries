@@ -71,7 +71,7 @@ public class GetWebhookEvent200ResponseEvent {
   @javax.annotation.Nonnull
   private String updatedAt;
 
-  public GetWebhookEvent200ResponseEvent() { 
+  public GetWebhookEvent200ResponseEvent() {
   }
 
   public GetWebhookEvent200ResponseEvent createdAt(@javax.annotation.Nonnull String createdAt) {

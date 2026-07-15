@@ -85,7 +85,7 @@ public class CreateOrderRequestAnyOf {
   @javax.annotation.Nullable
   private UUID replacesOrderId;
 
-  public CreateOrderRequestAnyOf() { 
+  public CreateOrderRequestAnyOf() {
   }
 
   public CreateOrderRequestAnyOf catalogItemId(@javax.annotation.Nonnull String catalogItemId) {

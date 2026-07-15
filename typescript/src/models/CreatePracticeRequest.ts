@@ -43,73 +43,73 @@ import {
 } from './CreatePracticeRequestAddress';
 
 /**
- * 
+ *
  * @export
  * @interface CreatePracticeRequest
  */
 export interface CreatePracticeRequest {
     /**
-     * 
+     *
      * @type {CreatePracticeRequestAddress}
      * @memberof CreatePracticeRequest
      */
     address: CreatePracticeRequestAddress;
     /**
-     * 
+     *
      * @type {CreatePracticeRequestAttestations}
      * @memberof CreatePracticeRequest
      */
     attestations: CreatePracticeRequestAttestations;
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerContactsPrimary}
      * @memberof CreatePracticeRequest
      */
     complianceContact?: ListPractices200ResponseDataInnerContactsPrimary | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequest
      */
     externalId?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequest
      */
     legalName?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequest
      */
     name: string | null;
     /**
-     * 
+     *
      * @type {Array<CreatePracticeRequestPrescribersInner>}
      * @memberof CreatePracticeRequest
      */
     prescribers?: Array<CreatePracticeRequestPrescribersInner>;
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerContactsPrimary}
      * @memberof CreatePracticeRequest
      */
     primaryContact?: ListPractices200ResponseDataInnerContactsPrimary | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequest
      */
     supportEmail?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequest
      */
     supportPhone?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePracticeRequest
      */
@@ -135,7 +135,7 @@ export function CreatePracticeRequestFromJSONTyped(json: any, ignoreDiscriminato
         return json;
     }
     return {
-        
+
         'address': CreatePracticeRequestAddressFromJSON(json['address']),
         'attestations': CreatePracticeRequestAttestationsFromJSON(json['attestations']),
         'complianceContact': json['complianceContact'] == null ? undefined : ListPractices200ResponseDataInnerContactsPrimaryFromJSON(json['complianceContact']),
@@ -160,7 +160,7 @@ export function CreatePracticeRequestToJSONTyped(value?: CreatePracticeRequest |
     }
 
     return {
-        
+
         'address': CreatePracticeRequestAddressToJSON(value['address']),
         'attestations': CreatePracticeRequestAttestationsToJSON(value['attestations']),
         'complianceContact': ListPractices200ResponseDataInnerContactsPrimaryToJSON(value['complianceContact']),

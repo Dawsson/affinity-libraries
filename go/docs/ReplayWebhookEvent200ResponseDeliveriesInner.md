@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AttemptCount** | **float32** |  | 
-**EndpointId** | **string** |  | 
-**Id** | **string** |  | 
-**LastError** | **NullableString** |  | 
+**AttemptCount** | **float32** |  |
+**EndpointId** | **string** |  |
+**Id** | **string** |  |
+**LastError** | **NullableString** |  |
 
 ## Methods
 

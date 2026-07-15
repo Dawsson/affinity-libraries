@@ -21,6 +21,7 @@ import ai.joinaffinity.sdk.Pair;
 import ai.joinaffinity.sdk.model.CreatePractice200Response;
 import ai.joinaffinity.sdk.model.CreatePracticeRequest;
 import ai.joinaffinity.sdk.model.Error;
+import ai.joinaffinity.sdk.model.ListOrders400Response;
 import ai.joinaffinity.sdk.model.ListPractices200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -168,48 +169,52 @@ public class PracticesApi {
   /**
    * Create practice
    * Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createPracticeRequest  (required)
    * @return CreatePractice200Response
    * @throws ApiException if fails to make API call
    */
-  public CreatePractice200Response createPractice(@javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest) throws ApiException {
-    return createPractice(createPracticeRequest, null);
+  public CreatePractice200Response createPractice(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest) throws ApiException {
+    return createPractice(idempotencyKey, createPracticeRequest, null);
   }
 
   /**
    * Create practice
    * Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createPracticeRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreatePractice200Response
    * @throws ApiException if fails to make API call
    */
-  public CreatePractice200Response createPractice(@javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreatePractice200Response> localVarResponse = createPracticeWithHttpInfo(createPracticeRequest, headers);
+  public CreatePractice200Response createPractice(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePractice200Response> localVarResponse = createPracticeWithHttpInfo(idempotencyKey, createPracticeRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Create practice
    * Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createPracticeRequest  (required)
    * @return ApiResponse&lt;CreatePractice200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreatePractice200Response> createPracticeWithHttpInfo(@javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest) throws ApiException {
-    return createPracticeWithHttpInfo(createPracticeRequest, null);
+  public ApiResponse<CreatePractice200Response> createPracticeWithHttpInfo(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest) throws ApiException {
+    return createPracticeWithHttpInfo(idempotencyKey, createPracticeRequest, null);
   }
 
   /**
    * Create practice
    * Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createPracticeRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreatePractice200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreatePractice200Response> createPracticeWithHttpInfo(@javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createPracticeRequestBuilder(createPracticeRequest, headers);
+  public ApiResponse<CreatePractice200Response> createPracticeWithHttpInfo(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createPracticeRequestBuilder(idempotencyKey, createPracticeRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -231,11 +236,11 @@ public class PracticesApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreatePractice200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePractice200Response>() {});
-        
+
 
         return new ApiResponse<CreatePractice200Response>(
             localVarResponse.statusCode(),
@@ -256,7 +261,11 @@ public class PracticesApi {
     }
   }
 
-  private HttpRequest.Builder createPracticeRequestBuilder(@javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createPracticeRequestBuilder(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreatePracticeRequest createPracticeRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling createPractice");
+    }
     // verify the required parameter 'createPracticeRequest' is set
     if (createPracticeRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'createPracticeRequest' when calling createPractice");
@@ -268,8 +277,11 @@ public class PracticesApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPracticeRequest);
@@ -354,11 +366,11 @@ public class PracticesApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreatePractice200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePractice200Response>() {});
-        
+
 
         return new ApiResponse<CreatePractice200Response>(
             localVarResponse.statusCode(),
@@ -392,7 +404,7 @@ public class PracticesApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -408,7 +420,7 @@ public class PracticesApi {
 
   /**
    * List practices
-   * 
+   *
    * @return ListPractices200Response
    * @throws ApiException if fails to make API call
    */
@@ -418,7 +430,7 @@ public class PracticesApi {
 
   /**
    * List practices
-   * 
+   *
    * @param headers Optional headers to include in the request
    * @return ListPractices200Response
    * @throws ApiException if fails to make API call
@@ -430,7 +442,7 @@ public class PracticesApi {
 
   /**
    * List practices
-   * 
+   *
    * @return ApiResponse&lt;ListPractices200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -440,7 +452,7 @@ public class PracticesApi {
 
   /**
    * List practices
-   * 
+   *
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListPractices200Response&gt;
    * @throws ApiException if fails to make API call
@@ -468,11 +480,11 @@ public class PracticesApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         ListPractices200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListPractices200Response>() {});
-        
+
 
         return new ApiResponse<ListPractices200Response>(
             localVarResponse.statusCode(),
@@ -501,7 +513,7 @@ public class PracticesApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -519,23 +531,25 @@ public class PracticesApi {
    * Update practice
    * Updates a platform-owned practice. Send Idempotency-Key for safe retries.
    * @param practiceId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return CreatePractice200Response
    * @throws ApiException if fails to make API call
    */
-  public CreatePractice200Response updatePractice(@javax.annotation.Nonnull String practiceId) throws ApiException {
-    return updatePractice(practiceId, null);
+  public CreatePractice200Response updatePractice(@javax.annotation.Nonnull String practiceId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return updatePractice(practiceId, idempotencyKey, null);
   }
 
   /**
    * Update practice
    * Updates a platform-owned practice. Send Idempotency-Key for safe retries.
    * @param practiceId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return CreatePractice200Response
    * @throws ApiException if fails to make API call
    */
-  public CreatePractice200Response updatePractice(@javax.annotation.Nonnull String practiceId, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreatePractice200Response> localVarResponse = updatePracticeWithHttpInfo(practiceId, headers);
+  public CreatePractice200Response updatePractice(@javax.annotation.Nonnull String practiceId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePractice200Response> localVarResponse = updatePracticeWithHttpInfo(practiceId, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
@@ -543,23 +557,25 @@ public class PracticesApi {
    * Update practice
    * Updates a platform-owned practice. Send Idempotency-Key for safe retries.
    * @param practiceId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return ApiResponse&lt;CreatePractice200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreatePractice200Response> updatePracticeWithHttpInfo(@javax.annotation.Nonnull String practiceId) throws ApiException {
-    return updatePracticeWithHttpInfo(practiceId, null);
+  public ApiResponse<CreatePractice200Response> updatePracticeWithHttpInfo(@javax.annotation.Nonnull String practiceId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return updatePracticeWithHttpInfo(practiceId, idempotencyKey, null);
   }
 
   /**
    * Update practice
    * Updates a platform-owned practice. Send Idempotency-Key for safe retries.
    * @param practiceId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreatePractice200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreatePractice200Response> updatePracticeWithHttpInfo(@javax.annotation.Nonnull String practiceId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updatePracticeRequestBuilder(practiceId, headers);
+  public ApiResponse<CreatePractice200Response> updatePracticeWithHttpInfo(@javax.annotation.Nonnull String practiceId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updatePracticeRequestBuilder(practiceId, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -581,11 +597,11 @@ public class PracticesApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreatePractice200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePractice200Response>() {});
-        
+
 
         return new ApiResponse<CreatePractice200Response>(
             localVarResponse.statusCode(),
@@ -606,10 +622,14 @@ public class PracticesApi {
     }
   }
 
-  private HttpRequest.Builder updatePracticeRequestBuilder(@javax.annotation.Nonnull String practiceId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updatePracticeRequestBuilder(@javax.annotation.Nonnull String practiceId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'practiceId' is set
     if (practiceId == null) {
       throw new ApiException(400, "Missing the required parameter 'practiceId' when calling updatePractice");
+    }
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling updatePractice");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -619,7 +639,10 @@ public class PracticesApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {

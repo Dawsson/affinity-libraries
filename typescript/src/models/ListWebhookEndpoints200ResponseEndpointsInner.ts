@@ -14,43 +14,43 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ListWebhookEndpoints200ResponseEndpointsInner
  */
 export interface ListWebhookEndpoints200ResponseEndpointsInner {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEndpoints200ResponseEndpointsInner
      */
     createdAt: string | null;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof ListWebhookEndpoints200ResponseEndpointsInner
      */
     enabledEvents: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEndpoints200ResponseEndpointsInner
      */
     id: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListWebhookEndpoints200ResponseEndpointsInner
      */
     livemode: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEndpoints200ResponseEndpointsInner
      */
     updatedAt: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEndpoints200ResponseEndpointsInner
      */
@@ -79,7 +79,7 @@ export function ListWebhookEndpoints200ResponseEndpointsInnerFromJSONTyped(json:
         return json;
     }
     return {
-        
+
         'createdAt': json['createdAt'],
         'enabledEvents': json['enabledEvents'],
         'id': json['id'],
@@ -99,7 +99,7 @@ export function ListWebhookEndpoints200ResponseEndpointsInnerToJSONTyped(value?:
     }
 
     return {
-        
+
         'createdAt': value['createdAt'],
         'enabledEvents': value['enabledEvents'],
         'id': value['id'],

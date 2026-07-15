@@ -45,7 +45,7 @@ public class UpdateOrderRequest {
   public static final String JSON_PROPERTY_QUANTITY = "quantity";
   private JsonNullable<BigDecimal> quantity = JsonNullable.<BigDecimal>undefined();
 
-  public UpdateOrderRequest() { 
+  public UpdateOrderRequest() {
   }
 
   public UpdateOrderRequest quantity(@javax.annotation.Nullable BigDecimal quantity) {
@@ -69,7 +69,7 @@ public class UpdateOrderRequest {
   public JsonNullable<BigDecimal> getQuantity_JsonNullable() {
     return quantity;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_QUANTITY)
   public void setQuantity_JsonNullable(JsonNullable<BigDecimal> quantity) {
     this.quantity = quantity;

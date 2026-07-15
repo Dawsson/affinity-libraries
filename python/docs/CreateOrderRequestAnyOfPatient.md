@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  | 
-**date_of_birth** | **date** |  | 
-**email** | **str** |  | [optional] 
-**external_patient_id** | **str** |  | 
-**name** | **str** |  | 
-**phone** | **str** |  | [optional] 
-**state** | **str** |  | 
+**address** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  |
+**date_of_birth** | **date** |  |
+**email** | **str** |  | [optional]
+**external_patient_id** | **str** |  |
+**name** | **str** |  |
+**phone** | **str** |  | [optional]
+**state** | **str** |  |
 
 ## Example
 

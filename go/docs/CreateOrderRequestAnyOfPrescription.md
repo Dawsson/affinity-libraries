@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Authorized** | **bool** |  | 
-**SignedAt** | **time.Time** |  | 
+**Authorized** | **bool** |  |
+**SignedAt** | **time.Time** |  |
 
 ## Methods
 

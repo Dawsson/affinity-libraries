@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EnabledEvents** | Pointer to **[]string** |  | [optional] 
+**EnabledEvents** | Pointer to **[]string** |  | [optional]
 
 ## Methods
 

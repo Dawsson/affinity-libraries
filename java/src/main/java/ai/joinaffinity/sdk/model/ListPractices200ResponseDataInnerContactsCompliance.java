@@ -54,7 +54,7 @@ public class ListPractices200ResponseDataInnerContactsCompliance {
   public static final String JSON_PROPERTY_PHONE = "phone";
   private JsonNullable<String> phone = JsonNullable.<String>undefined();
 
-  public ListPractices200ResponseDataInnerContactsCompliance() { 
+  public ListPractices200ResponseDataInnerContactsCompliance() {
   }
 
   public ListPractices200ResponseDataInnerContactsCompliance email(@javax.annotation.Nullable String email) {
@@ -126,7 +126,7 @@ public class ListPractices200ResponseDataInnerContactsCompliance {
   public JsonNullable<String> getPhone_JsonNullable() {
     return phone;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_PHONE)
   public void setPhone_JsonNullable(JsonNullable<String> phone) {
     this.phone = phone;

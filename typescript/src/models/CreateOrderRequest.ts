@@ -57,91 +57,91 @@ import {
 } from './CreateOrderRequestAnyOfPrescription';
 
 /**
- * 
+ *
  * @export
  * @interface CreateOrderRequest
  */
 export interface CreateOrderRequest {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     catalogItemId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     practiceId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     directions: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     externalOrderId: string;
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOfPatient}
      * @memberof CreateOrderRequest
      */
     patient: CreateOrderRequestAnyOfPatient;
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOfPrescriber}
      * @memberof CreateOrderRequest
      */
     prescriber: CreateOrderRequestAnyOfPrescriber;
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOfPrescription}
      * @memberof CreateOrderRequest
      */
     prescription: CreateOrderRequestAnyOfPrescription;
     /**
-     * 
+     *
      * @type {number}
      * @memberof CreateOrderRequest
      */
     quantity?: number;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     replacesOrderId?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     pharmacyOrganizationId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     prescriptionId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     prescriptionVersionId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequest
      */
     registeredLocationId: string;
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOf1ShippingAddress}
      * @memberof CreateOrderRequest
      */
@@ -176,7 +176,7 @@ export function CreateOrderRequestFromJSONTyped(json: any, ignoreDiscriminator: 
         return json;
     }
     return {
-        
+
         'catalogItemId': json['catalogItemId'],
         'practiceId': json['practiceId'],
         'directions': json['directions'],
@@ -204,7 +204,7 @@ export function CreateOrderRequestToJSONTyped(value?: CreateOrderRequest | null,
     }
 
     return {
-        
+
         'catalogItemId': value['catalogItemId'],
         'practiceId': value['practiceId'],
         'directions': value['directions'],

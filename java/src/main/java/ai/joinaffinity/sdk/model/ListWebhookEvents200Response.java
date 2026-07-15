@@ -44,7 +44,7 @@ public class ListWebhookEvents200Response {
   @javax.annotation.Nonnull
   private List<ListWebhookEvents200ResponseEventsInner> events = new ArrayList<>();
 
-  public ListWebhookEvents200Response() { 
+  public ListWebhookEvents200Response() {
   }
 
   public ListWebhookEvents200Response events(@javax.annotation.Nonnull List<ListWebhookEvents200ResponseEventsInner> events) {

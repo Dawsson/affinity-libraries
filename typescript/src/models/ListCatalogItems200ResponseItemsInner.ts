@@ -14,97 +14,97 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ListCatalogItems200ResponseItemsInner
  */
 export interface ListCatalogItems200ResponseItemsInner {
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     allowedStates: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     catalogKind: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     coldShip: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     compounderId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     compounderName: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     description: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     dosageForm: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     facilityType: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     id: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     isOrderable: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     name: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     patientSpecificRequired: boolean;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     restrictedStates: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
     route: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListCatalogItems200ResponseItemsInner
      */
@@ -142,7 +142,7 @@ export function ListCatalogItems200ResponseItemsInnerFromJSONTyped(json: any, ig
         return json;
     }
     return {
-        
+
         'allowedStates': json['allowedStates'],
         'catalogKind': json['catalogKind'],
         'coldShip': json['coldShip'],
@@ -171,7 +171,7 @@ export function ListCatalogItems200ResponseItemsInnerToJSONTyped(value?: ListCat
     }
 
     return {
-        
+
         'allowedStates': value['allowedStates'],
         'catalogKind': value['catalogKind'],
         'coldShip': value['coldShip'],

@@ -18,13 +18,18 @@ import {
     ListCatalogItems200ResponseFromJSON,
     ListCatalogItems200ResponseToJSON,
 } from '../models/ListCatalogItems200Response';
+import {
+    type ListCatalogItems400Response,
+    ListCatalogItems400ResponseFromJSON,
+    ListCatalogItems400ResponseToJSON,
+} from '../models/ListCatalogItems400Response';
 
 export interface ListCatalogItemsRequest {
     query?: string;
 }
 
 /**
- * 
+ *
  */
 export class CatalogApi extends runtime.BaseAPI {
 

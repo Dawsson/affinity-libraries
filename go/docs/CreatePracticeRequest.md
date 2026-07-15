@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | [**CreatePracticeRequestAddress**](CreatePracticeRequestAddress.md) |  | 
-**Attestations** | [**CreatePracticeRequestAttestations**](CreatePracticeRequestAttestations.md) |  | 
-**ComplianceContact** | Pointer to [**NullableListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional] 
-**ExternalId** | Pointer to **NullableString** |  | [optional] 
-**LegalName** | Pointer to **NullableString** |  | [optional] 
-**Name** | **NullableString** |  | 
-**Prescribers** | Pointer to [**[]CreatePracticeRequestPrescribersInner**](CreatePracticeRequestPrescribersInner.md) |  | [optional] 
-**PrimaryContact** | Pointer to [**NullableListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional] 
-**SupportEmail** | Pointer to **NullableString** |  | [optional] 
-**SupportPhone** | Pointer to **NullableString** |  | [optional] 
-**Timezone** | Pointer to **NullableString** |  | [optional] 
+**Address** | [**CreatePracticeRequestAddress**](CreatePracticeRequestAddress.md) |  |
+**Attestations** | [**CreatePracticeRequestAttestations**](CreatePracticeRequestAttestations.md) |  |
+**ComplianceContact** | Pointer to [**NullableListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional]
+**ExternalId** | Pointer to **NullableString** |  | [optional]
+**LegalName** | Pointer to **NullableString** |  | [optional]
+**Name** | **NullableString** |  |
+**Prescribers** | Pointer to [**[]CreatePracticeRequestPrescribersInner**](CreatePracticeRequestPrescribersInner.md) |  | [optional]
+**PrimaryContact** | Pointer to [**NullableListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional]
+**SupportEmail** | Pointer to **NullableString** |  | [optional]
+**SupportPhone** | Pointer to **NullableString** |  | [optional]
+**Timezone** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 

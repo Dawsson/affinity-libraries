@@ -88,7 +88,7 @@ public class GetPlatformOrganization200ResponseAccount {
   @javax.annotation.Nullable
   private String websiteUrl;
 
-  public GetPlatformOrganization200ResponseAccount() { 
+  public GetPlatformOrganization200ResponseAccount() {
   }
 
   public GetPlatformOrganization200ResponseAccount alertEmails(@javax.annotation.Nonnull List<String> alertEmails) {

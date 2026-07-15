@@ -87,13 +87,14 @@ class APIKeysApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiAccess200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "GetApiAccess400Response",
+            '401': "GetApiAccess400Response",
+            '403': "GetApiAccess400Response",
+            '404': "GetApiAccess400Response",
+            '409': "GetApiAccess400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "GetApiAccess400Response",
+            '500': "GetApiAccess400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -157,13 +158,14 @@ class APIKeysApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiAccess200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "GetApiAccess400Response",
+            '401': "GetApiAccess400Response",
+            '403': "GetApiAccess400Response",
+            '404': "GetApiAccess400Response",
+            '409': "GetApiAccess400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "GetApiAccess400Response",
+            '500': "GetApiAccess400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -227,13 +229,14 @@ class APIKeysApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetApiAccess200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "GetApiAccess400Response",
+            '401': "GetApiAccess400Response",
+            '403': "GetApiAccess400Response",
+            '404': "GetApiAccess400Response",
+            '409': "GetApiAccess400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "GetApiAccess400Response",
+            '500': "GetApiAccess400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -275,14 +278,15 @@ class APIKeysApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 

@@ -14,31 +14,31 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ListOrderEvents200ResponseEventsInner
  */
 export interface ListOrderEvents200ResponseEventsInner {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrderEvents200ResponseEventsInner
      */
     createdAt: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrderEvents200ResponseEventsInner
      */
     eventType: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrderEvents200ResponseEventsInner
      */
     id: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrderEvents200ResponseEventsInner
      */
@@ -65,7 +65,7 @@ export function ListOrderEvents200ResponseEventsInnerFromJSONTyped(json: any, ig
         return json;
     }
     return {
-        
+
         'createdAt': json['createdAt'],
         'eventType': json['eventType'],
         'id': json['id'],
@@ -83,7 +83,7 @@ export function ListOrderEvents200ResponseEventsInnerToJSONTyped(value?: ListOrd
     }
 
     return {
-        
+
         'createdAt': value['createdAt'],
         'eventType': value['eventType'],
         'id': value['id'],

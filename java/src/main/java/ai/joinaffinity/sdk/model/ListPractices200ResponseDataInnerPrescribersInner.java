@@ -61,7 +61,7 @@ public class ListPractices200ResponseDataInnerPrescribersInner {
   @javax.annotation.Nullable
   private String npi;
 
-  public ListPractices200ResponseDataInnerPrescribersInner() { 
+  public ListPractices200ResponseDataInnerPrescribersInner() {
   }
 
   public ListPractices200ResponseDataInnerPrescribersInner credentials(@javax.annotation.Nullable String credentials) {
@@ -85,7 +85,7 @@ public class ListPractices200ResponseDataInnerPrescribersInner {
   public JsonNullable<String> getCredentials_JsonNullable() {
     return credentials;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_CREDENTIALS)
   public void setCredentials_JsonNullable(JsonNullable<String> credentials) {
     this.credentials = credentials;

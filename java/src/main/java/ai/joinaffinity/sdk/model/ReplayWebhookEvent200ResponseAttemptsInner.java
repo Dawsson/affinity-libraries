@@ -67,7 +67,7 @@ public class ReplayWebhookEvent200ResponseAttemptsInner {
   @javax.annotation.Nonnull
   private Boolean success;
 
-  public ReplayWebhookEvent200ResponseAttemptsInner() { 
+  public ReplayWebhookEvent200ResponseAttemptsInner() {
   }
 
   public ReplayWebhookEvent200ResponseAttemptsInner attemptedAt(@javax.annotation.Nonnull String attemptedAt) {

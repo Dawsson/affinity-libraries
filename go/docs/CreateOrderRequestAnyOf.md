@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CatalogItemId** | **string** |  | 
-**PracticeId** | **string** |  | 
-**Directions** | **string** |  | 
-**ExternalOrderId** | **string** |  | 
-**Patient** | [**CreateOrderRequestAnyOfPatient**](CreateOrderRequestAnyOfPatient.md) |  | 
-**Prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  | 
-**Prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  | 
+**CatalogItemId** | **string** |  |
+**PracticeId** | **string** |  |
+**Directions** | **string** |  |
+**ExternalOrderId** | **string** |  |
+**Patient** | [**CreateOrderRequestAnyOfPatient**](CreateOrderRequestAnyOfPatient.md) |  |
+**Prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  |
+**Prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  |
 **Quantity** | Pointer to **int32** |  | [optional] [default to 1]
-**ReplacesOrderId** | Pointer to **string** |  | [optional] 
+**ReplacesOrderId** | Pointer to **string** |  | [optional]
 
 ## Methods
 

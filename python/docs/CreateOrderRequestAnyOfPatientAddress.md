@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**city** | **str** |  | 
+**city** | **str** |  |
 **country** | **str** |  | [optional] [default to 'US']
-**line1** | **str** |  | 
-**line2** | **str** |  | [optional] 
-**postal_code** | **str** |  | 
-**state** | **str** |  | 
+**line1** | **str** |  |
+**line2** | **str** |  | [optional]
+**postal_code** | **str** |  |
+**state** | **str** |  |
 
 ## Example
 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**endpoint** | [**CreateWebhookEndpoint200ResponseEndpoint**](CreateWebhookEndpoint200ResponseEndpoint.md) |  | 
+**endpoint** | [**CreateWebhookEndpoint200ResponseEndpoint**](CreateWebhookEndpoint200ResponseEndpoint.md) |  |
 
 ## Example
 

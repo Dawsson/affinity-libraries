@@ -94,13 +94,14 @@ class CatalogApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListCatalogItems200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListCatalogItems400Response",
+            '401': "ListCatalogItems400Response",
+            '403': "ListCatalogItems400Response",
+            '404': "ListCatalogItems400Response",
+            '409': "ListCatalogItems400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListCatalogItems400Response",
+            '500': "ListCatalogItems400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -168,13 +169,14 @@ class CatalogApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListCatalogItems200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListCatalogItems400Response",
+            '401': "ListCatalogItems400Response",
+            '403': "ListCatalogItems400Response",
+            '404': "ListCatalogItems400Response",
+            '409': "ListCatalogItems400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListCatalogItems400Response",
+            '500': "ListCatalogItems400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -242,13 +244,14 @@ class CatalogApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListCatalogItems200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListCatalogItems400Response",
+            '401': "ListCatalogItems400Response",
+            '403': "ListCatalogItems400Response",
+            '404': "ListCatalogItems400Response",
+            '409': "ListCatalogItems400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListCatalogItems400Response",
+            '500': "ListCatalogItems400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -283,9 +286,9 @@ class CatalogApi:
         # process the path parameters
         # process the query parameters
         if query is not None:
-            
+
             _query_params.append(('query', query))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -295,14 +298,15 @@ class CatalogApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 

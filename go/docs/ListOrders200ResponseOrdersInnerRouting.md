@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BlockedReasons** | **[]string** |  | 
-**CandidateCompounderIds** | **[]string** |  | 
-**ColdShip** | **bool** |  | 
-**SelectedCompounderId** | **NullableString** |  | 
+**BlockedReasons** | **[]string** |  |
+**CandidateCompounderIds** | **[]string** |  |
+**ColdShip** | **bool** |  |
+**SelectedCompounderId** | **NullableString** |  |
 
 ## Methods
 

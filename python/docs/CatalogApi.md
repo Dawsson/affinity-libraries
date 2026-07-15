@@ -69,7 +69,7 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query** | **str**|  | [optional] 
+ **query** | **str**|  | [optional]
 
 ### Return type
 
@@ -82,20 +82,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

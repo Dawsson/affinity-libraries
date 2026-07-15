@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attempted_at** | **str** |  | 
-**error_message** | **str** |  | 
-**id** | **str** |  | 
-**response_body** | **str** |  | 
-**response_status** | **float** |  | 
-**success** | **bool** |  | 
+**attempted_at** | **str** |  |
+**error_message** | **str** |  |
+**id** | **str** |  |
+**response_body** | **str** |  |
+**response_status** | **float** |  |
+**success** | **bool** |  |
 
 ## Example
 

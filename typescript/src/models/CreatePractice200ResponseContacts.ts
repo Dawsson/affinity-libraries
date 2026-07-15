@@ -22,19 +22,19 @@ import {
 } from './ListPractices200ResponseDataInnerContactsPrimary';
 
 /**
- * 
+ *
  * @export
  * @interface CreatePractice200ResponseContacts
  */
 export interface CreatePractice200ResponseContacts {
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerContactsPrimary}
      * @memberof CreatePractice200ResponseContacts
      */
     compliance: ListPractices200ResponseDataInnerContactsPrimary | null;
     /**
-     * 
+     *
      * @type {ListPractices200ResponseDataInnerContactsPrimary}
      * @memberof CreatePractice200ResponseContacts
      */
@@ -59,7 +59,7 @@ export function CreatePractice200ResponseContactsFromJSONTyped(json: any, ignore
         return json;
     }
     return {
-        
+
         'compliance': ListPractices200ResponseDataInnerContactsPrimaryFromJSON(json['compliance']),
         'primary': ListPractices200ResponseDataInnerContactsPrimaryFromJSON(json['primary']),
     };
@@ -75,7 +75,7 @@ export function CreatePractice200ResponseContactsToJSONTyped(value?: CreatePract
     }
 
     return {
-        
+
         'compliance': ListPractices200ResponseDataInnerContactsPrimaryToJSON(value['compliance']),
         'primary': ListPractices200ResponseDataInnerContactsPrimaryToJSON(value['primary']),
     };

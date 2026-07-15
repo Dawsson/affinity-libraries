@@ -14,43 +14,43 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ReplayWebhookEvent200ResponseAttemptsInner
  */
 export interface ReplayWebhookEvent200ResponseAttemptsInner {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ReplayWebhookEvent200ResponseAttemptsInner
      */
     attemptedAt: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ReplayWebhookEvent200ResponseAttemptsInner
      */
     errorMessage: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ReplayWebhookEvent200ResponseAttemptsInner
      */
     id: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ReplayWebhookEvent200ResponseAttemptsInner
      */
     responseBody: string | null;
     /**
-     * 
+     *
      * @type {number}
      * @memberof ReplayWebhookEvent200ResponseAttemptsInner
      */
     responseStatus: number | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ReplayWebhookEvent200ResponseAttemptsInner
      */
@@ -79,7 +79,7 @@ export function ReplayWebhookEvent200ResponseAttemptsInnerFromJSONTyped(json: an
         return json;
     }
     return {
-        
+
         'attemptedAt': json['attemptedAt'],
         'errorMessage': json['errorMessage'],
         'id': json['id'],
@@ -99,7 +99,7 @@ export function ReplayWebhookEvent200ResponseAttemptsInnerToJSONTyped(value?: Re
     }
 
     return {
-        
+
         'attemptedAt': value['attemptedAt'],
         'errorMessage': value['errorMessage'],
         'id': value['id'],

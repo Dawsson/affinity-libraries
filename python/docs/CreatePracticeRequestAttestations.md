@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**authorized_phi_transfer** | **bool** |  | 
-**authorized_practice_relationship** | **bool** |  | 
-**minimum_necessary_phi** | **bool** |  | 
-**provider_data_accuracy** | **bool** |  | 
+**authorized_phi_transfer** | **bool** |  |
+**authorized_practice_relationship** | **bool** |  |
+**minimum_necessary_phi** | **bool** |  |
+**provider_data_accuracy** | **bool** |  |
 
 ## Example
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Compliance** | [**NullableListPractices200ResponseDataInnerContactsCompliance**](ListPractices200ResponseDataInnerContactsCompliance.md) |  | 
-**Primary** | [**NullableListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | 
+**Compliance** | [**NullableListPractices200ResponseDataInnerContactsCompliance**](ListPractices200ResponseDataInnerContactsCompliance.md) |  |
+**Primary** | [**NullableListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  |
 
 ## Methods
 

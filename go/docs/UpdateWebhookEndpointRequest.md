@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EnabledEvents** | **[]string** |  | 
+**EnabledEvents** | **[]string** |  |
 
 ## Methods
 

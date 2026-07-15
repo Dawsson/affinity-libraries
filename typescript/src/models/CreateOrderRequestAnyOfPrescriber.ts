@@ -14,31 +14,31 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreateOrderRequestAnyOfPrescriber
  */
 export interface CreateOrderRequestAnyOfPrescriber {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPrescriber
      */
     credentials?: string;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof CreateOrderRequestAnyOfPrescriber
      */
     licenseStates: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPrescriber
      */
     name: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPrescriber
      */
@@ -64,7 +64,7 @@ export function CreateOrderRequestAnyOfPrescriberFromJSONTyped(json: any, ignore
         return json;
     }
     return {
-        
+
         'credentials': json['credentials'] == null ? undefined : json['credentials'],
         'licenseStates': json['licenseStates'],
         'name': json['name'],
@@ -82,7 +82,7 @@ export function CreateOrderRequestAnyOfPrescriberToJSONTyped(value?: CreateOrder
     }
 
     return {
-        
+
         'credentials': value['credentials'],
         'licenseStates': value['licenseStates'],
         'name': value['name'],

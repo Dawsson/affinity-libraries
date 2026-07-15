@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **cancel_order**
-> CreateOrder200Response cancel_order(order_id, cancel_order_request)
+> CreateOrder200Response cancel_order(order_id, idempotency_key, cancel_order_request)
 
 Cancel order
 
@@ -58,12 +58,13 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
-    order_id = 'order_id_example' # str | 
-    cancel_order_request = affinity_sdk.CancelOrderRequest() # CancelOrderRequest | 
+    order_id = 'order_id_example' # str |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    cancel_order_request = affinity_sdk.CancelOrderRequest() # CancelOrderRequest |
 
     try:
         # Cancel order
-        api_response = api_instance.cancel_order(order_id, cancel_order_request)
+        api_response = api_instance.cancel_order(order_id, idempotency_key, cancel_order_request)
         print("The response of PlatformOrdersApi->cancel_order:\n")
         pprint(api_response)
     except Exception as e:
@@ -77,8 +78,9 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**|  | 
- **cancel_order_request** | [**CancelOrderRequest**](CancelOrderRequest.md)|  | 
+ **order_id** | **str**|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **cancel_order_request** | [**CancelOrderRequest**](CancelOrderRequest.md)|  |
 
 ### Return type
 
@@ -91,25 +93,26 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_order**
-> CreateOrder200Response create_order(create_order_request)
+> CreateOrder200Response create_order(idempotency_key, create_order_request)
 
 Create order
 
@@ -153,11 +156,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
-    create_order_request = {"catalogItemId":"catalog_item_123","practiceId":"3f4bd943-a34d-4d4c-aa41-00556569a71d","directions":"Inject 0.25 mL subcutaneously once weekly.","externalOrderId":"order_123","patient":{"address":{"city":"Los Angeles","country":"US","line1":"100 Main Street","line2":null,"postalCode":"90001","state":"CA"},"dateOfBirth":"1988-05-12","email":"patient@example.com","externalPatientId":"patient_123","name":"Example Patient","state":"CA"},"prescriber":{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"},"prescription":{"authorized":true,"signedAt":"2026-07-10T12:00:00.000Z"},"quantity":1} # CreateOrderRequest | 
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    create_order_request = {"catalogItemId":"catalog_item_123","practiceId":"3f4bd943-a34d-4d4c-aa41-00556569a71d","directions":"Inject 0.25 mL subcutaneously once weekly.","externalOrderId":"order_123","patient":{"address":{"city":"Los Angeles","country":"US","line1":"100 Main Street","line2":null,"postalCode":"90001","state":"CA"},"dateOfBirth":"1988-05-12","email":"patient@example.com","externalPatientId":"patient_123","name":"Example Patient","state":"CA"},"prescriber":{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"},"prescription":{"authorized":true,"signedAt":"2026-07-10T12:00:00.000Z"},"quantity":1} # CreateOrderRequest |
 
     try:
         # Create order
-        api_response = api_instance.create_order(create_order_request)
+        api_response = api_instance.create_order(idempotency_key, create_order_request)
         print("The response of PlatformOrdersApi->create_order:\n")
         pprint(api_response)
     except Exception as e:
@@ -171,7 +175,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_order_request** | [**CreateOrderRequest**](CreateOrderRequest.md)|  | 
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **create_order_request** | [**CreateOrderRequest**](CreateOrderRequest.md)|  |
 
 ### Return type
 
@@ -184,20 +189,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -243,7 +249,7 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
-    order_id = 'order_id_example' # str | 
+    order_id = 'order_id_example' # str |
 
     try:
         # Read order
@@ -261,7 +267,7 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**|  | 
+ **order_id** | **str**|  |
 
 ### Return type
 
@@ -274,20 +280,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -333,7 +340,7 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
-    order_id = 'order_id_example' # str | 
+    order_id = 'order_id_example' # str |
 
     try:
         # List order events
@@ -351,7 +358,7 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**|  | 
+ **order_id** | **str**|  |
 
 ### Return type
 
@@ -364,20 +371,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -442,8 +450,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **external_order_id** | **str**|  | [optional] 
- **patient_external_id** | **str**|  | [optional] 
+ **external_order_id** | **str**|  | [optional]
+ **patient_external_id** | **str**|  | [optional]
 
 ### Return type
 
@@ -456,25 +464,26 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submit_order**
-> CreateOrder200Response submit_order(order_id)
+> CreateOrder200Response submit_order(order_id, idempotency_key)
 
 Submit order
 
@@ -517,11 +526,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
-    order_id = 'order_id_example' # str | 
+    order_id = 'order_id_example' # str |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
 
     try:
         # Submit order
-        api_response = api_instance.submit_order(order_id)
+        api_response = api_instance.submit_order(order_id, idempotency_key)
         print("The response of PlatformOrdersApi->submit_order:\n")
         pprint(api_response)
     except Exception as e:
@@ -535,7 +545,8 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**|  | 
+ **order_id** | **str**|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
 
 ### Return type
 
@@ -548,25 +559,26 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_order**
-> CreateOrder200Response update_order(order_id, update_order_request)
+> CreateOrder200Response update_order(order_id, idempotency_key, update_order_request)
 
 Update draft order
 
@@ -610,12 +622,13 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
-    order_id = 'order_id_example' # str | 
-    update_order_request = affinity_sdk.UpdateOrderRequest() # UpdateOrderRequest | 
+    order_id = 'order_id_example' # str |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    update_order_request = affinity_sdk.UpdateOrderRequest() # UpdateOrderRequest |
 
     try:
         # Update draft order
-        api_response = api_instance.update_order(order_id, update_order_request)
+        api_response = api_instance.update_order(order_id, idempotency_key, update_order_request)
         print("The response of PlatformOrdersApi->update_order:\n")
         pprint(api_response)
     except Exception as e:
@@ -629,8 +642,9 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**|  | 
- **update_order_request** | [**UpdateOrderRequest**](UpdateOrderRequest.md)|  | 
+ **order_id** | **str**|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **update_order_request** | [**UpdateOrderRequest**](UpdateOrderRequest.md)|  |
 
 ### Return type
 
@@ -643,20 +657,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
-**400** | The request could not be completed. |  -  |
-**401** | The request could not be completed. |  -  |
-**403** | The request could not be completed. |  -  |
-**404** | The request could not be completed. |  -  |
-**409** | The request could not be completed. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict |  -  |
 **422** | The request could not be completed. |  -  |
-**429** | The request could not be completed. |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

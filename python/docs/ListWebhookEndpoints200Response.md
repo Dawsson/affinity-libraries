@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**endpoints** | [**List[ListWebhookEndpoints200ResponseEndpointsInner]**](ListWebhookEndpoints200ResponseEndpointsInner.md) |  | 
+**endpoints** | [**List[ListWebhookEndpoints200ResponseEndpointsInner]**](ListWebhookEndpoints200ResponseEndpointsInner.md) |  |
 
 ## Example
 

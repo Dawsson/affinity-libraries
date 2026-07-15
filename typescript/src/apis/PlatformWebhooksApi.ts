@@ -34,6 +34,11 @@ import {
     GetWebhookEvent200ResponseToJSON,
 } from '../models/GetWebhookEvent200Response';
 import {
+    type ListOrders400Response,
+    ListOrders400ResponseFromJSON,
+    ListOrders400ResponseToJSON,
+} from '../models/ListOrders400Response';
+import {
     type ListWebhookEndpoints200Response,
     ListWebhookEndpoints200ResponseFromJSON,
     ListWebhookEndpoints200ResponseToJSON,
@@ -55,11 +60,13 @@ import {
 } from '../models/UpdateWebhookEndpointRequest';
 
 export interface CreateWebhookEndpointOperationRequest {
+    idempotencyKey: string;
     createWebhookEndpointRequest: CreateWebhookEndpointRequest;
 }
 
 export interface DeleteWebhookEndpointRequest {
     endpointId: string | null;
+    idempotencyKey: string;
 }
 
 export interface GetWebhookEventRequest {
@@ -68,19 +75,22 @@ export interface GetWebhookEventRequest {
 
 export interface ReplayWebhookEventRequest {
     eventId: string;
+    idempotencyKey: string;
 }
 
 export interface RotateWebhookEndpointSecretRequest {
     endpointId: string;
+    idempotencyKey: string;
 }
 
 export interface UpdateWebhookEndpointOperationRequest {
     endpointId: string;
+    idempotencyKey: string;
     updateWebhookEndpointRequest: UpdateWebhookEndpointRequest;
 }
 
 /**
- * 
+ *
  */
 export class PlatformWebhooksApi extends runtime.BaseAPI {
 
@@ -88,6 +98,13 @@ export class PlatformWebhooksApi extends runtime.BaseAPI {
      * Creates request options for createWebhookEndpoint without sending the request
      */
     async createWebhookEndpointRequestOpts(requestParameters: CreateWebhookEndpointOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling createWebhookEndpoint().'
+            );
+        }
+
         if (requestParameters['createWebhookEndpointRequest'] == null) {
             throw new runtime.RequiredError(
                 'createWebhookEndpointRequest',
@@ -100,6 +117,10 @@ export class PlatformWebhooksApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -154,9 +175,20 @@ export class PlatformWebhooksApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling deleteWebhookEndpoint().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -366,9 +398,20 @@ export class PlatformWebhooksApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling replayWebhookEvent().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -423,9 +466,20 @@ export class PlatformWebhooksApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling rotateWebhookEndpointSecret().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -480,6 +534,13 @@ export class PlatformWebhooksApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling updateWebhookEndpoint().'
+            );
+        }
+
         if (requestParameters['updateWebhookEndpointRequest'] == null) {
             throw new runtime.RequiredError(
                 'updateWebhookEndpointRequest',
@@ -492,6 +553,10 @@ export class PlatformWebhooksApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;

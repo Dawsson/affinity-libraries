@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | **NullableString** |  | 
-**EmailVerified** | Pointer to **bool** |  | [optional] 
-**Image** | **NullableString** |  | 
-**Name** | **NullableString** |  | 
-**TwoFactorEnabled** | Pointer to **bool** |  | [optional] 
-**UserId** | **NullableString** |  | 
+**Email** | **NullableString** |  |
+**EmailVerified** | Pointer to **bool** |  | [optional]
+**Image** | **NullableString** |  |
+**Name** | **NullableString** |  |
+**TwoFactorEnabled** | Pointer to **bool** |  | [optional]
+**UserId** | **NullableString** |  |
 
 ## Methods
 

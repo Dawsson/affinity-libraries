@@ -14,25 +14,25 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface GetApiAccess200ResponseApiKey
  */
 export interface GetApiAccess200ResponseApiKey {
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetApiAccess200ResponseApiKey
      */
     id: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetApiAccess200ResponseApiKey
      */
     keyPrefix: string;
     /**
-     * 
+     *
      * @type {GetApiAccess200ResponseApiKeyObjectEnum}
      * @memberof GetApiAccess200ResponseApiKey
      */
@@ -68,7 +68,7 @@ export function GetApiAccess200ResponseApiKeyFromJSONTyped(json: any, ignoreDisc
         return json;
     }
     return {
-        
+
         'id': json['id'],
         'keyPrefix': json['keyPrefix'],
         'object': json['object'],
@@ -85,7 +85,7 @@ export function GetApiAccess200ResponseApiKeyToJSONTyped(value?: GetApiAccess200
     }
 
     return {
-        
+
         'id': value['id'],
         'keyPrefix': value['keyPrefix'],
         'object': value['object'],

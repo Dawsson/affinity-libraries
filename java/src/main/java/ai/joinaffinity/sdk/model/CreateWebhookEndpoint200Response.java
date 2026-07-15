@@ -47,7 +47,7 @@ public class CreateWebhookEndpoint200Response {
   @javax.annotation.Nullable
   private String signingSecret;
 
-  public CreateWebhookEndpoint200Response() { 
+  public CreateWebhookEndpoint200Response() {
   }
 
   public CreateWebhookEndpoint200Response endpoint(@javax.annotation.Nonnull CreateWebhookEndpoint200ResponseEndpoint endpoint) {

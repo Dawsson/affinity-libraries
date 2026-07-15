@@ -14,31 +14,31 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ListPractices200ResponseDataInnerPrescribersInner
  */
 export interface ListPractices200ResponseDataInnerPrescribersInner {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerPrescribersInner
      */
     credentials?: string | null;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof ListPractices200ResponseDataInnerPrescribersInner
      */
     licenseStates: Array<string>;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerPrescribersInner
      */
     name: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerPrescribersInner
      */
@@ -64,7 +64,7 @@ export function ListPractices200ResponseDataInnerPrescribersInnerFromJSONTyped(j
         return json;
     }
     return {
-        
+
         'credentials': json['credentials'] == null ? undefined : json['credentials'],
         'licenseStates': json['licenseStates'],
         'name': json['name'],
@@ -82,7 +82,7 @@ export function ListPractices200ResponseDataInnerPrescribersInnerToJSONTyped(val
     }
 
     return {
-        
+
         'credentials': value['credentials'],
         'licenseStates': value['licenseStates'],
         'name': value['name'],

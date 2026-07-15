@@ -14,31 +14,31 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface GetApiAccess200ResponseServiceAccount
  */
 export interface GetApiAccess200ResponseServiceAccount {
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetApiAccess200ResponseServiceAccount
      */
     id: string;
     /**
-     * 
+     *
      * @type {GetApiAccess200ResponseServiceAccountObjectEnum}
      * @memberof GetApiAccess200ResponseServiceAccount
      */
     object: GetApiAccess200ResponseServiceAccountObjectEnum;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetApiAccess200ResponseServiceAccount
      */
     subjectId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetApiAccess200ResponseServiceAccount
      */
@@ -75,7 +75,7 @@ export function GetApiAccess200ResponseServiceAccountFromJSONTyped(json: any, ig
         return json;
     }
     return {
-        
+
         'id': json['id'],
         'object': json['object'],
         'subjectId': json['subjectId'],
@@ -93,7 +93,7 @@ export function GetApiAccess200ResponseServiceAccountToJSONTyped(value?: GetApiA
     }
 
     return {
-        
+
         'id': value['id'],
         'object': value['object'],
         'subjectId': value['subjectId'],

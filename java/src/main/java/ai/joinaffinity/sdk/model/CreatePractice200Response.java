@@ -135,7 +135,7 @@ public class CreatePractice200Response {
   @javax.annotation.Nullable
   private String timezone;
 
-  public CreatePractice200Response() { 
+  public CreatePractice200Response() {
   }
 
   public CreatePractice200Response address(@javax.annotation.Nullable CreatePractice200ResponseAddress address) {

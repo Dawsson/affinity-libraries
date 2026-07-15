@@ -14,19 +14,19 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreateOrderRequestAnyOfPrescription
  */
 export interface CreateOrderRequestAnyOfPrescription {
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOfPrescriptionAuthorizedEnum}
      * @memberof CreateOrderRequestAnyOfPrescription
      */
     authorized: CreateOrderRequestAnyOfPrescriptionAuthorizedEnum;
     /**
-     * 
+     *
      * @type {Date}
      * @memberof CreateOrderRequestAnyOfPrescription
      */
@@ -61,7 +61,7 @@ export function CreateOrderRequestAnyOfPrescriptionFromJSONTyped(json: any, igno
         return json;
     }
     return {
-        
+
         'authorized': json['authorized'],
         'signedAt': (new Date(json['signedAt'])),
     };
@@ -77,7 +77,7 @@ export function CreateOrderRequestAnyOfPrescriptionToJSONTyped(value?: CreateOrd
     }
 
     return {
-        
+
         'authorized': value['authorized'],
         'signedAt': value['signedAt'].toISOString(),
     };

@@ -71,7 +71,7 @@ public class ListWebhookEvents200ResponseEventsInner {
   @javax.annotation.Nullable
   private String updatedAt;
 
-  public ListWebhookEvents200ResponseEventsInner() { 
+  public ListWebhookEvents200ResponseEventsInner() {
   }
 
   public ListWebhookEvents200ResponseEventsInner createdAt(@javax.annotation.Nullable String createdAt) {

@@ -36,61 +36,61 @@ import {
 } from './CreateOrderRequestAnyOfPrescription';
 
 /**
- * 
+ *
  * @export
  * @interface CreateOrderRequestAnyOf
  */
 export interface CreateOrderRequestAnyOf {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf
      */
     catalogItemId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf
      */
     practiceId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf
      */
     directions: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf
      */
     externalOrderId: string;
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOfPatient}
      * @memberof CreateOrderRequestAnyOf
      */
     patient: CreateOrderRequestAnyOfPatient;
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOfPrescriber}
      * @memberof CreateOrderRequestAnyOf
      */
     prescriber: CreateOrderRequestAnyOfPrescriber;
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOfPrescription}
      * @memberof CreateOrderRequestAnyOf
      */
     prescription: CreateOrderRequestAnyOfPrescription;
     /**
-     * 
+     *
      * @type {number}
      * @memberof CreateOrderRequestAnyOf
      */
     quantity?: number;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf
      */
@@ -120,7 +120,7 @@ export function CreateOrderRequestAnyOfFromJSONTyped(json: any, ignoreDiscrimina
         return json;
     }
     return {
-        
+
         'catalogItemId': json['catalogItemId'],
         'practiceId': json['practiceId'],
         'directions': json['directions'],
@@ -143,7 +143,7 @@ export function CreateOrderRequestAnyOfToJSONTyped(value?: CreateOrderRequestAny
     }
 
     return {
-        
+
         'catalogItemId': value['catalogItemId'],
         'practiceId': value['practiceId'],
         'directions': value['directions'],

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**events** | [**List[ListOrderEvents200ResponseEventsInner]**](ListOrderEvents200ResponseEventsInner.md) |  | 
+**events** | [**List[ListOrderEvents200ResponseEventsInner]**](ListOrderEvents200ResponseEventsInner.md) |  |
 
 ## Example
 

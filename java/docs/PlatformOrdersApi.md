@@ -23,7 +23,7 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 ## cancelOrder
 
-> CreateOrder200Response cancelOrder(orderId, cancelOrderRequest)
+> CreateOrder200Response cancelOrder(orderId, idempotencyKey, cancelOrderRequest)
 
 Cancel order
 
@@ -44,7 +44,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -56,10 +56,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
-        CancelOrderRequest cancelOrderRequest = new CancelOrderRequest(); // CancelOrderRequest | 
+        String orderId = "orderId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        CancelOrderRequest cancelOrderRequest = new CancelOrderRequest(); // CancelOrderRequest |
         try {
-            CreateOrder200Response result = apiInstance.cancelOrder(orderId, cancelOrderRequest);
+            CreateOrder200Response result = apiInstance.cancelOrder(orderId, idempotencyKey, cancelOrderRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#cancelOrder");
@@ -78,6 +79,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **cancelOrderRequest** | [**CancelOrderRequest**](CancelOrderRequest.md)|  | |
 
 ### Return type
@@ -92,23 +94,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## cancelOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> cancelOrderWithHttpInfo(orderId, cancelOrderRequest)
+> ApiResponse<CreateOrder200Response> cancelOrderWithHttpInfo(orderId, idempotencyKey, cancelOrderRequest)
 
 Cancel order
 
@@ -130,7 +133,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -142,10 +145,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
-        CancelOrderRequest cancelOrderRequest = new CancelOrderRequest(); // CancelOrderRequest | 
+        String orderId = "orderId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        CancelOrderRequest cancelOrderRequest = new CancelOrderRequest(); // CancelOrderRequest |
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.cancelOrderWithHttpInfo(orderId, cancelOrderRequest);
+            ApiResponse<CreateOrder200Response> response = apiInstance.cancelOrderWithHttpInfo(orderId, idempotencyKey, cancelOrderRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -166,6 +170,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **cancelOrderRequest** | [**CancelOrderRequest**](CancelOrderRequest.md)|  | |
 
 ### Return type
@@ -180,24 +185,25 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## createOrder
 
-> CreateOrder200Response createOrder(createOrderRequest)
+> CreateOrder200Response createOrder(idempotencyKey, createOrderRequest)
 
 Create order
 
@@ -218,7 +224,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -230,9 +236,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        CreateOrderRequest createOrderRequest = new CreateOrderRequest(); // CreateOrderRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        CreateOrderRequest createOrderRequest = new CreateOrderRequest(); // CreateOrderRequest |
         try {
-            CreateOrder200Response result = apiInstance.createOrder(createOrderRequest);
+            CreateOrder200Response result = apiInstance.createOrder(idempotencyKey, createOrderRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#createOrder");
@@ -250,6 +257,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createOrderRequest** | [**CreateOrderRequest**](CreateOrderRequest.md)|  | |
 
 ### Return type
@@ -264,23 +272,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## createOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> createOrderWithHttpInfo(createOrderRequest)
+> ApiResponse<CreateOrder200Response> createOrderWithHttpInfo(idempotencyKey, createOrderRequest)
 
 Create order
 
@@ -302,7 +311,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -314,9 +323,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        CreateOrderRequest createOrderRequest = new CreateOrderRequest(); // CreateOrderRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        CreateOrderRequest createOrderRequest = new CreateOrderRequest(); // CreateOrderRequest |
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.createOrderWithHttpInfo(createOrderRequest);
+            ApiResponse<CreateOrder200Response> response = apiInstance.createOrderWithHttpInfo(idempotencyKey, createOrderRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -336,6 +346,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createOrderRequest** | [**CreateOrderRequest**](CreateOrderRequest.md)|  | |
 
 ### Return type
@@ -350,19 +361,20 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## getOrder
@@ -386,7 +398,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -398,7 +410,7 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
+        String orderId = "orderId_example"; // String |
         try {
             CreateOrder200Response result = apiInstance.getOrder(orderId);
             System.out.println(result);
@@ -432,19 +444,20 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## getOrderWithHttpInfo
 
@@ -468,7 +481,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -480,7 +493,7 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
+        String orderId = "orderId_example"; // String |
         try {
             ApiResponse<CreateOrder200Response> response = apiInstance.getOrderWithHttpInfo(orderId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -516,19 +529,20 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## listOrderEvents
@@ -552,7 +566,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -564,7 +578,7 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
+        String orderId = "orderId_example"; // String |
         try {
             ListOrderEvents200Response result = apiInstance.listOrderEvents(orderId);
             System.out.println(result);
@@ -598,19 +612,20 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## listOrderEventsWithHttpInfo
 
@@ -634,7 +649,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -646,7 +661,7 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
+        String orderId = "orderId_example"; // String |
         try {
             ApiResponse<ListOrderEvents200Response> response = apiInstance.listOrderEventsWithHttpInfo(orderId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -682,19 +697,20 @@ ApiResponse<[**ListOrderEvents200Response**](ListOrderEvents200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## listOrders
@@ -718,7 +734,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -730,8 +746,8 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String externalOrderId = "externalOrderId_example"; // String | 
-        String patientExternalId = "patientExternalId_example"; // String | 
+        String externalOrderId = "externalOrderId_example"; // String |
+        String patientExternalId = "patientExternalId_example"; // String |
         try {
             ListOrders200Response result = apiInstance.listOrders(externalOrderId, patientExternalId);
             System.out.println(result);
@@ -766,19 +782,20 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## listOrdersWithHttpInfo
 
@@ -802,7 +819,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -814,8 +831,8 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String externalOrderId = "externalOrderId_example"; // String | 
-        String patientExternalId = "patientExternalId_example"; // String | 
+        String externalOrderId = "externalOrderId_example"; // String |
+        String patientExternalId = "patientExternalId_example"; // String |
         try {
             ApiResponse<ListOrders200Response> response = apiInstance.listOrdersWithHttpInfo(externalOrderId, patientExternalId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -852,24 +869,25 @@ ApiResponse<[**ListOrders200Response**](ListOrders200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## submitOrder
 
-> CreateOrder200Response submitOrder(orderId)
+> CreateOrder200Response submitOrder(orderId, idempotencyKey)
 
 Submit order
 
@@ -890,7 +908,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -902,9 +920,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
+        String orderId = "orderId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreateOrder200Response result = apiInstance.submitOrder(orderId);
+            CreateOrder200Response result = apiInstance.submitOrder(orderId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#submitOrder");
@@ -923,6 +942,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -936,23 +956,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## submitOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> submitOrderWithHttpInfo(orderId)
+> ApiResponse<CreateOrder200Response> submitOrderWithHttpInfo(orderId, idempotencyKey)
 
 Submit order
 
@@ -974,7 +995,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -986,9 +1007,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
+        String orderId = "orderId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.submitOrderWithHttpInfo(orderId);
+            ApiResponse<CreateOrder200Response> response = apiInstance.submitOrderWithHttpInfo(orderId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1009,6 +1031,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -1022,24 +1045,25 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## updateOrder
 
-> CreateOrder200Response updateOrder(orderId, updateOrderRequest)
+> CreateOrder200Response updateOrder(orderId, idempotencyKey, updateOrderRequest)
 
 Update draft order
 
@@ -1060,7 +1084,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -1072,10 +1096,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
-        UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest(); // UpdateOrderRequest | 
+        String orderId = "orderId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest(); // UpdateOrderRequest |
         try {
-            CreateOrder200Response result = apiInstance.updateOrder(orderId, updateOrderRequest);
+            CreateOrder200Response result = apiInstance.updateOrder(orderId, idempotencyKey, updateOrderRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#updateOrder");
@@ -1094,6 +1119,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **updateOrderRequest** | [**UpdateOrderRequest**](UpdateOrderRequest.md)|  | |
 
 ### Return type
@@ -1108,23 +1134,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## updateOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> updateOrderWithHttpInfo(orderId, updateOrderRequest)
+> ApiResponse<CreateOrder200Response> updateOrderWithHttpInfo(orderId, idempotencyKey, updateOrderRequest)
 
 Update draft order
 
@@ -1146,7 +1173,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -1158,10 +1185,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String orderId = "orderId_example"; // String | 
-        UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest(); // UpdateOrderRequest | 
+        String orderId = "orderId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest(); // UpdateOrderRequest |
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.updateOrderWithHttpInfo(orderId, updateOrderRequest);
+            ApiResponse<CreateOrder200Response> response = apiInstance.updateOrderWithHttpInfo(orderId, idempotencyKey, updateOrderRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1182,6 +1210,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **updateOrderRequest** | [**UpdateOrderRequest**](UpdateOrderRequest.md)|  | |
 
 ### Return type
@@ -1196,17 +1225,18 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 

@@ -14,13 +14,13 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreateWebhookEndpointRequest
  */
 export interface CreateWebhookEndpointRequest {
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof CreateWebhookEndpointRequest
      */
@@ -43,7 +43,7 @@ export function CreateWebhookEndpointRequestFromJSONTyped(json: any, ignoreDiscr
         return json;
     }
     return {
-        
+
         'enabledEvents': json['enabledEvents'] == null ? undefined : json['enabledEvents'],
     };
 }
@@ -58,7 +58,7 @@ export function CreateWebhookEndpointRequestToJSONTyped(value?: CreateWebhookEnd
     }
 
     return {
-        
+
         'enabledEvents': value['enabledEvents'],
     };
 }

@@ -4,41 +4,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CancellationReason** | **NullableString** |  | 
-**Carrier** | **NullableString** |  | 
-**CatalogItemId** | **NullableString** |  | 
-**CompounderId** | **NullableString** |  | 
-**CreatedAt** | **NullableString** |  | 
-**Currency** | **NullableString** |  | 
-**DeliveredAt** | **NullableString** |  | 
-**Directions** | **NullableString** |  | 
-**DosageForm** | **NullableString** |  | 
-**ExternalOrderId** | **NullableString** |  | 
-**ExternalSubmissionAttempted** | **bool** |  | 
-**ExternalSubmissionBlockedReason** | **NullableString** |  | 
-**Id** | **NullableString** |  | 
-**Livemode** | **bool** |  | 
-**MedicationName** | **NullableString** |  | 
-**PatientExternalId** | **NullableString** |  | 
-**PatientName** | **NullableString** |  | 
-**PatientState** | **NullableString** |  | 
-**PracticeId** | **NullableString** |  | 
-**PrescriberName** | **NullableString** |  | 
-**PrescriberNpi** | **NullableString** |  | 
-**Quantity** | **float32** |  | 
-**QuoteCents** | **NullableFloat32** |  | 
-**ReplacesOrderId** | **NullableString** |  | 
-**Routing** | [**NullableListOrders200ResponseOrdersInnerRouting**](ListOrders200ResponseOrdersInnerRouting.md) |  | 
-**ShippedAt** | **NullableString** |  | 
-**Strength** | **NullableString** |  | 
-**TrackingNumber** | **NullableString** |  | 
-**UpdatedAt** | **NullableString** |  | 
+**CancellationReason** | **NullableString** |  |
+**Carrier** | **NullableString** |  |
+**CatalogItemId** | **NullableString** |  |
+**CompounderId** | **NullableString** |  |
+**CreatedAt** | **NullableString** |  |
+**Currency** | **NullableString** |  |
+**DeliveredAt** | **NullableString** |  |
+**Directions** | **NullableString** |  |
+**DosageForm** | **NullableString** |  |
+**ExternalOrderId** | **NullableString** |  |
+**ExternalSubmissionAttempted** | **bool** |  |
+**ExternalSubmissionBlockedReason** | **NullableString** |  |
+**Id** | **NullableString** |  |
+**Livemode** | **bool** |  |
+**MedicationName** | **NullableString** |  |
+**PatientExternalId** | **NullableString** |  |
+**PatientName** | **NullableString** |  |
+**PatientState** | **NullableString** |  |
+**PracticeId** | **NullableString** |  |
+**PrescriberName** | **NullableString** |  |
+**PrescriberNpi** | **NullableString** |  |
+**Quantity** | **NullableFloat32** |  |
+**QuoteCents** | **NullableFloat32** |  |
+**ReplacesOrderId** | **NullableString** |  |
+**Routing** | [**NullableListOrders200ResponseOrdersInnerRouting**](ListOrders200ResponseOrdersInnerRouting.md) |  |
+**ShippedAt** | **NullableString** |  |
+**Strength** | **NullableString** |  |
+**TrackingNumber** | **NullableString** |  |
+**UpdatedAt** | **NullableString** |  |
 
 ## Methods
 
 ### NewListOrders200ResponseOrdersInner
 
-`func NewListOrders200ResponseOrdersInner(cancellationReason NullableString, carrier NullableString, catalogItemId NullableString, compounderId NullableString, createdAt NullableString, currency NullableString, deliveredAt NullableString, directions NullableString, dosageForm NullableString, externalOrderId NullableString, externalSubmissionAttempted bool, externalSubmissionBlockedReason NullableString, id NullableString, livemode bool, medicationName NullableString, patientExternalId NullableString, patientName NullableString, patientState NullableString, practiceId NullableString, prescriberName NullableString, prescriberNpi NullableString, quantity float32, quoteCents NullableFloat32, replacesOrderId NullableString, routing NullableListOrders200ResponseOrdersInnerRouting, shippedAt NullableString, strength NullableString, trackingNumber NullableString, updatedAt NullableString, ) *ListOrders200ResponseOrdersInner`
+`func NewListOrders200ResponseOrdersInner(cancellationReason NullableString, carrier NullableString, catalogItemId NullableString, compounderId NullableString, createdAt NullableString, currency NullableString, deliveredAt NullableString, directions NullableString, dosageForm NullableString, externalOrderId NullableString, externalSubmissionAttempted bool, externalSubmissionBlockedReason NullableString, id NullableString, livemode bool, medicationName NullableString, patientExternalId NullableString, patientName NullableString, patientState NullableString, practiceId NullableString, prescriberName NullableString, prescriberNpi NullableString, quantity NullableFloat32, quoteCents NullableFloat32, replacesOrderId NullableString, routing NullableListOrders200ResponseOrdersInnerRouting, shippedAt NullableString, strength NullableString, trackingNumber NullableString, updatedAt NullableString, ) *ListOrders200ResponseOrdersInner`
 
 NewListOrders200ResponseOrdersInner instantiates a new ListOrders200ResponseOrdersInner object
 This constructor will assign default values to properties that have it defined,
@@ -683,6 +683,16 @@ and a boolean to check if the value has been set.
 SetQuantity sets Quantity field to given value.
 
 
+### SetQuantityNil
+
+`func (o *ListOrders200ResponseOrdersInner) SetQuantityNil(b bool)`
+
+ SetQuantityNil sets the value for Quantity to be an explicit nil
+
+### UnsetQuantity
+`func (o *ListOrders200ResponseOrdersInner) UnsetQuantity()`
+
+UnsetQuantity ensures that no value is present for Quantity, not even an explicit nil
 ### GetQuoteCents
 
 `func (o *ListOrders200ResponseOrdersInner) GetQuoteCents() float32`

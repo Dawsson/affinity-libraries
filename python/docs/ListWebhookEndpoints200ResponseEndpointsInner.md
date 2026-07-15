@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **str** |  | 
-**enabled_events** | **List[str]** |  | 
-**id** | **str** |  | 
-**livemode** | **bool** |  | 
-**updated_at** | **str** |  | 
-**url** | **str** |  | 
+**created_at** | **str** |  |
+**enabled_events** | **List[str]** |  |
+**id** | **str** |  |
+**livemode** | **bool** |  |
+**updated_at** | **str** |  |
+**url** | **str** |  |
 
 ## Example
 

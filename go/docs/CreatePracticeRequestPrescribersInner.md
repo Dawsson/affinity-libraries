@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Credentials** | Pointer to **NullableString** |  | [optional] 
-**LicenseStates** | **[]string** |  | 
-**Name** | **string** |  | 
-**Npi** | **string** |  | 
+**Credentials** | Pointer to **NullableString** |  | [optional]
+**LicenseStates** | **[]string** |  |
+**Name** | **string** |  |
+**Npi** | **string** |  |
 
 ## Methods
 

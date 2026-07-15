@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**quantity** | **float** |  | [optional] 
+**quantity** | **float** |  | [optional]
 
 ## Example
 

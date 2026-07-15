@@ -14,31 +14,31 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreatePracticeRequestAttestations
  */
 export interface CreatePracticeRequestAttestations {
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof CreatePracticeRequestAttestations
      */
     authorizedPhiTransfer: boolean;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof CreatePracticeRequestAttestations
      */
     authorizedPracticeRelationship: boolean;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof CreatePracticeRequestAttestations
      */
     minimumNecessaryPhi: boolean;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof CreatePracticeRequestAttestations
      */
@@ -65,7 +65,7 @@ export function CreatePracticeRequestAttestationsFromJSONTyped(json: any, ignore
         return json;
     }
     return {
-        
+
         'authorizedPhiTransfer': json['authorizedPhiTransfer'],
         'authorizedPracticeRelationship': json['authorizedPracticeRelationship'],
         'minimumNecessaryPhi': json['minimumNecessaryPhi'],
@@ -83,7 +83,7 @@ export function CreatePracticeRequestAttestationsToJSONTyped(value?: CreatePract
     }
 
     return {
-        
+
         'authorizedPhiTransfer': value['authorizedPhiTransfer'],
         'authorizedPracticeRelationship': value['authorizedPracticeRelationship'],
         'minimumNecessaryPhi': value['minimumNecessaryPhi'],

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Object** | **string** |  | 
-**SubjectId** | **string** |  | 
-**SubjectType** | **string** |  | 
+**Id** | **string** |  |
+**Object** | **string** |  |
+**SubjectId** | **string** |  |
+**SubjectType** | **string** |  |
 
 ## Methods
 

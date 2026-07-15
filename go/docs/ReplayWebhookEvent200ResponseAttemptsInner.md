@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AttemptedAt** | **string** |  | 
-**ErrorMessage** | **NullableString** |  | 
-**Id** | **string** |  | 
-**ResponseBody** | **NullableString** |  | 
-**ResponseStatus** | **NullableFloat32** |  | 
-**Success** | **bool** |  | 
+**AttemptedAt** | **string** |  |
+**ErrorMessage** | **NullableString** |  |
+**Id** | **string** |  |
+**ResponseBody** | **NullableString** |  |
+**ResponseStatus** | **NullableFloat32** |  |
+**Success** | **bool** |  |
 
 ## Methods
 

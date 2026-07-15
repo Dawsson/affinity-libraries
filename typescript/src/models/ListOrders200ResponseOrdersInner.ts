@@ -22,181 +22,181 @@ import {
 } from './ListOrders200ResponseOrdersInnerRouting';
 
 /**
- * 
+ *
  * @export
  * @interface ListOrders200ResponseOrdersInner
  */
 export interface ListOrders200ResponseOrdersInner {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     cancellationReason: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     carrier: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     catalogItemId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     compounderId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     createdAt: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     currency: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     deliveredAt: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     directions: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     dosageForm: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     externalOrderId: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListOrders200ResponseOrdersInner
      */
     externalSubmissionAttempted: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     externalSubmissionBlockedReason: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     id: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListOrders200ResponseOrdersInner
      */
     livemode: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     medicationName: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     patientExternalId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     patientName: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     patientState: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     practiceId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     prescriberName: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     prescriberNpi: string | null;
     /**
-     * 
+     *
      * @type {number}
      * @memberof ListOrders200ResponseOrdersInner
      */
-    quantity: number;
+    quantity: number | null;
     /**
-     * 
+     *
      * @type {number}
      * @memberof ListOrders200ResponseOrdersInner
      */
     quoteCents: number | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     replacesOrderId: string | null;
     /**
-     * 
+     *
      * @type {ListOrders200ResponseOrdersInnerRouting}
      * @memberof ListOrders200ResponseOrdersInner
      */
     routing: ListOrders200ResponseOrdersInnerRouting | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     shippedAt: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     strength: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
     trackingNumber: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInner
      */
@@ -248,7 +248,7 @@ export function ListOrders200ResponseOrdersInnerFromJSONTyped(json: any, ignoreD
         return json;
     }
     return {
-        
+
         'cancellationReason': json['cancellationReason'],
         'carrier': json['carrier'],
         'catalogItemId': json['catalogItemId'],
@@ -291,7 +291,7 @@ export function ListOrders200ResponseOrdersInnerToJSONTyped(value?: ListOrders20
     }
 
     return {
-        
+
         'cancellationReason': value['cancellationReason'],
         'carrier': value['carrier'],
         'catalogItemId': value['catalogItemId'],

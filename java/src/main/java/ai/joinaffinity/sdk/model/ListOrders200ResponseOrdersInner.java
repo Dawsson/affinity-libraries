@@ -152,7 +152,7 @@ public class ListOrders200ResponseOrdersInner {
   private String prescriberNpi;
 
   public static final String JSON_PROPERTY_QUANTITY = "quantity";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private BigDecimal quantity;
 
   public static final String JSON_PROPERTY_QUOTE_CENTS = "quoteCents";
@@ -183,7 +183,7 @@ public class ListOrders200ResponseOrdersInner {
   @javax.annotation.Nullable
   private String updatedAt;
 
-  public ListOrders200ResponseOrdersInner() { 
+  public ListOrders200ResponseOrdersInner() {
   }
 
   public ListOrders200ResponseOrdersInner cancellationReason(@javax.annotation.Nullable String cancellationReason) {
@@ -690,7 +690,7 @@ public class ListOrders200ResponseOrdersInner {
   }
 
 
-  public ListOrders200ResponseOrdersInner quantity(@javax.annotation.Nonnull BigDecimal quantity) {
+  public ListOrders200ResponseOrdersInner quantity(@javax.annotation.Nullable BigDecimal quantity) {
     this.quantity = quantity;
     return this;
   }
@@ -699,17 +699,17 @@ public class ListOrders200ResponseOrdersInner {
    * Get quantity
    * @return quantity
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_QUANTITY, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUANTITY, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public BigDecimal getQuantity() {
     return quantity;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_QUANTITY, required = true)
+  @JsonProperty(value = JSON_PROPERTY_QUANTITY, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setQuantity(@javax.annotation.Nonnull BigDecimal quantity) {
+  public void setQuantity(@javax.annotation.Nullable BigDecimal quantity) {
     this.quantity = quantity;
   }
 

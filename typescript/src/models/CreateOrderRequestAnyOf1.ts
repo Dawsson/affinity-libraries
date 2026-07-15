@@ -22,49 +22,49 @@ import {
 } from './CreateOrderRequestAnyOf1ShippingAddress';
 
 /**
- * 
+ *
  * @export
  * @interface CreateOrderRequestAnyOf1
  */
 export interface CreateOrderRequestAnyOf1 {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1
      */
     practiceId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1
      */
     externalOrderId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1
      */
     pharmacyOrganizationId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1
      */
     prescriptionId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1
      */
     prescriptionVersionId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1
      */
     registeredLocationId: string;
     /**
-     * 
+     *
      * @type {CreateOrderRequestAnyOf1ShippingAddress}
      * @memberof CreateOrderRequestAnyOf1
      */
@@ -94,7 +94,7 @@ export function CreateOrderRequestAnyOf1FromJSONTyped(json: any, ignoreDiscrimin
         return json;
     }
     return {
-        
+
         'practiceId': json['practiceId'],
         'externalOrderId': json['externalOrderId'],
         'pharmacyOrganizationId': json['pharmacyOrganizationId'],
@@ -115,7 +115,7 @@ export function CreateOrderRequestAnyOf1ToJSONTyped(value?: CreateOrderRequestAn
     }
 
     return {
-        
+
         'practiceId': value['practiceId'],
         'externalOrderId': value['externalOrderId'],
         'pharmacyOrganizationId': value['pharmacyOrganizationId'],

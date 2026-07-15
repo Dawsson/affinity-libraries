@@ -14,13 +14,13 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface UpdateOrderRequest
  */
 export interface UpdateOrderRequest {
     /**
-     * 
+     *
      * @type {number}
      * @memberof UpdateOrderRequest
      */
@@ -43,7 +43,7 @@ export function UpdateOrderRequestFromJSONTyped(json: any, ignoreDiscriminator: 
         return json;
     }
     return {
-        
+
         'quantity': json['quantity'] == null ? undefined : json['quantity'],
     };
 }
@@ -58,7 +58,7 @@ export function UpdateOrderRequestToJSONTyped(value?: UpdateOrderRequest | null,
     }
 
     return {
-        
+
         'quantity': value['quantity'],
     };
 }

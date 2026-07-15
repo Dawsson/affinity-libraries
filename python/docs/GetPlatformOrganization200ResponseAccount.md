@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**alert_emails** | **List[str]** |  | 
-**alert_integration_issues** | **bool** |  | 
-**alert_new_orders** | **bool** |  | 
-**alert_status_changes** | **bool** |  | 
-**display_name** | **str** |  | 
-**id** | **str** |  | 
-**organization_id** | **str** |  | 
-**slug** | **str** |  | 
-**support_email** | **str** |  | 
-**website_url** | **str** |  | 
+**alert_emails** | **List[str]** |  |
+**alert_integration_issues** | **bool** |  |
+**alert_new_orders** | **bool** |  |
+**alert_status_changes** | **bool** |  |
+**display_name** | **str** |  |
+**id** | **str** |  |
+**organization_id** | **str** |  |
+**slug** | **str** |  |
+**support_email** | **str** |  |
+**website_url** | **str** |  |
 
 ## Example
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PracticeId** | **NullableString** |  | 
-**ExternalOrderId** | **string** |  | 
-**PharmacyOrganizationId** | **string** |  | 
-**PrescriptionId** | **string** |  | 
-**PrescriptionVersionId** | **string** |  | 
-**RegisteredLocationId** | **string** |  | 
-**ShippingAddress** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  | 
+**PracticeId** | **NullableString** |  |
+**ExternalOrderId** | **string** |  |
+**PharmacyOrganizationId** | **string** |  |
+**PrescriptionId** | **string** |  |
+**PrescriptionVersionId** | **string** |  |
+**RegisteredLocationId** | **string** |  |
+**ShippingAddress** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  |
 
 ## Methods
 

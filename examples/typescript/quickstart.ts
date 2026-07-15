@@ -1,31 +1,16 @@
-import {
-  APIKeysApi,
-  CatalogApi,
-  Configuration,
-  PlatformOrdersApi,
-  PlatformWebhooksApi,
-  PlatformsApi,
-  PracticesApi,
-} from "../../typescript";
+import { Affinity } from "../../typescript";
 
 const apiKey = process.env.AFFINITY_API_KEY;
 if (!apiKey) throw new Error("Set AFFINITY_API_KEY to a test-mode service key");
 
-const configuration = new Configuration({
-  accessToken: apiKey,
-  headers: { "Affinity-Version": "2026-07-09" },
+const affinity = new Affinity(apiKey, {
+  apiVersion: "2026-07-09",
+  host: "api.joinaffinityai.com",
 });
-
-const accessApi = new APIKeysApi(configuration);
-const catalogApi = new CatalogApi(configuration);
-const ordersApi = new PlatformOrdersApi(configuration);
-const platformApi = new PlatformsApi(configuration);
-const practicesApi = new PracticesApi(configuration);
-const webhooksApi = new PlatformWebhooksApi(configuration);
 
 async function main() {
   // Start every integration by confirming which account and environment the key can access.
-  const access = await accessApi.getApiAccess();
+  const access = await affinity.account.retrieveAccess();
   console.log("Authenticated", {
     livemode: access.livemode,
     scopes: access.scopes,
@@ -40,11 +25,11 @@ async function main() {
   }
 
   const [organization, catalog, practices, orders, webhooks] = await Promise.all([
-    platformApi.getPlatformOrganization(),
-    catalogApi.listCatalogItems({ query: "semaglutide" }),
-    practicesApi.listPractices(),
-    ordersApi.listOrders(),
-    webhooksApi.listWebhookEndpoints(),
+    affinity.account.retrieve(),
+    affinity.catalog.list({ query: "semaglutide" }),
+    affinity.practices.list(),
+    affinity.orders.list(),
+    affinity.webhooks.listEndpoints(),
   ]);
 
   console.log("Organization", organization.account);

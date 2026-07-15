@@ -29,6 +29,7 @@ docs/DeleteWebhookEndpoint200Response.md
 docs/GetApiAccess200Response.md
 docs/GetApiAccess200ResponseApiKey.md
 docs/GetApiAccess200ResponseServiceAccount.md
+docs/GetApiAccess400Response.md
 docs/GetPlatformOrganization200Response.md
 docs/GetPlatformOrganization200ResponseAccount.md
 docs/GetPlatformOrganization200ResponseMembership.md
@@ -39,11 +40,13 @@ docs/GetWebhookEvent200ResponseDeliveriesInner.md
 docs/GetWebhookEvent200ResponseEvent.md
 docs/ListCatalogItems200Response.md
 docs/ListCatalogItems200ResponseItemsInner.md
+docs/ListCatalogItems400Response.md
 docs/ListOrderEvents200Response.md
 docs/ListOrderEvents200ResponseEventsInner.md
 docs/ListOrders200Response.md
 docs/ListOrders200ResponseOrdersInner.md
 docs/ListOrders200ResponseOrdersInnerRouting.md
+docs/ListOrders400Response.md
 docs/ListPractices200Response.md
 docs/ListPractices200ResponseDataInner.md
 docs/ListPractices200ResponseDataInnerAddress.md
@@ -100,6 +103,7 @@ src/models/DeleteWebhookEndpoint200Response.ts
 src/models/GetApiAccess200Response.ts
 src/models/GetApiAccess200ResponseApiKey.ts
 src/models/GetApiAccess200ResponseServiceAccount.ts
+src/models/GetApiAccess400Response.ts
 src/models/GetPlatformOrganization200Response.ts
 src/models/GetPlatformOrganization200ResponseAccount.ts
 src/models/GetPlatformOrganization200ResponseMembership.ts
@@ -110,11 +114,13 @@ src/models/GetWebhookEvent200ResponseDeliveriesInner.ts
 src/models/GetWebhookEvent200ResponseEvent.ts
 src/models/ListCatalogItems200Response.ts
 src/models/ListCatalogItems200ResponseItemsInner.ts
+src/models/ListCatalogItems400Response.ts
 src/models/ListOrderEvents200Response.ts
 src/models/ListOrderEvents200ResponseEventsInner.ts
 src/models/ListOrders200Response.ts
 src/models/ListOrders200ResponseOrdersInner.ts
 src/models/ListOrders200ResponseOrdersInnerRouting.ts
+src/models/ListOrders400Response.ts
 src/models/ListPractices200Response.ts
 src/models/ListPractices200ResponseDataInner.ts
 src/models/ListPractices200ResponseDataInnerAddress.ts

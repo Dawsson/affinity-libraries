@@ -20,6 +20,7 @@ import ai.joinaffinity.sdk.Pair;
 
 import ai.joinaffinity.sdk.model.Error;
 import ai.joinaffinity.sdk.model.GetApiAccess200Response;
+import ai.joinaffinity.sdk.model.GetApiAccess400Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -225,11 +226,11 @@ public class ApiKeysApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         GetApiAccess200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetApiAccess200Response>() {});
-        
+
 
         return new ApiResponse<GetApiAccess200Response>(
             localVarResponse.statusCode(),
@@ -258,7 +259,7 @@ public class ApiKeysApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {

@@ -57,7 +57,7 @@ public class ReplayWebhookEvent200ResponseDeliveriesInner {
   @javax.annotation.Nullable
   private String lastError;
 
-  public ReplayWebhookEvent200ResponseDeliveriesInner() { 
+  public ReplayWebhookEvent200ResponseDeliveriesInner() {
   }
 
   public ReplayWebhookEvent200ResponseDeliveriesInner attemptCount(@javax.annotation.Nonnull BigDecimal attemptCount) {

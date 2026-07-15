@@ -14,43 +14,43 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreateOrderRequestAnyOf1ShippingAddress
  */
 export interface CreateOrderRequestAnyOf1ShippingAddress {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1ShippingAddress
      */
     city: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1ShippingAddress
      */
     country?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1ShippingAddress
      */
     line1: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1ShippingAddress
      */
     line2?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1ShippingAddress
      */
     postalCode: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOf1ShippingAddress
      */
@@ -77,7 +77,7 @@ export function CreateOrderRequestAnyOf1ShippingAddressFromJSONTyped(json: any, 
         return json;
     }
     return {
-        
+
         'city': json['city'],
         'country': json['country'] == null ? undefined : json['country'],
         'line1': json['line1'],
@@ -97,7 +97,7 @@ export function CreateOrderRequestAnyOf1ShippingAddressToJSONTyped(value?: Creat
     }
 
     return {
-        
+
         'city': value['city'],
         'country': value['country'],
         'line1': value['line1'],

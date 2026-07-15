@@ -61,6 +61,7 @@ __all__ = [
     "GetApiAccess200Response",
     "GetApiAccess200ResponseApiKey",
     "GetApiAccess200ResponseServiceAccount",
+    "GetApiAccess400Response",
     "GetPlatformOrganization200Response",
     "GetPlatformOrganization200ResponseAccount",
     "GetPlatformOrganization200ResponseMembership",
@@ -71,11 +72,13 @@ __all__ = [
     "GetWebhookEvent200ResponseEvent",
     "ListCatalogItems200Response",
     "ListCatalogItems200ResponseItemsInner",
+    "ListCatalogItems400Response",
     "ListOrderEvents200Response",
     "ListOrderEvents200ResponseEventsInner",
     "ListOrders200Response",
     "ListOrders200ResponseOrdersInner",
     "ListOrders200ResponseOrdersInnerRouting",
+    "ListOrders400Response",
     "ListPractices200Response",
     "ListPractices200ResponseDataInner",
     "ListPractices200ResponseDataInnerAddress",
@@ -141,6 +144,7 @@ from affinity_sdk.models.error import Error as Error
 from affinity_sdk.models.get_api_access200_response import GetApiAccess200Response as GetApiAccess200Response
 from affinity_sdk.models.get_api_access200_response_api_key import GetApiAccess200ResponseApiKey as GetApiAccess200ResponseApiKey
 from affinity_sdk.models.get_api_access200_response_service_account import GetApiAccess200ResponseServiceAccount as GetApiAccess200ResponseServiceAccount
+from affinity_sdk.models.get_api_access400_response import GetApiAccess400Response as GetApiAccess400Response
 from affinity_sdk.models.get_platform_organization200_response import GetPlatformOrganization200Response as GetPlatformOrganization200Response
 from affinity_sdk.models.get_platform_organization200_response_account import GetPlatformOrganization200ResponseAccount as GetPlatformOrganization200ResponseAccount
 from affinity_sdk.models.get_platform_organization200_response_membership import GetPlatformOrganization200ResponseMembership as GetPlatformOrganization200ResponseMembership
@@ -151,11 +155,13 @@ from affinity_sdk.models.get_webhook_event200_response_deliveries_inner import G
 from affinity_sdk.models.get_webhook_event200_response_event import GetWebhookEvent200ResponseEvent as GetWebhookEvent200ResponseEvent
 from affinity_sdk.models.list_catalog_items200_response import ListCatalogItems200Response as ListCatalogItems200Response
 from affinity_sdk.models.list_catalog_items200_response_items_inner import ListCatalogItems200ResponseItemsInner as ListCatalogItems200ResponseItemsInner
+from affinity_sdk.models.list_catalog_items400_response import ListCatalogItems400Response as ListCatalogItems400Response
 from affinity_sdk.models.list_order_events200_response import ListOrderEvents200Response as ListOrderEvents200Response
 from affinity_sdk.models.list_order_events200_response_events_inner import ListOrderEvents200ResponseEventsInner as ListOrderEvents200ResponseEventsInner
 from affinity_sdk.models.list_orders200_response import ListOrders200Response as ListOrders200Response
 from affinity_sdk.models.list_orders200_response_orders_inner import ListOrders200ResponseOrdersInner as ListOrders200ResponseOrdersInner
 from affinity_sdk.models.list_orders200_response_orders_inner_routing import ListOrders200ResponseOrdersInnerRouting as ListOrders200ResponseOrdersInnerRouting
+from affinity_sdk.models.list_orders400_response import ListOrders400Response as ListOrders400Response
 from affinity_sdk.models.list_practices200_response import ListPractices200Response as ListPractices200Response
 from affinity_sdk.models.list_practices200_response_data_inner import ListPractices200ResponseDataInner as ListPractices200ResponseDataInner
 from affinity_sdk.models.list_practices200_response_data_inner_address import ListPractices200ResponseDataInnerAddress as ListPractices200ResponseDataInnerAddress
@@ -173,3 +179,6 @@ from affinity_sdk.models.replay_webhook_event200_response_deliveries_inner impor
 from affinity_sdk.models.update_order_request import UpdateOrderRequest as UpdateOrderRequest
 from affinity_sdk.models.update_webhook_endpoint_request import UpdateWebhookEndpointRequest as UpdateWebhookEndpointRequest
 
+# affinity-facade:start
+from affinity_sdk.affinity import Affinity
+# affinity-facade:end

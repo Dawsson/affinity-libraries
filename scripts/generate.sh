@@ -15,4 +15,6 @@ common='hideGenerationTimestamp=true,licenseName=MIT'
 # Generator test templates are empty endpoint call stubs, not offline tests. Keep the public
 # repository's validation focused on compiling each generated client and the maintained examples.
 rm -rf "$root/go/test" "$root/python/test" "$root/java/src/test"
+gofmt -w "$root/go"/*.go
 bun "$root/scripts/normalize.ts"
+bun "$root/scripts/generate-facades.ts"

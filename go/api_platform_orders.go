@@ -27,7 +27,14 @@ type ApiCancelOrderRequest struct {
 	ctx                context.Context
 	ApiService         *PlatformOrdersAPIService
 	orderId            string
+	idempotencyKey     *string
 	cancelOrderRequest *CancelOrderRequest
+}
+
+// Unique operation key required for every mutation.
+func (r ApiCancelOrderRequest) IdempotencyKey(idempotencyKey string) ApiCancelOrderRequest {
+	r.idempotencyKey = &idempotencyKey
+	return r
 }
 
 func (r ApiCancelOrderRequest) CancelOrderRequest(cancelOrderRequest CancelOrderRequest) ApiCancelOrderRequest {
@@ -78,6 +85,12 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.idempotencyKey == nil {
+		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
+	}
+	if strlen(*r.idempotencyKey) > 255 {
+		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
+	}
 	if r.cancelOrderRequest == nil {
 		return localVarReturnValue, nil, reportError("cancelOrderRequest is required and must be specified")
 	}
@@ -92,13 +105,14 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
 	// body params
 	localVarPostBody = r.cancelOrderRequest
 	if r.ctx != nil {
@@ -138,7 +152,7 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +163,7 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -160,7 +174,7 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -171,7 +185,7 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -182,7 +196,7 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -204,7 +218,18 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v Error
+			var v ListOrders400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -231,7 +256,14 @@ func (a *PlatformOrdersAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (
 type ApiCreateOrderRequest struct {
 	ctx                context.Context
 	ApiService         *PlatformOrdersAPIService
+	idempotencyKey     *string
 	createOrderRequest *CreateOrderRequest
+}
+
+// Unique operation key required for every mutation.
+func (r ApiCreateOrderRequest) IdempotencyKey(idempotencyKey string) ApiCreateOrderRequest {
+	r.idempotencyKey = &idempotencyKey
+	return r
 }
 
 func (r ApiCreateOrderRequest) CreateOrderRequest(createOrderRequest CreateOrderRequest) ApiCreateOrderRequest {
@@ -279,6 +311,12 @@ func (a *PlatformOrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.idempotencyKey == nil {
+		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
+	}
+	if strlen(*r.idempotencyKey) > 255 {
+		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
+	}
 	if r.createOrderRequest == nil {
 		return localVarReturnValue, nil, reportError("createOrderRequest is required and must be specified")
 	}
@@ -293,13 +331,14 @@ func (a *PlatformOrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
 	// body params
 	localVarPostBody = r.createOrderRequest
 	if r.ctx != nil {
@@ -339,7 +378,7 @@ func (a *PlatformOrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -350,7 +389,7 @@ func (a *PlatformOrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -361,7 +400,7 @@ func (a *PlatformOrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -372,7 +411,7 @@ func (a *PlatformOrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -383,7 +422,7 @@ func (a *PlatformOrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -405,7 +444,18 @@ func (a *PlatformOrdersAPIService) CreateOrderExecute(r ApiCreateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v Error
+			var v ListOrders400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -487,7 +537,7 @@ func (a *PlatformOrdersAPIService) GetOrderExecute(r ApiGetOrderRequest) (*Creat
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -531,7 +581,7 @@ func (a *PlatformOrdersAPIService) GetOrderExecute(r ApiGetOrderRequest) (*Creat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -542,7 +592,7 @@ func (a *PlatformOrdersAPIService) GetOrderExecute(r ApiGetOrderRequest) (*Creat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -553,7 +603,7 @@ func (a *PlatformOrdersAPIService) GetOrderExecute(r ApiGetOrderRequest) (*Creat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -564,7 +614,7 @@ func (a *PlatformOrdersAPIService) GetOrderExecute(r ApiGetOrderRequest) (*Creat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -575,7 +625,7 @@ func (a *PlatformOrdersAPIService) GetOrderExecute(r ApiGetOrderRequest) (*Creat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -597,7 +647,18 @@ func (a *PlatformOrdersAPIService) GetOrderExecute(r ApiGetOrderRequest) (*Creat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v Error
+			var v ListOrders400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -679,7 +740,7 @@ func (a *PlatformOrdersAPIService) ListOrderEventsExecute(r ApiListOrderEventsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -723,7 +784,7 @@ func (a *PlatformOrdersAPIService) ListOrderEventsExecute(r ApiListOrderEventsRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -734,7 +795,7 @@ func (a *PlatformOrdersAPIService) ListOrderEventsExecute(r ApiListOrderEventsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -745,7 +806,7 @@ func (a *PlatformOrdersAPIService) ListOrderEventsExecute(r ApiListOrderEventsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -756,7 +817,7 @@ func (a *PlatformOrdersAPIService) ListOrderEventsExecute(r ApiListOrderEventsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -767,7 +828,7 @@ func (a *PlatformOrdersAPIService) ListOrderEventsExecute(r ApiListOrderEventsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -789,7 +850,18 @@ func (a *PlatformOrdersAPIService) ListOrderEventsExecute(r ApiListOrderEventsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v Error
+			var v ListOrders400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -885,7 +957,7 @@ func (a *PlatformOrdersAPIService) ListOrdersExecute(r ApiListOrdersRequest) (*L
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -929,7 +1001,7 @@ func (a *PlatformOrdersAPIService) ListOrdersExecute(r ApiListOrdersRequest) (*L
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -940,7 +1012,7 @@ func (a *PlatformOrdersAPIService) ListOrdersExecute(r ApiListOrdersRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -951,7 +1023,7 @@ func (a *PlatformOrdersAPIService) ListOrdersExecute(r ApiListOrdersRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -962,7 +1034,7 @@ func (a *PlatformOrdersAPIService) ListOrdersExecute(r ApiListOrdersRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -973,7 +1045,7 @@ func (a *PlatformOrdersAPIService) ListOrdersExecute(r ApiListOrdersRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -995,7 +1067,18 @@ func (a *PlatformOrdersAPIService) ListOrdersExecute(r ApiListOrdersRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v Error
+			var v ListOrders400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1020,9 +1103,16 @@ func (a *PlatformOrdersAPIService) ListOrdersExecute(r ApiListOrdersRequest) (*L
 }
 
 type ApiSubmitOrderRequest struct {
-	ctx        context.Context
-	ApiService *PlatformOrdersAPIService
-	orderId    string
+	ctx            context.Context
+	ApiService     *PlatformOrdersAPIService
+	orderId        string
+	idempotencyKey *string
+}
+
+// Unique operation key required for every mutation.
+func (r ApiSubmitOrderRequest) IdempotencyKey(idempotencyKey string) ApiSubmitOrderRequest {
+	r.idempotencyKey = &idempotencyKey
+	return r
 }
 
 func (r ApiSubmitOrderRequest) Execute() (*CreateOrder200Response, *http.Response, error) {
@@ -1068,6 +1158,12 @@ func (a *PlatformOrdersAPIService) SubmitOrderExecute(r ApiSubmitOrderRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.idempotencyKey == nil {
+		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
+	}
+	if strlen(*r.idempotencyKey) > 255 {
+		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1079,13 +1175,14 @@ func (a *PlatformOrdersAPIService) SubmitOrderExecute(r ApiSubmitOrderRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1123,7 +1220,7 @@ func (a *PlatformOrdersAPIService) SubmitOrderExecute(r ApiSubmitOrderRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1134,7 +1231,7 @@ func (a *PlatformOrdersAPIService) SubmitOrderExecute(r ApiSubmitOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1145,7 +1242,7 @@ func (a *PlatformOrdersAPIService) SubmitOrderExecute(r ApiSubmitOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1156,7 +1253,7 @@ func (a *PlatformOrdersAPIService) SubmitOrderExecute(r ApiSubmitOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1167,7 +1264,7 @@ func (a *PlatformOrdersAPIService) SubmitOrderExecute(r ApiSubmitOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1189,7 +1286,18 @@ func (a *PlatformOrdersAPIService) SubmitOrderExecute(r ApiSubmitOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v Error
+			var v ListOrders400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1217,7 +1325,14 @@ type ApiUpdateOrderRequest struct {
 	ctx                context.Context
 	ApiService         *PlatformOrdersAPIService
 	orderId            string
+	idempotencyKey     *string
 	updateOrderRequest *UpdateOrderRequest
+}
+
+// Unique operation key required for every mutation.
+func (r ApiUpdateOrderRequest) IdempotencyKey(idempotencyKey string) ApiUpdateOrderRequest {
+	r.idempotencyKey = &idempotencyKey
+	return r
 }
 
 func (r ApiUpdateOrderRequest) UpdateOrderRequest(updateOrderRequest UpdateOrderRequest) ApiUpdateOrderRequest {
@@ -1268,6 +1383,12 @@ func (a *PlatformOrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.idempotencyKey == nil {
+		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
+	}
+	if strlen(*r.idempotencyKey) > 255 {
+		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
+	}
 	if r.updateOrderRequest == nil {
 		return localVarReturnValue, nil, reportError("updateOrderRequest is required and must be specified")
 	}
@@ -1282,13 +1403,14 @@ func (a *PlatformOrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
 	// body params
 	localVarPostBody = r.updateOrderRequest
 	if r.ctx != nil {
@@ -1328,7 +1450,7 @@ func (a *PlatformOrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1339,7 +1461,7 @@ func (a *PlatformOrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1350,7 +1472,7 @@ func (a *PlatformOrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1361,7 +1483,7 @@ func (a *PlatformOrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1372,7 +1494,7 @@ func (a *PlatformOrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1394,7 +1516,18 @@ func (a *PlatformOrdersAPIService) UpdateOrderExecute(r ApiUpdateOrderRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v Error
+			var v ListOrders400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ListOrders400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

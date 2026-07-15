@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**credentials** | **str** |  | [optional] 
-**license_states** | **List[str]** |  | 
-**name** | **str** |  | 
-**npi** | **str** |  | 
+**credentials** | **str** |  | [optional]
+**license_states** | **List[str]** |  |
+**name** | **str** |  |
+**npi** | **str** |  |
 
 ## Example
 

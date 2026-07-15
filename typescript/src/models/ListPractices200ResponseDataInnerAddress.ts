@@ -14,43 +14,43 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ListPractices200ResponseDataInnerAddress
  */
 export interface ListPractices200ResponseDataInnerAddress {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerAddress
      */
     city: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerAddress
      */
     country?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerAddress
      */
     line1: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerAddress
      */
     line2?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerAddress
      */
     postalCode: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerAddress
      */
@@ -77,7 +77,7 @@ export function ListPractices200ResponseDataInnerAddressFromJSONTyped(json: any,
         return json;
     }
     return {
-        
+
         'city': json['city'],
         'country': json['country'] == null ? undefined : json['country'],
         'line1': json['line1'],
@@ -97,7 +97,7 @@ export function ListPractices200ResponseDataInnerAddressToJSONTyped(value?: List
     }
 
     return {
-        
+
         'city': value['city'],
         'country': value['country'],
         'line1': value['line1'],

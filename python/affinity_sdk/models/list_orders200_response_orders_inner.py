@@ -50,7 +50,7 @@ class ListOrders200ResponseOrdersInner(BaseModel):
     practice_id: Optional[StrictStr] = Field(alias="practiceId")
     prescriber_name: Optional[StrictStr] = Field(alias="prescriberName")
     prescriber_npi: Optional[StrictStr] = Field(alias="prescriberNpi")
-    quantity: Union[StrictFloat, StrictInt]
+    quantity: Optional[Union[StrictFloat, StrictInt]]
     quote_cents: Optional[Union[StrictFloat, StrictInt]] = Field(alias="quoteCents")
     replaces_order_id: Optional[StrictStr] = Field(alias="replacesOrderId")
     routing: Optional[ListOrders200ResponseOrdersInnerRouting]
@@ -204,6 +204,11 @@ class ListOrders200ResponseOrdersInner(BaseModel):
         # and model_fields_set contains the field
         if self.prescriber_npi is None and "prescriber_npi" in self.model_fields_set:
             _dict['prescriberNpi'] = None
+
+        # set to None if quantity (nullable) is None
+        # and model_fields_set contains the field
+        if self.quantity is None and "quantity" in self.model_fields_set:
+            _dict['quantity'] = None
 
         # set to None if quote_cents (nullable) is None
         # and model_fields_set contains the field

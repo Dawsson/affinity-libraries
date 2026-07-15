@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attempts** | [**List[GetWebhookEvent200ResponseAttemptsInner]**](GetWebhookEvent200ResponseAttemptsInner.md) |  | 
-**deliveries** | [**List[GetWebhookEvent200ResponseDeliveriesInner]**](GetWebhookEvent200ResponseDeliveriesInner.md) |  | 
-**event** | [**GetWebhookEvent200ResponseEvent**](GetWebhookEvent200ResponseEvent.md) |  | 
+**attempts** | [**List[GetWebhookEvent200ResponseAttemptsInner]**](GetWebhookEvent200ResponseAttemptsInner.md) |  |
+**deliveries** | [**List[GetWebhookEvent200ResponseDeliveriesInner]**](GetWebhookEvent200ResponseDeliveriesInner.md) |  |
+**event** | [**GetWebhookEvent200ResponseEvent**](GetWebhookEvent200ResponseEvent.md) |  |
 
 ## Example
 

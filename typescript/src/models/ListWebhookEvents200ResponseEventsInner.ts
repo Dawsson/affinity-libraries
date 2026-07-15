@@ -14,49 +14,49 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ListWebhookEvents200ResponseEventsInner
  */
 export interface ListWebhookEvents200ResponseEventsInner {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEvents200ResponseEventsInner
      */
     createdAt: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEvents200ResponseEventsInner
      */
     eventType: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEvents200ResponseEventsInner
      */
     id: string | null;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListWebhookEvents200ResponseEventsInner
      */
     livemode: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEvents200ResponseEventsInner
      */
     objectId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEvents200ResponseEventsInner
      */
     objectType: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListWebhookEvents200ResponseEventsInner
      */
@@ -86,7 +86,7 @@ export function ListWebhookEvents200ResponseEventsInnerFromJSONTyped(json: any, 
         return json;
     }
     return {
-        
+
         'createdAt': json['createdAt'],
         'eventType': json['eventType'],
         'id': json['id'],
@@ -107,7 +107,7 @@ export function ListWebhookEvents200ResponseEventsInnerToJSONTyped(value?: ListW
     }
 
     return {
-        
+
         'createdAt': value['createdAt'],
         'eventType': value['eventType'],
         'id': value['id'],

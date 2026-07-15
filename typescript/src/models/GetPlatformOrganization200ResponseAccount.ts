@@ -14,67 +14,67 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface GetPlatformOrganization200ResponseAccount
  */
 export interface GetPlatformOrganization200ResponseAccount {
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     alertEmails: Array<string>;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     alertIntegrationIssues: boolean;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     alertNewOrders: boolean;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     alertStatusChanges: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     displayName: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     id: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     organizationId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     slug: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
     supportEmail: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseAccount
      */
@@ -107,7 +107,7 @@ export function GetPlatformOrganization200ResponseAccountFromJSONTyped(json: any
         return json;
     }
     return {
-        
+
         'alertEmails': json['alertEmails'],
         'alertIntegrationIssues': json['alertIntegrationIssues'],
         'alertNewOrders': json['alertNewOrders'],
@@ -131,7 +131,7 @@ export function GetPlatformOrganization200ResponseAccountToJSONTyped(value?: Get
     }
 
     return {
-        
+
         'alertEmails': value['alertEmails'],
         'alertIntegrationIssues': value['alertIntegrationIssues'],
         'alertNewOrders': value['alertNewOrders'],

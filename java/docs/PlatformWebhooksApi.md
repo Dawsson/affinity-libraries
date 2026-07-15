@@ -25,7 +25,7 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 ## createWebhookEndpoint
 
-> CreateWebhookEndpoint200Response createWebhookEndpoint(createWebhookEndpointRequest)
+> CreateWebhookEndpoint200Response createWebhookEndpoint(idempotencyKey, createWebhookEndpointRequest)
 
 Create webhook endpoint
 
@@ -44,7 +44,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -56,9 +56,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        CreateWebhookEndpointRequest createWebhookEndpointRequest = new CreateWebhookEndpointRequest(); // CreateWebhookEndpointRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        CreateWebhookEndpointRequest createWebhookEndpointRequest = new CreateWebhookEndpointRequest(); // CreateWebhookEndpointRequest |
         try {
-            CreateWebhookEndpoint200Response result = apiInstance.createWebhookEndpoint(createWebhookEndpointRequest);
+            CreateWebhookEndpoint200Response result = apiInstance.createWebhookEndpoint(idempotencyKey, createWebhookEndpointRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#createWebhookEndpoint");
@@ -76,6 +77,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createWebhookEndpointRequest** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md)|  | |
 
 ### Return type
@@ -90,23 +92,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## createWebhookEndpointWithHttpInfo
 
-> ApiResponse<CreateWebhookEndpoint200Response> createWebhookEndpointWithHttpInfo(createWebhookEndpointRequest)
+> ApiResponse<CreateWebhookEndpoint200Response> createWebhookEndpointWithHttpInfo(idempotencyKey, createWebhookEndpointRequest)
 
 Create webhook endpoint
 
@@ -126,7 +129,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -138,9 +141,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        CreateWebhookEndpointRequest createWebhookEndpointRequest = new CreateWebhookEndpointRequest(); // CreateWebhookEndpointRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        CreateWebhookEndpointRequest createWebhookEndpointRequest = new CreateWebhookEndpointRequest(); // CreateWebhookEndpointRequest |
         try {
-            ApiResponse<CreateWebhookEndpoint200Response> response = apiInstance.createWebhookEndpointWithHttpInfo(createWebhookEndpointRequest);
+            ApiResponse<CreateWebhookEndpoint200Response> response = apiInstance.createWebhookEndpointWithHttpInfo(idempotencyKey, createWebhookEndpointRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -160,6 +164,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createWebhookEndpointRequest** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md)|  | |
 
 ### Return type
@@ -174,24 +179,25 @@ ApiResponse<[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Respo
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## deleteWebhookEndpoint
 
-> DeleteWebhookEndpoint200Response deleteWebhookEndpoint(endpointId)
+> DeleteWebhookEndpoint200Response deleteWebhookEndpoint(endpointId, idempotencyKey)
 
 Disable webhook endpoint
 
@@ -210,7 +216,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -222,9 +228,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String endpointId = "endpointId_example"; // String | 
+        String endpointId = "endpointId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            DeleteWebhookEndpoint200Response result = apiInstance.deleteWebhookEndpoint(endpointId);
+            DeleteWebhookEndpoint200Response result = apiInstance.deleteWebhookEndpoint(endpointId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#deleteWebhookEndpoint");
@@ -243,6 +250,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -256,23 +264,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## deleteWebhookEndpointWithHttpInfo
 
-> ApiResponse<DeleteWebhookEndpoint200Response> deleteWebhookEndpointWithHttpInfo(endpointId)
+> ApiResponse<DeleteWebhookEndpoint200Response> deleteWebhookEndpointWithHttpInfo(endpointId, idempotencyKey)
 
 Disable webhook endpoint
 
@@ -292,7 +301,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -304,9 +313,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String endpointId = "endpointId_example"; // String | 
+        String endpointId = "endpointId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<DeleteWebhookEndpoint200Response> response = apiInstance.deleteWebhookEndpointWithHttpInfo(endpointId);
+            ApiResponse<DeleteWebhookEndpoint200Response> response = apiInstance.deleteWebhookEndpointWithHttpInfo(endpointId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -327,6 +337,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -340,19 +351,20 @@ ApiResponse<[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Respo
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## getWebhookEvent
@@ -376,7 +388,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -388,7 +400,7 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String eventId = "eventId_example"; // String | 
+        String eventId = "eventId_example"; // String |
         try {
             GetWebhookEvent200Response result = apiInstance.getWebhookEvent(eventId);
             System.out.println(result);
@@ -422,19 +434,20 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## getWebhookEventWithHttpInfo
 
@@ -458,7 +471,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -470,7 +483,7 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String eventId = "eventId_example"; // String | 
+        String eventId = "eventId_example"; // String |
         try {
             ApiResponse<GetWebhookEvent200Response> response = apiInstance.getWebhookEventWithHttpInfo(eventId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -506,19 +519,20 @@ ApiResponse<[**GetWebhookEvent200Response**](GetWebhookEvent200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## listWebhookEndpoints
@@ -542,7 +556,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -584,19 +598,20 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## listWebhookEndpointsWithHttpInfo
 
@@ -620,7 +635,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -664,19 +679,20 @@ ApiResponse<[**ListWebhookEndpoints200Response**](ListWebhookEndpoints200Respons
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## listWebhookEvents
@@ -700,7 +716,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -742,19 +758,20 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## listWebhookEventsWithHttpInfo
 
@@ -778,7 +795,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -822,24 +839,25 @@ ApiResponse<[**ListWebhookEvents200Response**](ListWebhookEvents200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## replayWebhookEvent
 
-> ReplayWebhookEvent200Response replayWebhookEvent(eventId)
+> ReplayWebhookEvent200Response replayWebhookEvent(eventId, idempotencyKey)
 
 Replay webhook event
 
@@ -858,7 +876,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -870,9 +888,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String eventId = "eventId_example"; // String | 
+        String eventId = "eventId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ReplayWebhookEvent200Response result = apiInstance.replayWebhookEvent(eventId);
+            ReplayWebhookEvent200Response result = apiInstance.replayWebhookEvent(eventId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#replayWebhookEvent");
@@ -891,6 +910,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -904,23 +924,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## replayWebhookEventWithHttpInfo
 
-> ApiResponse<ReplayWebhookEvent200Response> replayWebhookEventWithHttpInfo(eventId)
+> ApiResponse<ReplayWebhookEvent200Response> replayWebhookEventWithHttpInfo(eventId, idempotencyKey)
 
 Replay webhook event
 
@@ -940,7 +961,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -952,9 +973,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String eventId = "eventId_example"; // String | 
+        String eventId = "eventId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<ReplayWebhookEvent200Response> response = apiInstance.replayWebhookEventWithHttpInfo(eventId);
+            ApiResponse<ReplayWebhookEvent200Response> response = apiInstance.replayWebhookEventWithHttpInfo(eventId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -975,6 +997,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -988,24 +1011,25 @@ ApiResponse<[**ReplayWebhookEvent200Response**](ReplayWebhookEvent200Response.md
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## rotateWebhookEndpointSecret
 
-> CreateWebhookEndpoint200Response rotateWebhookEndpointSecret(endpointId)
+> CreateWebhookEndpoint200Response rotateWebhookEndpointSecret(endpointId, idempotencyKey)
 
 Rotate webhook signing secret
 
@@ -1024,7 +1048,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -1036,9 +1060,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String endpointId = "endpointId_example"; // String | 
+        String endpointId = "endpointId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreateWebhookEndpoint200Response result = apiInstance.rotateWebhookEndpointSecret(endpointId);
+            CreateWebhookEndpoint200Response result = apiInstance.rotateWebhookEndpointSecret(endpointId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#rotateWebhookEndpointSecret");
@@ -1057,6 +1082,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -1070,23 +1096,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## rotateWebhookEndpointSecretWithHttpInfo
 
-> ApiResponse<CreateWebhookEndpoint200Response> rotateWebhookEndpointSecretWithHttpInfo(endpointId)
+> ApiResponse<CreateWebhookEndpoint200Response> rotateWebhookEndpointSecretWithHttpInfo(endpointId, idempotencyKey)
 
 Rotate webhook signing secret
 
@@ -1106,7 +1133,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -1118,9 +1145,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String endpointId = "endpointId_example"; // String | 
+        String endpointId = "endpointId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreateWebhookEndpoint200Response> response = apiInstance.rotateWebhookEndpointSecretWithHttpInfo(endpointId);
+            ApiResponse<CreateWebhookEndpoint200Response> response = apiInstance.rotateWebhookEndpointSecretWithHttpInfo(endpointId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1141,6 +1169,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 
 ### Return type
 
@@ -1154,24 +1183,25 @@ ApiResponse<[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Respo
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 
 ## updateWebhookEndpoint
 
-> DeleteWebhookEndpoint200Response updateWebhookEndpoint(endpointId, updateWebhookEndpointRequest)
+> DeleteWebhookEndpoint200Response updateWebhookEndpoint(endpointId, idempotencyKey, updateWebhookEndpointRequest)
 
 Update webhook endpoint
 
@@ -1190,7 +1220,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -1202,10 +1232,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String endpointId = "endpointId_example"; // String | 
-        UpdateWebhookEndpointRequest updateWebhookEndpointRequest = new UpdateWebhookEndpointRequest(); // UpdateWebhookEndpointRequest | 
+        String endpointId = "endpointId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        UpdateWebhookEndpointRequest updateWebhookEndpointRequest = new UpdateWebhookEndpointRequest(); // UpdateWebhookEndpointRequest |
         try {
-            DeleteWebhookEndpoint200Response result = apiInstance.updateWebhookEndpoint(endpointId, updateWebhookEndpointRequest);
+            DeleteWebhookEndpoint200Response result = apiInstance.updateWebhookEndpoint(endpointId, idempotencyKey, updateWebhookEndpointRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#updateWebhookEndpoint");
@@ -1224,6 +1255,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **updateWebhookEndpointRequest** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md)|  | |
 
 ### Return type
@@ -1238,23 +1270,24 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 
 ## updateWebhookEndpointWithHttpInfo
 
-> ApiResponse<DeleteWebhookEndpoint200Response> updateWebhookEndpointWithHttpInfo(endpointId, updateWebhookEndpointRequest)
+> ApiResponse<DeleteWebhookEndpoint200Response> updateWebhookEndpointWithHttpInfo(endpointId, idempotencyKey, updateWebhookEndpointRequest)
 
 Update webhook endpoint
 
@@ -1274,7 +1307,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.joinaffinityai.com");
-        
+
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
@@ -1286,10 +1319,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String endpointId = "endpointId_example"; // String | 
-        UpdateWebhookEndpointRequest updateWebhookEndpointRequest = new UpdateWebhookEndpointRequest(); // UpdateWebhookEndpointRequest | 
+        String endpointId = "endpointId_example"; // String |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
+        UpdateWebhookEndpointRequest updateWebhookEndpointRequest = new UpdateWebhookEndpointRequest(); // UpdateWebhookEndpointRequest |
         try {
-            ApiResponse<DeleteWebhookEndpoint200Response> response = apiInstance.updateWebhookEndpointWithHttpInfo(endpointId, updateWebhookEndpointRequest);
+            ApiResponse<DeleteWebhookEndpoint200Response> response = apiInstance.updateWebhookEndpointWithHttpInfo(endpointId, idempotencyKey, updateWebhookEndpointRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1310,6 +1344,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **updateWebhookEndpointRequest** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md)|  | |
 
 ### Return type
@@ -1324,17 +1359,18 @@ ApiResponse<[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Respo
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response |  -  |
-| **400** | The request could not be completed. |  -  |
-| **401** | The request could not be completed. |  -  |
-| **403** | The request could not be completed. |  -  |
-| **404** | The request could not be completed. |  -  |
-| **409** | The request could not be completed. |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **409** | Conflict |  -  |
 | **422** | The request could not be completed. |  -  |
-| **429** | The request could not be completed. |  -  |
+| **429** | Too many requests |  -  |
+| **500** | Internal server error |  -  |
 

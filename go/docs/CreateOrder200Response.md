@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Order** | [**CreateOrder200ResponseOrder**](CreateOrder200ResponseOrder.md) |  | 
+**Order** | [**CreateOrder200ResponseOrder**](CreateOrder200ResponseOrder.md) |  |
 
 ## Methods
 

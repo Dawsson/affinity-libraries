@@ -56,7 +56,7 @@ public class ReplayWebhookEvent200Response {
   @javax.annotation.Nonnull
   private GetWebhookEvent200ResponseEvent event;
 
-  public ReplayWebhookEvent200Response() { 
+  public ReplayWebhookEvent200Response() {
   }
 
   public ReplayWebhookEvent200Response attempts(@javax.annotation.Nonnull List<ReplayWebhookEvent200ResponseAttemptsInner> attempts) {

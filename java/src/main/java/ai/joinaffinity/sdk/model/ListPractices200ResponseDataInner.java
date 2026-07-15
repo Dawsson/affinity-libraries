@@ -135,7 +135,7 @@ public class ListPractices200ResponseDataInner {
   @javax.annotation.Nullable
   private String timezone;
 
-  public ListPractices200ResponseDataInner() { 
+  public ListPractices200ResponseDataInner() {
   }
 
   public ListPractices200ResponseDataInner address(@javax.annotation.Nullable ListPractices200ResponseDataInnerAddress address) {

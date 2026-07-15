@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | **str** |  | 
+**reason** | **str** |  |
 
 ## Example
 

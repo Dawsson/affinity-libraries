@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** |  | 
-**EnabledEvents** | **[]string** |  | 
-**Id** | **string** |  | 
-**Livemode** | **bool** |  | 
-**UpdatedAt** | **string** |  | 
-**Url** | **string** |  | 
+**CreatedAt** | **string** |  |
+**EnabledEvents** | **[]string** |  |
+**Id** | **string** |  |
+**Livemode** | **bool** |  |
+**UpdatedAt** | **string** |  |
+**Url** | **string** |  |
 
 ## Methods
 

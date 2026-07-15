@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**authorized** | **bool** |  | 
-**signed_at** | **datetime** |  | 
+**authorized** | **bool** |  |
+**signed_at** | **datetime** |  |
 
 ## Example
 

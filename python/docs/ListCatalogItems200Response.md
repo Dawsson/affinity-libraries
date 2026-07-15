@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List[ListCatalogItems200ResponseItemsInner]**](ListCatalogItems200ResponseItemsInner.md) |  | 
+**items** | [**List[ListCatalogItems200ResponseItemsInner]**](ListCatalogItems200ResponseItemsInner.md) |  |
 
 ## Example
 

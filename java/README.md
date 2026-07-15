@@ -1,3 +1,18 @@
+<!-- affinity-facade:start -->
+## Recommended client
+
+Start with the resource-oriented client. The generated API classes documented below are the
+low-level transport surface.
+
+```java
+Affinity affinity = new Affinity(System.getenv("AFFINITY_API_KEY"));
+var catalog = affinity.catalog().list("semaglutide");
+```
+
+Resources are available through account, catalog, practices, orders, and webhooks. Mutation calls
+require an idempotency key.
+<!-- affinity-facade:end -->
+
 # affinity-sdk
 
 Affinity API
@@ -181,6 +196,7 @@ Class | Method | HTTP request | Description
  - [GetApiAccess200Response](docs/GetApiAccess200Response.md)
  - [GetApiAccess200ResponseApiKey](docs/GetApiAccess200ResponseApiKey.md)
  - [GetApiAccess200ResponseServiceAccount](docs/GetApiAccess200ResponseServiceAccount.md)
+ - [GetApiAccess400Response](docs/GetApiAccess400Response.md)
  - [GetPlatformOrganization200Response](docs/GetPlatformOrganization200Response.md)
  - [GetPlatformOrganization200ResponseAccount](docs/GetPlatformOrganization200ResponseAccount.md)
  - [GetPlatformOrganization200ResponseMembership](docs/GetPlatformOrganization200ResponseMembership.md)
@@ -191,11 +207,13 @@ Class | Method | HTTP request | Description
  - [GetWebhookEvent200ResponseEvent](docs/GetWebhookEvent200ResponseEvent.md)
  - [ListCatalogItems200Response](docs/ListCatalogItems200Response.md)
  - [ListCatalogItems200ResponseItemsInner](docs/ListCatalogItems200ResponseItemsInner.md)
+ - [ListCatalogItems400Response](docs/ListCatalogItems400Response.md)
  - [ListOrderEvents200Response](docs/ListOrderEvents200Response.md)
  - [ListOrderEvents200ResponseEventsInner](docs/ListOrderEvents200ResponseEventsInner.md)
  - [ListOrders200Response](docs/ListOrders200Response.md)
  - [ListOrders200ResponseOrdersInner](docs/ListOrders200ResponseOrdersInner.md)
  - [ListOrders200ResponseOrdersInnerRouting](docs/ListOrders200ResponseOrdersInnerRouting.md)
+ - [ListOrders400Response](docs/ListOrders400Response.md)
  - [ListPractices200Response](docs/ListPractices200Response.md)
  - [ListPractices200ResponseDataInner](docs/ListPractices200ResponseDataInner.md)
  - [ListPractices200ResponseDataInnerAddress](docs/ListPractices200ResponseDataInnerAddress.md)

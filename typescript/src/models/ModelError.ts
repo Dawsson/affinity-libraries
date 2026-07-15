@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ModelError
  */
@@ -58,7 +58,7 @@ export function ModelErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         return json;
     }
     return {
-        
+
         'code': json['code'],
         'message': json['message'],
         'requestId': json['requestId'],
@@ -75,7 +75,7 @@ export function ModelErrorToJSONTyped(value?: ModelError | null, ignoreDiscrimin
     }
 
     return {
-        
+
         'code': value['code'],
         'message': value['message'],
         'requestId': value['requestId'],

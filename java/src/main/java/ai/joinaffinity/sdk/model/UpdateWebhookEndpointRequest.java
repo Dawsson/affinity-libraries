@@ -43,7 +43,7 @@ public class UpdateWebhookEndpointRequest {
   @javax.annotation.Nonnull
   private List<String> enabledEvents = new ArrayList<>();
 
-  public UpdateWebhookEndpointRequest() { 
+  public UpdateWebhookEndpointRequest() {
   }
 
   public UpdateWebhookEndpointRequest enabledEvents(@javax.annotation.Nonnull List<String> enabledEvents) {

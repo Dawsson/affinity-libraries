@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**City** | **string** |  | 
-**Country** | Pointer to **NullableString** |  | [optional] 
-**Line1** | **NullableString** |  | 
-**Line2** | Pointer to **NullableString** |  | [optional] 
-**PostalCode** | **string** |  | 
-**State** | **NullableString** |  | 
+**City** | **string** |  |
+**Country** | Pointer to **NullableString** |  | [optional]
+**Line1** | **NullableString** |  |
+**Line2** | Pointer to **NullableString** |  | [optional]
+**PostalCode** | **string** |  |
+**State** | **NullableString** |  |
 
 ## Methods
 

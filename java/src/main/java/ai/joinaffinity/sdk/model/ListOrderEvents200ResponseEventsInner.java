@@ -56,7 +56,7 @@ public class ListOrderEvents200ResponseEventsInner {
   @javax.annotation.Nullable
   private String message;
 
-  public ListOrderEvents200ResponseEventsInner() { 
+  public ListOrderEvents200ResponseEventsInner() {
   }
 
   public ListOrderEvents200ResponseEventsInner createdAt(@javax.annotation.Nullable String createdAt) {

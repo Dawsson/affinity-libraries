@@ -94,13 +94,14 @@ class PlatformsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPlatformOrganization200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -168,13 +169,14 @@ class PlatformsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPlatformOrganization200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -242,13 +244,14 @@ class PlatformsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPlatformOrganization200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -283,9 +286,9 @@ class PlatformsApi:
         # process the path parameters
         # process the query parameters
         if org_id is not None:
-            
+
             _query_params.append(('orgId', org_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -295,14 +298,15 @@ class PlatformsApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 

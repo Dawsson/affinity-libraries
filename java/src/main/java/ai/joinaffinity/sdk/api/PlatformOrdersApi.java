@@ -24,6 +24,7 @@ import ai.joinaffinity.sdk.model.CreateOrderRequest;
 import ai.joinaffinity.sdk.model.Error;
 import ai.joinaffinity.sdk.model.ListOrderEvents200Response;
 import ai.joinaffinity.sdk.model.ListOrders200Response;
+import ai.joinaffinity.sdk.model.ListOrders400Response;
 import ai.joinaffinity.sdk.model.UpdateOrderRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -172,25 +173,27 @@ public class PlatformOrdersApi {
    * Cancel order
    * Cancels an order before shipment. Corrections use cancel-and-replace.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param cancelOrderRequest  (required)
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateOrder200Response cancelOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest) throws ApiException {
-    return cancelOrder(orderId, cancelOrderRequest, null);
+  public CreateOrder200Response cancelOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest) throws ApiException {
+    return cancelOrder(orderId, idempotencyKey, cancelOrderRequest, null);
   }
 
   /**
    * Cancel order
    * Cancels an order before shipment. Corrections use cancel-and-replace.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param cancelOrderRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateOrder200Response cancelOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateOrder200Response> localVarResponse = cancelOrderWithHttpInfo(orderId, cancelOrderRequest, headers);
+  public CreateOrder200Response cancelOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateOrder200Response> localVarResponse = cancelOrderWithHttpInfo(orderId, idempotencyKey, cancelOrderRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -198,25 +201,27 @@ public class PlatformOrdersApi {
    * Cancel order
    * Cancels an order before shipment. Corrections use cancel-and-replace.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param cancelOrderRequest  (required)
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateOrder200Response> cancelOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest) throws ApiException {
-    return cancelOrderWithHttpInfo(orderId, cancelOrderRequest, null);
+  public ApiResponse<CreateOrder200Response> cancelOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest) throws ApiException {
+    return cancelOrderWithHttpInfo(orderId, idempotencyKey, cancelOrderRequest, null);
   }
 
   /**
    * Cancel order
    * Cancels an order before shipment. Corrections use cancel-and-replace.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param cancelOrderRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateOrder200Response> cancelOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cancelOrderRequestBuilder(orderId, cancelOrderRequest, headers);
+  public ApiResponse<CreateOrder200Response> cancelOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cancelOrderRequestBuilder(orderId, idempotencyKey, cancelOrderRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -238,11 +243,11 @@ public class PlatformOrdersApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreateOrder200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateOrder200Response>() {});
-        
+
 
         return new ApiResponse<CreateOrder200Response>(
             localVarResponse.statusCode(),
@@ -263,10 +268,14 @@ public class PlatformOrdersApi {
     }
   }
 
-  private HttpRequest.Builder cancelOrderRequestBuilder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder cancelOrderRequestBuilder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CancelOrderRequest cancelOrderRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'orderId' is set
     if (orderId == null) {
       throw new ApiException(400, "Missing the required parameter 'orderId' when calling cancelOrder");
+    }
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling cancelOrder");
     }
     // verify the required parameter 'cancelOrderRequest' is set
     if (cancelOrderRequest == null) {
@@ -280,8 +289,11 @@ public class PlatformOrdersApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(cancelOrderRequest);
@@ -303,48 +315,52 @@ public class PlatformOrdersApi {
   /**
    * Create order
    * Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createOrderRequest  (required)
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateOrder200Response createOrder(@javax.annotation.Nonnull CreateOrderRequest createOrderRequest) throws ApiException {
-    return createOrder(createOrderRequest, null);
+  public CreateOrder200Response createOrder(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateOrderRequest createOrderRequest) throws ApiException {
+    return createOrder(idempotencyKey, createOrderRequest, null);
   }
 
   /**
    * Create order
    * Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createOrderRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateOrder200Response createOrder(@javax.annotation.Nonnull CreateOrderRequest createOrderRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateOrder200Response> localVarResponse = createOrderWithHttpInfo(createOrderRequest, headers);
+  public CreateOrder200Response createOrder(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateOrderRequest createOrderRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateOrder200Response> localVarResponse = createOrderWithHttpInfo(idempotencyKey, createOrderRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Create order
    * Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createOrderRequest  (required)
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateOrder200Response> createOrderWithHttpInfo(@javax.annotation.Nonnull CreateOrderRequest createOrderRequest) throws ApiException {
-    return createOrderWithHttpInfo(createOrderRequest, null);
+  public ApiResponse<CreateOrder200Response> createOrderWithHttpInfo(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateOrderRequest createOrderRequest) throws ApiException {
+    return createOrderWithHttpInfo(idempotencyKey, createOrderRequest, null);
   }
 
   /**
    * Create order
    * Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param createOrderRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateOrder200Response> createOrderWithHttpInfo(@javax.annotation.Nonnull CreateOrderRequest createOrderRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createOrderRequestBuilder(createOrderRequest, headers);
+  public ApiResponse<CreateOrder200Response> createOrderWithHttpInfo(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateOrderRequest createOrderRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createOrderRequestBuilder(idempotencyKey, createOrderRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -366,11 +382,11 @@ public class PlatformOrdersApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreateOrder200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateOrder200Response>() {});
-        
+
 
         return new ApiResponse<CreateOrder200Response>(
             localVarResponse.statusCode(),
@@ -391,7 +407,11 @@ public class PlatformOrdersApi {
     }
   }
 
-  private HttpRequest.Builder createOrderRequestBuilder(@javax.annotation.Nonnull CreateOrderRequest createOrderRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createOrderRequestBuilder(@javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull CreateOrderRequest createOrderRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling createOrder");
+    }
     // verify the required parameter 'createOrderRequest' is set
     if (createOrderRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'createOrderRequest' when calling createOrder");
@@ -403,8 +423,11 @@ public class PlatformOrdersApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createOrderRequest);
@@ -425,7 +448,7 @@ public class PlatformOrdersApi {
 
   /**
    * Read order
-   * 
+   *
    * @param orderId  (required)
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
@@ -436,7 +459,7 @@ public class PlatformOrdersApi {
 
   /**
    * Read order
-   * 
+   *
    * @param orderId  (required)
    * @param headers Optional headers to include in the request
    * @return CreateOrder200Response
@@ -449,7 +472,7 @@ public class PlatformOrdersApi {
 
   /**
    * Read order
-   * 
+   *
    * @param orderId  (required)
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
@@ -460,7 +483,7 @@ public class PlatformOrdersApi {
 
   /**
    * Read order
-   * 
+   *
    * @param orderId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateOrder200Response&gt;
@@ -489,11 +512,11 @@ public class PlatformOrdersApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreateOrder200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateOrder200Response>() {});
-        
+
 
         return new ApiResponse<CreateOrder200Response>(
             localVarResponse.statusCode(),
@@ -527,7 +550,7 @@ public class PlatformOrdersApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -543,7 +566,7 @@ public class PlatformOrdersApi {
 
   /**
    * List order events
-   * 
+   *
    * @param orderId  (required)
    * @return ListOrderEvents200Response
    * @throws ApiException if fails to make API call
@@ -554,7 +577,7 @@ public class PlatformOrdersApi {
 
   /**
    * List order events
-   * 
+   *
    * @param orderId  (required)
    * @param headers Optional headers to include in the request
    * @return ListOrderEvents200Response
@@ -567,7 +590,7 @@ public class PlatformOrdersApi {
 
   /**
    * List order events
-   * 
+   *
    * @param orderId  (required)
    * @return ApiResponse&lt;ListOrderEvents200Response&gt;
    * @throws ApiException if fails to make API call
@@ -578,7 +601,7 @@ public class PlatformOrdersApi {
 
   /**
    * List order events
-   * 
+   *
    * @param orderId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListOrderEvents200Response&gt;
@@ -607,11 +630,11 @@ public class PlatformOrdersApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         ListOrderEvents200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListOrderEvents200Response>() {});
-        
+
 
         return new ApiResponse<ListOrderEvents200Response>(
             localVarResponse.statusCode(),
@@ -645,7 +668,7 @@ public class PlatformOrdersApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -661,7 +684,7 @@ public class PlatformOrdersApi {
 
   /**
    * List platform orders
-   * 
+   *
    * @param externalOrderId  (optional)
    * @param patientExternalId  (optional)
    * @return ListOrders200Response
@@ -673,7 +696,7 @@ public class PlatformOrdersApi {
 
   /**
    * List platform orders
-   * 
+   *
    * @param externalOrderId  (optional)
    * @param patientExternalId  (optional)
    * @param headers Optional headers to include in the request
@@ -687,7 +710,7 @@ public class PlatformOrdersApi {
 
   /**
    * List platform orders
-   * 
+   *
    * @param externalOrderId  (optional)
    * @param patientExternalId  (optional)
    * @return ApiResponse&lt;ListOrders200Response&gt;
@@ -699,7 +722,7 @@ public class PlatformOrdersApi {
 
   /**
    * List platform orders
-   * 
+   *
    * @param externalOrderId  (optional)
    * @param patientExternalId  (optional)
    * @param headers Optional headers to include in the request
@@ -729,11 +752,11 @@ public class PlatformOrdersApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         ListOrders200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListOrders200Response>() {});
-        
+
 
         return new ApiResponse<ListOrders200Response>(
             localVarResponse.statusCode(),
@@ -779,7 +802,7 @@ public class PlatformOrdersApi {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -797,23 +820,25 @@ public class PlatformOrdersApi {
    * Submit order
    * Validates and submits an immutable order to the Affinity review queue.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateOrder200Response submitOrder(@javax.annotation.Nonnull String orderId) throws ApiException {
-    return submitOrder(orderId, null);
+  public CreateOrder200Response submitOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return submitOrder(orderId, idempotencyKey, null);
   }
 
   /**
    * Submit order
    * Validates and submits an immutable order to the Affinity review queue.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateOrder200Response submitOrder(@javax.annotation.Nonnull String orderId, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateOrder200Response> localVarResponse = submitOrderWithHttpInfo(orderId, headers);
+  public CreateOrder200Response submitOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateOrder200Response> localVarResponse = submitOrderWithHttpInfo(orderId, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
@@ -821,23 +846,25 @@ public class PlatformOrdersApi {
    * Submit order
    * Validates and submits an immutable order to the Affinity review queue.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateOrder200Response> submitOrderWithHttpInfo(@javax.annotation.Nonnull String orderId) throws ApiException {
-    return submitOrderWithHttpInfo(orderId, null);
+  public ApiResponse<CreateOrder200Response> submitOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey) throws ApiException {
+    return submitOrderWithHttpInfo(orderId, idempotencyKey, null);
   }
 
   /**
    * Submit order
    * Validates and submits an immutable order to the Affinity review queue.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateOrder200Response> submitOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = submitOrderRequestBuilder(orderId, headers);
+  public ApiResponse<CreateOrder200Response> submitOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = submitOrderRequestBuilder(orderId, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -859,11 +886,11 @@ public class PlatformOrdersApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreateOrder200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateOrder200Response>() {});
-        
+
 
         return new ApiResponse<CreateOrder200Response>(
             localVarResponse.statusCode(),
@@ -884,10 +911,14 @@ public class PlatformOrdersApi {
     }
   }
 
-  private HttpRequest.Builder submitOrderRequestBuilder(@javax.annotation.Nonnull String orderId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder submitOrderRequestBuilder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'orderId' is set
     if (orderId == null) {
       throw new ApiException(400, "Missing the required parameter 'orderId' when calling submitOrder");
+    }
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling submitOrder");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -897,7 +928,10 @@ public class PlatformOrdersApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -915,25 +949,27 @@ public class PlatformOrdersApi {
    * Update draft order
    * Updates an order while it remains a draft.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param updateOrderRequest  (required)
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateOrder200Response updateOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest) throws ApiException {
-    return updateOrder(orderId, updateOrderRequest, null);
+  public CreateOrder200Response updateOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest) throws ApiException {
+    return updateOrder(orderId, idempotencyKey, updateOrderRequest, null);
   }
 
   /**
    * Update draft order
    * Updates an order while it remains a draft.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param updateOrderRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateOrder200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateOrder200Response updateOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateOrder200Response> localVarResponse = updateOrderWithHttpInfo(orderId, updateOrderRequest, headers);
+  public CreateOrder200Response updateOrder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateOrder200Response> localVarResponse = updateOrderWithHttpInfo(orderId, idempotencyKey, updateOrderRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -941,25 +977,27 @@ public class PlatformOrdersApi {
    * Update draft order
    * Updates an order while it remains a draft.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param updateOrderRequest  (required)
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateOrder200Response> updateOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest) throws ApiException {
-    return updateOrderWithHttpInfo(orderId, updateOrderRequest, null);
+  public ApiResponse<CreateOrder200Response> updateOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest) throws ApiException {
+    return updateOrderWithHttpInfo(orderId, idempotencyKey, updateOrderRequest, null);
   }
 
   /**
    * Update draft order
    * Updates an order while it remains a draft.
    * @param orderId  (required)
+   * @param idempotencyKey Unique operation key required for every mutation. (required)
    * @param updateOrderRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateOrder200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateOrder200Response> updateOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateOrderRequestBuilder(orderId, updateOrderRequest, headers);
+  public ApiResponse<CreateOrder200Response> updateOrderWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateOrderRequestBuilder(orderId, idempotencyKey, updateOrderRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -981,11 +1019,11 @@ public class PlatformOrdersApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         CreateOrder200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateOrder200Response>() {});
-        
+
 
         return new ApiResponse<CreateOrder200Response>(
             localVarResponse.statusCode(),
@@ -1006,10 +1044,14 @@ public class PlatformOrdersApi {
     }
   }
 
-  private HttpRequest.Builder updateOrderRequestBuilder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateOrderRequestBuilder(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String idempotencyKey, @javax.annotation.Nonnull UpdateOrderRequest updateOrderRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'orderId' is set
     if (orderId == null) {
       throw new ApiException(400, "Missing the required parameter 'orderId' when calling updateOrder");
+    }
+    // verify the required parameter 'idempotencyKey' is set
+    if (idempotencyKey == null) {
+      throw new ApiException(400, "Missing the required parameter 'idempotencyKey' when calling updateOrder");
     }
     // verify the required parameter 'updateOrderRequest' is set
     if (updateOrderRequest == null) {
@@ -1023,8 +1065,11 @@ public class PlatformOrdersApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateOrderRequest);

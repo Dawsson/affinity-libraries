@@ -29,19 +29,49 @@ paths:
                 $ref: "#/components/schemas/getApiAccess_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/getApiAccess_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/getApiAccess_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/getApiAccess_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/getApiAccess_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/getApiAccess_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/getApiAccess_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/getApiAccess_400_response"
+          description: Internal server error
       summary: Read API key access
       tags:
       - API Keys
@@ -73,19 +103,49 @@ paths:
                 $ref: "#/components/schemas/listCatalogItems_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listCatalogItems_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listCatalogItems_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listCatalogItems_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listCatalogItems_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listCatalogItems_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listCatalogItems_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listCatalogItems_400_response"
+          description: Internal server error
       summary: List catalog items
       tags:
       - Catalog
@@ -125,19 +185,49 @@ paths:
                 $ref: "#/components/schemas/listOrders_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: List platform orders
       tags:
       - Platform Orders
@@ -151,6 +241,8 @@ paths:
       description: Creates an editable synthetic draft in test mode or releases an
         existing signed immutable prescription version in live mode.
       operationId: createOrder
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         content:
           application/json:
@@ -210,19 +302,49 @@ paths:
                 $ref: "#/components/schemas/createOrder_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Create order
       tags:
       - Platform Orders
@@ -252,19 +374,49 @@ paths:
                 $ref: "#/components/schemas/createOrder_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Read order
       tags:
       - Platform Orders
@@ -285,6 +437,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         content:
           application/json:
@@ -299,19 +452,49 @@ paths:
                 $ref: "#/components/schemas/createOrder_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Update draft order
       tags:
       - Platform Orders
@@ -333,6 +516,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         content:
           application/json:
@@ -347,19 +531,49 @@ paths:
                 $ref: "#/components/schemas/createOrder_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Cancel order
       tags:
       - Platform Orders
@@ -388,19 +602,49 @@ paths:
                 $ref: "#/components/schemas/listOrderEvents_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: List order events
       tags:
       - Platform Orders
@@ -423,6 +667,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           content:
@@ -431,19 +676,49 @@ paths:
                 $ref: "#/components/schemas/createOrder_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Submit order
       tags:
       - Platform Orders
@@ -474,19 +749,49 @@ paths:
                 $ref: "#/components/schemas/getPlatformOrganization_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Read platform organization
       tags:
       - Platforms
@@ -507,19 +812,49 @@ paths:
                 $ref: "#/components/schemas/listPractices_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: List practices
       tags:
       - Practices
@@ -533,6 +868,8 @@ paths:
       description: Creates a platform-owned practice. Send Idempotency-Key to safely
         retry network failures.
       operationId: createPractice
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         content:
           application/json:
@@ -580,19 +917,49 @@ paths:
                 $ref: "#/components/schemas/createPractice_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Create practice
       tags:
       - Practices
@@ -625,19 +992,49 @@ paths:
                 $ref: "#/components/schemas/createPractice_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Read practice
       tags:
       - Practices
@@ -661,6 +1058,7 @@ paths:
           minLength: 1
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           content:
@@ -669,19 +1067,49 @@ paths:
                 $ref: "#/components/schemas/createPractice_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Update practice
       tags:
       - Practices
@@ -702,19 +1130,49 @@ paths:
                 $ref: "#/components/schemas/listWebhookEndpoints_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: List webhook endpoints
       tags:
       - Platform Webhooks
@@ -726,6 +1184,8 @@ paths:
         visibility: public
     post:
       operationId: createWebhookEndpoint
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         content:
           application/json:
@@ -740,19 +1200,49 @@ paths:
                 $ref: "#/components/schemas/createWebhookEndpoint_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Create webhook endpoint
       tags:
       - Platform Webhooks
@@ -774,6 +1264,7 @@ paths:
           nullable: true
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           content:
@@ -782,19 +1273,49 @@ paths:
                 $ref: "#/components/schemas/deleteWebhookEndpoint_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Disable webhook endpoint
       tags:
       - Platform Webhooks
@@ -814,6 +1335,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKey"
       requestBody:
         content:
           application/json:
@@ -828,19 +1350,49 @@ paths:
                 $ref: "#/components/schemas/deleteWebhookEndpoint_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Update webhook endpoint
       tags:
       - Platform Webhooks
@@ -861,6 +1413,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           content:
@@ -869,19 +1422,49 @@ paths:
                 $ref: "#/components/schemas/createWebhookEndpoint_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Rotate webhook signing secret
       tags:
       - Platform Webhooks
@@ -902,19 +1485,49 @@ paths:
                 $ref: "#/components/schemas/listWebhookEvents_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: List webhook events
       tags:
       - Platform Webhooks
@@ -944,19 +1557,49 @@ paths:
                 $ref: "#/components/schemas/getWebhookEvent_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Read webhook event attempts
       tags:
       - Platform Webhooks
@@ -977,6 +1620,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/IdempotencyKey"
       responses:
         "200":
           content:
@@ -985,19 +1629,49 @@ paths:
                 $ref: "#/components/schemas/replayWebhookEvent_200_response"
           description: Successful response
         "400":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Bad request
         "401":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Unauthorized
         "403":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Forbidden
         "404":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Not found
         "409":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Conflict
         "422":
           $ref: "#/components/responses/ErrorResponse"
         "429":
-          $ref: "#/components/responses/ErrorResponse"
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Too many requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/listOrders_400_response"
+          description: Internal server error
       summary: Replay webhook event
       tags:
       - Platform Webhooks
@@ -1044,6 +1718,7 @@ components:
       required: true
       schema:
         maxLength: 255
+        type: string
       style: simple
   responses:
     ErrorResponse:
@@ -1153,6 +1828,31 @@ components:
       - object
       - scopes
       - serviceAccount
+    getApiAccess_400_response:
+      additionalProperties: {}
+      properties:
+        code:
+          type: string
+        data: {}
+        detail:
+          type: string
+        instance:
+          type: string
+        requestId:
+          type: string
+        status:
+          type: number
+        title:
+          type: string
+        traceId:
+          type: string
+        type:
+          type: string
+      required:
+      - code
+      - status
+      - title
+      - type
     listCatalogItems_200_response_items_inner:
       additionalProperties: {}
       example:
@@ -1285,6 +1985,39 @@ components:
           type: array
       required:
       - items
+    listCatalogItems_400_response:
+      additionalProperties: true
+      properties:
+        code:
+          nullable: true
+          type: string
+        data: {}
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        requestId:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: number
+        title:
+          nullable: true
+          type: string
+        traceId:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      required:
+      - code
+      - status
+      - title
+      - type
     listOrders_200_response_orders_inner_routing:
       additionalProperties: {}
       example:
@@ -1419,6 +2152,7 @@ components:
           nullable: true
           type: string
         quantity:
+          nullable: true
           type: number
         quoteCents:
           nullable: true
@@ -1555,6 +2289,31 @@ components:
           type: array
       required:
       - orders
+    listOrders_400_response:
+      additionalProperties: true
+      properties:
+        code:
+          type: string
+        data: {}
+        detail:
+          type: string
+        instance:
+          type: string
+        requestId:
+          type: string
+        status:
+          type: number
+        title:
+          type: string
+        traceId:
+          type: string
+        type:
+          type: string
+      required:
+      - code
+      - status
+      - title
+      - type
     createOrder_request_anyOf_patient_address:
       properties:
         city:

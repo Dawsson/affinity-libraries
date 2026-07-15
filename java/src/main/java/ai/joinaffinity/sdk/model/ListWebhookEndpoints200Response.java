@@ -44,7 +44,7 @@ public class ListWebhookEndpoints200Response {
   @javax.annotation.Nonnull
   private List<ListWebhookEndpoints200ResponseEndpointsInner> endpoints = new ArrayList<>();
 
-  public ListWebhookEndpoints200Response() { 
+  public ListWebhookEndpoints200Response() {
   }
 
   public ListWebhookEndpoints200Response endpoints(@javax.annotation.Nonnull List<ListWebhookEndpoints200ResponseEndpointsInner> endpoints) {

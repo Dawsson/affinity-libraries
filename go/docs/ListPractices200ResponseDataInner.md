@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | [**NullableListPractices200ResponseDataInnerAddress**](ListPractices200ResponseDataInnerAddress.md) |  | 
-**Contacts** | [**ListPractices200ResponseDataInnerContacts**](ListPractices200ResponseDataInnerContacts.md) |  | 
-**Created** | **NullableFloat32** |  | 
-**ExternalId** | **NullableString** |  | 
-**Id** | **NullableString** |  | 
-**LegalName** | **NullableString** |  | 
-**Name** | **NullableString** |  | 
-**Object** | **string** |  | 
-**Prescribers** | [**[]ListPractices200ResponseDataInnerPrescribersInner**](ListPractices200ResponseDataInnerPrescribersInner.md) |  | 
-**SupportEmail** | **NullableString** |  | 
-**SupportPhone** | **NullableString** |  | 
-**Timezone** | **NullableString** |  | 
+**Address** | [**NullableListPractices200ResponseDataInnerAddress**](ListPractices200ResponseDataInnerAddress.md) |  |
+**Contacts** | [**ListPractices200ResponseDataInnerContacts**](ListPractices200ResponseDataInnerContacts.md) |  |
+**Created** | **NullableFloat32** |  |
+**ExternalId** | **NullableString** |  |
+**Id** | **NullableString** |  |
+**LegalName** | **NullableString** |  |
+**Name** | **NullableString** |  |
+**Object** | **string** |  |
+**Prescribers** | [**[]ListPractices200ResponseDataInnerPrescribersInner**](ListPractices200ResponseDataInnerPrescribersInner.md) |  |
+**SupportEmail** | **NullableString** |  |
+**SupportPhone** | **NullableString** |  |
+**Timezone** | **NullableString** |  |
 
 ## Methods
 

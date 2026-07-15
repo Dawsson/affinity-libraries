@@ -5,18 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**ListPractices200ResponseDataInnerAddress**](ListPractices200ResponseDataInnerAddress.md) |  | 
-**contacts** | [**ListPractices200ResponseDataInnerContacts**](ListPractices200ResponseDataInnerContacts.md) |  | 
-**created** | **float** |  | 
-**external_id** | **str** |  | 
-**id** | **str** |  | 
-**legal_name** | **str** |  | 
-**name** | **str** |  | 
-**object** | **str** |  | 
-**prescribers** | [**List[ListPractices200ResponseDataInnerPrescribersInner]**](ListPractices200ResponseDataInnerPrescribersInner.md) |  | 
-**support_email** | **str** |  | 
-**support_phone** | **str** |  | 
-**timezone** | **str** |  | 
+**address** | [**ListPractices200ResponseDataInnerAddress**](ListPractices200ResponseDataInnerAddress.md) |  |
+**contacts** | [**ListPractices200ResponseDataInnerContacts**](ListPractices200ResponseDataInnerContacts.md) |  |
+**created** | **float** |  |
+**external_id** | **str** |  |
+**id** | **str** |  |
+**legal_name** | **str** |  |
+**name** | **str** |  |
+**object** | **str** |  |
+**prescribers** | [**List[ListPractices200ResponseDataInnerPrescribersInner]**](ListPractices200ResponseDataInnerPrescribersInner.md) |  |
+**support_email** | **str** |  |
+**support_phone** | **str** |  |
+**timezone** | **str** |  |
 
 ## Example
 

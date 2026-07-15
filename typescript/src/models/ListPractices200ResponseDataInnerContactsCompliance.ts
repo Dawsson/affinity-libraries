@@ -14,25 +14,25 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ListPractices200ResponseDataInnerContactsCompliance
  */
 export interface ListPractices200ResponseDataInnerContactsCompliance {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerContactsCompliance
      */
     email: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerContactsCompliance
      */
     name: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListPractices200ResponseDataInnerContactsCompliance
      */
@@ -57,7 +57,7 @@ export function ListPractices200ResponseDataInnerContactsComplianceFromJSONTyped
         return json;
     }
     return {
-        
+
         'email': json['email'],
         'name': json['name'],
         'phone': json['phone'] == null ? undefined : json['phone'],
@@ -74,7 +74,7 @@ export function ListPractices200ResponseDataInnerContactsComplianceToJSONTyped(v
     }
 
     return {
-        
+
         'email': value['email'],
         'name': value['name'],
         'phone': value['phone'],

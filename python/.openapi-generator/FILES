@@ -43,6 +43,7 @@ affinity_sdk/models/error.py
 affinity_sdk/models/get_api_access200_response.py
 affinity_sdk/models/get_api_access200_response_api_key.py
 affinity_sdk/models/get_api_access200_response_service_account.py
+affinity_sdk/models/get_api_access400_response.py
 affinity_sdk/models/get_platform_organization200_response.py
 affinity_sdk/models/get_platform_organization200_response_account.py
 affinity_sdk/models/get_platform_organization200_response_membership.py
@@ -53,11 +54,13 @@ affinity_sdk/models/get_webhook_event200_response_deliveries_inner.py
 affinity_sdk/models/get_webhook_event200_response_event.py
 affinity_sdk/models/list_catalog_items200_response.py
 affinity_sdk/models/list_catalog_items200_response_items_inner.py
+affinity_sdk/models/list_catalog_items400_response.py
 affinity_sdk/models/list_order_events200_response.py
 affinity_sdk/models/list_order_events200_response_events_inner.py
 affinity_sdk/models/list_orders200_response.py
 affinity_sdk/models/list_orders200_response_orders_inner.py
 affinity_sdk/models/list_orders200_response_orders_inner_routing.py
+affinity_sdk/models/list_orders400_response.py
 affinity_sdk/models/list_practices200_response.py
 affinity_sdk/models/list_practices200_response_data_inner.py
 affinity_sdk/models/list_practices200_response_data_inner_address.py
@@ -105,6 +108,7 @@ docs/Error.md
 docs/GetApiAccess200Response.md
 docs/GetApiAccess200ResponseApiKey.md
 docs/GetApiAccess200ResponseServiceAccount.md
+docs/GetApiAccess400Response.md
 docs/GetPlatformOrganization200Response.md
 docs/GetPlatformOrganization200ResponseAccount.md
 docs/GetPlatformOrganization200ResponseMembership.md
@@ -115,11 +119,13 @@ docs/GetWebhookEvent200ResponseDeliveriesInner.md
 docs/GetWebhookEvent200ResponseEvent.md
 docs/ListCatalogItems200Response.md
 docs/ListCatalogItems200ResponseItemsInner.md
+docs/ListCatalogItems400Response.md
 docs/ListOrderEvents200Response.md
 docs/ListOrderEvents200ResponseEventsInner.md
 docs/ListOrders200Response.md
 docs/ListOrders200ResponseOrdersInner.md
 docs/ListOrders200ResponseOrdersInnerRouting.md
+docs/ListOrders400Response.md
 docs/ListPractices200Response.md
 docs/ListPractices200ResponseDataInner.md
 docs/ListPractices200ResponseDataInnerAddress.md
@@ -146,5 +152,4 @@ requirements.txt
 setup.cfg
 setup.py
 test-requirements.txt
-test/__init__.py
 tox.ini

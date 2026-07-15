@@ -69,7 +69,7 @@ public class CreateOrderRequestAnyOfPatientAddress {
   @javax.annotation.Nonnull
   private String state;
 
-  public CreateOrderRequestAnyOfPatientAddress() { 
+  public CreateOrderRequestAnyOfPatientAddress() {
   }
 
   public CreateOrderRequestAnyOfPatientAddress city(@javax.annotation.Nonnull String city) {
@@ -165,7 +165,7 @@ public class CreateOrderRequestAnyOfPatientAddress {
   public JsonNullable<String> getLine2_JsonNullable() {
     return line2;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_LINE2)
   public void setLine2_JsonNullable(JsonNullable<String> line2) {
     this.line2 = line2;

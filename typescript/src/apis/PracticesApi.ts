@@ -24,12 +24,18 @@ import {
     CreatePracticeRequestToJSON,
 } from '../models/CreatePracticeRequest';
 import {
+    type ListOrders400Response,
+    ListOrders400ResponseFromJSON,
+    ListOrders400ResponseToJSON,
+} from '../models/ListOrders400Response';
+import {
     type ListPractices200Response,
     ListPractices200ResponseFromJSON,
     ListPractices200ResponseToJSON,
 } from '../models/ListPractices200Response';
 
 export interface CreatePracticeOperationRequest {
+    idempotencyKey: string;
     createPracticeRequest: CreatePracticeRequest;
 }
 
@@ -39,10 +45,11 @@ export interface GetPracticeRequest {
 
 export interface UpdatePracticeRequest {
     practiceId: string;
+    idempotencyKey: string;
 }
 
 /**
- * 
+ *
  */
 export class PracticesApi extends runtime.BaseAPI {
 
@@ -50,6 +57,13 @@ export class PracticesApi extends runtime.BaseAPI {
      * Creates request options for createPractice without sending the request
      */
     async createPracticeRequestOpts(requestParameters: CreatePracticeOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling createPractice().'
+            );
+        }
+
         if (requestParameters['createPracticeRequest'] == null) {
             throw new runtime.RequiredError(
                 'createPracticeRequest',
@@ -62,6 +76,10 @@ export class PracticesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -226,9 +244,20 @@ export class PracticesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling updatePractice().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;

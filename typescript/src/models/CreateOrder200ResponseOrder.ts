@@ -22,181 +22,181 @@ import {
 } from './CreateOrder200ResponseOrderRouting';
 
 /**
- * 
+ *
  * @export
  * @interface CreateOrder200ResponseOrder
  */
 export interface CreateOrder200ResponseOrder {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     cancellationReason: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     carrier: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     catalogItemId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     compounderId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     createdAt: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     currency: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     deliveredAt: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     directions: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     dosageForm: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     externalOrderId: string;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof CreateOrder200ResponseOrder
      */
     externalSubmissionAttempted: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     externalSubmissionBlockedReason: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     id: string;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof CreateOrder200ResponseOrder
      */
     livemode: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     medicationName: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     patientExternalId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     patientName: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     patientState: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     practiceId: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     prescriberName: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     prescriberNpi: string | null;
     /**
-     * 
+     *
      * @type {number}
      * @memberof CreateOrder200ResponseOrder
      */
     quantity: number;
     /**
-     * 
+     *
      * @type {number}
      * @memberof CreateOrder200ResponseOrder
      */
     quoteCents: number | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     replacesOrderId: string | null;
     /**
-     * 
+     *
      * @type {CreateOrder200ResponseOrderRouting}
      * @memberof CreateOrder200ResponseOrder
      */
     routing: CreateOrder200ResponseOrderRouting | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     shippedAt: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     strength: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
     trackingNumber: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrder200ResponseOrder
      */
@@ -248,7 +248,7 @@ export function CreateOrder200ResponseOrderFromJSONTyped(json: any, ignoreDiscri
         return json;
     }
     return {
-        
+
         'cancellationReason': json['cancellationReason'],
         'carrier': json['carrier'],
         'catalogItemId': json['catalogItemId'],
@@ -291,7 +291,7 @@ export function CreateOrder200ResponseOrderToJSONTyped(value?: CreateOrder200Res
     }
 
     return {
-        
+
         'cancellationReason': value['cancellationReason'],
         'carrier': value['carrier'],
         'catalogItemId': value['catalogItemId'],

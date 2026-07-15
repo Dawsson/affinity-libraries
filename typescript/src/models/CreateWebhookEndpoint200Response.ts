@@ -22,19 +22,19 @@ import {
 } from './CreateWebhookEndpoint200ResponseEndpoint';
 
 /**
- * 
+ *
  * @export
  * @interface CreateWebhookEndpoint200Response
  */
 export interface CreateWebhookEndpoint200Response {
     /**
-     * 
+     *
      * @type {CreateWebhookEndpoint200ResponseEndpoint}
      * @memberof CreateWebhookEndpoint200Response
      */
     endpoint: CreateWebhookEndpoint200ResponseEndpoint;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateWebhookEndpoint200Response
      */
@@ -59,7 +59,7 @@ export function CreateWebhookEndpoint200ResponseFromJSONTyped(json: any, ignoreD
         return json;
     }
     return {
-        
+
         'endpoint': CreateWebhookEndpoint200ResponseEndpointFromJSON(json['endpoint']),
         'signingSecret': json['signingSecret'],
     };
@@ -75,7 +75,7 @@ export function CreateWebhookEndpoint200ResponseToJSONTyped(value?: CreateWebhoo
     }
 
     return {
-        
+
         'endpoint': CreateWebhookEndpoint200ResponseEndpointToJSON(value['endpoint']),
         'signingSecret': value['signingSecret'],
     };

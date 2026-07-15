@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Reason** | **string** |  | 
+**Reason** | **string** |  |
 
 ## Methods
 

@@ -14,43 +14,43 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreatePractice200ResponseAddress
  */
 export interface CreatePractice200ResponseAddress {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200ResponseAddress
      */
     city: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200ResponseAddress
      */
     country?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200ResponseAddress
      */
     line1: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200ResponseAddress
      */
     line2?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200ResponseAddress
      */
     postalCode: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreatePractice200ResponseAddress
      */
@@ -77,7 +77,7 @@ export function CreatePractice200ResponseAddressFromJSONTyped(json: any, ignoreD
         return json;
     }
     return {
-        
+
         'city': json['city'],
         'country': json['country'] == null ? undefined : json['country'],
         'line1': json['line1'],
@@ -97,7 +97,7 @@ export function CreatePractice200ResponseAddressToJSONTyped(value?: CreatePracti
     }
 
     return {
-        
+
         'city': value['city'],
         'country': value['country'],
         'line1': value['line1'],

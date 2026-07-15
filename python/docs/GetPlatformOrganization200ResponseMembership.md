@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**role_name** | **str** |  | 
+**role_name** | **str** |  |
 
 ## Example
 

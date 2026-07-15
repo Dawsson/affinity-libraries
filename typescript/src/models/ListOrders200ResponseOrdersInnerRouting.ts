@@ -14,31 +14,31 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface ListOrders200ResponseOrdersInnerRouting
  */
 export interface ListOrders200ResponseOrdersInnerRouting {
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof ListOrders200ResponseOrdersInnerRouting
      */
     blockedReasons: Array<string>;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof ListOrders200ResponseOrdersInnerRouting
      */
     candidateCompounderIds: Array<string>;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListOrders200ResponseOrdersInnerRouting
      */
     coldShip: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof ListOrders200ResponseOrdersInnerRouting
      */
@@ -65,7 +65,7 @@ export function ListOrders200ResponseOrdersInnerRoutingFromJSONTyped(json: any, 
         return json;
     }
     return {
-        
+
         'blockedReasons': json['blockedReasons'],
         'candidateCompounderIds': json['candidateCompounderIds'],
         'coldShip': json['coldShip'],
@@ -83,7 +83,7 @@ export function ListOrders200ResponseOrdersInnerRoutingToJSONTyped(value?: ListO
     }
 
     return {
-        
+
         'blockedReasons': value['blockedReasons'],
         'candidateCompounderIds': value['candidateCompounderIds'],
         'coldShip': value['coldShip'],

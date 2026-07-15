@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | **NullableString** |  | 
-**Name** | **NullableString** |  | 
-**Phone** | Pointer to **NullableString** |  | [optional] 
+**Email** | **NullableString** |  |
+**Name** | **NullableString** |  |
+**Phone** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 

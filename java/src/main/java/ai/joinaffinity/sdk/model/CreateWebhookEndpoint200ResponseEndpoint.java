@@ -68,7 +68,7 @@ public class CreateWebhookEndpoint200ResponseEndpoint {
   @javax.annotation.Nonnull
   private String url;
 
-  public CreateWebhookEndpoint200ResponseEndpoint() { 
+  public CreateWebhookEndpoint200ResponseEndpoint() {
   }
 
   public CreateWebhookEndpoint200ResponseEndpoint createdAt(@javax.annotation.Nonnull String createdAt) {

@@ -14,13 +14,13 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CancelOrderRequest
  */
 export interface CancelOrderRequest {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CancelOrderRequest
      */
@@ -44,7 +44,7 @@ export function CancelOrderRequestFromJSONTyped(json: any, ignoreDiscriminator: 
         return json;
     }
     return {
-        
+
         'reason': json['reason'],
     };
 }
@@ -59,7 +59,7 @@ export function CancelOrderRequestToJSONTyped(value?: CancelOrderRequest | null,
     }
 
     return {
-        
+
         'reason': value['reason'],
     };
 }

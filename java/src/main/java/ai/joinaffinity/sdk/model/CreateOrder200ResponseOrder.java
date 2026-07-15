@@ -183,7 +183,7 @@ public class CreateOrder200ResponseOrder {
   @javax.annotation.Nonnull
   private String updatedAt;
 
-  public CreateOrder200ResponseOrder() { 
+  public CreateOrder200ResponseOrder() {
   }
 
   public CreateOrder200ResponseOrder cancellationReason(@javax.annotation.Nullable String cancellationReason) {

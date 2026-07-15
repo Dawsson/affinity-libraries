@@ -87,7 +87,7 @@ public class ListPractices200Response {
   @javax.annotation.Nonnull
   private ObjectEnum _object;
 
-  public ListPractices200Response() { 
+  public ListPractices200Response() {
   }
 
   public ListPractices200Response data(@javax.annotation.Nonnull List<ListPractices200ResponseDataInner> data) {

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AlertEmails** | **[]string** |  | 
-**AlertIntegrationIssues** | **bool** |  | 
-**AlertNewOrders** | **bool** |  | 
-**AlertStatusChanges** | **bool** |  | 
-**DisplayName** | **NullableString** |  | 
-**Id** | **NullableString** |  | 
-**OrganizationId** | **NullableString** |  | 
-**Slug** | **NullableString** |  | 
-**SupportEmail** | **NullableString** |  | 
-**WebsiteUrl** | **NullableString** |  | 
+**AlertEmails** | **[]string** |  |
+**AlertIntegrationIssues** | **bool** |  |
+**AlertNewOrders** | **bool** |  |
+**AlertStatusChanges** | **bool** |  |
+**DisplayName** | **NullableString** |  |
+**Id** | **NullableString** |  |
+**OrganizationId** | **NullableString** |  |
+**Slug** | **NullableString** |  |
+**SupportEmail** | **NullableString** |  |
+**WebsiteUrl** | **NullableString** |  |
 
 ## Methods
 

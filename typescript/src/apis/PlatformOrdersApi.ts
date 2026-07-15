@@ -39,6 +39,11 @@ import {
     ListOrders200ResponseToJSON,
 } from '../models/ListOrders200Response';
 import {
+    type ListOrders400Response,
+    ListOrders400ResponseFromJSON,
+    ListOrders400ResponseToJSON,
+} from '../models/ListOrders400Response';
+import {
     type UpdateOrderRequest,
     UpdateOrderRequestFromJSON,
     UpdateOrderRequestToJSON,
@@ -46,10 +51,12 @@ import {
 
 export interface CancelOrderOperationRequest {
     orderId: string;
+    idempotencyKey: string;
     cancelOrderRequest: CancelOrderRequest;
 }
 
 export interface CreateOrderOperationRequest {
+    idempotencyKey: string;
     createOrderRequest: CreateOrderRequest;
 }
 
@@ -68,15 +75,17 @@ export interface ListOrdersRequest {
 
 export interface SubmitOrderRequest {
     orderId: string;
+    idempotencyKey: string;
 }
 
 export interface UpdateOrderOperationRequest {
     orderId: string;
+    idempotencyKey: string;
     updateOrderRequest: UpdateOrderRequest;
 }
 
 /**
- * 
+ *
  */
 export class PlatformOrdersApi extends runtime.BaseAPI {
 
@@ -88,6 +97,13 @@ export class PlatformOrdersApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'orderId',
                 'Required parameter "orderId" was null or undefined when calling cancelOrder().'
+            );
+        }
+
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling cancelOrder().'
             );
         }
 
@@ -103,6 +119,10 @@ export class PlatformOrdersApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -153,6 +173,13 @@ export class PlatformOrdersApi extends runtime.BaseAPI {
      * Creates request options for createOrder without sending the request
      */
     async createOrderRequestOpts(requestParameters: CreateOrderOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling createOrder().'
+            );
+        }
+
         if (requestParameters['createOrderRequest'] == null) {
             throw new runtime.RequiredError(
                 'createOrderRequest',
@@ -165,6 +192,10 @@ export class PlatformOrdersApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -392,9 +423,20 @@ export class PlatformOrdersApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling submitOrder().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -451,6 +493,13 @@ export class PlatformOrdersApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['idempotencyKey'] == null) {
+            throw new runtime.RequiredError(
+                'idempotencyKey',
+                'Required parameter "idempotencyKey" was null or undefined when calling updateOrder().'
+            );
+        }
+
         if (requestParameters['updateOrderRequest'] == null) {
             throw new runtime.RequiredError(
                 'updateOrderRequest',
@@ -463,6 +512,10 @@ export class PlatformOrdersApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['idempotencyKey'] != null) {
+            headerParameters['Idempotency-Key'] = String(requestParameters['idempotencyKey']);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;

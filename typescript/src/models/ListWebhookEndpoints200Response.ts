@@ -22,13 +22,13 @@ import {
 } from './ListWebhookEndpoints200ResponseEndpointsInner';
 
 /**
- * 
+ *
  * @export
  * @interface ListWebhookEndpoints200Response
  */
 export interface ListWebhookEndpoints200Response {
     /**
-     * 
+     *
      * @type {Array<ListWebhookEndpoints200ResponseEndpointsInner>}
      * @memberof ListWebhookEndpoints200Response
      */
@@ -52,7 +52,7 @@ export function ListWebhookEndpoints200ResponseFromJSONTyped(json: any, ignoreDi
         return json;
     }
     return {
-        
+
         'endpoints': ((json['endpoints'] as Array<any>).map(ListWebhookEndpoints200ResponseEndpointsInnerFromJSON)),
     };
 }
@@ -67,7 +67,7 @@ export function ListWebhookEndpoints200ResponseToJSONTyped(value?: ListWebhookEn
     }
 
     return {
-        
+
         'endpoints': ((value['endpoints'] as Array<any>).map(ListWebhookEndpoints200ResponseEndpointsInnerToJSON)),
     };
 }

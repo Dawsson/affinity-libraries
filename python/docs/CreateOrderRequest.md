@@ -5,20 +5,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**catalog_item_id** | **str** |  | 
-**practice_id** | **str** |  | 
-**directions** | **str** |  | 
-**external_order_id** | **str** |  | 
-**patient** | [**CreateOrderRequestAnyOfPatient**](CreateOrderRequestAnyOfPatient.md) |  | 
-**prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  | 
-**prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  | 
+**catalog_item_id** | **str** |  |
+**practice_id** | **str** |  |
+**directions** | **str** |  |
+**external_order_id** | **str** |  |
+**patient** | [**CreateOrderRequestAnyOfPatient**](CreateOrderRequestAnyOfPatient.md) |  |
+**prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  |
+**prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  |
 **quantity** | **int** |  | [optional] [default to 1]
-**replaces_order_id** | **UUID** |  | [optional] 
-**pharmacy_organization_id** | **UUID** |  | 
-**prescription_id** | **UUID** |  | 
-**prescription_version_id** | **UUID** |  | 
-**registered_location_id** | **UUID** |  | 
-**shipping_address** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  | 
+**replaces_order_id** | **UUID** |  | [optional]
+**pharmacy_organization_id** | **UUID** |  |
+**prescription_id** | **UUID** |  |
+**prescription_version_id** | **UUID** |  |
+**registered_location_id** | **UUID** |  |
+**shipping_address** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  |
 
 ## Example
 

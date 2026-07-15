@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**compliance** | [**ListPractices200ResponseDataInnerContactsCompliance**](ListPractices200ResponseDataInnerContactsCompliance.md) |  | 
-**primary** | [**ListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | 
+**compliance** | [**ListPractices200ResponseDataInnerContactsCompliance**](ListPractices200ResponseDataInnerContactsCompliance.md) |  |
+**primary** | [**ListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  |
 
 ## Example
 

@@ -5,7 +5,8 @@ This repository contains public, generated clients for the Affinity platform API
 ## Source of truth
 
 - `spec/affinity.openapi.json` is exported from `publicApiDocument()` in the private `peptide-clinic-os` repository.
-- Never hand-edit generated models, API classes, or generated endpoint documentation.
+- Never hand-edit generated models, API classes, generated endpoint documentation, or the generated
+  Stripe-style facade files. Change `scripts/generate-facades.ts` and regenerate instead.
 - Hand-maintained files are the root documentation, `examples/`, `scripts/`, CI, and repository metadata.
 - Run `bun run generate` after replacing the OpenAPI document, then `bun run check`.
 

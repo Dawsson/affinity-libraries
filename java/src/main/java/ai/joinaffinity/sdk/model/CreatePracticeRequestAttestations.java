@@ -56,7 +56,7 @@ public class CreatePracticeRequestAttestations {
   @javax.annotation.Nonnull
   private Boolean providerDataAccuracy;
 
-  public CreatePracticeRequestAttestations() { 
+  public CreatePracticeRequestAttestations() {
   }
 
   public CreatePracticeRequestAttestations authorizedPhiTransfer(@javax.annotation.Nonnull Boolean authorizedPhiTransfer) {

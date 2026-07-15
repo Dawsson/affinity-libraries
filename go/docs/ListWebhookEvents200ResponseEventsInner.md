@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **NullableString** |  | 
-**EventType** | **NullableString** |  | 
-**Id** | **NullableString** |  | 
-**Livemode** | **bool** |  | 
-**ObjectId** | **NullableString** |  | 
-**ObjectType** | **NullableString** |  | 
-**UpdatedAt** | **NullableString** |  | 
+**CreatedAt** | **NullableString** |  |
+**EventType** | **NullableString** |  |
+**Id** | **NullableString** |  |
+**Livemode** | **bool** |  |
+**ObjectId** | **NullableString** |  |
+**ObjectType** | **NullableString** |  |
+**UpdatedAt** | **NullableString** |  |
 
 ## Methods
 

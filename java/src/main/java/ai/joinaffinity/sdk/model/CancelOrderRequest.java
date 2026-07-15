@@ -41,7 +41,7 @@ public class CancelOrderRequest {
   @javax.annotation.Nonnull
   private String reason;
 
-  public CancelOrderRequest() { 
+  public CancelOrderRequest() {
   }
 
   public CancelOrderRequest reason(@javax.annotation.Nonnull String reason) {

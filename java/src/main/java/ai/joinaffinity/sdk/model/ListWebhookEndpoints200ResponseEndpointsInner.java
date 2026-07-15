@@ -68,7 +68,7 @@ public class ListWebhookEndpoints200ResponseEndpointsInner {
   @javax.annotation.Nullable
   private String url;
 
-  public ListWebhookEndpoints200ResponseEndpointsInner() { 
+  public ListWebhookEndpoints200ResponseEndpointsInner() {
   }
 
   public ListWebhookEndpoints200ResponseEndpointsInner createdAt(@javax.annotation.Nullable String createdAt) {

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiKey** | [**GetApiAccess200ResponseApiKey**](GetApiAccess200ResponseApiKey.md) |  | 
-**Livemode** | **bool** |  | 
-**Object** | **string** |  | 
-**Scopes** | **[]string** |  | 
-**ServiceAccount** | [**GetApiAccess200ResponseServiceAccount**](GetApiAccess200ResponseServiceAccount.md) |  | 
+**ApiKey** | [**GetApiAccess200ResponseApiKey**](GetApiAccess200ResponseApiKey.md) |  |
+**Livemode** | **bool** |  |
+**Object** | **string** |  |
+**Scopes** | **[]string** |  |
+**ServiceAccount** | [**GetApiAccess200ResponseServiceAccount**](GetApiAccess200ResponseServiceAccount.md) |  |
 
 ## Methods
 

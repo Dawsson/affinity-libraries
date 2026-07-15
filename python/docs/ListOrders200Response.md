@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**orders** | [**List[ListOrders200ResponseOrdersInner]**](ListOrders200ResponseOrdersInner.md) |  | 
+**orders** | [**List[ListOrders200ResponseOrdersInner]**](ListOrders200ResponseOrdersInner.md) |  |
 
 ## Example
 

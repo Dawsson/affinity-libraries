@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | **string** | Stable machine-readable error code. | 
-**Message** | **string** | Human-readable error summary. | 
-**RequestId** | **string** | Request identifier for support. | 
+**Code** | **string** | Stable machine-readable error code. |
+**Message** | **string** | Human-readable error summary. |
+**RequestId** | **string** | Request identifier for support. |
 
 ## Methods
 

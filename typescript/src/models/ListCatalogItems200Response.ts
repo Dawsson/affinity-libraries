@@ -22,13 +22,13 @@ import {
 } from './ListCatalogItems200ResponseItemsInner';
 
 /**
- * 
+ *
  * @export
  * @interface ListCatalogItems200Response
  */
 export interface ListCatalogItems200Response {
     /**
-     * 
+     *
      * @type {Array<ListCatalogItems200ResponseItemsInner>}
      * @memberof ListCatalogItems200Response
      */
@@ -52,7 +52,7 @@ export function ListCatalogItems200ResponseFromJSONTyped(json: any, ignoreDiscri
         return json;
     }
     return {
-        
+
         'items': ((json['items'] as Array<any>).map(ListCatalogItems200ResponseItemsInnerFromJSON)),
     };
 }
@@ -67,7 +67,7 @@ export function ListCatalogItems200ResponseToJSONTyped(value?: ListCatalogItems2
     }
 
     return {
-        
+
         'items': ((value['items'] as Array<any>).map(ListCatalogItems200ResponseItemsInnerToJSON)),
     };
 }

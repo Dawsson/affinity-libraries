@@ -14,49 +14,49 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface GetWebhookEvent200ResponseEvent
  */
 export interface GetWebhookEvent200ResponseEvent {
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetWebhookEvent200ResponseEvent
      */
     createdAt: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetWebhookEvent200ResponseEvent
      */
     eventType: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetWebhookEvent200ResponseEvent
      */
     id: string;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof GetWebhookEvent200ResponseEvent
      */
     livemode: boolean;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetWebhookEvent200ResponseEvent
      */
     objectId: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetWebhookEvent200ResponseEvent
      */
     objectType: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetWebhookEvent200ResponseEvent
      */
@@ -86,7 +86,7 @@ export function GetWebhookEvent200ResponseEventFromJSONTyped(json: any, ignoreDi
         return json;
     }
     return {
-        
+
         'createdAt': json['createdAt'],
         'eventType': json['eventType'],
         'id': json['id'],
@@ -107,7 +107,7 @@ export function GetWebhookEvent200ResponseEventToJSONTyped(value?: GetWebhookEve
     }
 
     return {
-        
+
         'createdAt': value['createdAt'],
         'eventType': value['eventType'],
         'id': value['id'],

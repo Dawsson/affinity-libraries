@@ -36,25 +36,25 @@ import {
 } from './GetWebhookEvent200ResponseEvent';
 
 /**
- * 
+ *
  * @export
  * @interface GetWebhookEvent200Response
  */
 export interface GetWebhookEvent200Response {
     /**
-     * 
+     *
      * @type {Array<GetWebhookEvent200ResponseAttemptsInner>}
      * @memberof GetWebhookEvent200Response
      */
     attempts: Array<GetWebhookEvent200ResponseAttemptsInner>;
     /**
-     * 
+     *
      * @type {Array<GetWebhookEvent200ResponseDeliveriesInner>}
      * @memberof GetWebhookEvent200Response
      */
     deliveries: Array<GetWebhookEvent200ResponseDeliveriesInner>;
     /**
-     * 
+     *
      * @type {GetWebhookEvent200ResponseEvent}
      * @memberof GetWebhookEvent200Response
      */
@@ -80,7 +80,7 @@ export function GetWebhookEvent200ResponseFromJSONTyped(json: any, ignoreDiscrim
         return json;
     }
     return {
-        
+
         'attempts': ((json['attempts'] as Array<any>).map(GetWebhookEvent200ResponseAttemptsInnerFromJSON)),
         'deliveries': ((json['deliveries'] as Array<any>).map(GetWebhookEvent200ResponseDeliveriesInnerFromJSON)),
         'event': GetWebhookEvent200ResponseEventFromJSON(json['event']),
@@ -97,7 +97,7 @@ export function GetWebhookEvent200ResponseToJSONTyped(value?: GetWebhookEvent200
     }
 
     return {
-        
+
         'attempts': ((value['attempts'] as Array<any>).map(GetWebhookEvent200ResponseAttemptsInnerToJSON)),
         'deliveries': ((value['deliveries'] as Array<any>).map(GetWebhookEvent200ResponseDeliveriesInnerToJSON)),
         'event': GetWebhookEvent200ResponseEventToJSON(value['event']),

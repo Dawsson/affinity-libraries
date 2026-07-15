@@ -14,43 +14,43 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface CreateOrderRequestAnyOfPatientAddress
  */
 export interface CreateOrderRequestAnyOfPatientAddress {
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatientAddress
      */
     city: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatientAddress
      */
     country?: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatientAddress
      */
     line1: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatientAddress
      */
     line2?: string | null;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatientAddress
      */
     postalCode: string;
     /**
-     * 
+     *
      * @type {string}
      * @memberof CreateOrderRequestAnyOfPatientAddress
      */
@@ -77,7 +77,7 @@ export function CreateOrderRequestAnyOfPatientAddressFromJSONTyped(json: any, ig
         return json;
     }
     return {
-        
+
         'city': json['city'],
         'country': json['country'] == null ? undefined : json['country'],
         'line1': json['line1'],
@@ -97,7 +97,7 @@ export function CreateOrderRequestAnyOfPatientAddressToJSONTyped(value?: CreateO
     }
 
     return {
-        
+
         'city': value['city'],
         'country': value['country'],
         'line1': value['line1'],

@@ -51,7 +51,7 @@ public class Error {
   @javax.annotation.Nonnull
   private String requestId;
 
-  public Error() { 
+  public Error() {
   }
 
   public Error code(@javax.annotation.Nonnull String code) {

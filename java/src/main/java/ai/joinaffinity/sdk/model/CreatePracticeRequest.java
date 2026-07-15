@@ -94,7 +94,7 @@ public class CreatePracticeRequest {
   public static final String JSON_PROPERTY_TIMEZONE = "timezone";
   private JsonNullable<String> timezone = JsonNullable.<String>undefined();
 
-  public CreatePracticeRequest() { 
+  public CreatePracticeRequest() {
   }
 
   public CreatePracticeRequest address(@javax.annotation.Nonnull CreatePracticeRequestAddress address) {
@@ -166,7 +166,7 @@ public class CreatePracticeRequest {
   public JsonNullable<ListPractices200ResponseDataInnerContactsPrimary> getComplianceContact_JsonNullable() {
     return complianceContact;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_COMPLIANCE_CONTACT)
   public void setComplianceContact_JsonNullable(JsonNullable<ListPractices200ResponseDataInnerContactsPrimary> complianceContact) {
     this.complianceContact = complianceContact;
@@ -198,7 +198,7 @@ public class CreatePracticeRequest {
   public JsonNullable<String> getExternalId_JsonNullable() {
     return externalId;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_EXTERNAL_ID)
   public void setExternalId_JsonNullable(JsonNullable<String> externalId) {
     this.externalId = externalId;
@@ -230,7 +230,7 @@ public class CreatePracticeRequest {
   public JsonNullable<String> getLegalName_JsonNullable() {
     return legalName;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_LEGAL_NAME)
   public void setLegalName_JsonNullable(JsonNullable<String> legalName) {
     this.legalName = legalName;
@@ -318,7 +318,7 @@ public class CreatePracticeRequest {
   public JsonNullable<ListPractices200ResponseDataInnerContactsPrimary> getPrimaryContact_JsonNullable() {
     return primaryContact;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_PRIMARY_CONTACT)
   public void setPrimaryContact_JsonNullable(JsonNullable<ListPractices200ResponseDataInnerContactsPrimary> primaryContact) {
     this.primaryContact = primaryContact;
@@ -350,7 +350,7 @@ public class CreatePracticeRequest {
   public JsonNullable<String> getSupportEmail_JsonNullable() {
     return supportEmail;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_SUPPORT_EMAIL)
   public void setSupportEmail_JsonNullable(JsonNullable<String> supportEmail) {
     this.supportEmail = supportEmail;
@@ -382,7 +382,7 @@ public class CreatePracticeRequest {
   public JsonNullable<String> getSupportPhone_JsonNullable() {
     return supportPhone;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_SUPPORT_PHONE)
   public void setSupportPhone_JsonNullable(JsonNullable<String> supportPhone) {
     this.supportPhone = supportPhone;
@@ -414,7 +414,7 @@ public class CreatePracticeRequest {
   public JsonNullable<String> getTimezone_JsonNullable() {
     return timezone;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_TIMEZONE)
   public void setTimezone_JsonNullable(JsonNullable<String> timezone) {
     this.timezone = timezone;

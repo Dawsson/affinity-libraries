@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List[ListPractices200ResponseDataInner]**](ListPractices200ResponseDataInner.md) |  | 
-**has_more** | **bool** |  | 
-**object** | **str** |  | 
+**data** | [**List[ListPractices200ResponseDataInner]**](ListPractices200ResponseDataInner.md) |  |
+**has_more** | **bool** |  |
+**object** | **str** |  |
 
 ## Example
 

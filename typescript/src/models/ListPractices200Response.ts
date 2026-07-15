@@ -22,25 +22,25 @@ import {
 } from './ListPractices200ResponseDataInner';
 
 /**
- * 
+ *
  * @export
  * @interface ListPractices200Response
  */
 export interface ListPractices200Response {
     /**
-     * 
+     *
      * @type {Array<ListPractices200ResponseDataInner>}
      * @memberof ListPractices200Response
      */
     data: Array<ListPractices200ResponseDataInner>;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof ListPractices200Response
      */
     hasMore: boolean;
     /**
-     * 
+     *
      * @type {ListPractices200ResponseObjectEnum}
      * @memberof ListPractices200Response
      */
@@ -76,7 +76,7 @@ export function ListPractices200ResponseFromJSONTyped(json: any, ignoreDiscrimin
         return json;
     }
     return {
-        
+
         'data': ((json['data'] as Array<any>).map(ListPractices200ResponseDataInnerFromJSON)),
         'hasMore': json['hasMore'],
         'object': json['object'],
@@ -93,7 +93,7 @@ export function ListPractices200ResponseToJSONTyped(value?: ListPractices200Resp
     }
 
     return {
-        
+
         'data': ((value['data'] as Array<any>).map(ListPractices200ResponseDataInnerToJSON)),
         'hasMore': value['hasMore'],
         'object': value['object'],

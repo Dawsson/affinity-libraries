@@ -29,37 +29,37 @@ import {
 } from './GetApiAccess200ResponseServiceAccount';
 
 /**
- * 
+ *
  * @export
  * @interface GetApiAccess200Response
  */
 export interface GetApiAccess200Response {
     /**
-     * 
+     *
      * @type {GetApiAccess200ResponseApiKey}
      * @memberof GetApiAccess200Response
      */
     apiKey: GetApiAccess200ResponseApiKey;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof GetApiAccess200Response
      */
     livemode: boolean;
     /**
-     * 
+     *
      * @type {GetApiAccess200ResponseObjectEnum}
      * @memberof GetApiAccess200Response
      */
     object: GetApiAccess200ResponseObjectEnum;
     /**
-     * 
+     *
      * @type {Array<string>}
      * @memberof GetApiAccess200Response
      */
     scopes: Array<string>;
     /**
-     * 
+     *
      * @type {GetApiAccess200ResponseServiceAccount}
      * @memberof GetApiAccess200Response
      */
@@ -97,7 +97,7 @@ export function GetApiAccess200ResponseFromJSONTyped(json: any, ignoreDiscrimina
         return json;
     }
     return {
-        
+
         'apiKey': GetApiAccess200ResponseApiKeyFromJSON(json['apiKey']),
         'livemode': json['livemode'],
         'object': json['object'],
@@ -116,7 +116,7 @@ export function GetApiAccess200ResponseToJSONTyped(value?: GetApiAccess200Respon
     }
 
     return {
-        
+
         'apiKey': GetApiAccess200ResponseApiKeyToJSON(value['apiKey']),
         'livemode': value['livemode'],
         'object': value['object'],

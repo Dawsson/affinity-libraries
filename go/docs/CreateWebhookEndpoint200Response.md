@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Endpoint** | [**CreateWebhookEndpoint200ResponseEndpoint**](CreateWebhookEndpoint200ResponseEndpoint.md) |  | 
-**SigningSecret** | **NullableString** |  | 
+**Endpoint** | [**CreateWebhookEndpoint200ResponseEndpoint**](CreateWebhookEndpoint200ResponseEndpoint.md) |  |
+**SigningSecret** | **NullableString** |  |
 
 ## Methods
 

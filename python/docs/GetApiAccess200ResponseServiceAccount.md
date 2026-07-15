@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**object** | **str** |  | 
-**subject_id** | **str** |  | 
-**subject_type** | **str** |  | 
+**id** | **str** |  |
+**object** | **str** |  |
+**subject_id** | **str** |  |
+**subject_type** | **str** |  |
 
 ## Example
 

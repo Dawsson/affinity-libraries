@@ -44,7 +44,7 @@ public class ListCatalogItems200Response {
   @javax.annotation.Nonnull
   private List<ListCatalogItems200ResponseItemsInner> items = new ArrayList<>();
 
-  public ListCatalogItems200Response() { 
+  public ListCatalogItems200Response() {
   }
 
   public ListCatalogItems200Response items(@javax.annotation.Nonnull List<ListCatalogItems200ResponseItemsInner> items) {

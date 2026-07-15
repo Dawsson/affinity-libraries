@@ -48,7 +48,7 @@ public class ListPractices200ResponseDataInnerContacts {
   @javax.annotation.Nullable
   private ListPractices200ResponseDataInnerContactsPrimary primary;
 
-  public ListPractices200ResponseDataInnerContacts() { 
+  public ListPractices200ResponseDataInnerContacts() {
   }
 
   public ListPractices200ResponseDataInnerContacts compliance(@javax.annotation.Nullable ListPractices200ResponseDataInnerContactsCompliance compliance) {

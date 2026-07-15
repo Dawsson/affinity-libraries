@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **NullableString** |  | 
-**EventType** | **NullableString** |  | 
-**Id** | **NullableString** |  | 
-**Message** | **NullableString** |  | 
+**CreatedAt** | **NullableString** |  |
+**EventType** | **NullableString** |  |
+**Id** | **NullableString** |  |
+**Message** | **NullableString** |  |
 
 ## Methods
 

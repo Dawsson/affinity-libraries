@@ -68,7 +68,7 @@ public class ListPractices200ResponseDataInnerAddress {
   @javax.annotation.Nullable
   private String state;
 
-  public ListPractices200ResponseDataInnerAddress() { 
+  public ListPractices200ResponseDataInnerAddress() {
   }
 
   public ListPractices200ResponseDataInnerAddress city(@javax.annotation.Nonnull String city) {
@@ -116,7 +116,7 @@ public class ListPractices200ResponseDataInnerAddress {
   public JsonNullable<String> getCountry_JsonNullable() {
     return country;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_COUNTRY)
   public void setCountry_JsonNullable(JsonNullable<String> country) {
     this.country = country;
@@ -172,7 +172,7 @@ public class ListPractices200ResponseDataInnerAddress {
   public JsonNullable<String> getLine2_JsonNullable() {
     return line2;
   }
-  
+
   @JsonProperty(JSON_PROPERTY_LINE2)
   public void setLine2_JsonNullable(JsonNullable<String> line2) {
     this.line2 = line2;

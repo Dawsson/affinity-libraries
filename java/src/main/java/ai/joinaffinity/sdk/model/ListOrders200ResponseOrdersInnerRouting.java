@@ -58,7 +58,7 @@ public class ListOrders200ResponseOrdersInnerRouting {
   @javax.annotation.Nullable
   private String selectedCompounderId;
 
-  public ListOrders200ResponseOrdersInnerRouting() { 
+  public ListOrders200ResponseOrdersInnerRouting() {
   }
 
   public ListOrders200ResponseOrdersInnerRouting blockedReasons(@javax.annotation.Nonnull List<String> blockedReasons) {

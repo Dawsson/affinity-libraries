@@ -48,6 +48,7 @@ class PlatformOrdersApi:
     def cancel_order(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         cancel_order_request: CancelOrderRequest,
         _request_timeout: Union[
             None,
@@ -68,6 +69,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param cancel_order_request: (required)
         :type cancel_order_request: CancelOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -94,6 +97,7 @@ class PlatformOrdersApi:
 
         _param = self._cancel_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             cancel_order_request=cancel_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -103,13 +107,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -126,6 +131,7 @@ class PlatformOrdersApi:
     def cancel_order_with_http_info(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         cancel_order_request: CancelOrderRequest,
         _request_timeout: Union[
             None,
@@ -146,6 +152,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param cancel_order_request: (required)
         :type cancel_order_request: CancelOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -172,6 +180,7 @@ class PlatformOrdersApi:
 
         _param = self._cancel_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             cancel_order_request=cancel_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -181,13 +190,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -204,6 +214,7 @@ class PlatformOrdersApi:
     def cancel_order_without_preload_content(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         cancel_order_request: CancelOrderRequest,
         _request_timeout: Union[
             None,
@@ -224,6 +235,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param cancel_order_request: (required)
         :type cancel_order_request: CancelOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -250,6 +263,7 @@ class PlatformOrdersApi:
 
         _param = self._cancel_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             cancel_order_request=cancel_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -259,13 +273,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -277,6 +292,7 @@ class PlatformOrdersApi:
     def _cancel_order_serialize(
         self,
         order_id,
+        idempotency_key,
         cancel_order_request,
         _request_auth,
         _content_type,
@@ -303,6 +319,8 @@ class PlatformOrdersApi:
             _path_params['orderId'] = order_id
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if cancel_order_request is not None:
@@ -313,7 +331,8 @@ class PlatformOrdersApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
@@ -333,7 +352,7 @@ class PlatformOrdersApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -358,6 +377,7 @@ class PlatformOrdersApi:
     @validate_call
     def create_order(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_order_request: CreateOrderRequest,
         _request_timeout: Union[
             None,
@@ -376,6 +396,8 @@ class PlatformOrdersApi:
 
         Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_order_request: (required)
         :type create_order_request: CreateOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -401,6 +423,7 @@ class PlatformOrdersApi:
         """ # noqa: E501
 
         _param = self._create_order_serialize(
+            idempotency_key=idempotency_key,
             create_order_request=create_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -410,13 +433,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -432,6 +456,7 @@ class PlatformOrdersApi:
     @validate_call
     def create_order_with_http_info(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_order_request: CreateOrderRequest,
         _request_timeout: Union[
             None,
@@ -450,6 +475,8 @@ class PlatformOrdersApi:
 
         Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_order_request: (required)
         :type create_order_request: CreateOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -475,6 +502,7 @@ class PlatformOrdersApi:
         """ # noqa: E501
 
         _param = self._create_order_serialize(
+            idempotency_key=idempotency_key,
             create_order_request=create_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -484,13 +512,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -506,6 +535,7 @@ class PlatformOrdersApi:
     @validate_call
     def create_order_without_preload_content(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_order_request: CreateOrderRequest,
         _request_timeout: Union[
             None,
@@ -524,6 +554,8 @@ class PlatformOrdersApi:
 
         Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_order_request: (required)
         :type create_order_request: CreateOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -549,6 +581,7 @@ class PlatformOrdersApi:
         """ # noqa: E501
 
         _param = self._create_order_serialize(
+            idempotency_key=idempotency_key,
             create_order_request=create_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -558,13 +591,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -575,6 +609,7 @@ class PlatformOrdersApi:
 
     def _create_order_serialize(
         self,
+        idempotency_key,
         create_order_request,
         _request_auth,
         _content_type,
@@ -599,6 +634,8 @@ class PlatformOrdersApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if create_order_request is not None:
@@ -609,7 +646,8 @@ class PlatformOrdersApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
@@ -629,7 +667,7 @@ class PlatformOrdersApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -705,13 +743,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -778,13 +817,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -851,13 +891,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -902,14 +943,15 @@ class PlatformOrdersApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -985,13 +1027,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListOrderEvents200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1058,13 +1101,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListOrderEvents200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1131,13 +1175,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListOrderEvents200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1182,14 +1227,15 @@ class PlatformOrdersApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -1269,13 +1315,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListOrders200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1346,13 +1393,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListOrders200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1423,13 +1471,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListOrders200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1465,13 +1514,13 @@ class PlatformOrdersApi:
         # process the path parameters
         # process the query parameters
         if external_order_id is not None:
-            
+
             _query_params.append(('externalOrderId', external_order_id))
-            
+
         if patient_external_id is not None:
-            
+
             _query_params.append(('patientExternalId', patient_external_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -1481,14 +1530,15 @@ class PlatformOrdersApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -1514,6 +1564,7 @@ class PlatformOrdersApi:
     def submit_order(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1533,6 +1584,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1557,6 +1610,7 @@ class PlatformOrdersApi:
 
         _param = self._submit_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1565,13 +1619,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1588,6 +1643,7 @@ class PlatformOrdersApi:
     def submit_order_with_http_info(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1607,6 +1663,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1631,6 +1689,7 @@ class PlatformOrdersApi:
 
         _param = self._submit_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1639,13 +1698,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1662,6 +1722,7 @@ class PlatformOrdersApi:
     def submit_order_without_preload_content(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1681,6 +1742,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1705,6 +1768,7 @@ class PlatformOrdersApi:
 
         _param = self._submit_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1713,13 +1777,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1731,6 +1796,7 @@ class PlatformOrdersApi:
     def _submit_order_serialize(
         self,
         order_id,
+        idempotency_key,
         _request_auth,
         _content_type,
         _headers,
@@ -1756,6 +1822,8 @@ class PlatformOrdersApi:
             _path_params['orderId'] = order_id
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
 
@@ -1764,14 +1832,15 @@ class PlatformOrdersApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -1797,6 +1866,7 @@ class PlatformOrdersApi:
     def update_order(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         update_order_request: UpdateOrderRequest,
         _request_timeout: Union[
             None,
@@ -1817,6 +1887,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param update_order_request: (required)
         :type update_order_request: UpdateOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -1843,6 +1915,7 @@ class PlatformOrdersApi:
 
         _param = self._update_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             update_order_request=update_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1852,13 +1925,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1875,6 +1949,7 @@ class PlatformOrdersApi:
     def update_order_with_http_info(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         update_order_request: UpdateOrderRequest,
         _request_timeout: Union[
             None,
@@ -1895,6 +1970,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param update_order_request: (required)
         :type update_order_request: UpdateOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -1921,6 +1998,7 @@ class PlatformOrdersApi:
 
         _param = self._update_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             update_order_request=update_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1930,13 +2008,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1953,6 +2032,7 @@ class PlatformOrdersApi:
     def update_order_without_preload_content(
         self,
         order_id: StrictStr,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         update_order_request: UpdateOrderRequest,
         _request_timeout: Union[
             None,
@@ -1973,6 +2053,8 @@ class PlatformOrdersApi:
 
         :param order_id: (required)
         :type order_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param update_order_request: (required)
         :type update_order_request: UpdateOrderRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -1999,6 +2081,7 @@ class PlatformOrdersApi:
 
         _param = self._update_order_serialize(
             order_id=order_id,
+            idempotency_key=idempotency_key,
             update_order_request=update_order_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2008,13 +2091,14 @@ class PlatformOrdersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateOrder200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2026,6 +2110,7 @@ class PlatformOrdersApi:
     def _update_order_serialize(
         self,
         order_id,
+        idempotency_key,
         update_order_request,
         _request_auth,
         _content_type,
@@ -2052,6 +2137,8 @@ class PlatformOrdersApi:
             _path_params['orderId'] = order_id
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if update_order_request is not None:
@@ -2062,7 +2149,8 @@ class PlatformOrdersApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
@@ -2082,7 +2170,7 @@ class PlatformOrdersApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 

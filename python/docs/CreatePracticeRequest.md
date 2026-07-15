@@ -5,17 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**CreatePracticeRequestAddress**](CreatePracticeRequestAddress.md) |  | 
-**attestations** | [**CreatePracticeRequestAttestations**](CreatePracticeRequestAttestations.md) |  | 
-**compliance_contact** | [**ListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional] 
-**external_id** | **str** |  | [optional] 
-**legal_name** | **str** |  | [optional] 
-**name** | **str** |  | 
-**prescribers** | [**List[CreatePracticeRequestPrescribersInner]**](CreatePracticeRequestPrescribersInner.md) |  | [optional] 
-**primary_contact** | [**ListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional] 
-**support_email** | **str** |  | [optional] 
-**support_phone** | **str** |  | [optional] 
-**timezone** | **str** |  | [optional] 
+**address** | [**CreatePracticeRequestAddress**](CreatePracticeRequestAddress.md) |  |
+**attestations** | [**CreatePracticeRequestAttestations**](CreatePracticeRequestAttestations.md) |  |
+**compliance_contact** | [**ListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional]
+**external_id** | **str** |  | [optional]
+**legal_name** | **str** |  | [optional]
+**name** | **str** |  |
+**prescribers** | [**List[CreatePracticeRequestPrescribersInner]**](CreatePracticeRequestPrescribersInner.md) |  | [optional]
+**primary_contact** | [**ListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional]
+**support_email** | **str** |  | [optional]
+**support_phone** | **str** |  | [optional]
+**timezone** | **str** |  | [optional]
 
 ## Example
 

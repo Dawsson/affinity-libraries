@@ -20,6 +20,7 @@ import ai.joinaffinity.sdk.Pair;
 
 import ai.joinaffinity.sdk.model.Error;
 import ai.joinaffinity.sdk.model.GetPlatformOrganization200Response;
+import ai.joinaffinity.sdk.model.ListOrders400Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -229,11 +230,11 @@ public class PlatformsApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         GetPlatformOrganization200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetPlatformOrganization200Response>() {});
-        
+
 
         return new ApiResponse<GetPlatformOrganization200Response>(
             localVarResponse.statusCode(),
@@ -277,7 +278,7 @@ public class PlatformsApi {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {

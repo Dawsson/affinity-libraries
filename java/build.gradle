@@ -111,3 +111,6 @@ spotless {
         importOrder()
     }
 }
+
+// affinity-quickstart-validation
+sourceSets.test.java.srcDir '../examples/java'

@@ -36,25 +36,25 @@ import {
 } from './GetPlatformOrganization200ResponseUser';
 
 /**
- * 
+ *
  * @export
  * @interface GetPlatformOrganization200Response
  */
 export interface GetPlatformOrganization200Response {
     /**
-     * 
+     *
      * @type {GetPlatformOrganization200ResponseAccount}
      * @memberof GetPlatformOrganization200Response
      */
     account: GetPlatformOrganization200ResponseAccount;
     /**
-     * 
+     *
      * @type {GetPlatformOrganization200ResponseMembership}
      * @memberof GetPlatformOrganization200Response
      */
     membership: GetPlatformOrganization200ResponseMembership;
     /**
-     * 
+     *
      * @type {GetPlatformOrganization200ResponseUser}
      * @memberof GetPlatformOrganization200Response
      */
@@ -80,7 +80,7 @@ export function GetPlatformOrganization200ResponseFromJSONTyped(json: any, ignor
         return json;
     }
     return {
-        
+
         'account': GetPlatformOrganization200ResponseAccountFromJSON(json['account']),
         'membership': GetPlatformOrganization200ResponseMembershipFromJSON(json['membership']),
         'user': GetPlatformOrganization200ResponseUserFromJSON(json['user']),
@@ -97,7 +97,7 @@ export function GetPlatformOrganization200ResponseToJSONTyped(value?: GetPlatfor
     }
 
     return {
-        
+
         'account': GetPlatformOrganization200ResponseAccountToJSON(value['account']),
         'membership': GetPlatformOrganization200ResponseMembershipToJSON(value['membership']),
         'user': GetPlatformOrganization200ResponseUserToJSON(value['user']),

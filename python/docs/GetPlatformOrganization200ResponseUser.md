@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **str** |  | 
-**email_verified** | **bool** |  | [optional] 
-**image** | **str** |  | 
-**name** | **str** |  | 
-**two_factor_enabled** | **bool** |  | [optional] 
-**user_id** | **str** |  | 
+**email** | **str** |  |
+**email_verified** | **bool** |  | [optional]
+**image** | **str** |  |
+**name** | **str** |  |
+**two_factor_enabled** | **bool** |  | [optional]
+**user_id** | **str** |  |
 
 ## Example
 

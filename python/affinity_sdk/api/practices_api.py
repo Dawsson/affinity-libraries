@@ -44,6 +44,7 @@ class PracticesApi:
     @validate_call
     def create_practice(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_practice_request: CreatePracticeRequest,
         _request_timeout: Union[
             None,
@@ -62,6 +63,8 @@ class PracticesApi:
 
         Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_practice_request: (required)
         :type create_practice_request: CreatePracticeRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -87,6 +90,7 @@ class PracticesApi:
         """ # noqa: E501
 
         _param = self._create_practice_serialize(
+            idempotency_key=idempotency_key,
             create_practice_request=create_practice_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -96,13 +100,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -118,6 +123,7 @@ class PracticesApi:
     @validate_call
     def create_practice_with_http_info(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_practice_request: CreatePracticeRequest,
         _request_timeout: Union[
             None,
@@ -136,6 +142,8 @@ class PracticesApi:
 
         Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_practice_request: (required)
         :type create_practice_request: CreatePracticeRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -161,6 +169,7 @@ class PracticesApi:
         """ # noqa: E501
 
         _param = self._create_practice_serialize(
+            idempotency_key=idempotency_key,
             create_practice_request=create_practice_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -170,13 +179,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -192,6 +202,7 @@ class PracticesApi:
     @validate_call
     def create_practice_without_preload_content(
         self,
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         create_practice_request: CreatePracticeRequest,
         _request_timeout: Union[
             None,
@@ -210,6 +221,8 @@ class PracticesApi:
 
         Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
 
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param create_practice_request: (required)
         :type create_practice_request: CreatePracticeRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -235,6 +248,7 @@ class PracticesApi:
         """ # noqa: E501
 
         _param = self._create_practice_serialize(
+            idempotency_key=idempotency_key,
             create_practice_request=create_practice_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -244,13 +258,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -261,6 +276,7 @@ class PracticesApi:
 
     def _create_practice_serialize(
         self,
+        idempotency_key,
         create_practice_request,
         _request_auth,
         _content_type,
@@ -285,6 +301,8 @@ class PracticesApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if create_practice_request is not None:
@@ -295,7 +313,8 @@ class PracticesApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
@@ -315,7 +334,7 @@ class PracticesApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -392,13 +411,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -466,13 +486,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -540,13 +561,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -591,14 +613,15 @@ class PracticesApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -670,13 +693,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListPractices200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -739,13 +763,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListPractices200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -808,13 +833,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListPractices200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -856,14 +882,15 @@ class PracticesApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 
@@ -889,6 +916,7 @@ class PracticesApi:
     def update_practice(
         self,
         practice_id: Annotated[str, Field(min_length=1, strict=True, max_length=160)],
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -908,6 +936,8 @@ class PracticesApi:
 
         :param practice_id: (required)
         :type practice_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -932,6 +962,7 @@ class PracticesApi:
 
         _param = self._update_practice_serialize(
             practice_id=practice_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -940,13 +971,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -963,6 +995,7 @@ class PracticesApi:
     def update_practice_with_http_info(
         self,
         practice_id: Annotated[str, Field(min_length=1, strict=True, max_length=160)],
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -982,6 +1015,8 @@ class PracticesApi:
 
         :param practice_id: (required)
         :type practice_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1006,6 +1041,7 @@ class PracticesApi:
 
         _param = self._update_practice_serialize(
             practice_id=practice_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1014,13 +1050,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1037,6 +1074,7 @@ class PracticesApi:
     def update_practice_without_preload_content(
         self,
         practice_id: Annotated[str, Field(min_length=1, strict=True, max_length=160)],
+        idempotency_key: Annotated[str, Field(strict=True, max_length=255, description="Unique operation key required for every mutation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1056,6 +1094,8 @@ class PracticesApi:
 
         :param practice_id: (required)
         :type practice_id: str
+        :param idempotency_key: Unique operation key required for every mutation. (required)
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1080,6 +1120,7 @@ class PracticesApi:
 
         _param = self._update_practice_serialize(
             practice_id=practice_id,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1088,13 +1129,14 @@ class PracticesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePractice200Response",
-            '400': "Error",
-            '401': "Error",
-            '403': "Error",
-            '404': "Error",
-            '409': "Error",
+            '400': "ListOrders400Response",
+            '401': "ListOrders400Response",
+            '403': "ListOrders400Response",
+            '404': "ListOrders400Response",
+            '409': "ListOrders400Response",
             '422': "Error",
-            '429': "Error",
+            '429': "ListOrders400Response",
+            '500': "ListOrders400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1106,6 +1148,7 @@ class PracticesApi:
     def _update_practice_serialize(
         self,
         practice_id,
+        idempotency_key,
         _request_auth,
         _content_type,
         _headers,
@@ -1131,6 +1174,8 @@ class PracticesApi:
             _path_params['practiceId'] = practice_id
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
 
@@ -1139,14 +1184,15 @@ class PracticesApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/json'
+                    'application/json',
+                    'application/problem+json'
                 ]
             )
 
 
         # authentication setting
         _auth_settings: List[str] = [
-            'bearerAuth', 
+            'bearerAuth',
             'affinityApiKey'
         ]
 

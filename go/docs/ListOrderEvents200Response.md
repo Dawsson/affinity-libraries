@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | [**[]ListOrderEvents200ResponseEventsInner**](ListOrderEvents200ResponseEventsInner.md) |  | 
+**Events** | [**[]ListOrderEvents200ResponseEventsInner**](ListOrderEvents200ResponseEventsInner.md) |  |
 
 ## Methods
 

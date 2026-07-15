@@ -43,7 +43,7 @@ public class CreateWebhookEndpointRequest {
   @javax.annotation.Nullable
   private List<String> enabledEvents = new ArrayList<>();
 
-  public CreateWebhookEndpointRequest() { 
+  public CreateWebhookEndpointRequest() {
   }
 
   public CreateWebhookEndpointRequest enabledEvents(@javax.annotation.Nullable List<String> enabledEvents) {

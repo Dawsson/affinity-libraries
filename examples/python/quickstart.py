@@ -9,20 +9,14 @@ def main() -> None:
     if not api_key:
         raise RuntimeError("Set AFFINITY_API_KEY to a test-mode service key")
 
-    configuration = affinity_sdk.Configuration(access_token=api_key)
-
-    with affinity_sdk.ApiClient(configuration) as client:
-        client.add_default_header("Affinity-Version", "2026-07-09")
-
-        access_api = affinity_sdk.APIKeysApi(client)
-        catalog_api = affinity_sdk.CatalogApi(client)
-        orders_api = affinity_sdk.PlatformOrdersApi(client)
-        platform_api = affinity_sdk.PlatformsApi(client)
-        practices_api = affinity_sdk.PracticesApi(client)
-        webhooks_api = affinity_sdk.PlatformWebhooksApi(client)
+    with affinity_sdk.Affinity(
+        api_key,
+        api_version="2026-07-09",
+        host="api.joinaffinityai.com",
+    ) as affinity:
 
         # Confirm the key's account, environment, and scopes before reading resources.
-        access = access_api.get_api_access()
+        access = affinity.account.retrieve_access()
         print("Authenticated", {
             "livemode": access.livemode,
             "scopes": access.scopes,
@@ -34,11 +28,11 @@ def main() -> None:
         if "catalog:read" not in access.scopes:
             raise RuntimeError("The service key needs the catalog:read scope")
 
-        organization = platform_api.get_platform_organization()
-        catalog = catalog_api.list_catalog_items(query="semaglutide")
-        practices = practices_api.list_practices()
-        orders = orders_api.list_orders()
-        webhooks = webhooks_api.list_webhook_endpoints()
+        organization = affinity.account.retrieve()
+        catalog = affinity.catalog.list(query="semaglutide")
+        practices = affinity.practices.list()
+        orders = affinity.orders.list()
+        webhooks = affinity.webhooks.list_endpoints()
 
         print("Organization", organization.account)
         print(f"Found {len(catalog.items)} matching sandbox catalog items")

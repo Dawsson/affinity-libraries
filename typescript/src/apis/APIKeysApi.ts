@@ -18,9 +18,14 @@ import {
     GetApiAccess200ResponseFromJSON,
     GetApiAccess200ResponseToJSON,
 } from '../models/GetApiAccess200Response';
+import {
+    type GetApiAccess400Response,
+    GetApiAccess400ResponseFromJSON,
+    GetApiAccess400ResponseToJSON,
+} from '../models/GetApiAccess400Response';
 
 /**
- * 
+ *
  */
 export class APIKeysApi extends runtime.BaseAPI {
 

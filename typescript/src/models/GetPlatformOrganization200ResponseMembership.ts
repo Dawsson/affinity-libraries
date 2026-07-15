@@ -14,13 +14,13 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ *
  * @export
  * @interface GetPlatformOrganization200ResponseMembership
  */
 export interface GetPlatformOrganization200ResponseMembership {
     /**
-     * 
+     *
      * @type {string}
      * @memberof GetPlatformOrganization200ResponseMembership
      */
@@ -44,7 +44,7 @@ export function GetPlatformOrganization200ResponseMembershipFromJSONTyped(json: 
         return json;
     }
     return {
-        
+
         'roleName': json['roleName'],
     };
 }
@@ -59,7 +59,7 @@ export function GetPlatformOrganization200ResponseMembershipToJSONTyped(value?: 
     }
 
     return {
-        
+
         'roleName': value['roleName'],
     };
 }

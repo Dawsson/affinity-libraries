@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Quantity** | Pointer to **NullableFloat32** |  | [optional] 
+**Quantity** | Pointer to **NullableFloat32** |  | [optional]
 
 ## Methods
 

@@ -54,7 +54,7 @@ public class GetPlatformOrganization200Response {
   @javax.annotation.Nonnull
   private GetPlatformOrganization200ResponseUser user;
 
-  public GetPlatformOrganization200Response() { 
+  public GetPlatformOrganization200Response() {
   }
 
   public GetPlatformOrganization200Response account(@javax.annotation.Nonnull GetPlatformOrganization200ResponseAccount account) {

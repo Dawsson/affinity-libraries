@@ -84,7 +84,7 @@ public class GetApiAccess200ResponseApiKey {
   @javax.annotation.Nonnull
   private ObjectEnum _object;
 
-  public GetApiAccess200ResponseApiKey() { 
+  public GetApiAccess200ResponseApiKey() {
   }
 
   public GetApiAccess200ResponseApiKey id(@javax.annotation.Nonnull String id) {

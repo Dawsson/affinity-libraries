@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **str** |  | 
-**event_type** | **str** |  | 
-**id** | **str** |  | 
-**livemode** | **bool** |  | 
-**object_id** | **str** |  | 
-**object_type** | **str** |  | 
-**updated_at** | **str** |  | 
+**created_at** | **str** |  |
+**event_type** | **str** |  |
+**id** | **str** |  |
+**livemode** | **bool** |  |
+**object_id** | **str** |  |
+**object_type** | **str** |  |
+**updated_at** | **str** |  |
 
 ## Example
 

@@ -58,7 +58,7 @@ public class CreateOrder200ResponseOrderRouting {
   @javax.annotation.Nullable
   private String selectedCompounderId;
 
-  public CreateOrder200ResponseOrderRouting() { 
+  public CreateOrder200ResponseOrderRouting() {
   }
 
   public CreateOrder200ResponseOrderRouting blockedReasons(@javax.annotation.Nonnull List<String> blockedReasons) {

@@ -20,6 +20,7 @@ import ai.joinaffinity.sdk.Pair;
 
 import ai.joinaffinity.sdk.model.Error;
 import ai.joinaffinity.sdk.model.ListCatalogItems200Response;
+import ai.joinaffinity.sdk.model.ListCatalogItems400Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -229,11 +230,11 @@ public class CatalogApi {
           );
         }
 
-        
-        
+
+
         String responseBody = new String(localVarResponseBody.readAllBytes());
         ListCatalogItems200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListCatalogItems200Response>() {});
-        
+
 
         return new ApiResponse<ListCatalogItems200Response>(
             localVarResponse.statusCode(),
@@ -277,7 +278,7 @@ public class CatalogApi {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json, application/problem+json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {

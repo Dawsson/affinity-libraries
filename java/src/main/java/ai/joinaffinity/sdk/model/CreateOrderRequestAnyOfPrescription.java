@@ -80,7 +80,7 @@ public class CreateOrderRequestAnyOfPrescription {
   @javax.annotation.Nonnull
   private OffsetDateTime signedAt;
 
-  public CreateOrderRequestAnyOfPrescription() { 
+  public CreateOrderRequestAnyOfPrescription() {
   }
 
   public CreateOrderRequestAnyOfPrescription authorized(@javax.annotation.Nonnull AuthorizedEnum authorized) {
