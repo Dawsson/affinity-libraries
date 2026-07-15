@@ -1,0 +1,29 @@
+name: Validate SDKs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.12
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go/go.mod
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install OpenAPI Generator
+        run: npm install --global @openapitools/openapi-generator-cli@2.25.2
+      - run: chmod +x scripts/validate.sh java/gradlew
+      - run: ./scripts/validate.sh
