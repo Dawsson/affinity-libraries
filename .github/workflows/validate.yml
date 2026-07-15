@@ -25,6 +25,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install OpenAPI Generator
-        run: npm install --global @openapitools/openapi-generator-cli@2.25.2
+        run: bun install --global @openapitools/openapi-generator-cli@2.25.2
       - run: chmod +x scripts/validate.sh java/gradlew
-      - run: ./scripts/validate.sh
+      - run: bun run check

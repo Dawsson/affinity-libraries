@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -137,10 +136,4 @@ model_replay_webhook_event_200_response_deliveries_inner.go
 model_update_order_request.go
 model_update_webhook_endpoint_request.go
 response.go
-test/api_api_keys_test.go
-test/api_catalog_test.go
-test/api_platform_orders_test.go
-test/api_platform_webhooks_test.go
-test/api_platforms_test.go
-test/api_practices_test.go
 utils.go

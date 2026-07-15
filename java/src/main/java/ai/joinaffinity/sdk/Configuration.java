@@ -1,6 +1,6 @@
 /*
  * Affinity API
- * Affinity API for platform practices, compounder catalog discovery, prescription-order submission, and fulfillment tracking.
+ * Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
  *
  * The version of the OpenAPI document: 2026-07-09
  * Contact: support@joinaffinityai.com
@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T21:14:02.112335-04:00[America/Detroit]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class Configuration {
   public static final String VERSION = "0.1.0";
 

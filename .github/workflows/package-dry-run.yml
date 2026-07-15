@@ -1,0 +1,33 @@
+name: Package dry run
+
+on:
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.12
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go/go.mod
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: mkdir -p artifacts && bun --cwd typescript pm pack --destination ../artifacts
+      - run: python -m pip wheel --no-deps --wheel-dir artifacts/python ./python
+      - run: ./java/gradlew -p java jar
+      - run: go test ./...
+        working-directory: go
+      - run: mkdir -p artifacts/java && cp java/build/libs/*.jar artifacts/java/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: affinity-sdk-package-dry-run
+          path: artifacts
