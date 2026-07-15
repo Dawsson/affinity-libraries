@@ -1,0 +1,81 @@
+# APIKeysApi
+
+All URIs are relative to *https://api.joinaffinityai.com*
+
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getApiAccess**](APIKeysApi.md#getapiaccess) | **GET** /v1/auth/access | Read API key access |
+
+
+
+## getApiAccess
+
+> GetApiAccess200Response getApiAccess()
+
+Read API key access
+
+Returns the authenticated API key subject, mode, and scopes.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  APIKeysApi,
+} from '@affinity/sdk';
+import type { GetApiAccessRequest } from '@affinity/sdk';
+
+async function example() {
+  console.log("🚀 Testing @affinity/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: bearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+    // To configure API key authorization: affinityApiKey
+    apiKey: "YOUR API KEY",
+  });
+  const api = new APIKeysApi(config);
+
+  try {
+    const data = await api.getApiAccess();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetApiAccess200Response**](GetApiAccess200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [affinityApiKey](../README.md#affinityApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response |  -  |
+| **400** | The request could not be completed. |  -  |
+| **401** | The request could not be completed. |  -  |
+| **403** | The request could not be completed. |  -  |
+| **404** | The request could not be completed. |  -  |
+| **409** | The request could not be completed. |  -  |
+| **422** | The request could not be completed. |  -  |
+| **429** | The request could not be completed. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
