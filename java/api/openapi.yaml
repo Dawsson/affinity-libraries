@@ -229,6 +229,7 @@ paths:
     get:
       description: "Returns the subject, mode, and scopes for the API key."
       operationId: getApiAccess
+      parameters: []
       responses:
         "200":
           content:
@@ -8348,4 +8349,6 @@ x-tagGroups:
   tags:
   - Pharmacy Organization
   - Pharmacy Orders
+x-affinity-sdk-injected-headers:
+- Affinity-Version
 

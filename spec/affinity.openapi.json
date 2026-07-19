@@ -27,6 +27,9 @@
               "minLength": 1,
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -512,6 +515,11 @@
           "name": "platform.public-api.apiAccess",
           "visibility": "public"
         },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
+          }
+        ],
         "x-affinity-version-required": true
       }
     },
@@ -575,6 +583,9 @@
               ],
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -896,6 +907,9 @@
               ],
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -1421,6 +1435,9 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "requestBody": {
@@ -1503,6 +1520,9 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -1795,6 +1815,9 @@
           },
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "requestBody": {
@@ -2138,6 +2161,9 @@
           },
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "requestBody": {
@@ -2506,6 +2532,9 @@
               "pattern": "^evt_[0-9a-hjkmnp-tv-z]{26}$",
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -2800,6 +2829,9 @@
           },
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -3388,6 +3420,9 @@
               "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "x-affinity-version-required": true
@@ -3728,6 +3763,9 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "x-affinity-version-required": true
@@ -3745,6 +3783,9 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -4037,6 +4078,9 @@
           },
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -4635,6 +4679,9 @@
               "pattern": "^whe_[0-9a-hjkmnp-tv-z]{26}$",
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "x-affinity-version-required": true
@@ -4931,6 +4978,9 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "x-affinity-version-required": true
@@ -4950,6 +5000,9 @@
           },
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -5280,6 +5333,9 @@
           },
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "requestBody": {
@@ -5622,6 +5678,9 @@
           },
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -6226,6 +6285,9 @@
               "pattern": "^evt_[0-9a-hjkmnp-tv-z]{26}$",
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "x-affinity-version-required": true
@@ -6242,6 +6304,9 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -6535,6 +6600,9 @@
           },
           {
             "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
         "responses": {
@@ -6937,6 +7005,16 @@
       }
     },
     "parameters": {
+      "AffinityVersion": {
+        "description": "Pinned dated API contract version. Official SDKs send this header automatically.",
+        "example": "2026-07-19",
+        "in": "header",
+        "name": "Affinity-Version",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
       "IdempotencyKey": {
         "description": "Unique operation key required for every mutation.",
         "in": "header",

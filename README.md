@@ -10,7 +10,8 @@ Official server-side clients for the Affinity platform API.
 | Java | `ai.joinaffinity:affinity-sdk` | [`java`](./java) |
 
 The packages are ready for source-based client testing but are not published to package registries
-yet. Start with the [examples](./examples) or the [first-client checklist](./docs/first-client-checklist.md).
+yet. Start with the [examples](./examples), [versioning guide](./docs/versioning.md), or
+[first-client checklist](./docs/first-client-checklist.md).
 
 ## Quick start
 
@@ -55,8 +56,9 @@ and Java exposes resource accessors such as `affinity.catalog().list()`. The gen
 classes remain available as an escape hatch, but applications should start with `Affinity` or
 `NewClient`.
 
-Mutation methods require an idempotency key through the language's request-options shape. Reuse the
-same key only when retrying the same logical operation.
+Mutation methods generate a random idempotency key automatically. Supply an explicit key through
+the language's request-options shape when your application needs to retry the same logical
+operation across process or job boundaries.
 
 ## API model
 
@@ -73,9 +75,9 @@ Send a service key using `Authorization: Bearer <key>` or `x-affinity-api-key: <
 test-mode key until Affinity separately approves production access. Keep test and live data,
 credentials, webhooks, and logs isolated.
 
-Mutations require an `Idempotency-Key`; reuse the same key only when retrying the same operation.
-Production integrations should pin `Affinity-Version`. Webhook consumers must verify signatures
-before processing payloads.
+Raw HTTP mutations accept `Idempotency-Key`; reuse the same key only when retrying the same
+operation. Raw HTTP requests require `Affinity-Version`, while official SDKs inject their pinned
+version automatically. Webhook consumers must verify signatures before processing payloads.
 
 ## One-command maintenance
 
