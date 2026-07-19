@@ -44,6 +44,24 @@ export interface GetOrderResponse {
      * @type {string}
      * @memberof GetOrderResponse
      */
+    catalogItemId: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof GetOrderResponse
+     */
+    practiceId: string;
+    /**
+     *
+     * @type {string}
+     * @memberof GetOrderResponse
+     */
+    compounderId: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof GetOrderResponse
+     */
     createdAt: string;
     /**
      *
@@ -51,12 +69,6 @@ export interface GetOrderResponse {
      * @memberof GetOrderResponse
      */
     currency: string;
-    /**
-     *
-     * @type {string}
-     * @memberof GetOrderResponse
-     */
-    deliveredAt: string | null;
     /**
      *
      * @type {string}
@@ -89,6 +101,12 @@ export interface GetOrderResponse {
     externalSubmissionBlockedReason: string | null;
     /**
      *
+     * @type {string}
+     * @memberof GetOrderResponse
+     */
+    id: string;
+    /**
+     *
      * @type {boolean}
      * @memberof GetOrderResponse
      */
@@ -99,12 +117,6 @@ export interface GetOrderResponse {
      * @memberof GetOrderResponse
      */
     medicationName: string;
-    /**
-     *
-     * @type {GetOrderResponseObjectEnum}
-     * @memberof GetOrderResponse
-     */
-    object: GetOrderResponseObjectEnum;
     /**
      *
      * @type {string}
@@ -149,16 +161,28 @@ export interface GetOrderResponse {
     quoteCents: number | null;
     /**
      *
+     * @type {GetOrderResponseObjectEnum}
+     * @memberof GetOrderResponse
+     */
+    object: GetOrderResponseObjectEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof GetOrderResponse
+     */
+    replacesOrderId: string | null;
+    /**
+     *
      * @type {ListOrdersResponseDataInnerRouting}
      * @memberof GetOrderResponse
      */
     routing: ListOrdersResponseDataInnerRouting | null;
     /**
      *
-     * @type {string}
+     * @type {GetOrderResponseStatusEnum}
      * @memberof GetOrderResponse
      */
-    shippedAt: string | null;
+    status: GetOrderResponseStatusEnum;
     /**
      *
      * @type {string}
@@ -176,6 +200,18 @@ export interface GetOrderResponse {
      * @type {string}
      * @memberof GetOrderResponse
      */
+    shippedAt: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof GetOrderResponse
+     */
+    deliveredAt: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof GetOrderResponse
+     */
     updatedAt: string;
 }
 
@@ -188,6 +224,20 @@ export const GetOrderResponseObjectEnum = {
 } as const;
 export type GetOrderResponseObjectEnum = typeof GetOrderResponseObjectEnum[keyof typeof GetOrderResponseObjectEnum];
 
+/**
+ * @export
+ */
+export const GetOrderResponseStatusEnum = {
+    Blocked: 'blocked',
+    Cancelled: 'cancelled',
+    Delivered: 'delivered',
+    Draft: 'draft',
+    Processing: 'processing',
+    Shipped: 'shipped',
+    Submitted: 'submitted'
+} as const;
+export type GetOrderResponseStatusEnum = typeof GetOrderResponseStatusEnum[keyof typeof GetOrderResponseStatusEnum];
+
 
 /**
  * Check if a given object implements the GetOrderResponse interface.
@@ -195,17 +245,19 @@ export type GetOrderResponseObjectEnum = typeof GetOrderResponseObjectEnum[keyof
 export function instanceOfGetOrderResponse(value: object): value is GetOrderResponse {
     if (!('cancellationReason' in value) || value['cancellationReason'] === undefined) return false;
     if (!('carrier' in value) || value['carrier'] === undefined) return false;
+    if (!('catalogItemId' in value) || value['catalogItemId'] === undefined) return false;
+    if (!('practiceId' in value) || value['practiceId'] === undefined) return false;
+    if (!('compounderId' in value) || value['compounderId'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('currency' in value) || value['currency'] === undefined) return false;
-    if (!('deliveredAt' in value) || value['deliveredAt'] === undefined) return false;
     if (!('directions' in value) || value['directions'] === undefined) return false;
     if (!('dosageForm' in value) || value['dosageForm'] === undefined) return false;
     if (!('externalOrderId' in value) || value['externalOrderId'] === undefined) return false;
     if (!('externalSubmissionAttempted' in value) || value['externalSubmissionAttempted'] === undefined) return false;
     if (!('externalSubmissionBlockedReason' in value) || value['externalSubmissionBlockedReason'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
     if (!('medicationName' in value) || value['medicationName'] === undefined) return false;
-    if (!('object' in value) || value['object'] === undefined) return false;
     if (!('patientExternalId' in value) || value['patientExternalId'] === undefined) return false;
     if (!('patientName' in value) || value['patientName'] === undefined) return false;
     if (!('patientState' in value) || value['patientState'] === undefined) return false;
@@ -213,10 +265,14 @@ export function instanceOfGetOrderResponse(value: object): value is GetOrderResp
     if (!('prescriberNpi' in value) || value['prescriberNpi'] === undefined) return false;
     if (!('quantity' in value) || value['quantity'] === undefined) return false;
     if (!('quoteCents' in value) || value['quoteCents'] === undefined) return false;
+    if (!('object' in value) || value['object'] === undefined) return false;
+    if (!('replacesOrderId' in value) || value['replacesOrderId'] === undefined) return false;
     if (!('routing' in value) || value['routing'] === undefined) return false;
-    if (!('shippedAt' in value) || value['shippedAt'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('strength' in value) || value['strength'] === undefined) return false;
     if (!('trackingNumber' in value) || value['trackingNumber'] === undefined) return false;
+    if (!('shippedAt' in value) || value['shippedAt'] === undefined) return false;
+    if (!('deliveredAt' in value) || value['deliveredAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
@@ -233,17 +289,19 @@ export function GetOrderResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
 
         'cancellationReason': json['cancellationReason'],
         'carrier': json['carrier'],
+        'catalogItemId': json['catalogItemId'],
+        'practiceId': json['practiceId'],
+        'compounderId': json['compounderId'],
         'createdAt': json['createdAt'],
         'currency': json['currency'],
-        'deliveredAt': json['deliveredAt'],
         'directions': json['directions'],
         'dosageForm': json['dosageForm'],
         'externalOrderId': json['externalOrderId'],
         'externalSubmissionAttempted': json['externalSubmissionAttempted'],
         'externalSubmissionBlockedReason': json['externalSubmissionBlockedReason'],
+        'id': json['id'],
         'livemode': json['livemode'],
         'medicationName': json['medicationName'],
-        'object': json['object'],
         'patientExternalId': json['patientExternalId'],
         'patientName': json['patientName'],
         'patientState': json['patientState'],
@@ -251,10 +309,14 @@ export function GetOrderResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         'prescriberNpi': json['prescriberNpi'],
         'quantity': json['quantity'],
         'quoteCents': json['quoteCents'],
+        'object': json['object'],
+        'replacesOrderId': json['replacesOrderId'],
         'routing': ListOrdersResponseDataInnerRoutingFromJSON(json['routing']),
-        'shippedAt': json['shippedAt'],
+        'status': json['status'],
         'strength': json['strength'],
         'trackingNumber': json['trackingNumber'],
+        'shippedAt': json['shippedAt'],
+        'deliveredAt': json['deliveredAt'],
         'updatedAt': json['updatedAt'],
     };
 }
@@ -272,17 +334,19 @@ export function GetOrderResponseToJSONTyped(value?: GetOrderResponse | null, ign
 
         'cancellationReason': value['cancellationReason'],
         'carrier': value['carrier'],
+        'catalogItemId': value['catalogItemId'],
+        'practiceId': value['practiceId'],
+        'compounderId': value['compounderId'],
         'createdAt': value['createdAt'],
         'currency': value['currency'],
-        'deliveredAt': value['deliveredAt'],
         'directions': value['directions'],
         'dosageForm': value['dosageForm'],
         'externalOrderId': value['externalOrderId'],
         'externalSubmissionAttempted': value['externalSubmissionAttempted'],
         'externalSubmissionBlockedReason': value['externalSubmissionBlockedReason'],
+        'id': value['id'],
         'livemode': value['livemode'],
         'medicationName': value['medicationName'],
-        'object': value['object'],
         'patientExternalId': value['patientExternalId'],
         'patientName': value['patientName'],
         'patientState': value['patientState'],
@@ -290,10 +354,14 @@ export function GetOrderResponseToJSONTyped(value?: GetOrderResponse | null, ign
         'prescriberNpi': value['prescriberNpi'],
         'quantity': value['quantity'],
         'quoteCents': value['quoteCents'],
+        'object': value['object'],
+        'replacesOrderId': value['replacesOrderId'],
         'routing': ListOrdersResponseDataInnerRoutingToJSON(value['routing']),
-        'shippedAt': value['shippedAt'],
+        'status': value['status'],
         'strength': value['strength'],
         'trackingNumber': value['trackingNumber'],
+        'shippedAt': value['shippedAt'],
+        'deliveredAt': value['deliveredAt'],
         'updatedAt': value['updatedAt'],
     };
 }

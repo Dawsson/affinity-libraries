@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ListCatalogItemsResponseDataInnerPricing } from './ListCatalogItemsResponseDataInnerPricing';
+import {
+    ListCatalogItemsResponseDataInnerPricingFromJSON,
+    ListCatalogItemsResponseDataInnerPricingFromJSONTyped,
+    ListCatalogItemsResponseDataInnerPricingToJSON,
+    ListCatalogItemsResponseDataInnerPricingToJSONTyped,
+} from './ListCatalogItemsResponseDataInnerPricing';
+
 /**
  *
  * @export
@@ -42,6 +50,12 @@ export interface ListCatalogItemsResponseDataInner {
      * @type {string}
      * @memberof ListCatalogItemsResponseDataInner
      */
+    compounderId: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ListCatalogItemsResponseDataInner
+     */
     compounderName: string;
     /**
      *
@@ -61,6 +75,12 @@ export interface ListCatalogItemsResponseDataInner {
      * @memberof ListCatalogItemsResponseDataInner
      */
     facilityType: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ListCatalogItemsResponseDataInner
+     */
+    id: string;
     /**
      *
      * @type {boolean}
@@ -91,6 +111,12 @@ export interface ListCatalogItemsResponseDataInner {
      * @memberof ListCatalogItemsResponseDataInner
      */
     patientSpecificRequired: boolean;
+    /**
+     *
+     * @type {ListCatalogItemsResponseDataInnerPricing}
+     * @memberof ListCatalogItemsResponseDataInner
+     */
+    pricing: ListCatalogItemsResponseDataInnerPricing;
     /**
      *
      * @type {Array<string>}
@@ -128,15 +154,18 @@ export function instanceOfListCatalogItemsResponseDataInner(value: object): valu
     if (!('allowedStates' in value) || value['allowedStates'] === undefined) return false;
     if (!('catalogKind' in value) || value['catalogKind'] === undefined) return false;
     if (!('coldShip' in value) || value['coldShip'] === undefined) return false;
+    if (!('compounderId' in value) || value['compounderId'] === undefined) return false;
     if (!('compounderName' in value) || value['compounderName'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('dosageForm' in value) || value['dosageForm'] === undefined) return false;
     if (!('facilityType' in value) || value['facilityType'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('isOrderable' in value) || value['isOrderable'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
     if (!('patientSpecificRequired' in value) || value['patientSpecificRequired'] === undefined) return false;
+    if (!('pricing' in value) || value['pricing'] === undefined) return false;
     if (!('restrictedStates' in value) || value['restrictedStates'] === undefined) return false;
     if (!('route' in value) || value['route'] === undefined) return false;
     if (!('strength' in value) || value['strength'] === undefined) return false;
@@ -156,15 +185,18 @@ export function ListCatalogItemsResponseDataInnerFromJSONTyped(json: any, ignore
         'allowedStates': json['allowedStates'],
         'catalogKind': json['catalogKind'],
         'coldShip': json['coldShip'],
+        'compounderId': json['compounderId'],
         'compounderName': json['compounderName'],
         'description': json['description'],
         'dosageForm': json['dosageForm'],
         'facilityType': json['facilityType'],
+        'id': json['id'],
         'isOrderable': json['isOrderable'],
         'livemode': json['livemode'],
         'name': json['name'],
         'object': json['object'],
         'patientSpecificRequired': json['patientSpecificRequired'],
+        'pricing': ListCatalogItemsResponseDataInnerPricingFromJSON(json['pricing']),
         'restrictedStates': json['restrictedStates'],
         'route': json['route'],
         'strength': json['strength'],
@@ -185,15 +217,18 @@ export function ListCatalogItemsResponseDataInnerToJSONTyped(value?: ListCatalog
         'allowedStates': value['allowedStates'],
         'catalogKind': value['catalogKind'],
         'coldShip': value['coldShip'],
+        'compounderId': value['compounderId'],
         'compounderName': value['compounderName'],
         'description': value['description'],
         'dosageForm': value['dosageForm'],
         'facilityType': value['facilityType'],
+        'id': value['id'],
         'isOrderable': value['isOrderable'],
         'livemode': value['livemode'],
         'name': value['name'],
         'object': value['object'],
         'patientSpecificRequired': value['patientSpecificRequired'],
+        'pricing': ListCatalogItemsResponseDataInnerPricingToJSON(value['pricing']),
         'restrictedStates': value['restrictedStates'],
         'route': value['route'],
         'strength': value['strength'],

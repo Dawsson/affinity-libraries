@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account** | [**GetAccountResponseAccount**](GetAccountResponseAccount.md) |  |
 **membership** | [**GetAccountResponseMembership**](GetAccountResponseMembership.md) |  |
+**operating_mode** | **str** |  |
 **user** | [**GetAccountResponseUser**](GetAccountResponseUser.md) |  |
 
 ## Example

@@ -6,13 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | [**NullableListPracticesResponseDataInnerAddress**](ListPracticesResponseDataInnerAddress.md) |  |
 **Contacts** | [**ListPracticesResponseDataInnerContacts**](ListPracticesResponseDataInnerContacts.md) |  |
-**CreatedAt** | **string** |  |
+**CreatedAt** | **time.Time** |  |
 **ExternalId** | **NullableString** |  |
+**Id** | **string** |  |
 **LegalName** | **NullableString** |  |
 **Livemode** | **bool** |  |
+**Metadata** | **map[string]interface{}** |  |
 **Name** | **string** |  |
 **Object** | **string** |  |
 **Prescribers** | [**[]ListPracticesResponseDataInnerPrescribersInner**](ListPracticesResponseDataInnerPrescribersInner.md) |  |
+**ProductionAccess** | **string** |  |
 **SupportEmail** | **NullableString** |  |
 **SupportPhone** | **NullableString** |  |
 **Timezone** | **string** |  |
@@ -21,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewUpdatePracticeResponse
 
-`func NewUpdatePracticeResponse(address NullableListPracticesResponseDataInnerAddress, contacts ListPracticesResponseDataInnerContacts, createdAt string, externalId NullableString, legalName NullableString, livemode bool, name string, object string, prescribers []ListPracticesResponseDataInnerPrescribersInner, supportEmail NullableString, supportPhone NullableString, timezone string, ) *UpdatePracticeResponse`
+`func NewUpdatePracticeResponse(address NullableListPracticesResponseDataInnerAddress, contacts ListPracticesResponseDataInnerContacts, createdAt time.Time, externalId NullableString, id string, legalName NullableString, livemode bool, metadata map[string]interface{}, name string, object string, prescribers []ListPracticesResponseDataInnerPrescribersInner, productionAccess string, supportEmail NullableString, supportPhone NullableString, timezone string, ) *UpdatePracticeResponse`
 
 NewUpdatePracticeResponse instantiates a new UpdatePracticeResponse object
 This constructor will assign default values to properties that have it defined,
@@ -88,20 +91,20 @@ SetContacts sets Contacts field to given value.
 
 ### GetCreatedAt
 
-`func (o *UpdatePracticeResponse) GetCreatedAt() string`
+`func (o *UpdatePracticeResponse) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *UpdatePracticeResponse) GetCreatedAtOk() (*string, bool)`
+`func (o *UpdatePracticeResponse) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *UpdatePracticeResponse) SetCreatedAt(v string)`
+`func (o *UpdatePracticeResponse) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
@@ -136,6 +139,26 @@ SetExternalId sets ExternalId field to given value.
 `func (o *UpdatePracticeResponse) UnsetExternalId()`
 
 UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
+### GetId
+
+`func (o *UpdatePracticeResponse) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *UpdatePracticeResponse) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *UpdatePracticeResponse) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetLegalName
 
 `func (o *UpdatePracticeResponse) GetLegalName() string`
@@ -184,6 +207,26 @@ and a boolean to check if the value has been set.
 `func (o *UpdatePracticeResponse) SetLivemode(v bool)`
 
 SetLivemode sets Livemode field to given value.
+
+
+### GetMetadata
+
+`func (o *UpdatePracticeResponse) GetMetadata() map[string]interface{}`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *UpdatePracticeResponse) GetMetadataOk() (*map[string]interface{}, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *UpdatePracticeResponse) SetMetadata(v map[string]interface{})`
+
+SetMetadata sets Metadata field to given value.
 
 
 ### GetName
@@ -244,6 +287,26 @@ and a boolean to check if the value has been set.
 `func (o *UpdatePracticeResponse) SetPrescribers(v []ListPracticesResponseDataInnerPrescribersInner)`
 
 SetPrescribers sets Prescribers field to given value.
+
+
+### GetProductionAccess
+
+`func (o *UpdatePracticeResponse) GetProductionAccess() string`
+
+GetProductionAccess returns the ProductionAccess field if non-nil, zero value otherwise.
+
+### GetProductionAccessOk
+
+`func (o *UpdatePracticeResponse) GetProductionAccessOk() (*string, bool)`
+
+GetProductionAccessOk returns a tuple with the ProductionAccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProductionAccess
+
+`func (o *UpdatePracticeResponse) SetProductionAccess(v string)`
+
+SetProductionAccess sets ProductionAccess field to given value.
 
 
 ### GetSupportEmail

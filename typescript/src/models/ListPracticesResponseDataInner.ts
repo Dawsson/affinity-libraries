@@ -55,16 +55,22 @@ export interface ListPracticesResponseDataInner {
     contacts: ListPracticesResponseDataInnerContacts;
     /**
      *
-     * @type {string}
+     * @type {Date}
      * @memberof ListPracticesResponseDataInner
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      *
      * @type {string}
      * @memberof ListPracticesResponseDataInner
      */
     externalId: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof ListPracticesResponseDataInner
+     */
+    id: string;
     /**
      *
      * @type {string}
@@ -77,6 +83,12 @@ export interface ListPracticesResponseDataInner {
      * @memberof ListPracticesResponseDataInner
      */
     livemode: boolean;
+    /**
+     *
+     * @type {{ [key: string]: any; }}
+     * @memberof ListPracticesResponseDataInner
+     */
+    metadata: { [key: string]: any; };
     /**
      *
      * @type {string}
@@ -95,6 +107,12 @@ export interface ListPracticesResponseDataInner {
      * @memberof ListPracticesResponseDataInner
      */
     prescribers: Array<ListPracticesResponseDataInnerPrescribersInner>;
+    /**
+     *
+     * @type {ListPracticesResponseDataInnerProductionAccessEnum}
+     * @memberof ListPracticesResponseDataInner
+     */
+    productionAccess: ListPracticesResponseDataInnerProductionAccessEnum;
     /**
      *
      * @type {string}
@@ -124,6 +142,16 @@ export const ListPracticesResponseDataInnerObjectEnum = {
 } as const;
 export type ListPracticesResponseDataInnerObjectEnum = typeof ListPracticesResponseDataInnerObjectEnum[keyof typeof ListPracticesResponseDataInnerObjectEnum];
 
+/**
+ * @export
+ */
+export const ListPracticesResponseDataInnerProductionAccessEnum = {
+    Approved: 'approved',
+    NotApplicable: 'not_applicable',
+    Pending: 'pending'
+} as const;
+export type ListPracticesResponseDataInnerProductionAccessEnum = typeof ListPracticesResponseDataInnerProductionAccessEnum[keyof typeof ListPracticesResponseDataInnerProductionAccessEnum];
+
 
 /**
  * Check if a given object implements the ListPracticesResponseDataInner interface.
@@ -133,11 +161,14 @@ export function instanceOfListPracticesResponseDataInner(value: object): value i
     if (!('contacts' in value) || value['contacts'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('externalId' in value) || value['externalId'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('legalName' in value) || value['legalName'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
+    if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
     if (!('prescribers' in value) || value['prescribers'] === undefined) return false;
+    if (!('productionAccess' in value) || value['productionAccess'] === undefined) return false;
     if (!('supportEmail' in value) || value['supportEmail'] === undefined) return false;
     if (!('supportPhone' in value) || value['supportPhone'] === undefined) return false;
     if (!('timezone' in value) || value['timezone'] === undefined) return false;
@@ -156,13 +187,16 @@ export function ListPracticesResponseDataInnerFromJSONTyped(json: any, ignoreDis
 
         'address': ListPracticesResponseDataInnerAddressFromJSON(json['address']),
         'contacts': ListPracticesResponseDataInnerContactsFromJSON(json['contacts']),
-        'createdAt': json['createdAt'],
+        'createdAt': (new Date(json['createdAt'])),
         'externalId': json['externalId'],
+        'id': json['id'],
         'legalName': json['legalName'],
         'livemode': json['livemode'],
+        'metadata': json['metadata'],
         'name': json['name'],
         'object': json['object'],
         'prescribers': ((json['prescribers'] as Array<any>).map(ListPracticesResponseDataInnerPrescribersInnerFromJSON)),
+        'productionAccess': json['productionAccess'],
         'supportEmail': json['supportEmail'],
         'supportPhone': json['supportPhone'],
         'timezone': json['timezone'],
@@ -182,13 +216,16 @@ export function ListPracticesResponseDataInnerToJSONTyped(value?: ListPracticesR
 
         'address': ListPracticesResponseDataInnerAddressToJSON(value['address']),
         'contacts': ListPracticesResponseDataInnerContactsToJSON(value['contacts']),
-        'createdAt': value['createdAt'],
+        'createdAt': value['createdAt'].toISOString(),
         'externalId': value['externalId'],
+        'id': value['id'],
         'legalName': value['legalName'],
         'livemode': value['livemode'],
+        'metadata': value['metadata'],
         'name': value['name'],
         'object': value['object'],
         'prescribers': ((value['prescribers'] as Array<any>).map(ListPracticesResponseDataInnerPrescribersInnerToJSON)),
+        'productionAccess': value['productionAccess'],
         'supportEmail': value['supportEmail'],
         'supportPhone': value['supportPhone'],
         'timezone': value['timezone'],

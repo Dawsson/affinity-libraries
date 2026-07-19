@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `account` | [GetAccountResponseAccount](GetAccountResponseAccount.md)
 `membership` | [GetAccountResponseMembership](GetAccountResponseMembership.md)
+`operatingMode` | string
 `user` | [GetAccountResponseUser](GetAccountResponseUser.md)
 
 ## Example
@@ -19,6 +20,7 @@ import type { GetAccountResponse } from '@affinity/sdk'
 const example = {
   "account": null,
   "membership": null,
+  "operatingMode": null,
   "user": null,
 } satisfies GetAccountResponse
 

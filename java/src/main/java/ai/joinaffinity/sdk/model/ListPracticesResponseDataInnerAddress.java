@@ -25,10 +25,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,15 +47,16 @@ public class ListPracticesResponseDataInnerAddress {
   private String city;
 
   public static final String JSON_PROPERTY_COUNTRY = "country";
-  @javax.annotation.Nullable
-  private String country;
+  @javax.annotation.Nonnull
+  private String country = "US";
 
   public static final String JSON_PROPERTY_LINE1 = "line1";
   @javax.annotation.Nonnull
   private String line1;
 
   public static final String JSON_PROPERTY_LINE2 = "line2";
-  private JsonNullable<String> line2 = JsonNullable.<String>undefined();
+  @javax.annotation.Nullable
+  private String line2;
 
   public static final String JSON_PROPERTY_POSTAL_CODE = "postalCode";
   @javax.annotation.Nonnull
@@ -96,7 +93,7 @@ public class ListPracticesResponseDataInnerAddress {
   }
 
 
-  public ListPracticesResponseDataInnerAddress country(@javax.annotation.Nullable String country) {
+  public ListPracticesResponseDataInnerAddress country(@javax.annotation.Nonnull String country) {
     this.country = country;
     return this;
   }
@@ -105,17 +102,17 @@ public class ListPracticesResponseDataInnerAddress {
    * Get country
    * @return country
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getCountry() {
     return country;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCountry(@javax.annotation.Nullable String country) {
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCountry(@javax.annotation.Nonnull String country) {
     this.country = country;
   }
 
@@ -145,7 +142,7 @@ public class ListPracticesResponseDataInnerAddress {
 
 
   public ListPracticesResponseDataInnerAddress line2(@javax.annotation.Nullable String line2) {
-    this.line2 = JsonNullable.<String>of(line2);
+    this.line2 = line2;
     return this;
   }
 
@@ -154,25 +151,17 @@ public class ListPracticesResponseDataInnerAddress {
    * @return line2
    */
   @javax.annotation.Nullable
-  @JsonIgnore
-  public String getLine2() {
-        return line2.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_LINE2, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getLine2_JsonNullable() {
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getLine2() {
     return line2;
   }
 
-  @JsonProperty(JSON_PROPERTY_LINE2)
-  public void setLine2_JsonNullable(JsonNullable<String> line2) {
-    this.line2 = line2;
-  }
 
+  @JsonProperty(value = JSON_PROPERTY_LINE2, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLine2(@javax.annotation.Nullable String line2) {
-    this.line2 = JsonNullable.<String>of(line2);
+    this.line2 = line2;
   }
 
 
@@ -239,25 +228,14 @@ public class ListPracticesResponseDataInnerAddress {
     return Objects.equals(this.city, listPracticesResponseDataInnerAddress.city) &&
         Objects.equals(this.country, listPracticesResponseDataInnerAddress.country) &&
         Objects.equals(this.line1, listPracticesResponseDataInnerAddress.line1) &&
-        equalsNullable(this.line2, listPracticesResponseDataInnerAddress.line2) &&
+        Objects.equals(this.line2, listPracticesResponseDataInnerAddress.line2) &&
         Objects.equals(this.postalCode, listPracticesResponseDataInnerAddress.postalCode) &&
         Objects.equals(this.state, listPracticesResponseDataInnerAddress.state);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(city, country, line1, hashCodeNullable(line2), postalCode, state);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(city, country, line1, line2, postalCode, state);
   }
 
   @Override

@@ -15,6 +15,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the ListPracticesResponseDataInner type satisfies the MappedNullable interface at compile time
@@ -22,18 +23,21 @@ var _ MappedNullable = &ListPracticesResponseDataInner{}
 
 // ListPracticesResponseDataInner struct for ListPracticesResponseDataInner
 type ListPracticesResponseDataInner struct {
-	Address      NullableListPracticesResponseDataInnerAddress    `json:"address"`
-	Contacts     ListPracticesResponseDataInnerContacts           `json:"contacts"`
-	CreatedAt    string                                           `json:"createdAt"`
-	ExternalId   NullableString                                   `json:"externalId"`
-	LegalName    NullableString                                   `json:"legalName"`
-	Livemode     bool                                             `json:"livemode"`
-	Name         string                                           `json:"name"`
-	Object       string                                           `json:"object"`
-	Prescribers  []ListPracticesResponseDataInnerPrescribersInner `json:"prescribers"`
-	SupportEmail NullableString                                   `json:"supportEmail"`
-	SupportPhone NullableString                                   `json:"supportPhone"`
-	Timezone     string                                           `json:"timezone"`
+	Address          NullableListPracticesResponseDataInnerAddress    `json:"address"`
+	Contacts         ListPracticesResponseDataInnerContacts           `json:"contacts"`
+	CreatedAt        time.Time                                        `json:"createdAt" validate:"regexp=^(?:(?:\\\\d\\\\d[2468][048]|\\\\d\\\\d[13579][26]|\\\\d\\\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\\\d|30)|(?:02)-(?:0[1-9]|1\\\\d|2[0-8])))T(?:(?:[01]\\\\d|2[0-3]):[0-5]\\\\d(?::[0-5]\\\\d(?:\\\\.\\\\d+)?)?(?:Z))$"`
+	ExternalId       NullableString                                   `json:"externalId"`
+	Id               string                                           `json:"id" validate:"regexp=^prac_[0-9a-hjkmnp-tv-z]{26}$"`
+	LegalName        NullableString                                   `json:"legalName"`
+	Livemode         bool                                             `json:"livemode"`
+	Metadata         map[string]interface{}                           `json:"metadata"`
+	Name             string                                           `json:"name"`
+	Object           string                                           `json:"object"`
+	Prescribers      []ListPracticesResponseDataInnerPrescribersInner `json:"prescribers"`
+	ProductionAccess string                                           `json:"productionAccess"`
+	SupportEmail     NullableString                                   `json:"supportEmail" validate:"regexp=^(?!\\\\.)(?!.*\\\\.\\\\.)([A-Za-z0-9_'+\\\\-\\\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\\-]*\\\\.)+[A-Za-z]{2,}$"`
+	SupportPhone     NullableString                                   `json:"supportPhone"`
+	Timezone         string                                           `json:"timezone"`
 }
 
 type _ListPracticesResponseDataInner ListPracticesResponseDataInner
@@ -42,17 +46,20 @@ type _ListPracticesResponseDataInner ListPracticesResponseDataInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListPracticesResponseDataInner(address NullableListPracticesResponseDataInnerAddress, contacts ListPracticesResponseDataInnerContacts, createdAt string, externalId NullableString, legalName NullableString, livemode bool, name string, object string, prescribers []ListPracticesResponseDataInnerPrescribersInner, supportEmail NullableString, supportPhone NullableString, timezone string) *ListPracticesResponseDataInner {
+func NewListPracticesResponseDataInner(address NullableListPracticesResponseDataInnerAddress, contacts ListPracticesResponseDataInnerContacts, createdAt time.Time, externalId NullableString, id string, legalName NullableString, livemode bool, metadata map[string]interface{}, name string, object string, prescribers []ListPracticesResponseDataInnerPrescribersInner, productionAccess string, supportEmail NullableString, supportPhone NullableString, timezone string) *ListPracticesResponseDataInner {
 	this := ListPracticesResponseDataInner{}
 	this.Address = address
 	this.Contacts = contacts
 	this.CreatedAt = createdAt
 	this.ExternalId = externalId
+	this.Id = id
 	this.LegalName = legalName
 	this.Livemode = livemode
+	this.Metadata = metadata
 	this.Name = name
 	this.Object = object
 	this.Prescribers = prescribers
+	this.ProductionAccess = productionAccess
 	this.SupportEmail = supportEmail
 	this.SupportPhone = supportPhone
 	this.Timezone = timezone
@@ -118,9 +125,9 @@ func (o *ListPracticesResponseDataInner) SetContacts(v ListPracticesResponseData
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *ListPracticesResponseDataInner) GetCreatedAt() string {
+func (o *ListPracticesResponseDataInner) GetCreatedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -129,7 +136,7 @@ func (o *ListPracticesResponseDataInner) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *ListPracticesResponseDataInner) GetCreatedAtOk() (*string, bool) {
+func (o *ListPracticesResponseDataInner) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -137,7 +144,7 @@ func (o *ListPracticesResponseDataInner) GetCreatedAtOk() (*string, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *ListPracticesResponseDataInner) SetCreatedAt(v string) {
+func (o *ListPracticesResponseDataInner) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
@@ -165,6 +172,30 @@ func (o *ListPracticesResponseDataInner) GetExternalIdOk() (*string, bool) {
 // SetExternalId sets field value
 func (o *ListPracticesResponseDataInner) SetExternalId(v string) {
 	o.ExternalId.Set(&v)
+}
+
+// GetId returns the Id field value
+func (o *ListPracticesResponseDataInner) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListPracticesResponseDataInner) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListPracticesResponseDataInner) SetId(v string) {
+	o.Id = v
 }
 
 // GetLegalName returns the LegalName field value
@@ -215,6 +246,30 @@ func (o *ListPracticesResponseDataInner) GetLivemodeOk() (*bool, bool) {
 // SetLivemode sets field value
 func (o *ListPracticesResponseDataInner) SetLivemode(v bool) {
 	o.Livemode = v
+}
+
+// GetMetadata returns the Metadata field value
+func (o *ListPracticesResponseDataInner) GetMetadata() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value
+// and a boolean to check if the value has been set.
+func (o *ListPracticesResponseDataInner) GetMetadataOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
+	}
+	return o.Metadata, true
+}
+
+// SetMetadata sets field value
+func (o *ListPracticesResponseDataInner) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
 }
 
 // GetName returns the Name field value
@@ -287,6 +342,30 @@ func (o *ListPracticesResponseDataInner) GetPrescribersOk() ([]ListPracticesResp
 // SetPrescribers sets field value
 func (o *ListPracticesResponseDataInner) SetPrescribers(v []ListPracticesResponseDataInnerPrescribersInner) {
 	o.Prescribers = v
+}
+
+// GetProductionAccess returns the ProductionAccess field value
+func (o *ListPracticesResponseDataInner) GetProductionAccess() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProductionAccess
+}
+
+// GetProductionAccessOk returns a tuple with the ProductionAccess field value
+// and a boolean to check if the value has been set.
+func (o *ListPracticesResponseDataInner) GetProductionAccessOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProductionAccess, true
+}
+
+// SetProductionAccess sets field value
+func (o *ListPracticesResponseDataInner) SetProductionAccess(v string) {
+	o.ProductionAccess = v
 }
 
 // GetSupportEmail returns the SupportEmail field value
@@ -379,11 +458,14 @@ func (o ListPracticesResponseDataInner) ToMap() (map[string]interface{}, error) 
 	toSerialize["contacts"] = o.Contacts
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["externalId"] = o.ExternalId.Get()
+	toSerialize["id"] = o.Id
 	toSerialize["legalName"] = o.LegalName.Get()
 	toSerialize["livemode"] = o.Livemode
+	toSerialize["metadata"] = o.Metadata
 	toSerialize["name"] = o.Name
 	toSerialize["object"] = o.Object
 	toSerialize["prescribers"] = o.Prescribers
+	toSerialize["productionAccess"] = o.ProductionAccess
 	toSerialize["supportEmail"] = o.SupportEmail.Get()
 	toSerialize["supportPhone"] = o.SupportPhone.Get()
 	toSerialize["timezone"] = o.Timezone
@@ -399,11 +481,14 @@ func (o *ListPracticesResponseDataInner) UnmarshalJSON(data []byte) (err error) 
 		"contacts",
 		"createdAt",
 		"externalId",
+		"id",
 		"legalName",
 		"livemode",
+		"metadata",
 		"name",
 		"object",
 		"prescribers",
+		"productionAccess",
 		"supportEmail",
 		"supportPhone",
 		"timezone",

@@ -24,8 +24,10 @@ var _ MappedNullable = &UpdateWebhookEndpointResponse{}
 type UpdateWebhookEndpointResponse struct {
 	CreatedAt     string   `json:"createdAt"`
 	EnabledEvents []string `json:"enabledEvents"`
+	Id            string   `json:"id" validate:"regexp=^whe_[0-9a-hjkmnp-tv-z]{26}$"`
 	Livemode      bool     `json:"livemode"`
 	Object        string   `json:"object"`
+	Status        string   `json:"status"`
 	UpdatedAt     string   `json:"updatedAt"`
 	Url           string   `json:"url"`
 }
@@ -36,12 +38,14 @@ type _UpdateWebhookEndpointResponse UpdateWebhookEndpointResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateWebhookEndpointResponse(createdAt string, enabledEvents []string, livemode bool, object string, updatedAt string, url string) *UpdateWebhookEndpointResponse {
+func NewUpdateWebhookEndpointResponse(createdAt string, enabledEvents []string, id string, livemode bool, object string, status string, updatedAt string, url string) *UpdateWebhookEndpointResponse {
 	this := UpdateWebhookEndpointResponse{}
 	this.CreatedAt = createdAt
 	this.EnabledEvents = enabledEvents
+	this.Id = id
 	this.Livemode = livemode
 	this.Object = object
+	this.Status = status
 	this.UpdatedAt = updatedAt
 	this.Url = url
 	return &this
@@ -103,6 +107,30 @@ func (o *UpdateWebhookEndpointResponse) SetEnabledEvents(v []string) {
 	o.EnabledEvents = v
 }
 
+// GetId returns the Id field value
+func (o *UpdateWebhookEndpointResponse) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *UpdateWebhookEndpointResponse) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *UpdateWebhookEndpointResponse) SetId(v string) {
+	o.Id = v
+}
+
 // GetLivemode returns the Livemode field value
 func (o *UpdateWebhookEndpointResponse) GetLivemode() bool {
 	if o == nil {
@@ -149,6 +177,30 @@ func (o *UpdateWebhookEndpointResponse) GetObjectOk() (*string, bool) {
 // SetObject sets field value
 func (o *UpdateWebhookEndpointResponse) SetObject(v string) {
 	o.Object = v
+}
+
+// GetStatus returns the Status field value
+func (o *UpdateWebhookEndpointResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *UpdateWebhookEndpointResponse) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *UpdateWebhookEndpointResponse) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
@@ -211,8 +263,10 @@ func (o UpdateWebhookEndpointResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["enabledEvents"] = o.EnabledEvents
+	toSerialize["id"] = o.Id
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["object"] = o.Object
+	toSerialize["status"] = o.Status
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["url"] = o.Url
 	return toSerialize, nil
@@ -225,8 +279,10 @@ func (o *UpdateWebhookEndpointResponse) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"createdAt",
 		"enabledEvents",
+		"id",
 		"livemode",
 		"object",
+		"status",
 		"updatedAt",
 		"url",
 	}

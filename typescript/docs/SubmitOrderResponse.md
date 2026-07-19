@@ -8,17 +8,19 @@ Name | Type
 ------------ | -------------
 `cancellationReason` | string
 `carrier` | string
+`catalogItemId` | string
+`practiceId` | string
+`compounderId` | string
 `createdAt` | string
 `currency` | string
-`deliveredAt` | string
 `directions` | string
 `dosageForm` | string
 `externalOrderId` | string
 `externalSubmissionAttempted` | boolean
 `externalSubmissionBlockedReason` | string
+`id` | string
 `livemode` | boolean
 `medicationName` | string
-`object` | string
 `patientExternalId` | string
 `patientName` | string
 `patientState` | string
@@ -26,10 +28,14 @@ Name | Type
 `prescriberNpi` | string
 `quantity` | number
 `quoteCents` | number
+`object` | string
+`replacesOrderId` | string
 `routing` | [ListOrdersResponseDataInnerRouting](ListOrdersResponseDataInnerRouting.md)
-`shippedAt` | string
+`status` | string
 `strength` | string
 `trackingNumber` | string
+`shippedAt` | string
+`deliveredAt` | string
 `updatedAt` | string
 
 ## Example
@@ -41,17 +47,19 @@ import type { SubmitOrderResponse } from '@affinity/sdk'
 const example = {
   "cancellationReason": null,
   "carrier": null,
+  "catalogItemId": null,
+  "practiceId": null,
+  "compounderId": null,
   "createdAt": null,
   "currency": null,
-  "deliveredAt": null,
   "directions": null,
   "dosageForm": null,
   "externalOrderId": null,
   "externalSubmissionAttempted": null,
   "externalSubmissionBlockedReason": null,
+  "id": null,
   "livemode": null,
   "medicationName": null,
-  "object": null,
   "patientExternalId": null,
   "patientName": null,
   "patientState": null,
@@ -59,10 +67,14 @@ const example = {
   "prescriberNpi": null,
   "quantity": null,
   "quoteCents": null,
+  "object": null,
+  "replacesOrderId": null,
   "routing": null,
-  "shippedAt": null,
+  "status": null,
   "strength": null,
   "trackingNumber": null,
+  "shippedAt": null,
+  "deliveredAt": null,
   "updatedAt": null,
 } satisfies SubmitOrderResponse
 

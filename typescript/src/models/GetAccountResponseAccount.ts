@@ -51,6 +51,12 @@ export interface GetAccountResponseAccount {
     displayName: string;
     /**
      *
+     * @type {string}
+     * @memberof GetAccountResponseAccount
+     */
+    id: string;
+    /**
+     *
      * @type {GetAccountResponseAccountObjectEnum}
      * @memberof GetAccountResponseAccount
      */
@@ -61,6 +67,12 @@ export interface GetAccountResponseAccount {
      * @memberof GetAccountResponseAccount
      */
     slug: string;
+    /**
+     *
+     * @type {GetAccountResponseAccountStatusEnum}
+     * @memberof GetAccountResponseAccount
+     */
+    status: GetAccountResponseAccountStatusEnum;
     /**
      *
      * @type {string}
@@ -84,6 +96,16 @@ export const GetAccountResponseAccountObjectEnum = {
 } as const;
 export type GetAccountResponseAccountObjectEnum = typeof GetAccountResponseAccountObjectEnum[keyof typeof GetAccountResponseAccountObjectEnum];
 
+/**
+ * @export
+ */
+export const GetAccountResponseAccountStatusEnum = {
+    Active: 'active',
+    Pending: 'pending',
+    Suspended: 'suspended'
+} as const;
+export type GetAccountResponseAccountStatusEnum = typeof GetAccountResponseAccountStatusEnum[keyof typeof GetAccountResponseAccountStatusEnum];
+
 
 /**
  * Check if a given object implements the GetAccountResponseAccount interface.
@@ -94,8 +116,10 @@ export function instanceOfGetAccountResponseAccount(value: object): value is Get
     if (!('alertNewOrders' in value) || value['alertNewOrders'] === undefined) return false;
     if (!('alertStatusChanges' in value) || value['alertStatusChanges'] === undefined) return false;
     if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
     if (!('slug' in value) || value['slug'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('supportEmail' in value) || value['supportEmail'] === undefined) return false;
     if (!('websiteUrl' in value) || value['websiteUrl'] === undefined) return false;
     return true;
@@ -116,8 +140,10 @@ export function GetAccountResponseAccountFromJSONTyped(json: any, ignoreDiscrimi
         'alertNewOrders': json['alertNewOrders'],
         'alertStatusChanges': json['alertStatusChanges'],
         'displayName': json['displayName'],
+        'id': json['id'],
         'object': json['object'],
         'slug': json['slug'],
+        'status': json['status'],
         'supportEmail': json['supportEmail'],
         'websiteUrl': json['websiteUrl'],
     };
@@ -139,8 +165,10 @@ export function GetAccountResponseAccountToJSONTyped(value?: GetAccountResponseA
         'alertNewOrders': value['alertNewOrders'],
         'alertStatusChanges': value['alertStatusChanges'],
         'displayName': value['displayName'],
+        'id': value['id'],
         'object': value['object'],
         'slug': value['slug'],
+        'status': value['status'],
         'supportEmail': value['supportEmail'],
         'websiteUrl': value['websiteUrl'],
     };

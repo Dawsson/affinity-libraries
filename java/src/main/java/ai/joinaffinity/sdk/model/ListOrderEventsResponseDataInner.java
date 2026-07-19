@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,7 +37,9 @@ import ai.joinaffinity.sdk.ApiClient;
 @JsonPropertyOrder({
   ListOrderEventsResponseDataInner.JSON_PROPERTY_CREATED_AT,
   ListOrderEventsResponseDataInner.JSON_PROPERTY_EVENT_TYPE,
+  ListOrderEventsResponseDataInner.JSON_PROPERTY_ID,
   ListOrderEventsResponseDataInner.JSON_PROPERTY_MESSAGE,
+  ListOrderEventsResponseDataInner.JSON_PROPERTY_METADATA,
   ListOrderEventsResponseDataInner.JSON_PROPERTY_OBJECT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -48,9 +52,17 @@ public class ListOrderEventsResponseDataInner {
   @javax.annotation.Nonnull
   private String eventType;
 
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
+
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nonnull
   private String message;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  @javax.annotation.Nonnull
+  private Map<String, Object> metadata = new HashMap<>();
 
   /**
    * Gets or Sets _object
@@ -140,6 +152,30 @@ public class ListOrderEventsResponseDataInner {
   }
 
 
+  public ListOrderEventsResponseDataInner id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
   public ListOrderEventsResponseDataInner message(@javax.annotation.Nonnull String message) {
     this.message = message;
     return this;
@@ -161,6 +197,38 @@ public class ListOrderEventsResponseDataInner {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMessage(@javax.annotation.Nonnull String message) {
     this.message = message;
+  }
+
+
+  public ListOrderEventsResponseDataInner metadata(@javax.annotation.Nonnull Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public ListOrderEventsResponseDataInner putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * @return metadata
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = true)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = true)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
+  public void setMetadata(@javax.annotation.Nonnull Map<String, Object> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -202,13 +270,15 @@ public class ListOrderEventsResponseDataInner {
     ListOrderEventsResponseDataInner listOrderEventsResponseDataInner = (ListOrderEventsResponseDataInner) o;
     return Objects.equals(this.createdAt, listOrderEventsResponseDataInner.createdAt) &&
         Objects.equals(this.eventType, listOrderEventsResponseDataInner.eventType) &&
+        Objects.equals(this.id, listOrderEventsResponseDataInner.id) &&
         Objects.equals(this.message, listOrderEventsResponseDataInner.message) &&
+        Objects.equals(this.metadata, listOrderEventsResponseDataInner.metadata) &&
         Objects.equals(this._object, listOrderEventsResponseDataInner._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, eventType, message, _object);
+    return Objects.hash(createdAt, eventType, id, message, metadata, _object);
   }
 
   @Override
@@ -217,7 +287,9 @@ public class ListOrderEventsResponseDataInner {
     sb.append("class ListOrderEventsResponseDataInner {\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    eventType: ").append(toIndentedString(eventType)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -273,9 +345,23 @@ public class ListOrderEventsResponseDataInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%seventType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEventType()))));
     }
 
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
     // add `message` to the URL query string
     if (getMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    }
+
+    // add `metadata` to the URL query string
+    if (getMetadata() != null) {
+      for (String _key : getMetadata().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
+      }
     }
 
     // add `object` to the URL query string

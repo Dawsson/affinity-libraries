@@ -22,6 +22,8 @@ var _ MappedNullable = &GetApiAccessResponseServiceAccount{}
 
 // GetApiAccessResponseServiceAccount struct for GetApiAccessResponseServiceAccount
 type GetApiAccessResponseServiceAccount struct {
+	ApiVersion  string `json:"apiVersion"`
+	Id          string `json:"id" validate:"regexp=^sa_[0-9a-hjkmnp-tv-z]{26}$"`
 	Object      string `json:"object"`
 	SubjectId   string `json:"subjectId"`
 	SubjectType string `json:"subjectType"`
@@ -33,8 +35,10 @@ type _GetApiAccessResponseServiceAccount GetApiAccessResponseServiceAccount
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetApiAccessResponseServiceAccount(object string, subjectId string, subjectType string) *GetApiAccessResponseServiceAccount {
+func NewGetApiAccessResponseServiceAccount(apiVersion string, id string, object string, subjectId string, subjectType string) *GetApiAccessResponseServiceAccount {
 	this := GetApiAccessResponseServiceAccount{}
+	this.ApiVersion = apiVersion
+	this.Id = id
 	this.Object = object
 	this.SubjectId = subjectId
 	this.SubjectType = subjectType
@@ -47,6 +51,54 @@ func NewGetApiAccessResponseServiceAccount(object string, subjectId string, subj
 func NewGetApiAccessResponseServiceAccountWithDefaults() *GetApiAccessResponseServiceAccount {
 	this := GetApiAccessResponseServiceAccount{}
 	return &this
+}
+
+// GetApiVersion returns the ApiVersion field value
+func (o *GetApiAccessResponseServiceAccount) GetApiVersion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ApiVersion
+}
+
+// GetApiVersionOk returns a tuple with the ApiVersion field value
+// and a boolean to check if the value has been set.
+func (o *GetApiAccessResponseServiceAccount) GetApiVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApiVersion, true
+}
+
+// SetApiVersion sets field value
+func (o *GetApiAccessResponseServiceAccount) SetApiVersion(v string) {
+	o.ApiVersion = v
+}
+
+// GetId returns the Id field value
+func (o *GetApiAccessResponseServiceAccount) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetApiAccessResponseServiceAccount) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetApiAccessResponseServiceAccount) SetId(v string) {
+	o.Id = v
 }
 
 // GetObject returns the Object field value
@@ -131,6 +183,8 @@ func (o GetApiAccessResponseServiceAccount) MarshalJSON() ([]byte, error) {
 
 func (o GetApiAccessResponseServiceAccount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["apiVersion"] = o.ApiVersion
+	toSerialize["id"] = o.Id
 	toSerialize["object"] = o.Object
 	toSerialize["subjectId"] = o.SubjectId
 	toSerialize["subjectType"] = o.SubjectType
@@ -142,6 +196,8 @@ func (o *GetApiAccessResponseServiceAccount) UnmarshalJSON(data []byte) (err err
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"apiVersion",
+		"id",
 		"object",
 		"subjectId",
 		"subjectType",

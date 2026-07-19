@@ -24,6 +24,12 @@ export interface GetApiAccessResponseApiKey {
      * @type {string}
      * @memberof GetApiAccessResponseApiKey
      */
+    id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof GetApiAccessResponseApiKey
+     */
     keyPrefix: string;
     /**
      *
@@ -47,6 +53,7 @@ export type GetApiAccessResponseApiKeyObjectEnum = typeof GetApiAccessResponseAp
  * Check if a given object implements the GetApiAccessResponseApiKey interface.
  */
 export function instanceOfGetApiAccessResponseApiKey(value: object): value is GetApiAccessResponseApiKey {
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('keyPrefix' in value) || value['keyPrefix'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
     return true;
@@ -62,6 +69,7 @@ export function GetApiAccessResponseApiKeyFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
 
+        'id': json['id'],
         'keyPrefix': json['keyPrefix'],
         'object': json['object'],
     };
@@ -78,6 +86,7 @@ export function GetApiAccessResponseApiKeyToJSONTyped(value?: GetApiAccessRespon
 
     return {
 
+        'id': value['id'],
         'keyPrefix': value['keyPrefix'],
         'object': value['object'],
     };

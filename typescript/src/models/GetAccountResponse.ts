@@ -55,11 +55,30 @@ export interface GetAccountResponse {
     membership: GetAccountResponseMembership;
     /**
      *
+     * @type {GetAccountResponseOperatingModeEnum}
+     * @memberof GetAccountResponse
+     */
+    operatingMode: GetAccountResponseOperatingModeEnum;
+    /**
+     *
      * @type {GetAccountResponseUser}
      * @memberof GetAccountResponse
      */
     user: GetAccountResponseUser;
 }
+
+
+/**
+ * @export
+ */
+export const GetAccountResponseOperatingModeEnum = {
+    Production: 'production',
+    ProductionPending: 'production_pending',
+    Sandbox: 'sandbox',
+    Suspended: 'suspended'
+} as const;
+export type GetAccountResponseOperatingModeEnum = typeof GetAccountResponseOperatingModeEnum[keyof typeof GetAccountResponseOperatingModeEnum];
+
 
 /**
  * Check if a given object implements the GetAccountResponse interface.
@@ -67,6 +86,7 @@ export interface GetAccountResponse {
 export function instanceOfGetAccountResponse(value: object): value is GetAccountResponse {
     if (!('account' in value) || value['account'] === undefined) return false;
     if (!('membership' in value) || value['membership'] === undefined) return false;
+    if (!('operatingMode' in value) || value['operatingMode'] === undefined) return false;
     if (!('user' in value) || value['user'] === undefined) return false;
     return true;
 }
@@ -83,6 +103,7 @@ export function GetAccountResponseFromJSONTyped(json: any, ignoreDiscriminator: 
 
         'account': GetAccountResponseAccountFromJSON(json['account']),
         'membership': GetAccountResponseMembershipFromJSON(json['membership']),
+        'operatingMode': json['operatingMode'],
         'user': GetAccountResponseUserFromJSON(json['user']),
     };
 }
@@ -100,6 +121,7 @@ export function GetAccountResponseToJSONTyped(value?: GetAccountResponse | null,
 
         'account': GetAccountResponseAccountToJSON(value['account']),
         'membership': GetAccountResponseMembershipToJSON(value['membership']),
+        'operatingMode': value['operatingMode'],
         'user': GetAccountResponseUserToJSON(value['user']),
     };
 }

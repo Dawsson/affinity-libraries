@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -29,10 +29,20 @@ class ListPracticesResponseDataInnerContactsCompliance(BaseModel):
     """
     ListPracticesResponseDataInnerContactsCompliance
     """ # noqa: E501
-    email: StrictStr
+    email: Annotated[str, Field(strict=True)]
     name: Annotated[str, Field(min_length=1, strict=True, max_length=160)]
-    phone: Optional[Annotated[str, Field(min_length=7, strict=True, max_length=40)]] = None
+    phone: Optional[Annotated[str, Field(min_length=7, strict=True, max_length=40)]]
     __properties: ClassVar[List[str]] = ["email", "name", "phone"]
+
+    @field_validator('email')
+    def email_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^(?!\.)(?!.*\.\.)([A-Za-z0-9_\'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$", value):
+            raise ValueError(r"must validate the regular expression /^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

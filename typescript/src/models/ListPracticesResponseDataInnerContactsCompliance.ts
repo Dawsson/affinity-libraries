@@ -36,7 +36,7 @@ export interface ListPracticesResponseDataInnerContactsCompliance {
      * @type {string}
      * @memberof ListPracticesResponseDataInnerContactsCompliance
      */
-    phone?: string | null;
+    phone: string | null;
 }
 
 /**
@@ -45,6 +45,7 @@ export interface ListPracticesResponseDataInnerContactsCompliance {
 export function instanceOfListPracticesResponseDataInnerContactsCompliance(value: object): value is ListPracticesResponseDataInnerContactsCompliance {
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('phone' in value) || value['phone'] === undefined) return false;
     return true;
 }
 
@@ -60,7 +61,7 @@ export function ListPracticesResponseDataInnerContactsComplianceFromJSONTyped(js
 
         'email': json['email'],
         'name': json['name'],
-        'phone': json['phone'] == null ? undefined : json['phone'],
+        'phone': json['phone'],
     };
 }
 

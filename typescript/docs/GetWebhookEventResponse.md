@@ -8,11 +8,15 @@ Name | Type
 ------------ | -------------
 `createdAt` | string
 `eventType` | string
+`id` | string
 `livemode` | boolean
 `object` | string
 `objectId` | string
 `objectType` | string
+`status` | string
 `updatedAt` | string
+`attempts` | [Array&lt;GetWebhookEventResponseAttemptsInner&gt;](GetWebhookEventResponseAttemptsInner.md)
+`deliveries` | [Array&lt;GetWebhookEventResponseDeliveriesInner&gt;](GetWebhookEventResponseDeliveriesInner.md)
 
 ## Example
 
@@ -23,11 +27,15 @@ import type { GetWebhookEventResponse } from '@affinity/sdk'
 const example = {
   "createdAt": null,
   "eventType": null,
+  "id": null,
   "livemode": null,
   "object": null,
   "objectId": null,
   "objectType": null,
+  "status": null,
   "updatedAt": null,
+  "attempts": null,
+  "deliveries": null,
 } satisfies GetWebhookEventResponse
 
 console.log(example)

@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **str** |  |
 **event_type** | **str** |  |
+**id** | **str** |  |
 **message** | **str** |  |
+**metadata** | **Dict[str, object]** |  |
 **object** | **str** |  |
 
 ## Example

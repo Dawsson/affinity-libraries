@@ -22,10 +22,10 @@ var _ MappedNullable = &ListPracticesResponseDataInnerPrescribersInner{}
 
 // ListPracticesResponseDataInnerPrescribersInner struct for ListPracticesResponseDataInnerPrescribersInner
 type ListPracticesResponseDataInnerPrescribersInner struct {
-	Credentials   NullableString `json:"credentials,omitempty"`
+	Credentials   NullableString `json:"credentials"`
 	LicenseStates []string       `json:"licenseStates"`
 	Name          string         `json:"name"`
-	Npi           string         `json:"npi"`
+	Npi           string         `json:"npi" validate:"regexp=^\\\\d{10}$"`
 }
 
 type _ListPracticesResponseDataInnerPrescribersInner ListPracticesResponseDataInnerPrescribersInner
@@ -34,8 +34,9 @@ type _ListPracticesResponseDataInnerPrescribersInner ListPracticesResponseDataIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListPracticesResponseDataInnerPrescribersInner(licenseStates []string, name string, npi string) *ListPracticesResponseDataInnerPrescribersInner {
+func NewListPracticesResponseDataInnerPrescribersInner(credentials NullableString, licenseStates []string, name string, npi string) *ListPracticesResponseDataInnerPrescribersInner {
 	this := ListPracticesResponseDataInnerPrescribersInner{}
+	this.Credentials = credentials
 	this.LicenseStates = licenseStates
 	this.Name = name
 	this.Npi = npi
@@ -50,16 +51,18 @@ func NewListPracticesResponseDataInnerPrescribersInnerWithDefaults() *ListPracti
 	return &this
 }
 
-// GetCredentials returns the Credentials field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCredentials returns the Credentials field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *ListPracticesResponseDataInnerPrescribersInner) GetCredentials() string {
-	if o == nil || IsNil(o.Credentials.Get()) {
+	if o == nil || o.Credentials.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.Credentials.Get()
 }
 
-// GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
+// GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ListPracticesResponseDataInnerPrescribersInner) GetCredentialsOk() (*string, bool) {
@@ -69,28 +72,9 @@ func (o *ListPracticesResponseDataInnerPrescribersInner) GetCredentialsOk() (*st
 	return o.Credentials.Get(), o.Credentials.IsSet()
 }
 
-// HasCredentials returns a boolean if a field has been set.
-func (o *ListPracticesResponseDataInnerPrescribersInner) HasCredentials() bool {
-	if o != nil && o.Credentials.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCredentials gets a reference to the given NullableString and assigns it to the Credentials field.
+// SetCredentials sets field value
 func (o *ListPracticesResponseDataInnerPrescribersInner) SetCredentials(v string) {
 	o.Credentials.Set(&v)
-}
-
-// SetCredentialsNil sets the value for Credentials to be an explicit nil
-func (o *ListPracticesResponseDataInnerPrescribersInner) SetCredentialsNil() {
-	o.Credentials.Set(nil)
-}
-
-// UnsetCredentials ensures that no value is present for Credentials, not even an explicit nil
-func (o *ListPracticesResponseDataInnerPrescribersInner) UnsetCredentials() {
-	o.Credentials.Unset()
 }
 
 // GetLicenseStates returns the LicenseStates field value
@@ -175,9 +159,7 @@ func (o ListPracticesResponseDataInnerPrescribersInner) MarshalJSON() ([]byte, e
 
 func (o ListPracticesResponseDataInnerPrescribersInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Credentials.IsSet() {
-		toSerialize["credentials"] = o.Credentials.Get()
-	}
+	toSerialize["credentials"] = o.Credentials.Get()
 	toSerialize["licenseStates"] = o.LicenseStates
 	toSerialize["name"] = o.Name
 	toSerialize["npi"] = o.Npi
@@ -189,6 +171,7 @@ func (o *ListPracticesResponseDataInnerPrescribersInner) UnmarshalJSON(data []by
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"credentials",
 		"licenseStates",
 		"name",
 		"npi",

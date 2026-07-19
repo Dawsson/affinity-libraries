@@ -37,8 +37,10 @@ import ai.joinaffinity.sdk.ApiClient;
 @JsonPropertyOrder({
   UpdateWebhookEndpointResponse.JSON_PROPERTY_CREATED_AT,
   UpdateWebhookEndpointResponse.JSON_PROPERTY_ENABLED_EVENTS,
+  UpdateWebhookEndpointResponse.JSON_PROPERTY_ID,
   UpdateWebhookEndpointResponse.JSON_PROPERTY_LIVEMODE,
   UpdateWebhookEndpointResponse.JSON_PROPERTY_OBJECT,
+  UpdateWebhookEndpointResponse.JSON_PROPERTY_STATUS,
   UpdateWebhookEndpointResponse.JSON_PROPERTY_UPDATED_AT,
   UpdateWebhookEndpointResponse.JSON_PROPERTY_URL
 })
@@ -51,6 +53,10 @@ public class UpdateWebhookEndpointResponse {
   public static final String JSON_PROPERTY_ENABLED_EVENTS = "enabledEvents";
   @javax.annotation.Nonnull
   private List<String> enabledEvents = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String JSON_PROPERTY_LIVEMODE = "livemode";
   @javax.annotation.Nonnull
@@ -92,6 +98,45 @@ public class UpdateWebhookEndpointResponse {
   public static final String JSON_PROPERTY_OBJECT = "object";
   @javax.annotation.Nonnull
   private ObjectEnum _object;
+
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("active")),
+
+    DISABLED(String.valueOf("disabled"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nonnull
+  private StatusEnum status;
 
   public static final String JSON_PROPERTY_UPDATED_AT = "updatedAt";
   @javax.annotation.Nonnull
@@ -160,6 +205,30 @@ public class UpdateWebhookEndpointResponse {
   }
 
 
+  public UpdateWebhookEndpointResponse id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
   public UpdateWebhookEndpointResponse livemode(@javax.annotation.Nonnull Boolean livemode) {
     this.livemode = livemode;
     return this;
@@ -205,6 +274,30 @@ public class UpdateWebhookEndpointResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setObject(@javax.annotation.Nonnull ObjectEnum _object) {
     this._object = _object;
+  }
+
+
+  public UpdateWebhookEndpointResponse status(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
   }
 
 
@@ -270,15 +363,17 @@ public class UpdateWebhookEndpointResponse {
     UpdateWebhookEndpointResponse updateWebhookEndpointResponse = (UpdateWebhookEndpointResponse) o;
     return Objects.equals(this.createdAt, updateWebhookEndpointResponse.createdAt) &&
         Objects.equals(this.enabledEvents, updateWebhookEndpointResponse.enabledEvents) &&
+        Objects.equals(this.id, updateWebhookEndpointResponse.id) &&
         Objects.equals(this.livemode, updateWebhookEndpointResponse.livemode) &&
         Objects.equals(this._object, updateWebhookEndpointResponse._object) &&
+        Objects.equals(this.status, updateWebhookEndpointResponse.status) &&
         Objects.equals(this.updatedAt, updateWebhookEndpointResponse.updatedAt) &&
         Objects.equals(this.url, updateWebhookEndpointResponse.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, enabledEvents, livemode, _object, updatedAt, url);
+    return Objects.hash(createdAt, enabledEvents, id, livemode, _object, status, updatedAt, url);
   }
 
   @Override
@@ -287,8 +382,10 @@ public class UpdateWebhookEndpointResponse {
     sb.append("class UpdateWebhookEndpointResponse {\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    enabledEvents: ").append(toIndentedString(enabledEvents)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
@@ -349,6 +446,11 @@ public class UpdateWebhookEndpointResponse {
       }
     }
 
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
     // add `livemode` to the URL query string
     if (getLivemode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slivemode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLivemode()))));
@@ -357,6 +459,11 @@ public class UpdateWebhookEndpointResponse {
     // add `object` to the URL query string
     if (getObject() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObject()))));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     // add `updatedAt` to the URL query string

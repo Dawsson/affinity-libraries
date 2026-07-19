@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**credentials** | **String** |  |  [optional] |
+|**credentials** | **String** |  |  |
 |**licenseStates** | **List&lt;String&gt;** |  |  |
 |**name** | **String** |  |  |
 |**npi** | **String** |  |  |

@@ -22,6 +22,7 @@ var _ MappedNullable = &GetApiAccessResponseApiKey{}
 
 // GetApiAccessResponseApiKey struct for GetApiAccessResponseApiKey
 type GetApiAccessResponseApiKey struct {
+	Id        string `json:"id" validate:"regexp=^key_[0-9a-hjkmnp-tv-z]{26}$"`
 	KeyPrefix string `json:"keyPrefix"`
 	Object    string `json:"object"`
 }
@@ -32,8 +33,9 @@ type _GetApiAccessResponseApiKey GetApiAccessResponseApiKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetApiAccessResponseApiKey(keyPrefix string, object string) *GetApiAccessResponseApiKey {
+func NewGetApiAccessResponseApiKey(id string, keyPrefix string, object string) *GetApiAccessResponseApiKey {
 	this := GetApiAccessResponseApiKey{}
+	this.Id = id
 	this.KeyPrefix = keyPrefix
 	this.Object = object
 	return &this
@@ -45,6 +47,30 @@ func NewGetApiAccessResponseApiKey(keyPrefix string, object string) *GetApiAcces
 func NewGetApiAccessResponseApiKeyWithDefaults() *GetApiAccessResponseApiKey {
 	this := GetApiAccessResponseApiKey{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetApiAccessResponseApiKey) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetApiAccessResponseApiKey) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetApiAccessResponseApiKey) SetId(v string) {
+	o.Id = v
 }
 
 // GetKeyPrefix returns the KeyPrefix field value
@@ -105,6 +131,7 @@ func (o GetApiAccessResponseApiKey) MarshalJSON() ([]byte, error) {
 
 func (o GetApiAccessResponseApiKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
 	toSerialize["keyPrefix"] = o.KeyPrefix
 	toSerialize["object"] = o.Object
 	return toSerialize, nil
@@ -115,6 +142,7 @@ func (o *GetApiAccessResponseApiKey) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"keyPrefix",
 		"object",
 	}

@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`id` | string
 `keyPrefix` | string
 `object` | string
 
@@ -16,6 +17,7 @@ import type { GetApiAccessResponseApiKey } from '@affinity/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "id": null,
   "keyPrefix": null,
   "object": null,
 } satisfies GetApiAccessResponseApiKey

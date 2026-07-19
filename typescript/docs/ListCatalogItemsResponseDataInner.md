@@ -9,15 +9,18 @@ Name | Type
 `allowedStates` | Array&lt;string&gt;
 `catalogKind` | string
 `coldShip` | boolean
+`compounderId` | string
 `compounderName` | string
 `description` | string
 `dosageForm` | string
 `facilityType` | string
+`id` | string
 `isOrderable` | boolean
 `livemode` | boolean
 `name` | string
 `object` | string
 `patientSpecificRequired` | boolean
+`pricing` | [ListCatalogItemsResponseDataInnerPricing](ListCatalogItemsResponseDataInnerPricing.md)
 `restrictedStates` | Array&lt;string&gt;
 `route` | string
 `strength` | string
@@ -32,15 +35,18 @@ const example = {
   "allowedStates": null,
   "catalogKind": null,
   "coldShip": null,
+  "compounderId": null,
   "compounderName": null,
   "description": null,
   "dosageForm": null,
   "facilityType": null,
+  "id": null,
   "isOrderable": null,
   "livemode": null,
   "name": null,
   "object": null,
   "patientSpecificRequired": null,
+  "pricing": null,
   "restrictedStates": null,
   "route": null,
   "strength": null,

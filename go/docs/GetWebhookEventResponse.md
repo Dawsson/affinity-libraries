@@ -6,17 +6,21 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **string** |  |
 **EventType** | **string** |  |
+**Id** | **string** |  |
 **Livemode** | **bool** |  |
 **Object** | **string** |  |
 **ObjectId** | **string** |  |
 **ObjectType** | **string** |  |
+**Status** | **string** |  |
 **UpdatedAt** | **string** |  |
+**Attempts** | [**[]GetWebhookEventResponseAttemptsInner**](GetWebhookEventResponseAttemptsInner.md) |  |
+**Deliveries** | [**[]GetWebhookEventResponseDeliveriesInner**](GetWebhookEventResponseDeliveriesInner.md) |  |
 
 ## Methods
 
 ### NewGetWebhookEventResponse
 
-`func NewGetWebhookEventResponse(createdAt string, eventType string, livemode bool, object string, objectId string, objectType string, updatedAt string, ) *GetWebhookEventResponse`
+`func NewGetWebhookEventResponse(createdAt string, eventType string, id string, livemode bool, object string, objectId string, objectType string, status string, updatedAt string, attempts []GetWebhookEventResponseAttemptsInner, deliveries []GetWebhookEventResponseDeliveriesInner, ) *GetWebhookEventResponse`
 
 NewGetWebhookEventResponse instantiates a new GetWebhookEventResponse object
 This constructor will assign default values to properties that have it defined,
@@ -69,6 +73,26 @@ and a boolean to check if the value has been set.
 `func (o *GetWebhookEventResponse) SetEventType(v string)`
 
 SetEventType sets EventType field to given value.
+
+
+### GetId
+
+`func (o *GetWebhookEventResponse) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *GetWebhookEventResponse) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *GetWebhookEventResponse) SetId(v string)`
+
+SetId sets Id field to given value.
 
 
 ### GetLivemode
@@ -151,6 +175,26 @@ and a boolean to check if the value has been set.
 SetObjectType sets ObjectType field to given value.
 
 
+### GetStatus
+
+`func (o *GetWebhookEventResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *GetWebhookEventResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *GetWebhookEventResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+
 ### GetUpdatedAt
 
 `func (o *GetWebhookEventResponse) GetUpdatedAt() string`
@@ -169,6 +213,46 @@ and a boolean to check if the value has been set.
 `func (o *GetWebhookEventResponse) SetUpdatedAt(v string)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
+
+
+### GetAttempts
+
+`func (o *GetWebhookEventResponse) GetAttempts() []GetWebhookEventResponseAttemptsInner`
+
+GetAttempts returns the Attempts field if non-nil, zero value otherwise.
+
+### GetAttemptsOk
+
+`func (o *GetWebhookEventResponse) GetAttemptsOk() (*[]GetWebhookEventResponseAttemptsInner, bool)`
+
+GetAttemptsOk returns a tuple with the Attempts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttempts
+
+`func (o *GetWebhookEventResponse) SetAttempts(v []GetWebhookEventResponseAttemptsInner)`
+
+SetAttempts sets Attempts field to given value.
+
+
+### GetDeliveries
+
+`func (o *GetWebhookEventResponse) GetDeliveries() []GetWebhookEventResponseDeliveriesInner`
+
+GetDeliveries returns the Deliveries field if non-nil, zero value otherwise.
+
+### GetDeliveriesOk
+
+`func (o *GetWebhookEventResponse) GetDeliveriesOk() (*[]GetWebhookEventResponseDeliveriesInner, bool)`
+
+GetDeliveriesOk returns a tuple with the Deliveries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeliveries
+
+`func (o *GetWebhookEventResponse) SetDeliveries(v []GetWebhookEventResponseDeliveriesInner)`
+
+SetDeliveries sets Deliveries field to given value.
 
 
 

@@ -30,7 +30,7 @@ export interface ListPracticesResponseDataInnerAddress {
      * @type {string}
      * @memberof ListPracticesResponseDataInnerAddress
      */
-    country?: string;
+    country: string;
     /**
      *
      * @type {string}
@@ -42,7 +42,7 @@ export interface ListPracticesResponseDataInnerAddress {
      * @type {string}
      * @memberof ListPracticesResponseDataInnerAddress
      */
-    line2?: string | null;
+    line2: string | null;
     /**
      *
      * @type {string}
@@ -62,7 +62,9 @@ export interface ListPracticesResponseDataInnerAddress {
  */
 export function instanceOfListPracticesResponseDataInnerAddress(value: object): value is ListPracticesResponseDataInnerAddress {
     if (!('city' in value) || value['city'] === undefined) return false;
+    if (!('country' in value) || value['country'] === undefined) return false;
     if (!('line1' in value) || value['line1'] === undefined) return false;
+    if (!('line2' in value) || value['line2'] === undefined) return false;
     if (!('postalCode' in value) || value['postalCode'] === undefined) return false;
     if (!('state' in value) || value['state'] === undefined) return false;
     return true;
@@ -79,9 +81,9 @@ export function ListPracticesResponseDataInnerAddressFromJSONTyped(json: any, ig
     return {
 
         'city': json['city'],
-        'country': json['country'] == null ? undefined : json['country'],
+        'country': json['country'],
         'line1': json['line1'],
-        'line2': json['line2'] == null ? undefined : json['line2'],
+        'line2': json['line2'],
         'postalCode': json['postalCode'],
         'state': json['state'],
     };

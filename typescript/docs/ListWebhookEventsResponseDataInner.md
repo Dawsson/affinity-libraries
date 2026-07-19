@@ -8,10 +8,12 @@ Name | Type
 ------------ | -------------
 `createdAt` | string
 `eventType` | string
+`id` | string
 `livemode` | boolean
 `object` | string
 `objectId` | string
 `objectType` | string
+`status` | string
 `updatedAt` | string
 
 ## Example
@@ -23,10 +25,12 @@ import type { ListWebhookEventsResponseDataInner } from '@affinity/sdk'
 const example = {
   "createdAt": null,
   "eventType": null,
+  "id": null,
   "livemode": null,
   "object": null,
   "objectId": null,
   "objectType": null,
+  "status": null,
   "updatedAt": null,
 } satisfies ListWebhookEventsResponseDataInner
 

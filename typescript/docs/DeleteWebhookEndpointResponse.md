@@ -8,8 +8,10 @@ Name | Type
 ------------ | -------------
 `createdAt` | string
 `enabledEvents` | Array&lt;string&gt;
+`id` | string
 `livemode` | boolean
 `object` | string
+`status` | string
 `updatedAt` | string
 `url` | string
 
@@ -22,8 +24,10 @@ import type { DeleteWebhookEndpointResponse } from '@affinity/sdk'
 const example = {
   "createdAt": null,
   "enabledEvents": null,
+  "id": null,
   "livemode": null,
   "object": null,
+  "status": null,
   "updatedAt": null,
   "url": null,
 } satisfies DeleteWebhookEndpointResponse

@@ -35,8 +35,11 @@ docs/GetApiAccessResponseServiceAccount.md
 docs/GetOrderResponse.md
 docs/GetPracticeResponse.md
 docs/GetWebhookEventResponse.md
+docs/GetWebhookEventResponseAttemptsInner.md
+docs/GetWebhookEventResponseDeliveriesInner.md
 docs/ListCatalogItemsResponse.md
 docs/ListCatalogItemsResponseDataInner.md
+docs/ListCatalogItemsResponseDataInnerPricing.md
 docs/ListOrderEventsResponse.md
 docs/ListOrderEventsResponseDataInner.md
 docs/ListOrdersResponse.md
@@ -122,8 +125,11 @@ src/main/java/ai/joinaffinity/sdk/model/GetApiAccessResponseServiceAccount.java
 src/main/java/ai/joinaffinity/sdk/model/GetOrderResponse.java
 src/main/java/ai/joinaffinity/sdk/model/GetPracticeResponse.java
 src/main/java/ai/joinaffinity/sdk/model/GetWebhookEventResponse.java
+src/main/java/ai/joinaffinity/sdk/model/GetWebhookEventResponseAttemptsInner.java
+src/main/java/ai/joinaffinity/sdk/model/GetWebhookEventResponseDeliveriesInner.java
 src/main/java/ai/joinaffinity/sdk/model/ListCatalogItemsResponse.java
 src/main/java/ai/joinaffinity/sdk/model/ListCatalogItemsResponseDataInner.java
+src/main/java/ai/joinaffinity/sdk/model/ListCatalogItemsResponseDataInnerPricing.java
 src/main/java/ai/joinaffinity/sdk/model/ListOrderEventsResponse.java
 src/main/java/ai/joinaffinity/sdk/model/ListOrderEventsResponseDataInner.java
 src/main/java/ai/joinaffinity/sdk/model/ListOrdersResponse.java

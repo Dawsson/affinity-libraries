@@ -24,10 +24,13 @@ var _ MappedNullable = &RotateWebhookEndpointSecretResponse{}
 type RotateWebhookEndpointSecretResponse struct {
 	CreatedAt     string   `json:"createdAt"`
 	EnabledEvents []string `json:"enabledEvents"`
+	Id            string   `json:"id" validate:"regexp=^whe_[0-9a-hjkmnp-tv-z]{26}$"`
 	Livemode      bool     `json:"livemode"`
 	Object        string   `json:"object"`
+	Status        string   `json:"status"`
 	UpdatedAt     string   `json:"updatedAt"`
 	Url           string   `json:"url"`
+	SigningSecret string   `json:"signingSecret"`
 }
 
 type _RotateWebhookEndpointSecretResponse RotateWebhookEndpointSecretResponse
@@ -36,14 +39,17 @@ type _RotateWebhookEndpointSecretResponse RotateWebhookEndpointSecretResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRotateWebhookEndpointSecretResponse(createdAt string, enabledEvents []string, livemode bool, object string, updatedAt string, url string) *RotateWebhookEndpointSecretResponse {
+func NewRotateWebhookEndpointSecretResponse(createdAt string, enabledEvents []string, id string, livemode bool, object string, status string, updatedAt string, url string, signingSecret string) *RotateWebhookEndpointSecretResponse {
 	this := RotateWebhookEndpointSecretResponse{}
 	this.CreatedAt = createdAt
 	this.EnabledEvents = enabledEvents
+	this.Id = id
 	this.Livemode = livemode
 	this.Object = object
+	this.Status = status
 	this.UpdatedAt = updatedAt
 	this.Url = url
+	this.SigningSecret = signingSecret
 	return &this
 }
 
@@ -103,6 +109,30 @@ func (o *RotateWebhookEndpointSecretResponse) SetEnabledEvents(v []string) {
 	o.EnabledEvents = v
 }
 
+// GetId returns the Id field value
+func (o *RotateWebhookEndpointSecretResponse) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *RotateWebhookEndpointSecretResponse) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *RotateWebhookEndpointSecretResponse) SetId(v string) {
+	o.Id = v
+}
+
 // GetLivemode returns the Livemode field value
 func (o *RotateWebhookEndpointSecretResponse) GetLivemode() bool {
 	if o == nil {
@@ -149,6 +179,30 @@ func (o *RotateWebhookEndpointSecretResponse) GetObjectOk() (*string, bool) {
 // SetObject sets field value
 func (o *RotateWebhookEndpointSecretResponse) SetObject(v string) {
 	o.Object = v
+}
+
+// GetStatus returns the Status field value
+func (o *RotateWebhookEndpointSecretResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *RotateWebhookEndpointSecretResponse) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *RotateWebhookEndpointSecretResponse) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
@@ -199,6 +253,30 @@ func (o *RotateWebhookEndpointSecretResponse) SetUrl(v string) {
 	o.Url = v
 }
 
+// GetSigningSecret returns the SigningSecret field value
+func (o *RotateWebhookEndpointSecretResponse) GetSigningSecret() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SigningSecret
+}
+
+// GetSigningSecretOk returns a tuple with the SigningSecret field value
+// and a boolean to check if the value has been set.
+func (o *RotateWebhookEndpointSecretResponse) GetSigningSecretOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SigningSecret, true
+}
+
+// SetSigningSecret sets field value
+func (o *RotateWebhookEndpointSecretResponse) SetSigningSecret(v string) {
+	o.SigningSecret = v
+}
+
 func (o RotateWebhookEndpointSecretResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -211,10 +289,13 @@ func (o RotateWebhookEndpointSecretResponse) ToMap() (map[string]interface{}, er
 	toSerialize := map[string]interface{}{}
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["enabledEvents"] = o.EnabledEvents
+	toSerialize["id"] = o.Id
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["object"] = o.Object
+	toSerialize["status"] = o.Status
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["url"] = o.Url
+	toSerialize["signingSecret"] = o.SigningSecret
 	return toSerialize, nil
 }
 
@@ -225,10 +306,13 @@ func (o *RotateWebhookEndpointSecretResponse) UnmarshalJSON(data []byte) (err er
 	requiredProperties := []string{
 		"createdAt",
 		"enabledEvents",
+		"id",
 		"livemode",
 		"object",
+		"status",
 		"updatedAt",
 		"url",
+		"signingSecret",
 	}
 
 	allProperties := make(map[string]interface{})

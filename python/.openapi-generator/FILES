@@ -44,8 +44,11 @@ affinity_sdk/models/get_api_access_response_service_account.py
 affinity_sdk/models/get_order_response.py
 affinity_sdk/models/get_practice_response.py
 affinity_sdk/models/get_webhook_event_response.py
+affinity_sdk/models/get_webhook_event_response_attempts_inner.py
+affinity_sdk/models/get_webhook_event_response_deliveries_inner.py
 affinity_sdk/models/list_catalog_items_response.py
 affinity_sdk/models/list_catalog_items_response_data_inner.py
+affinity_sdk/models/list_catalog_items_response_data_inner_pricing.py
 affinity_sdk/models/list_order_events_response.py
 affinity_sdk/models/list_order_events_response_data_inner.py
 affinity_sdk/models/list_orders_response.py
@@ -104,8 +107,11 @@ docs/GetApiAccessResponseServiceAccount.md
 docs/GetOrderResponse.md
 docs/GetPracticeResponse.md
 docs/GetWebhookEventResponse.md
+docs/GetWebhookEventResponseAttemptsInner.md
+docs/GetWebhookEventResponseDeliveriesInner.md
 docs/ListCatalogItemsResponse.md
 docs/ListCatalogItemsResponseDataInner.md
+docs/ListCatalogItemsResponseDataInnerPricing.md
 docs/ListOrderEventsResponse.md
 docs/ListOrderEventsResponseDataInner.md
 docs/ListOrdersResponse.md

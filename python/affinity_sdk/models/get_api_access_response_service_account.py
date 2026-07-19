@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,10 +29,29 @@ class GetApiAccessResponseServiceAccount(BaseModel):
     """
     GetApiAccessResponseServiceAccount
     """ # noqa: E501
+    api_version: StrictStr = Field(alias="apiVersion")
+    id: Annotated[str, Field(strict=True)]
     object: StrictStr
     subject_id: StrictStr = Field(alias="subjectId")
     subject_type: StrictStr = Field(alias="subjectType")
-    __properties: ClassVar[List[str]] = ["object", "subjectId", "subjectType"]
+    __properties: ClassVar[List[str]] = ["apiVersion", "id", "object", "subjectId", "subjectType"]
+
+    @field_validator('api_version')
+    def api_version_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['2026-07-19']):
+            raise ValueError("must be one of enum values ('2026-07-19')")
+        return value
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^sa_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^sa_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
@@ -91,6 +111,8 @@ class GetApiAccessResponseServiceAccount(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "apiVersion": obj.get("apiVersion"),
+            "id": obj.get("id"),
             "object": obj.get("object"),
             "subjectId": obj.get("subjectId"),
             "subjectType": obj.get("subjectType")

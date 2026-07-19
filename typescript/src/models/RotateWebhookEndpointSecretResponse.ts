@@ -33,6 +33,12 @@ export interface RotateWebhookEndpointSecretResponse {
     enabledEvents: Array<string>;
     /**
      *
+     * @type {string}
+     * @memberof RotateWebhookEndpointSecretResponse
+     */
+    id: string;
+    /**
+     *
      * @type {boolean}
      * @memberof RotateWebhookEndpointSecretResponse
      */
@@ -45,6 +51,12 @@ export interface RotateWebhookEndpointSecretResponse {
     object: RotateWebhookEndpointSecretResponseObjectEnum;
     /**
      *
+     * @type {RotateWebhookEndpointSecretResponseStatusEnum}
+     * @memberof RotateWebhookEndpointSecretResponse
+     */
+    status: RotateWebhookEndpointSecretResponseStatusEnum;
+    /**
+     *
      * @type {string}
      * @memberof RotateWebhookEndpointSecretResponse
      */
@@ -55,6 +67,12 @@ export interface RotateWebhookEndpointSecretResponse {
      * @memberof RotateWebhookEndpointSecretResponse
      */
     url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof RotateWebhookEndpointSecretResponse
+     */
+    signingSecret: string;
 }
 
 
@@ -66,6 +84,15 @@ export const RotateWebhookEndpointSecretResponseObjectEnum = {
 } as const;
 export type RotateWebhookEndpointSecretResponseObjectEnum = typeof RotateWebhookEndpointSecretResponseObjectEnum[keyof typeof RotateWebhookEndpointSecretResponseObjectEnum];
 
+/**
+ * @export
+ */
+export const RotateWebhookEndpointSecretResponseStatusEnum = {
+    Active: 'active',
+    Disabled: 'disabled'
+} as const;
+export type RotateWebhookEndpointSecretResponseStatusEnum = typeof RotateWebhookEndpointSecretResponseStatusEnum[keyof typeof RotateWebhookEndpointSecretResponseStatusEnum];
+
 
 /**
  * Check if a given object implements the RotateWebhookEndpointSecretResponse interface.
@@ -73,10 +100,13 @@ export type RotateWebhookEndpointSecretResponseObjectEnum = typeof RotateWebhook
 export function instanceOfRotateWebhookEndpointSecretResponse(value: object): value is RotateWebhookEndpointSecretResponse {
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('enabledEvents' in value) || value['enabledEvents'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
+    if (!('signingSecret' in value) || value['signingSecret'] === undefined) return false;
     return true;
 }
 
@@ -92,10 +122,13 @@ export function RotateWebhookEndpointSecretResponseFromJSONTyped(json: any, igno
 
         'createdAt': json['createdAt'],
         'enabledEvents': json['enabledEvents'],
+        'id': json['id'],
         'livemode': json['livemode'],
         'object': json['object'],
+        'status': json['status'],
         'updatedAt': json['updatedAt'],
         'url': json['url'],
+        'signingSecret': json['signingSecret'],
     };
 }
 
@@ -112,10 +145,13 @@ export function RotateWebhookEndpointSecretResponseToJSONTyped(value?: RotateWeb
 
         'createdAt': value['createdAt'],
         'enabledEvents': value['enabledEvents'],
+        'id': value['id'],
         'livemode': value['livemode'],
         'object': value['object'],
+        'status': value['status'],
         'updatedAt': value['updatedAt'],
         'url': value['url'],
+        'signingSecret': value['signingSecret'],
     };
 }
 

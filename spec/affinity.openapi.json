@@ -99,7 +99,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -270,7 +269,7 @@
           "name": "platform.organization",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/auth/access": {
@@ -344,7 +343,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -520,7 +518,7 @@
             "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/catalog/items": {
@@ -655,7 +653,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -826,7 +823,7 @@
           "name": "platform.catalogItems",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/orders": {
@@ -979,7 +976,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -1150,7 +1146,7 @@
           "name": "platform.orders",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       },
       "post": {
         "description": "Creates an editable test draft. In live mode, it releases an existing signed prescription version.",
@@ -1222,7 +1218,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -1506,7 +1501,7 @@
           },
           "required": true
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/orders/{orderId}": {
@@ -1592,7 +1587,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -1799,7 +1793,7 @@
           "name": "platform.orderRead",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       },
       "patch": {
         "description": "Updates a test order that is in the draft state.",
@@ -1897,7 +1891,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -2143,7 +2136,7 @@
           "name": "platform.orderUpdate",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/orders/{orderId}/cancel": {
@@ -2243,7 +2236,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -2489,7 +2481,7 @@
           "name": "platform.orderCancel",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/orders/{orderId}/events": {
@@ -2604,7 +2596,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -2811,7 +2802,7 @@
           "name": "platform.orderEvents",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/orders/{orderId}/submit": {
@@ -2901,7 +2892,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -3147,7 +3137,7 @@
           "name": "platform.orderSubmit",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/practices": {
@@ -3220,7 +3210,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -3425,7 +3414,7 @@
             "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       },
       "post": {
         "description": "Creates a practice for the platform. Send Idempotency-Key when you retry the same request.",
@@ -3550,7 +3539,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -3768,7 +3756,7 @@
             "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/practices/{practiceId}": {
@@ -3855,7 +3843,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -4062,7 +4049,7 @@
           "name": "platform.public-api.practiceRead",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       },
       "patch": {
         "description": "Updates one practice that belongs to the platform. Send Idempotency-Key when you retry the same request.",
@@ -4150,7 +4137,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -4406,7 +4392,7 @@
           },
           "required": true
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/webhook-endpoints": {
@@ -4479,7 +4465,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -4684,7 +4669,7 @@
             "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       },
       "post": {
         "operationId": "createWebhookEndpoint",
@@ -4765,7 +4750,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -4983,7 +4967,7 @@
             "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/webhook-endpoints/{endpointId}": {
@@ -5072,7 +5056,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -5318,7 +5301,7 @@
           "name": "platform.webhookEndpointDelete",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       },
       "patch": {
         "operationId": "updateWebhookEndpoint",
@@ -5415,7 +5398,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -5661,7 +5643,7 @@
           "name": "platform.webhookEndpointUpdate",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/webhook-endpoints/{endpointId}/rotate-secret": {
@@ -5750,7 +5732,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -5996,7 +5977,7 @@
           "name": "platform.webhookEndpointRotateSecret",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/webhook-events": {
@@ -6069,7 +6050,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -6290,7 +6270,7 @@
             "$ref": "#/components/parameters/AffinityVersion"
           }
         ],
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/webhook-events/{eventId}": {
@@ -6376,7 +6356,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -6583,7 +6562,7 @@
           "name": "platform.webhookEventRead",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     },
     "/v1/webhook-events/{eventId}/replay": {
@@ -6672,7 +6651,6 @@
               }
             },
             "x-affinity-error-codes": [
-              "api_version_required",
               "idempotency_key_too_long",
               "invalid_cursor",
               "invalid_id",
@@ -6918,7 +6896,7 @@
           "name": "platform.webhookEventReplay",
           "visibility": "public"
         },
-        "x-affinity-version-required": true
+        "x-affinity-version-default": "service_account"
       }
     }
   },
@@ -6937,8 +6915,9 @@
     }
   ],
   "x-affinity-api-version": {
+    "defaultSource": "service_account",
     "header": "Affinity-Version",
-    "requiredForRawHttp": true,
+    "requiredForRawHttp": false,
     "value": "2026-07-19"
   },
   "x-tagGroups": [
@@ -7006,11 +6985,11 @@
     },
     "parameters": {
       "AffinityVersion": {
-        "description": "Pinned dated API contract version. Official SDKs send this header automatically.",
+        "description": "Optional per-request override for the service account's pinned API version.",
         "example": "2026-07-19",
         "in": "header",
         "name": "Affinity-Version",
-        "required": true,
+        "required": false,
         "schema": {
           "type": "string"
         }
@@ -7120,16 +7099,17 @@
         "type": "object"
       },
       "GetAccountResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "account": {
-            "additionalProperties": false,
+            "type": "object",
             "properties": {
               "alertEmails": {
+                "type": "array",
                 "items": {
                   "type": "string"
-                },
-                "type": "array"
+                }
               },
               "alertIntegrationIssues": {
                 "type": "boolean"
@@ -7143,12 +7123,27 @@
               "displayName": {
                 "type": "string"
               },
+              "id": {
+                "type": "string",
+                "pattern": "^acct_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "acct_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
               "object": {
-                "const": "account",
-                "type": "string"
+                "type": "string",
+                "const": "account"
               },
               "slug": {
                 "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "pending",
+                  "suspended"
+                ]
               },
               "supportEmail": {
                 "anyOf": [
@@ -7177,27 +7172,73 @@
               "alertNewOrders",
               "alertStatusChanges",
               "displayName",
+              "id",
               "object",
               "slug",
+              "status",
               "supportEmail",
               "websiteUrl"
             ],
-            "type": "object"
+            "additionalProperties": false
           },
           "membership": {
-            "additionalProperties": false,
+            "type": "object",
             "properties": {
+              "permissions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "manage_api",
+                    "manage_orders",
+                    "manage_organization",
+                    "read_catalog",
+                    "read_orders",
+                    "review_orders"
+                  ]
+                }
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "clinical_reviewer",
+                  "developer",
+                  "operations",
+                  "owner",
+                  "viewer"
+                ]
+              },
               "roleName": {
                 "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "disabled",
+                  "invited"
+                ]
               }
             },
             "required": [
-              "roleName"
+              "permissions",
+              "role",
+              "roleName",
+              "status"
             ],
-            "type": "object"
+            "additionalProperties": false
+          },
+          "operatingMode": {
+            "type": "string",
+            "enum": [
+              "production",
+              "production_pending",
+              "sandbox",
+              "suspended"
+            ]
           },
           "user": {
-            "additionalProperties": false,
+            "type": "object",
             "properties": {
               "email": {
                 "type": "string"
@@ -7231,55 +7272,78 @@
               "name",
               "userId"
             ],
-            "type": "object"
+            "additionalProperties": false
           }
         },
         "required": [
           "account",
           "membership",
+          "operatingMode",
           "user"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "GetApiAccessResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "apiKey": {
-            "additionalProperties": false,
+            "type": "object",
             "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^key_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "key_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
               "keyPrefix": {
                 "type": "string"
               },
               "object": {
-                "const": "api_key",
-                "type": "string"
+                "type": "string",
+                "const": "api_key"
               }
             },
             "required": [
+              "id",
               "keyPrefix",
               "object"
             ],
-            "type": "object"
+            "additionalProperties": false
           },
           "livemode": {
             "type": "boolean"
           },
           "object": {
-            "const": "api_access",
-            "type": "string"
+            "type": "string",
+            "const": "api_access"
           },
           "scopes": {
+            "type": "array",
             "items": {
               "type": "string"
-            },
-            "type": "array"
+            }
           },
           "serviceAccount": {
-            "additionalProperties": false,
+            "type": "object",
             "properties": {
+              "apiVersion": {
+                "type": "string",
+                "enum": [
+                  "2026-07-19"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^sa_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "sa_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
               "object": {
-                "const": "service_account",
-                "type": "string"
+                "type": "string",
+                "const": "service_account"
               },
               "subjectId": {
                 "type": "string"
@@ -7289,11 +7353,13 @@
               }
             },
             "required": [
+              "apiVersion",
+              "id",
               "object",
               "subjectId",
               "subjectType"
             ],
-            "type": "object"
+            "additionalProperties": false
           }
         },
         "required": [
@@ -7303,26 +7369,35 @@
           "scopes",
           "serviceAccount"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "ListCatalogItemsResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "data": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "allowedStates": {
+                  "type": "array",
                   "items": {
                     "type": "string"
-                  },
-                  "type": "array"
+                  }
                 },
                 "catalogKind": {
                   "type": "string"
                 },
                 "coldShip": {
                   "type": "boolean"
+                },
+                "compounderId": {
+                  "type": "string",
+                  "pattern": "^cmp_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "cmp_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
                 },
                 "compounderName": {
                   "type": "string"
@@ -7336,6 +7411,13 @@
                 "facilityType": {
                   "type": "string"
                 },
+                "id": {
+                  "type": "string",
+                  "pattern": "^cat_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "cat_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
                 "isOrderable": {
                   "type": "boolean"
                 },
@@ -7346,17 +7428,53 @@
                   "type": "string"
                 },
                 "object": {
-                  "const": "catalog_item",
-                  "type": "string"
+                  "type": "string",
+                  "const": "catalog_item"
                 },
                 "patientSpecificRequired": {
                   "type": "boolean"
                 },
+                "pricing": {
+                  "type": "object",
+                  "properties": {
+                    "currency": {
+                      "type": "string",
+                      "const": "USD"
+                    },
+                    "medicationSubtotalCents": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "orderTotalCents": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "serviceFeeCents": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "serviceFeePercent": {
+                      "type": "number",
+                      "const": 15
+                    }
+                  },
+                  "required": [
+                    "currency",
+                    "medicationSubtotalCents",
+                    "orderTotalCents",
+                    "serviceFeeCents",
+                    "serviceFeePercent"
+                  ],
+                  "additionalProperties": false
+                },
                 "restrictedStates": {
+                  "type": "array",
                   "items": {
                     "type": "string"
-                  },
-                  "type": "array"
+                  }
                 },
                 "route": {
                   "type": "string"
@@ -7376,33 +7494,35 @@
                 "allowedStates",
                 "catalogKind",
                 "coldShip",
+                "compounderId",
                 "compounderName",
                 "description",
                 "dosageForm",
                 "facilityType",
+                "id",
                 "isOrderable",
                 "livemode",
                 "name",
                 "object",
                 "patientSpecificRequired",
+                "pricing",
                 "restrictedStates",
                 "route",
                 "strength"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
           },
           "hasMore": {
             "type": "boolean"
           },
           "object": {
-            "const": "list",
-            "type": "string"
+            "type": "string",
+            "const": "list"
           },
           "url": {
-            "const": "/v1/catalog/items",
-            "type": "string"
+            "type": "string",
+            "const": "/v1/catalog/items"
           }
         },
         "required": [
@@ -7411,14 +7531,16 @@
           "object",
           "url"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "ListOrdersResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "data": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "cancellationReason": {
                   "anyOf": [
@@ -7440,21 +7562,46 @@
                     }
                   ]
                 },
-                "createdAt": {
-                  "type": "string"
-                },
-                "currency": {
-                  "type": "string"
-                },
-                "deliveredAt": {
+                "catalogItemId": {
                   "anyOf": [
                     {
-                      "type": "string"
+                      "type": "string",
+                      "pattern": "^cat_[0-9a-hjkmnp-tv-z]{26}$",
+                      "examples": [
+                        "cat_01j2y8m6jcc9tt24af5pw9x1bc"
+                      ]
                     },
                     {
                       "type": "null"
                     }
                   ]
+                },
+                "practiceId": {
+                  "type": "string",
+                  "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "prac_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
+                "compounderId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^cmp_[0-9a-hjkmnp-tv-z]{26}$",
+                      "examples": [
+                        "cmp_01j2y8m6jcc9tt24af5pw9x1bc"
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "currency": {
+                  "type": "string"
                 },
                 "directions": {
                   "type": "string"
@@ -7485,14 +7632,17 @@
                     }
                   ]
                 },
+                "id": {
+                  "type": "string",
+                  "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
                 "livemode": {
                   "type": "boolean"
                 },
                 "medicationName": {
-                  "type": "string"
-                },
-                "object": {
-                  "const": "order",
                   "type": "string"
                 },
                 "patientExternalId": {
@@ -7537,22 +7687,40 @@
                     }
                   ]
                 },
+                "object": {
+                  "type": "string",
+                  "const": "order"
+                },
+                "replacesOrderId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+                      "examples": [
+                        "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
                 "routing": {
                   "anyOf": [
                     {
-                      "additionalProperties": false,
+                      "type": "object",
                       "properties": {
                         "blockedReasons": {
+                          "type": "array",
                           "items": {
                             "type": "string"
-                          },
-                          "type": "array"
+                          }
                         },
                         "candidateCompounderIds": {
+                          "type": "array",
                           "items": {
                             "type": "string"
-                          },
-                          "type": "array"
+                          }
                         },
                         "coldShip": {
                           "type": "boolean"
@@ -7574,21 +7742,23 @@
                         "coldShip",
                         "selectedCompounderId"
                       ],
-                      "type": "object"
+                      "additionalProperties": false
                     },
                     {
                       "type": "null"
                     }
                   ]
                 },
-                "shippedAt": {
-                  "anyOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "null"
-                    }
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "blocked",
+                    "cancelled",
+                    "delivered",
+                    "draft",
+                    "processing",
+                    "shipped",
+                    "submitted"
                   ]
                 },
                 "strength": {
@@ -7611,6 +7781,26 @@
                     }
                   ]
                 },
+                "shippedAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "deliveredAt": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
                 "updatedAt": {
                   "type": "string"
                 }
@@ -7618,6 +7808,9 @@
               "required": [
                 "cancellationReason",
                 "carrier",
+                "catalogItemId",
+                "practiceId",
+                "compounderId",
                 "createdAt",
                 "currency",
                 "directions",
@@ -7625,6 +7818,7 @@
                 "externalOrderId",
                 "externalSubmissionAttempted",
                 "externalSubmissionBlockedReason",
+                "id",
                 "livemode",
                 "medicationName",
                 "patientExternalId",
@@ -7635,27 +7829,28 @@
                 "quantity",
                 "quoteCents",
                 "object",
+                "replacesOrderId",
                 "routing",
+                "status",
                 "strength",
                 "trackingNumber",
                 "shippedAt",
                 "deliveredAt",
                 "updatedAt"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
           },
           "hasMore": {
             "type": "boolean"
           },
           "object": {
-            "const": "list",
-            "type": "string"
+            "type": "string",
+            "const": "list"
           },
           "url": {
-            "const": "/v1/orders",
-            "type": "string"
+            "type": "string",
+            "const": "/v1/orders"
           }
         },
         "required": [
@@ -7664,7 +7859,7 @@
           "object",
           "url"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "CreateOrderRequest": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -8020,7 +8215,8 @@
         ]
       },
       "CreateOrderResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "cancellationReason": {
             "anyOf": [
@@ -8042,21 +8238,46 @@
               }
             ]
           },
-          "createdAt": {
-            "type": "string"
-          },
-          "currency": {
-            "type": "string"
-          },
-          "deliveredAt": {
+          "catalogItemId": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "pattern": "^cat_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cat_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
               },
               {
                 "type": "null"
               }
             ]
+          },
+          "practiceId": {
+            "type": "string",
+            "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "prac_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
+          "compounderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^cmp_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cmp_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
           },
           "directions": {
             "type": "string"
@@ -8087,14 +8308,17 @@
               }
             ]
           },
+          "id": {
+            "type": "string",
+            "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
           "livemode": {
             "type": "boolean"
           },
           "medicationName": {
-            "type": "string"
-          },
-          "object": {
-            "const": "order",
             "type": "string"
           },
           "patientExternalId": {
@@ -8139,22 +8363,40 @@
               }
             ]
           },
+          "object": {
+            "type": "string",
+            "const": "order"
+          },
+          "replacesOrderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "routing": {
             "anyOf": [
               {
-                "additionalProperties": false,
+                "type": "object",
                 "properties": {
                   "blockedReasons": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "candidateCompounderIds": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "coldShip": {
                     "type": "boolean"
@@ -8176,21 +8418,23 @@
                   "coldShip",
                   "selectedCompounderId"
                 ],
-                "type": "object"
+                "additionalProperties": false
               },
               {
                 "type": "null"
               }
             ]
           },
-          "shippedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+          "status": {
+            "type": "string",
+            "enum": [
+              "blocked",
+              "cancelled",
+              "delivered",
+              "draft",
+              "processing",
+              "shipped",
+              "submitted"
             ]
           },
           "strength": {
@@ -8213,6 +8457,26 @@
               }
             ]
           },
+          "shippedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "deliveredAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "updatedAt": {
             "type": "string"
           }
@@ -8220,6 +8484,9 @@
         "required": [
           "cancellationReason",
           "carrier",
+          "catalogItemId",
+          "practiceId",
+          "compounderId",
           "createdAt",
           "currency",
           "directions",
@@ -8227,6 +8494,7 @@
           "externalOrderId",
           "externalSubmissionAttempted",
           "externalSubmissionBlockedReason",
+          "id",
           "livemode",
           "medicationName",
           "patientExternalId",
@@ -8237,17 +8505,20 @@
           "quantity",
           "quoteCents",
           "object",
+          "replacesOrderId",
           "routing",
+          "status",
           "strength",
           "trackingNumber",
           "shippedAt",
           "deliveredAt",
           "updatedAt"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "GetOrderResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "cancellationReason": {
             "anyOf": [
@@ -8269,21 +8540,46 @@
               }
             ]
           },
-          "createdAt": {
-            "type": "string"
-          },
-          "currency": {
-            "type": "string"
-          },
-          "deliveredAt": {
+          "catalogItemId": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "pattern": "^cat_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cat_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
               },
               {
                 "type": "null"
               }
             ]
+          },
+          "practiceId": {
+            "type": "string",
+            "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "prac_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
+          "compounderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^cmp_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cmp_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
           },
           "directions": {
             "type": "string"
@@ -8314,14 +8610,17 @@
               }
             ]
           },
+          "id": {
+            "type": "string",
+            "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
           "livemode": {
             "type": "boolean"
           },
           "medicationName": {
-            "type": "string"
-          },
-          "object": {
-            "const": "order",
             "type": "string"
           },
           "patientExternalId": {
@@ -8366,22 +8665,40 @@
               }
             ]
           },
+          "object": {
+            "type": "string",
+            "const": "order"
+          },
+          "replacesOrderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "routing": {
             "anyOf": [
               {
-                "additionalProperties": false,
+                "type": "object",
                 "properties": {
                   "blockedReasons": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "candidateCompounderIds": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "coldShip": {
                     "type": "boolean"
@@ -8403,21 +8720,23 @@
                   "coldShip",
                   "selectedCompounderId"
                 ],
-                "type": "object"
+                "additionalProperties": false
               },
               {
                 "type": "null"
               }
             ]
           },
-          "shippedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+          "status": {
+            "type": "string",
+            "enum": [
+              "blocked",
+              "cancelled",
+              "delivered",
+              "draft",
+              "processing",
+              "shipped",
+              "submitted"
             ]
           },
           "strength": {
@@ -8440,6 +8759,26 @@
               }
             ]
           },
+          "shippedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "deliveredAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "updatedAt": {
             "type": "string"
           }
@@ -8447,6 +8786,9 @@
         "required": [
           "cancellationReason",
           "carrier",
+          "catalogItemId",
+          "practiceId",
+          "compounderId",
           "createdAt",
           "currency",
           "directions",
@@ -8454,6 +8796,7 @@
           "externalOrderId",
           "externalSubmissionAttempted",
           "externalSubmissionBlockedReason",
+          "id",
           "livemode",
           "medicationName",
           "patientExternalId",
@@ -8464,14 +8807,16 @@
           "quantity",
           "quoteCents",
           "object",
+          "replacesOrderId",
           "routing",
+          "status",
           "strength",
           "trackingNumber",
           "shippedAt",
           "deliveredAt",
           "updatedAt"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "UpdateOrderRequest": {
         "additionalProperties": false,
@@ -8483,7 +8828,8 @@
         "type": "object"
       },
       "UpdateOrderResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "cancellationReason": {
             "anyOf": [
@@ -8505,21 +8851,46 @@
               }
             ]
           },
-          "createdAt": {
-            "type": "string"
-          },
-          "currency": {
-            "type": "string"
-          },
-          "deliveredAt": {
+          "catalogItemId": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "pattern": "^cat_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cat_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
               },
               {
                 "type": "null"
               }
             ]
+          },
+          "practiceId": {
+            "type": "string",
+            "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "prac_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
+          "compounderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^cmp_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cmp_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
           },
           "directions": {
             "type": "string"
@@ -8550,14 +8921,17 @@
               }
             ]
           },
+          "id": {
+            "type": "string",
+            "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
           "livemode": {
             "type": "boolean"
           },
           "medicationName": {
-            "type": "string"
-          },
-          "object": {
-            "const": "order",
             "type": "string"
           },
           "patientExternalId": {
@@ -8602,22 +8976,40 @@
               }
             ]
           },
+          "object": {
+            "type": "string",
+            "const": "order"
+          },
+          "replacesOrderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "routing": {
             "anyOf": [
               {
-                "additionalProperties": false,
+                "type": "object",
                 "properties": {
                   "blockedReasons": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "candidateCompounderIds": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "coldShip": {
                     "type": "boolean"
@@ -8639,21 +9031,23 @@
                   "coldShip",
                   "selectedCompounderId"
                 ],
-                "type": "object"
+                "additionalProperties": false
               },
               {
                 "type": "null"
               }
             ]
           },
-          "shippedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+          "status": {
+            "type": "string",
+            "enum": [
+              "blocked",
+              "cancelled",
+              "delivered",
+              "draft",
+              "processing",
+              "shipped",
+              "submitted"
             ]
           },
           "strength": {
@@ -8676,6 +9070,26 @@
               }
             ]
           },
+          "shippedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "deliveredAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "updatedAt": {
             "type": "string"
           }
@@ -8683,6 +9097,9 @@
         "required": [
           "cancellationReason",
           "carrier",
+          "catalogItemId",
+          "practiceId",
+          "compounderId",
           "createdAt",
           "currency",
           "directions",
@@ -8690,6 +9107,7 @@
           "externalOrderId",
           "externalSubmissionAttempted",
           "externalSubmissionBlockedReason",
+          "id",
           "livemode",
           "medicationName",
           "patientExternalId",
@@ -8700,14 +9118,16 @@
           "quantity",
           "quoteCents",
           "object",
+          "replacesOrderId",
           "routing",
+          "status",
           "strength",
           "trackingNumber",
           "shippedAt",
           "deliveredAt",
           "updatedAt"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "CancelOrderRequest": {
         "additionalProperties": false,
@@ -8724,7 +9144,8 @@
         "type": "object"
       },
       "CancelOrderResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "cancellationReason": {
             "anyOf": [
@@ -8746,21 +9167,46 @@
               }
             ]
           },
-          "createdAt": {
-            "type": "string"
-          },
-          "currency": {
-            "type": "string"
-          },
-          "deliveredAt": {
+          "catalogItemId": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "pattern": "^cat_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cat_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
               },
               {
                 "type": "null"
               }
             ]
+          },
+          "practiceId": {
+            "type": "string",
+            "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "prac_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
+          "compounderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^cmp_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cmp_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
           },
           "directions": {
             "type": "string"
@@ -8791,14 +9237,17 @@
               }
             ]
           },
+          "id": {
+            "type": "string",
+            "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
           "livemode": {
             "type": "boolean"
           },
           "medicationName": {
-            "type": "string"
-          },
-          "object": {
-            "const": "order",
             "type": "string"
           },
           "patientExternalId": {
@@ -8843,22 +9292,40 @@
               }
             ]
           },
+          "object": {
+            "type": "string",
+            "const": "order"
+          },
+          "replacesOrderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "routing": {
             "anyOf": [
               {
-                "additionalProperties": false,
+                "type": "object",
                 "properties": {
                   "blockedReasons": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "candidateCompounderIds": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "coldShip": {
                     "type": "boolean"
@@ -8880,21 +9347,23 @@
                   "coldShip",
                   "selectedCompounderId"
                 ],
-                "type": "object"
+                "additionalProperties": false
               },
               {
                 "type": "null"
               }
             ]
           },
-          "shippedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+          "status": {
+            "type": "string",
+            "enum": [
+              "blocked",
+              "cancelled",
+              "delivered",
+              "draft",
+              "processing",
+              "shipped",
+              "submitted"
             ]
           },
           "strength": {
@@ -8917,6 +9386,26 @@
               }
             ]
           },
+          "shippedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "deliveredAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "updatedAt": {
             "type": "string"
           }
@@ -8924,6 +9413,9 @@
         "required": [
           "cancellationReason",
           "carrier",
+          "catalogItemId",
+          "practiceId",
+          "compounderId",
           "createdAt",
           "currency",
           "directions",
@@ -8931,6 +9423,7 @@
           "externalOrderId",
           "externalSubmissionAttempted",
           "externalSubmissionBlockedReason",
+          "id",
           "livemode",
           "medicationName",
           "patientExternalId",
@@ -8941,21 +9434,25 @@
           "quantity",
           "quoteCents",
           "object",
+          "replacesOrderId",
           "routing",
+          "status",
           "strength",
           "trackingNumber",
           "shippedAt",
           "deliveredAt",
           "updatedAt"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "ListOrderEventsResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "data": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "createdAt": {
                   "type": "string"
@@ -8963,30 +9460,45 @@
                 "eventType": {
                   "type": "string"
                 },
+                "id": {
+                  "type": "string",
+                  "pattern": "^evt_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "evt_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
                 "message": {
                   "type": "string"
                 },
+                "metadata": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {}
+                },
                 "object": {
-                  "const": "event",
-                  "type": "string"
+                  "type": "string",
+                  "const": "event"
                 }
               },
               "required": [
                 "createdAt",
                 "eventType",
+                "id",
                 "message",
+                "metadata",
                 "object"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
           },
           "hasMore": {
             "type": "boolean"
           },
           "object": {
-            "const": "list",
-            "type": "string"
+            "type": "string",
+            "const": "list"
           },
           "url": {
             "type": "string"
@@ -8998,10 +9510,11 @@
           "object",
           "url"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "SubmitOrderResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "cancellationReason": {
             "anyOf": [
@@ -9023,21 +9536,46 @@
               }
             ]
           },
-          "createdAt": {
-            "type": "string"
-          },
-          "currency": {
-            "type": "string"
-          },
-          "deliveredAt": {
+          "catalogItemId": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "pattern": "^cat_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cat_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
               },
               {
                 "type": "null"
               }
             ]
+          },
+          "practiceId": {
+            "type": "string",
+            "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "prac_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
+          "compounderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^cmp_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "cmp_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
           },
           "directions": {
             "type": "string"
@@ -9068,14 +9606,17 @@
               }
             ]
           },
+          "id": {
+            "type": "string",
+            "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
           "livemode": {
             "type": "boolean"
           },
           "medicationName": {
-            "type": "string"
-          },
-          "object": {
-            "const": "order",
             "type": "string"
           },
           "patientExternalId": {
@@ -9120,22 +9661,40 @@
               }
             ]
           },
+          "object": {
+            "type": "string",
+            "const": "order"
+          },
+          "replacesOrderId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^ord_[0-9a-hjkmnp-tv-z]{26}$",
+                "examples": [
+                  "ord_01j2y8m6jcc9tt24af5pw9x1bc"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "routing": {
             "anyOf": [
               {
-                "additionalProperties": false,
+                "type": "object",
                 "properties": {
                   "blockedReasons": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "candidateCompounderIds": {
+                    "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "type": "array"
+                    }
                   },
                   "coldShip": {
                     "type": "boolean"
@@ -9157,21 +9716,23 @@
                   "coldShip",
                   "selectedCompounderId"
                 ],
-                "type": "object"
+                "additionalProperties": false
               },
               {
                 "type": "null"
               }
             ]
           },
-          "shippedAt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+          "status": {
+            "type": "string",
+            "enum": [
+              "blocked",
+              "cancelled",
+              "delivered",
+              "draft",
+              "processing",
+              "shipped",
+              "submitted"
             ]
           },
           "strength": {
@@ -9194,6 +9755,26 @@
               }
             ]
           },
+          "shippedAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "deliveredAt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "updatedAt": {
             "type": "string"
           }
@@ -9201,6 +9782,9 @@
         "required": [
           "cancellationReason",
           "carrier",
+          "catalogItemId",
+          "practiceId",
+          "compounderId",
           "createdAt",
           "currency",
           "directions",
@@ -9208,6 +9792,7 @@
           "externalOrderId",
           "externalSubmissionAttempted",
           "externalSubmissionBlockedReason",
+          "id",
           "livemode",
           "medicationName",
           "patientExternalId",
@@ -9218,45 +9803,53 @@
           "quantity",
           "quoteCents",
           "object",
+          "replacesOrderId",
           "routing",
+          "status",
           "strength",
           "trackingNumber",
           "shippedAt",
           "deliveredAt",
           "updatedAt"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "ListPracticesResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "data": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "address": {
                   "anyOf": [
                     {
-                      "additionalProperties": false,
+                      "type": "object",
                       "properties": {
                         "city": {
-                          "maxLength": 120,
+                          "type": "string",
                           "minLength": 1,
-                          "type": "string"
+                          "maxLength": 120
                         },
                         "country": {
-                          "type": "string"
+                          "default": "US",
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 2
                         },
                         "line1": {
-                          "maxLength": 180,
+                          "type": "string",
                           "minLength": 1,
-                          "type": "string"
+                          "maxLength": 180
                         },
                         "line2": {
+                          "default": null,
                           "anyOf": [
                             {
-                              "maxLength": 180,
-                              "type": "string"
+                              "type": "string",
+                              "maxLength": 180
                             },
                             {
                               "type": "null"
@@ -9264,21 +9857,25 @@
                           ]
                         },
                         "postalCode": {
-                          "maxLength": 20,
+                          "type": "string",
                           "minLength": 1,
-                          "type": "string"
+                          "maxLength": 20
                         },
                         "state": {
-                          "type": "string"
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 2
                         }
                       },
                       "required": [
                         "city",
+                        "country",
                         "line1",
+                        "line2",
                         "postalCode",
                         "state"
                       ],
-                      "type": "object"
+                      "additionalProperties": false
                     },
                     {
                       "type": "null"
@@ -9286,27 +9883,30 @@
                   ]
                 },
                 "contacts": {
-                  "additionalProperties": false,
+                  "type": "object",
                   "properties": {
                     "compliance": {
                       "anyOf": [
                         {
-                          "additionalProperties": false,
+                          "type": "object",
                           "properties": {
                             "email": {
-                              "type": "string"
+                              "type": "string",
+                              "format": "email",
+                              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                             },
                             "name": {
-                              "maxLength": 160,
+                              "type": "string",
                               "minLength": 1,
-                              "type": "string"
+                              "maxLength": 160
                             },
                             "phone": {
+                              "default": null,
                               "anyOf": [
                                 {
-                                  "maxLength": 40,
+                                  "type": "string",
                                   "minLength": 7,
-                                  "type": "string"
+                                  "maxLength": 40
                                 },
                                 {
                                   "type": "null"
@@ -9316,9 +9916,10 @@
                           },
                           "required": [
                             "email",
-                            "name"
+                            "name",
+                            "phone"
                           ],
-                          "type": "object"
+                          "additionalProperties": false
                         },
                         {
                           "type": "null"
@@ -9328,22 +9929,25 @@
                     "primary": {
                       "anyOf": [
                         {
-                          "additionalProperties": false,
+                          "type": "object",
                           "properties": {
                             "email": {
-                              "type": "string"
+                              "type": "string",
+                              "format": "email",
+                              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                             },
                             "name": {
-                              "maxLength": 160,
+                              "type": "string",
                               "minLength": 1,
-                              "type": "string"
+                              "maxLength": 160
                             },
                             "phone": {
+                              "default": null,
                               "anyOf": [
                                 {
-                                  "maxLength": 40,
+                                  "type": "string",
                                   "minLength": 7,
-                                  "type": "string"
+                                  "maxLength": 40
                                 },
                                 {
                                   "type": "null"
@@ -9353,9 +9957,10 @@
                           },
                           "required": [
                             "email",
-                            "name"
+                            "name",
+                            "phone"
                           ],
-                          "type": "object"
+                          "additionalProperties": false
                         },
                         {
                           "type": "null"
@@ -9367,10 +9972,12 @@
                     "compliance",
                     "primary"
                   ],
-                  "type": "object"
+                  "additionalProperties": false
                 },
                 "createdAt": {
-                  "type": "string"
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
                 },
                 "externalId": {
                   "anyOf": [
@@ -9380,6 +9987,13 @@
                     {
                       "type": "null"
                     }
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "prac_01j2y8m6jcc9tt24af5pw9x1bc"
                   ]
                 },
                 "legalName": {
@@ -9395,23 +10009,32 @@
                 "livemode": {
                   "type": "boolean"
                 },
+                "metadata": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {}
+                },
                 "name": {
                   "type": "string"
                 },
                 "object": {
-                  "const": "practice",
-                  "type": "string"
+                  "type": "string",
+                  "const": "practice"
                 },
                 "prescribers": {
+                  "type": "array",
                   "items": {
-                    "additionalProperties": false,
+                    "type": "object",
                     "properties": {
                       "credentials": {
+                        "default": null,
                         "anyOf": [
                           {
-                            "maxLength": 80,
+                            "type": "string",
                             "minLength": 1,
-                            "type": "string"
+                            "maxLength": 80
                           },
                           {
                             "type": "null"
@@ -9419,33 +10042,47 @@
                         ]
                       },
                       "licenseStates": {
+                        "minItems": 1,
+                        "type": "array",
                         "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
+                          "type": "string",
+                          "minLength": 2,
+                          "maxLength": 2
+                        }
                       },
                       "name": {
-                        "maxLength": 160,
+                        "type": "string",
                         "minLength": 1,
-                        "type": "string"
+                        "maxLength": 160
                       },
                       "npi": {
-                        "type": "string"
+                        "type": "string",
+                        "pattern": "^\\d{10}$"
                       }
                     },
                     "required": [
+                      "credentials",
                       "licenseStates",
                       "name",
                       "npi"
                     ],
-                    "type": "object"
-                  },
-                  "type": "array"
+                    "additionalProperties": false
+                  }
+                },
+                "productionAccess": {
+                  "type": "string",
+                  "enum": [
+                    "approved",
+                    "not_applicable",
+                    "pending"
+                  ]
                 },
                 "supportEmail": {
                   "anyOf": [
                     {
-                      "type": "string"
+                      "type": "string",
+                      "format": "email",
+                      "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                     },
                     {
                       "type": "null"
@@ -9471,29 +10108,31 @@
                 "contacts",
                 "createdAt",
                 "externalId",
+                "id",
                 "legalName",
                 "livemode",
+                "metadata",
                 "name",
                 "object",
                 "prescribers",
+                "productionAccess",
                 "supportEmail",
                 "supportPhone",
                 "timezone"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
           },
           "hasMore": {
             "type": "boolean"
           },
           "object": {
-            "const": "list",
-            "type": "string"
+            "type": "string",
+            "const": "list"
           },
           "url": {
-            "const": "/v1/practices",
-            "type": "string"
+            "type": "string",
+            "const": "/v1/practices"
           }
         },
         "required": [
@@ -9502,7 +10141,7 @@
           "object",
           "url"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "CreatePracticeRequest": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -9825,31 +10464,36 @@
         ]
       },
       "CreatePracticeResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "address": {
             "anyOf": [
               {
-                "additionalProperties": false,
+                "type": "object",
                 "properties": {
                   "city": {
-                    "maxLength": 120,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 120
                   },
                   "country": {
-                    "type": "string"
+                    "default": "US",
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
                   },
                   "line1": {
-                    "maxLength": 180,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 180
                   },
                   "line2": {
+                    "default": null,
                     "anyOf": [
                       {
-                        "maxLength": 180,
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 180
                       },
                       {
                         "type": "null"
@@ -9857,21 +10501,25 @@
                     ]
                   },
                   "postalCode": {
-                    "maxLength": 20,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 20
                   },
                   "state": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
                   }
                 },
                 "required": [
                   "city",
+                  "country",
                   "line1",
+                  "line2",
                   "postalCode",
                   "state"
                 ],
-                "type": "object"
+                "additionalProperties": false
               },
               {
                 "type": "null"
@@ -9879,27 +10527,30 @@
             ]
           },
           "contacts": {
-            "additionalProperties": false,
+            "type": "object",
             "properties": {
               "compliance": {
                 "anyOf": [
                   {
-                    "additionalProperties": false,
+                    "type": "object",
                     "properties": {
                       "email": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "email",
+                        "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                       },
                       "name": {
-                        "maxLength": 160,
+                        "type": "string",
                         "minLength": 1,
-                        "type": "string"
+                        "maxLength": 160
                       },
                       "phone": {
+                        "default": null,
                         "anyOf": [
                           {
-                            "maxLength": 40,
+                            "type": "string",
                             "minLength": 7,
-                            "type": "string"
+                            "maxLength": 40
                           },
                           {
                             "type": "null"
@@ -9909,9 +10560,10 @@
                     },
                     "required": [
                       "email",
-                      "name"
+                      "name",
+                      "phone"
                     ],
-                    "type": "object"
+                    "additionalProperties": false
                   },
                   {
                     "type": "null"
@@ -9921,22 +10573,25 @@
               "primary": {
                 "anyOf": [
                   {
-                    "additionalProperties": false,
+                    "type": "object",
                     "properties": {
                       "email": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "email",
+                        "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                       },
                       "name": {
-                        "maxLength": 160,
+                        "type": "string",
                         "minLength": 1,
-                        "type": "string"
+                        "maxLength": 160
                       },
                       "phone": {
+                        "default": null,
                         "anyOf": [
                           {
-                            "maxLength": 40,
+                            "type": "string",
                             "minLength": 7,
-                            "type": "string"
+                            "maxLength": 40
                           },
                           {
                             "type": "null"
@@ -9946,9 +10601,10 @@
                     },
                     "required": [
                       "email",
-                      "name"
+                      "name",
+                      "phone"
                     ],
-                    "type": "object"
+                    "additionalProperties": false
                   },
                   {
                     "type": "null"
@@ -9960,10 +10616,12 @@
               "compliance",
               "primary"
             ],
-            "type": "object"
+            "additionalProperties": false
           },
           "createdAt": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
           },
           "externalId": {
             "anyOf": [
@@ -9973,6 +10631,13 @@
               {
                 "type": "null"
               }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "prac_01j2y8m6jcc9tt24af5pw9x1bc"
             ]
           },
           "legalName": {
@@ -9988,23 +10653,32 @@
           "livemode": {
             "type": "boolean"
           },
+          "metadata": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
           "name": {
             "type": "string"
           },
           "object": {
-            "const": "practice",
-            "type": "string"
+            "type": "string",
+            "const": "practice"
           },
           "prescribers": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "credentials": {
+                  "default": null,
                   "anyOf": [
                     {
-                      "maxLength": 80,
+                      "type": "string",
                       "minLength": 1,
-                      "type": "string"
+                      "maxLength": 80
                     },
                     {
                       "type": "null"
@@ -10012,33 +10686,47 @@
                   ]
                 },
                 "licenseStates": {
+                  "minItems": 1,
+                  "type": "array",
                   "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                  }
                 },
                 "name": {
-                  "maxLength": 160,
+                  "type": "string",
                   "minLength": 1,
-                  "type": "string"
+                  "maxLength": 160
                 },
                 "npi": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^\\d{10}$"
                 }
               },
               "required": [
+                "credentials",
                 "licenseStates",
                 "name",
                 "npi"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
+          },
+          "productionAccess": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "not_applicable",
+              "pending"
+            ]
           },
           "supportEmail": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "email",
+                "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
               },
               {
                 "type": "null"
@@ -10064,43 +10752,51 @@
           "contacts",
           "createdAt",
           "externalId",
+          "id",
           "legalName",
           "livemode",
+          "metadata",
           "name",
           "object",
           "prescribers",
+          "productionAccess",
           "supportEmail",
           "supportPhone",
           "timezone"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "GetPracticeResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "address": {
             "anyOf": [
               {
-                "additionalProperties": false,
+                "type": "object",
                 "properties": {
                   "city": {
-                    "maxLength": 120,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 120
                   },
                   "country": {
-                    "type": "string"
+                    "default": "US",
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
                   },
                   "line1": {
-                    "maxLength": 180,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 180
                   },
                   "line2": {
+                    "default": null,
                     "anyOf": [
                       {
-                        "maxLength": 180,
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 180
                       },
                       {
                         "type": "null"
@@ -10108,21 +10804,25 @@
                     ]
                   },
                   "postalCode": {
-                    "maxLength": 20,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 20
                   },
                   "state": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
                   }
                 },
                 "required": [
                   "city",
+                  "country",
                   "line1",
+                  "line2",
                   "postalCode",
                   "state"
                 ],
-                "type": "object"
+                "additionalProperties": false
               },
               {
                 "type": "null"
@@ -10130,27 +10830,30 @@
             ]
           },
           "contacts": {
-            "additionalProperties": false,
+            "type": "object",
             "properties": {
               "compliance": {
                 "anyOf": [
                   {
-                    "additionalProperties": false,
+                    "type": "object",
                     "properties": {
                       "email": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "email",
+                        "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                       },
                       "name": {
-                        "maxLength": 160,
+                        "type": "string",
                         "minLength": 1,
-                        "type": "string"
+                        "maxLength": 160
                       },
                       "phone": {
+                        "default": null,
                         "anyOf": [
                           {
-                            "maxLength": 40,
+                            "type": "string",
                             "minLength": 7,
-                            "type": "string"
+                            "maxLength": 40
                           },
                           {
                             "type": "null"
@@ -10160,9 +10863,10 @@
                     },
                     "required": [
                       "email",
-                      "name"
+                      "name",
+                      "phone"
                     ],
-                    "type": "object"
+                    "additionalProperties": false
                   },
                   {
                     "type": "null"
@@ -10172,22 +10876,25 @@
               "primary": {
                 "anyOf": [
                   {
-                    "additionalProperties": false,
+                    "type": "object",
                     "properties": {
                       "email": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "email",
+                        "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                       },
                       "name": {
-                        "maxLength": 160,
+                        "type": "string",
                         "minLength": 1,
-                        "type": "string"
+                        "maxLength": 160
                       },
                       "phone": {
+                        "default": null,
                         "anyOf": [
                           {
-                            "maxLength": 40,
+                            "type": "string",
                             "minLength": 7,
-                            "type": "string"
+                            "maxLength": 40
                           },
                           {
                             "type": "null"
@@ -10197,9 +10904,10 @@
                     },
                     "required": [
                       "email",
-                      "name"
+                      "name",
+                      "phone"
                     ],
-                    "type": "object"
+                    "additionalProperties": false
                   },
                   {
                     "type": "null"
@@ -10211,10 +10919,12 @@
               "compliance",
               "primary"
             ],
-            "type": "object"
+            "additionalProperties": false
           },
           "createdAt": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
           },
           "externalId": {
             "anyOf": [
@@ -10224,6 +10934,13 @@
               {
                 "type": "null"
               }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "prac_01j2y8m6jcc9tt24af5pw9x1bc"
             ]
           },
           "legalName": {
@@ -10239,23 +10956,32 @@
           "livemode": {
             "type": "boolean"
           },
+          "metadata": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
           "name": {
             "type": "string"
           },
           "object": {
-            "const": "practice",
-            "type": "string"
+            "type": "string",
+            "const": "practice"
           },
           "prescribers": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "credentials": {
+                  "default": null,
                   "anyOf": [
                     {
-                      "maxLength": 80,
+                      "type": "string",
                       "minLength": 1,
-                      "type": "string"
+                      "maxLength": 80
                     },
                     {
                       "type": "null"
@@ -10263,33 +10989,47 @@
                   ]
                 },
                 "licenseStates": {
+                  "minItems": 1,
+                  "type": "array",
                   "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                  }
                 },
                 "name": {
-                  "maxLength": 160,
+                  "type": "string",
                   "minLength": 1,
-                  "type": "string"
+                  "maxLength": 160
                 },
                 "npi": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^\\d{10}$"
                 }
               },
               "required": [
+                "credentials",
                 "licenseStates",
                 "name",
                 "npi"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
+          },
+          "productionAccess": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "not_applicable",
+              "pending"
+            ]
           },
           "supportEmail": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "email",
+                "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
               },
               {
                 "type": "null"
@@ -10315,16 +11055,19 @@
           "contacts",
           "createdAt",
           "externalId",
+          "id",
           "legalName",
           "livemode",
+          "metadata",
           "name",
           "object",
           "prescribers",
+          "productionAccess",
           "supportEmail",
           "supportPhone",
           "timezone"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "UpdatePracticeRequest": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -10592,31 +11335,36 @@
         }
       },
       "UpdatePracticeResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "address": {
             "anyOf": [
               {
-                "additionalProperties": false,
+                "type": "object",
                 "properties": {
                   "city": {
-                    "maxLength": 120,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 120
                   },
                   "country": {
-                    "type": "string"
+                    "default": "US",
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
                   },
                   "line1": {
-                    "maxLength": 180,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 180
                   },
                   "line2": {
+                    "default": null,
                     "anyOf": [
                       {
-                        "maxLength": 180,
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 180
                       },
                       {
                         "type": "null"
@@ -10624,21 +11372,25 @@
                     ]
                   },
                   "postalCode": {
-                    "maxLength": 20,
+                    "type": "string",
                     "minLength": 1,
-                    "type": "string"
+                    "maxLength": 20
                   },
                   "state": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
                   }
                 },
                 "required": [
                   "city",
+                  "country",
                   "line1",
+                  "line2",
                   "postalCode",
                   "state"
                 ],
-                "type": "object"
+                "additionalProperties": false
               },
               {
                 "type": "null"
@@ -10646,27 +11398,30 @@
             ]
           },
           "contacts": {
-            "additionalProperties": false,
+            "type": "object",
             "properties": {
               "compliance": {
                 "anyOf": [
                   {
-                    "additionalProperties": false,
+                    "type": "object",
                     "properties": {
                       "email": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "email",
+                        "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                       },
                       "name": {
-                        "maxLength": 160,
+                        "type": "string",
                         "minLength": 1,
-                        "type": "string"
+                        "maxLength": 160
                       },
                       "phone": {
+                        "default": null,
                         "anyOf": [
                           {
-                            "maxLength": 40,
+                            "type": "string",
                             "minLength": 7,
-                            "type": "string"
+                            "maxLength": 40
                           },
                           {
                             "type": "null"
@@ -10676,9 +11431,10 @@
                     },
                     "required": [
                       "email",
-                      "name"
+                      "name",
+                      "phone"
                     ],
-                    "type": "object"
+                    "additionalProperties": false
                   },
                   {
                     "type": "null"
@@ -10688,22 +11444,25 @@
               "primary": {
                 "anyOf": [
                   {
-                    "additionalProperties": false,
+                    "type": "object",
                     "properties": {
                       "email": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "email",
+                        "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                       },
                       "name": {
-                        "maxLength": 160,
+                        "type": "string",
                         "minLength": 1,
-                        "type": "string"
+                        "maxLength": 160
                       },
                       "phone": {
+                        "default": null,
                         "anyOf": [
                           {
-                            "maxLength": 40,
+                            "type": "string",
                             "minLength": 7,
-                            "type": "string"
+                            "maxLength": 40
                           },
                           {
                             "type": "null"
@@ -10713,9 +11472,10 @@
                     },
                     "required": [
                       "email",
-                      "name"
+                      "name",
+                      "phone"
                     ],
-                    "type": "object"
+                    "additionalProperties": false
                   },
                   {
                     "type": "null"
@@ -10727,10 +11487,12 @@
               "compliance",
               "primary"
             ],
-            "type": "object"
+            "additionalProperties": false
           },
           "createdAt": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
           },
           "externalId": {
             "anyOf": [
@@ -10740,6 +11502,13 @@
               {
                 "type": "null"
               }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^prac_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "prac_01j2y8m6jcc9tt24af5pw9x1bc"
             ]
           },
           "legalName": {
@@ -10755,23 +11524,32 @@
           "livemode": {
             "type": "boolean"
           },
+          "metadata": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
           "name": {
             "type": "string"
           },
           "object": {
-            "const": "practice",
-            "type": "string"
+            "type": "string",
+            "const": "practice"
           },
           "prescribers": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "credentials": {
+                  "default": null,
                   "anyOf": [
                     {
-                      "maxLength": 80,
+                      "type": "string",
                       "minLength": 1,
-                      "type": "string"
+                      "maxLength": 80
                     },
                     {
                       "type": "null"
@@ -10779,33 +11557,47 @@
                   ]
                 },
                 "licenseStates": {
+                  "minItems": 1,
+                  "type": "array",
                   "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                  }
                 },
                 "name": {
-                  "maxLength": 160,
+                  "type": "string",
                   "minLength": 1,
-                  "type": "string"
+                  "maxLength": 160
                 },
                 "npi": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^\\d{10}$"
                 }
               },
               "required": [
+                "credentials",
                 "licenseStates",
                 "name",
                 "npi"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
+          },
+          "productionAccess": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "not_applicable",
+              "pending"
+            ]
           },
           "supportEmail": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "email",
+                "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
               },
               {
                 "type": "null"
@@ -10831,39 +11623,58 @@
           "contacts",
           "createdAt",
           "externalId",
+          "id",
           "legalName",
           "livemode",
+          "metadata",
           "name",
           "object",
           "prescribers",
+          "productionAccess",
           "supportEmail",
           "supportPhone",
           "timezone"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "ListWebhookEndpointsResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "data": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "createdAt": {
                   "type": "string"
                 },
                 "enabledEvents": {
+                  "type": "array",
                   "items": {
                     "type": "string"
-                  },
-                  "type": "array"
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "pattern": "^whe_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "whe_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
                 },
                 "livemode": {
                   "type": "boolean"
                 },
                 "object": {
-                  "const": "webhook_endpoint",
-                  "type": "string"
+                  "type": "string",
+                  "const": "webhook_endpoint"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "disabled"
+                  ]
                 },
                 "updatedAt": {
                   "type": "string"
@@ -10875,25 +11686,26 @@
               "required": [
                 "createdAt",
                 "enabledEvents",
+                "id",
                 "livemode",
                 "object",
+                "status",
                 "updatedAt",
                 "url"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
           },
           "hasMore": {
             "type": "boolean"
           },
           "object": {
-            "const": "list",
-            "type": "string"
+            "type": "string",
+            "const": "list"
           },
           "url": {
-            "const": "/v1/webhook-endpoints",
-            "type": "string"
+            "type": "string",
+            "const": "/v1/webhook-endpoints"
           }
         },
         "required": [
@@ -10902,7 +11714,7 @@
           "object",
           "url"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "CreateWebhookEndpointRequest": {
         "additionalProperties": false,
@@ -10919,59 +11731,95 @@
         "type": "object"
       },
       "CreateWebhookEndpointResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "createdAt": {
             "type": "string"
           },
           "enabledEvents": {
+            "type": "array",
             "items": {
               "type": "string"
-            },
-            "type": "array"
+            }
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^whe_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "whe_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
           },
           "livemode": {
             "type": "boolean"
           },
           "object": {
-            "const": "webhook_endpoint",
-            "type": "string"
+            "type": "string",
+            "const": "webhook_endpoint"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disabled"
+            ]
           },
           "updatedAt": {
             "type": "string"
           },
           "url": {
             "type": "string"
+          },
+          "signingSecret": {
+            "type": "string"
           }
         },
         "required": [
           "createdAt",
           "enabledEvents",
+          "id",
           "livemode",
           "object",
+          "status",
           "updatedAt",
-          "url"
+          "url",
+          "signingSecret"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "DeleteWebhookEndpointResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "createdAt": {
             "type": "string"
           },
           "enabledEvents": {
+            "type": "array",
             "items": {
               "type": "string"
-            },
-            "type": "array"
+            }
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^whe_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "whe_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
           },
           "livemode": {
             "type": "boolean"
           },
           "object": {
-            "const": "webhook_endpoint",
-            "type": "string"
+            "type": "string",
+            "const": "webhook_endpoint"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disabled"
+            ]
           },
           "updatedAt": {
             "type": "string"
@@ -10983,12 +11831,14 @@
         "required": [
           "createdAt",
           "enabledEvents",
+          "id",
           "livemode",
           "object",
+          "status",
           "updatedAt",
           "url"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "UpdateWebhookEndpointRequest": {
         "additionalProperties": false,
@@ -11008,23 +11858,38 @@
         "type": "object"
       },
       "UpdateWebhookEndpointResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "createdAt": {
             "type": "string"
           },
           "enabledEvents": {
+            "type": "array",
             "items": {
               "type": "string"
-            },
-            "type": "array"
+            }
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^whe_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "whe_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
           },
           "livemode": {
             "type": "boolean"
           },
           "object": {
-            "const": "webhook_endpoint",
-            "type": "string"
+            "type": "string",
+            "const": "webhook_endpoint"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disabled"
+            ]
           },
           "updatedAt": {
             "type": "string"
@@ -11036,55 +11901,80 @@
         "required": [
           "createdAt",
           "enabledEvents",
+          "id",
           "livemode",
           "object",
+          "status",
           "updatedAt",
           "url"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "RotateWebhookEndpointSecretResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "createdAt": {
             "type": "string"
           },
           "enabledEvents": {
+            "type": "array",
             "items": {
               "type": "string"
-            },
-            "type": "array"
+            }
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^whe_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "whe_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
           },
           "livemode": {
             "type": "boolean"
           },
           "object": {
-            "const": "webhook_endpoint",
-            "type": "string"
+            "type": "string",
+            "const": "webhook_endpoint"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disabled"
+            ]
           },
           "updatedAt": {
             "type": "string"
           },
           "url": {
             "type": "string"
+          },
+          "signingSecret": {
+            "type": "string"
           }
         },
         "required": [
           "createdAt",
           "enabledEvents",
+          "id",
           "livemode",
           "object",
+          "status",
           "updatedAt",
-          "url"
+          "url",
+          "signingSecret"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "ListWebhookEventsResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "data": {
+            "type": "array",
             "items": {
-              "additionalProperties": false,
+              "type": "object",
               "properties": {
                 "createdAt": {
                   "type": "string"
@@ -11092,18 +11982,34 @@
                 "eventType": {
                   "type": "string"
                 },
+                "id": {
+                  "type": "string",
+                  "pattern": "^evt_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "evt_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
                 "livemode": {
                   "type": "boolean"
                 },
                 "object": {
-                  "const": "webhook_event",
-                  "type": "string"
+                  "type": "string",
+                  "const": "webhook_event"
                 },
                 "objectId": {
                   "type": "string"
                 },
                 "objectType": {
                   "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "delivered",
+                    "failed",
+                    "pending",
+                    "skipped"
+                  ]
                 },
                 "updatedAt": {
                   "type": "string"
@@ -11112,26 +12018,27 @@
               "required": [
                 "createdAt",
                 "eventType",
+                "id",
                 "livemode",
                 "object",
                 "objectId",
                 "objectType",
+                "status",
                 "updatedAt"
               ],
-              "type": "object"
-            },
-            "type": "array"
+              "additionalProperties": false
+            }
           },
           "hasMore": {
             "type": "boolean"
           },
           "object": {
-            "const": "list",
-            "type": "string"
+            "type": "string",
+            "const": "list"
           },
           "url": {
-            "const": "/v1/webhook-events",
-            "type": "string"
+            "type": "string",
+            "const": "/v1/webhook-events"
           }
         },
         "required": [
@@ -11140,10 +12047,11 @@
           "object",
           "url"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "GetWebhookEventResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "createdAt": {
             "type": "string"
@@ -11151,12 +12059,19 @@
           "eventType": {
             "type": "string"
           },
+          "id": {
+            "type": "string",
+            "pattern": "^evt_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "evt_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
           "livemode": {
             "type": "boolean"
           },
           "object": {
-            "const": "webhook_event",
-            "type": "string"
+            "type": "string",
+            "const": "webhook_event"
           },
           "objectId": {
             "type": "string"
@@ -11164,23 +12079,149 @@
           "objectType": {
             "type": "string"
           },
+          "status": {
+            "type": "string",
+            "enum": [
+              "delivered",
+              "failed",
+              "pending",
+              "skipped"
+            ]
+          },
           "updatedAt": {
             "type": "string"
+          },
+          "attempts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "attemptedAt": {
+                  "type": "string"
+                },
+                "errorMessage": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "pattern": "^wha_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "wha_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
+                "responseBody": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "responseStatus": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "success": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "attemptedAt",
+                "errorMessage",
+                "id",
+                "responseBody",
+                "responseStatus",
+                "success"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "deliveries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "attemptCount": {
+                  "type": "number"
+                },
+                "endpointId": {
+                  "type": "string",
+                  "pattern": "^whe_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "whe_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "pattern": "^whd_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "whd_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
+                "lastError": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "dead_letter",
+                    "delivered",
+                    "failed",
+                    "pending"
+                  ]
+                }
+              },
+              "required": [
+                "attemptCount",
+                "endpointId",
+                "id",
+                "lastError",
+                "status"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "required": [
           "createdAt",
           "eventType",
+          "id",
           "livemode",
           "object",
           "objectId",
           "objectType",
-          "updatedAt"
+          "status",
+          "updatedAt",
+          "attempts",
+          "deliveries"
         ],
-        "type": "object"
+        "additionalProperties": false
       },
       "ReplayWebhookEventResponse": {
-        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
         "properties": {
           "createdAt": {
             "type": "string"
@@ -11188,12 +12229,19 @@
           "eventType": {
             "type": "string"
           },
+          "id": {
+            "type": "string",
+            "pattern": "^evt_[0-9a-hjkmnp-tv-z]{26}$",
+            "examples": [
+              "evt_01j2y8m6jcc9tt24af5pw9x1bc"
+            ]
+          },
           "livemode": {
             "type": "boolean"
           },
           "object": {
-            "const": "webhook_event",
-            "type": "string"
+            "type": "string",
+            "const": "webhook_event"
           },
           "objectId": {
             "type": "string"
@@ -11201,20 +12249,145 @@
           "objectType": {
             "type": "string"
           },
+          "status": {
+            "type": "string",
+            "enum": [
+              "delivered",
+              "failed",
+              "pending",
+              "skipped"
+            ]
+          },
           "updatedAt": {
             "type": "string"
+          },
+          "attempts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "attemptedAt": {
+                  "type": "string"
+                },
+                "errorMessage": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "pattern": "^wha_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "wha_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
+                "responseBody": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "responseStatus": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "success": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "attemptedAt",
+                "errorMessage",
+                "id",
+                "responseBody",
+                "responseStatus",
+                "success"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "deliveries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "attemptCount": {
+                  "type": "number"
+                },
+                "endpointId": {
+                  "type": "string",
+                  "pattern": "^whe_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "whe_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "pattern": "^whd_[0-9a-hjkmnp-tv-z]{26}$",
+                  "examples": [
+                    "whd_01j2y8m6jcc9tt24af5pw9x1bc"
+                  ]
+                },
+                "lastError": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "dead_letter",
+                    "delivered",
+                    "failed",
+                    "pending"
+                  ]
+                }
+              },
+              "required": [
+                "attemptCount",
+                "endpointId",
+                "id",
+                "lastError",
+                "status"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "required": [
           "createdAt",
           "eventType",
+          "id",
           "livemode",
           "object",
           "objectId",
           "objectType",
-          "updatedAt"
+          "status",
+          "updatedAt",
+          "attempts",
+          "deliveries"
         ],
-        "type": "object"
+        "additionalProperties": false
       }
     }
   }

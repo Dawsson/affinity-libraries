@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,8 +28,33 @@ class GetAccountResponseMembership(BaseModel):
     """
     GetAccountResponseMembership
     """ # noqa: E501
+    permissions: List[StrictStr]
+    role: StrictStr
     role_name: StrictStr = Field(alias="roleName")
-    __properties: ClassVar[List[str]] = ["roleName"]
+    status: StrictStr
+    __properties: ClassVar[List[str]] = ["permissions", "role", "roleName", "status"]
+
+    @field_validator('permissions')
+    def permissions_validate_enum(cls, value):
+        """Validates the enum"""
+        for i in value:
+            if i not in set(['manage_api', 'manage_orders', 'manage_organization', 'read_catalog', 'read_orders', 'review_orders']):
+                raise ValueError("each list item must be one of ('manage_api', 'manage_orders', 'manage_organization', 'read_catalog', 'read_orders', 'review_orders')")
+        return value
+
+    @field_validator('role')
+    def role_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['clinical_reviewer', 'developer', 'operations', 'owner', 'viewer']):
+            raise ValueError("must be one of enum values ('clinical_reviewer', 'developer', 'operations', 'owner', 'viewer')")
+        return value
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['active', 'disabled', 'invited']):
+            raise ValueError("must be one of enum values ('active', 'disabled', 'invited')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,7 +107,10 @@ class GetAccountResponseMembership(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "roleName": obj.get("roleName")
+            "permissions": obj.get("permissions"),
+            "role": obj.get("role"),
+            "roleName": obj.get("roleName"),
+            "status": obj.get("status")
         })
         return _obj
 

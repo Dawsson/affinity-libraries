@@ -22,7 +22,10 @@ var _ MappedNullable = &GetAccountResponseMembership{}
 
 // GetAccountResponseMembership struct for GetAccountResponseMembership
 type GetAccountResponseMembership struct {
-	RoleName string `json:"roleName"`
+	Permissions []string `json:"permissions"`
+	Role        string   `json:"role"`
+	RoleName    string   `json:"roleName"`
+	Status      string   `json:"status"`
 }
 
 type _GetAccountResponseMembership GetAccountResponseMembership
@@ -31,9 +34,12 @@ type _GetAccountResponseMembership GetAccountResponseMembership
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetAccountResponseMembership(roleName string) *GetAccountResponseMembership {
+func NewGetAccountResponseMembership(permissions []string, role string, roleName string, status string) *GetAccountResponseMembership {
 	this := GetAccountResponseMembership{}
+	this.Permissions = permissions
+	this.Role = role
 	this.RoleName = roleName
+	this.Status = status
 	return &this
 }
 
@@ -43,6 +49,54 @@ func NewGetAccountResponseMembership(roleName string) *GetAccountResponseMembers
 func NewGetAccountResponseMembershipWithDefaults() *GetAccountResponseMembership {
 	this := GetAccountResponseMembership{}
 	return &this
+}
+
+// GetPermissions returns the Permissions field value
+func (o *GetAccountResponseMembership) GetPermissions() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Permissions
+}
+
+// GetPermissionsOk returns a tuple with the Permissions field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountResponseMembership) GetPermissionsOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Permissions, true
+}
+
+// SetPermissions sets field value
+func (o *GetAccountResponseMembership) SetPermissions(v []string) {
+	o.Permissions = v
+}
+
+// GetRole returns the Role field value
+func (o *GetAccountResponseMembership) GetRole() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Role
+}
+
+// GetRoleOk returns a tuple with the Role field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountResponseMembership) GetRoleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Role, true
+}
+
+// SetRole sets field value
+func (o *GetAccountResponseMembership) SetRole(v string) {
+	o.Role = v
 }
 
 // GetRoleName returns the RoleName field value
@@ -69,6 +123,30 @@ func (o *GetAccountResponseMembership) SetRoleName(v string) {
 	o.RoleName = v
 }
 
+// GetStatus returns the Status field value
+func (o *GetAccountResponseMembership) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountResponseMembership) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetAccountResponseMembership) SetStatus(v string) {
+	o.Status = v
+}
+
 func (o GetAccountResponseMembership) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -79,7 +157,10 @@ func (o GetAccountResponseMembership) MarshalJSON() ([]byte, error) {
 
 func (o GetAccountResponseMembership) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["permissions"] = o.Permissions
+	toSerialize["role"] = o.Role
 	toSerialize["roleName"] = o.RoleName
+	toSerialize["status"] = o.Status
 	return toSerialize, nil
 }
 
@@ -88,7 +169,10 @@ func (o *GetAccountResponseMembership) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"permissions",
+		"role",
 		"roleName",
+		"status",
 	}
 
 	allProperties := make(map[string]interface{})

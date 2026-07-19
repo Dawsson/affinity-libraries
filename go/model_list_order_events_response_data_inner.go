@@ -22,10 +22,12 @@ var _ MappedNullable = &ListOrderEventsResponseDataInner{}
 
 // ListOrderEventsResponseDataInner struct for ListOrderEventsResponseDataInner
 type ListOrderEventsResponseDataInner struct {
-	CreatedAt string `json:"createdAt"`
-	EventType string `json:"eventType"`
-	Message   string `json:"message"`
-	Object    string `json:"object"`
+	CreatedAt string                 `json:"createdAt"`
+	EventType string                 `json:"eventType"`
+	Id        string                 `json:"id" validate:"regexp=^evt_[0-9a-hjkmnp-tv-z]{26}$"`
+	Message   string                 `json:"message"`
+	Metadata  map[string]interface{} `json:"metadata"`
+	Object    string                 `json:"object"`
 }
 
 type _ListOrderEventsResponseDataInner ListOrderEventsResponseDataInner
@@ -34,11 +36,13 @@ type _ListOrderEventsResponseDataInner ListOrderEventsResponseDataInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOrderEventsResponseDataInner(createdAt string, eventType string, message string, object string) *ListOrderEventsResponseDataInner {
+func NewListOrderEventsResponseDataInner(createdAt string, eventType string, id string, message string, metadata map[string]interface{}, object string) *ListOrderEventsResponseDataInner {
 	this := ListOrderEventsResponseDataInner{}
 	this.CreatedAt = createdAt
 	this.EventType = eventType
+	this.Id = id
 	this.Message = message
+	this.Metadata = metadata
 	this.Object = object
 	return &this
 }
@@ -99,6 +103,30 @@ func (o *ListOrderEventsResponseDataInner) SetEventType(v string) {
 	o.EventType = v
 }
 
+// GetId returns the Id field value
+func (o *ListOrderEventsResponseDataInner) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderEventsResponseDataInner) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListOrderEventsResponseDataInner) SetId(v string) {
+	o.Id = v
+}
+
 // GetMessage returns the Message field value
 func (o *ListOrderEventsResponseDataInner) GetMessage() string {
 	if o == nil {
@@ -121,6 +149,30 @@ func (o *ListOrderEventsResponseDataInner) GetMessageOk() (*string, bool) {
 // SetMessage sets field value
 func (o *ListOrderEventsResponseDataInner) SetMessage(v string) {
 	o.Message = v
+}
+
+// GetMetadata returns the Metadata field value
+func (o *ListOrderEventsResponseDataInner) GetMetadata() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderEventsResponseDataInner) GetMetadataOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
+	}
+	return o.Metadata, true
+}
+
+// SetMetadata sets field value
+func (o *ListOrderEventsResponseDataInner) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
 }
 
 // GetObject returns the Object field value
@@ -159,7 +211,9 @@ func (o ListOrderEventsResponseDataInner) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["eventType"] = o.EventType
+	toSerialize["id"] = o.Id
 	toSerialize["message"] = o.Message
+	toSerialize["metadata"] = o.Metadata
 	toSerialize["object"] = o.Object
 	return toSerialize, nil
 }
@@ -171,7 +225,9 @@ func (o *ListOrderEventsResponseDataInner) UnmarshalJSON(data []byte) (err error
 	requiredProperties := []string{
 		"createdAt",
 		"eventType",
+		"id",
 		"message",
+		"metadata",
 		"object",
 	}
 

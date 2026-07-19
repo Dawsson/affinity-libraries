@@ -8,9 +8,9 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**city** | **String** |  |  |
-|**country** | **String** |  |  [optional] |
+|**country** | **String** |  |  |
 |**line1** | **String** |  |  |
-|**line2** | **String** |  |  [optional] |
+|**line2** | **String** |  |  |
 |**postalCode** | **String** |  |  |
 |**state** | **String** |  |  |
 

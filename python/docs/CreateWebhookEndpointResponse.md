@@ -7,10 +7,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **str** |  |
 **enabled_events** | **List[str]** |  |
+**id** | **str** |  |
 **livemode** | **bool** |  |
 **object** | **str** |  |
+**status** | **str** |  |
 **updated_at** | **str** |  |
 **url** | **str** |  |
+**signing_secret** | **str** |  |
 
 ## Example
 

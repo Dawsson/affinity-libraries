@@ -33,6 +33,12 @@ export interface CreateWebhookEndpointResponse {
     enabledEvents: Array<string>;
     /**
      *
+     * @type {string}
+     * @memberof CreateWebhookEndpointResponse
+     */
+    id: string;
+    /**
+     *
      * @type {boolean}
      * @memberof CreateWebhookEndpointResponse
      */
@@ -45,6 +51,12 @@ export interface CreateWebhookEndpointResponse {
     object: CreateWebhookEndpointResponseObjectEnum;
     /**
      *
+     * @type {CreateWebhookEndpointResponseStatusEnum}
+     * @memberof CreateWebhookEndpointResponse
+     */
+    status: CreateWebhookEndpointResponseStatusEnum;
+    /**
+     *
      * @type {string}
      * @memberof CreateWebhookEndpointResponse
      */
@@ -55,6 +67,12 @@ export interface CreateWebhookEndpointResponse {
      * @memberof CreateWebhookEndpointResponse
      */
     url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CreateWebhookEndpointResponse
+     */
+    signingSecret: string;
 }
 
 
@@ -66,6 +84,15 @@ export const CreateWebhookEndpointResponseObjectEnum = {
 } as const;
 export type CreateWebhookEndpointResponseObjectEnum = typeof CreateWebhookEndpointResponseObjectEnum[keyof typeof CreateWebhookEndpointResponseObjectEnum];
 
+/**
+ * @export
+ */
+export const CreateWebhookEndpointResponseStatusEnum = {
+    Active: 'active',
+    Disabled: 'disabled'
+} as const;
+export type CreateWebhookEndpointResponseStatusEnum = typeof CreateWebhookEndpointResponseStatusEnum[keyof typeof CreateWebhookEndpointResponseStatusEnum];
+
 
 /**
  * Check if a given object implements the CreateWebhookEndpointResponse interface.
@@ -73,10 +100,13 @@ export type CreateWebhookEndpointResponseObjectEnum = typeof CreateWebhookEndpoi
 export function instanceOfCreateWebhookEndpointResponse(value: object): value is CreateWebhookEndpointResponse {
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('enabledEvents' in value) || value['enabledEvents'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
+    if (!('signingSecret' in value) || value['signingSecret'] === undefined) return false;
     return true;
 }
 
@@ -92,10 +122,13 @@ export function CreateWebhookEndpointResponseFromJSONTyped(json: any, ignoreDisc
 
         'createdAt': json['createdAt'],
         'enabledEvents': json['enabledEvents'],
+        'id': json['id'],
         'livemode': json['livemode'],
         'object': json['object'],
+        'status': json['status'],
         'updatedAt': json['updatedAt'],
         'url': json['url'],
+        'signingSecret': json['signingSecret'],
     };
 }
 
@@ -112,10 +145,13 @@ export function CreateWebhookEndpointResponseToJSONTyped(value?: CreateWebhookEn
 
         'createdAt': value['createdAt'],
         'enabledEvents': value['enabledEvents'],
+        'id': value['id'],
         'livemode': value['livemode'],
         'object': value['object'],
+        'status': value['status'],
         'updatedAt': value['updatedAt'],
         'url': value['url'],
+        'signingSecret': value['signingSecret'],
     };
 }
 

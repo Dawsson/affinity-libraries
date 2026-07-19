@@ -18,8 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from affinity_sdk.models.list_practices_response_data_inner_address import ListPracticesResponseDataInnerAddress
 from affinity_sdk.models.list_practices_response_data_inner_contacts import ListPracticesResponseDataInnerContacts
 from affinity_sdk.models.list_practices_response_data_inner_prescribers_inner import ListPracticesResponseDataInnerPrescribersInner
@@ -33,23 +35,66 @@ class UpdatePracticeResponse(BaseModel):
     """ # noqa: E501
     address: Optional[ListPracticesResponseDataInnerAddress]
     contacts: ListPracticesResponseDataInnerContacts
-    created_at: StrictStr = Field(alias="createdAt")
+    created_at: datetime = Field(alias="createdAt")
     external_id: Optional[StrictStr] = Field(alias="externalId")
+    id: Annotated[str, Field(strict=True)]
     legal_name: Optional[StrictStr] = Field(alias="legalName")
     livemode: StrictBool
+    metadata: Dict[str, Any]
     name: StrictStr
     object: StrictStr
     prescribers: List[ListPracticesResponseDataInnerPrescribersInner]
-    support_email: Optional[StrictStr] = Field(alias="supportEmail")
+    production_access: StrictStr = Field(alias="productionAccess")
+    support_email: Optional[Annotated[str, Field(strict=True)]] = Field(alias="supportEmail")
     support_phone: Optional[StrictStr] = Field(alias="supportPhone")
     timezone: StrictStr
-    __properties: ClassVar[List[str]] = ["address", "contacts", "createdAt", "externalId", "legalName", "livemode", "name", "object", "prescribers", "supportEmail", "supportPhone", "timezone"]
+    __properties: ClassVar[List[str]] = ["address", "contacts", "createdAt", "externalId", "id", "legalName", "livemode", "metadata", "name", "object", "prescribers", "productionAccess", "supportEmail", "supportPhone", "timezone"]
+
+    @field_validator('created_at')
+    def created_at_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$", value):
+            raise ValueError(r"must validate the regular expression /^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/")
+        return value
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^prac_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^prac_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['practice']):
             raise ValueError("must be one of enum values ('practice')")
+        return value
+
+    @field_validator('production_access')
+    def production_access_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['approved', 'not_applicable', 'pending']):
+            raise ValueError("must be one of enum values ('approved', 'not_applicable', 'pending')")
+        return value
+
+    @field_validator('support_email')
+    def support_email_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^(?!\.)(?!.*\.\.)([A-Za-z0-9_\'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$", value):
+            raise ValueError(r"must validate the regular expression /^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/")
         return value
 
     model_config = ConfigDict(
@@ -145,11 +190,14 @@ class UpdatePracticeResponse(BaseModel):
             "contacts": ListPracticesResponseDataInnerContacts.from_dict(obj["contacts"]) if obj.get("contacts") is not None else None,
             "createdAt": obj.get("createdAt"),
             "externalId": obj.get("externalId"),
+            "id": obj.get("id"),
             "legalName": obj.get("legalName"),
             "livemode": obj.get("livemode"),
+            "metadata": obj.get("metadata"),
             "name": obj.get("name"),
             "object": obj.get("object"),
             "prescribers": [ListPracticesResponseDataInnerPrescribersInner.from_dict(_item) for _item in obj["prescribers"]] if obj.get("prescribers") is not None else None,
+            "productionAccess": obj.get("productionAccess"),
             "supportEmail": obj.get("supportEmail"),
             "supportPhone": obj.get("supportPhone"),
             "timezone": obj.get("timezone")

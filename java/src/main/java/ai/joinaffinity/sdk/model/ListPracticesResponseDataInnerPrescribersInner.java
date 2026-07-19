@@ -27,10 +27,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -47,7 +43,8 @@ import ai.joinaffinity.sdk.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ListPracticesResponseDataInnerPrescribersInner {
   public static final String JSON_PROPERTY_CREDENTIALS = "credentials";
-  private JsonNullable<String> credentials = JsonNullable.<String>undefined();
+  @javax.annotation.Nullable
+  private String credentials;
 
   public static final String JSON_PROPERTY_LICENSE_STATES = "licenseStates";
   @javax.annotation.Nonnull
@@ -65,7 +62,7 @@ public class ListPracticesResponseDataInnerPrescribersInner {
   }
 
   public ListPracticesResponseDataInnerPrescribersInner credentials(@javax.annotation.Nullable String credentials) {
-    this.credentials = JsonNullable.<String>of(credentials);
+    this.credentials = credentials;
     return this;
   }
 
@@ -74,25 +71,17 @@ public class ListPracticesResponseDataInnerPrescribersInner {
    * @return credentials
    */
   @javax.annotation.Nullable
-  @JsonIgnore
-  public String getCredentials() {
-        return credentials.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_CREDENTIALS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCredentials_JsonNullable() {
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getCredentials() {
     return credentials;
   }
 
-  @JsonProperty(JSON_PROPERTY_CREDENTIALS)
-  public void setCredentials_JsonNullable(JsonNullable<String> credentials) {
-    this.credentials = credentials;
-  }
 
+  @JsonProperty(value = JSON_PROPERTY_CREDENTIALS, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCredentials(@javax.annotation.Nullable String credentials) {
-    this.credentials = JsonNullable.<String>of(credentials);
+    this.credentials = credentials;
   }
 
 
@@ -188,26 +177,15 @@ public class ListPracticesResponseDataInnerPrescribersInner {
       return false;
     }
     ListPracticesResponseDataInnerPrescribersInner listPracticesResponseDataInnerPrescribersInner = (ListPracticesResponseDataInnerPrescribersInner) o;
-    return equalsNullable(this.credentials, listPracticesResponseDataInnerPrescribersInner.credentials) &&
+    return Objects.equals(this.credentials, listPracticesResponseDataInnerPrescribersInner.credentials) &&
         Objects.equals(this.licenseStates, listPracticesResponseDataInnerPrescribersInner.licenseStates) &&
         Objects.equals(this.name, listPracticesResponseDataInnerPrescribersInner.name) &&
         Objects.equals(this.npi, listPracticesResponseDataInnerPrescribersInner.npi);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(credentials), licenseStates, name, npi);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(credentials, licenseStates, name, npi);
   }
 
   @Override

@@ -23,6 +23,7 @@ var _ MappedNullable = &GetAccountResponse{}
 type GetAccountResponse struct {
 	Account              GetAccountResponseAccount    `json:"account"`
 	Membership           GetAccountResponseMembership `json:"membership"`
+	OperatingMode        string                       `json:"operatingMode"`
 	User                 GetAccountResponseUser       `json:"user"`
 	AdditionalProperties map[string]interface{}
 }
@@ -33,10 +34,11 @@ type _GetAccountResponse GetAccountResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetAccountResponse(account GetAccountResponseAccount, membership GetAccountResponseMembership, user GetAccountResponseUser) *GetAccountResponse {
+func NewGetAccountResponse(account GetAccountResponseAccount, membership GetAccountResponseMembership, operatingMode string, user GetAccountResponseUser) *GetAccountResponse {
 	this := GetAccountResponse{}
 	this.Account = account
 	this.Membership = membership
+	this.OperatingMode = operatingMode
 	this.User = user
 	return &this
 }
@@ -97,6 +99,30 @@ func (o *GetAccountResponse) SetMembership(v GetAccountResponseMembership) {
 	o.Membership = v
 }
 
+// GetOperatingMode returns the OperatingMode field value
+func (o *GetAccountResponse) GetOperatingMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OperatingMode
+}
+
+// GetOperatingModeOk returns a tuple with the OperatingMode field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountResponse) GetOperatingModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OperatingMode, true
+}
+
+// SetOperatingMode sets field value
+func (o *GetAccountResponse) SetOperatingMode(v string) {
+	o.OperatingMode = v
+}
+
 // GetUser returns the User field value
 func (o *GetAccountResponse) GetUser() GetAccountResponseUser {
 	if o == nil {
@@ -133,6 +159,7 @@ func (o GetAccountResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["account"] = o.Account
 	toSerialize["membership"] = o.Membership
+	toSerialize["operatingMode"] = o.OperatingMode
 	toSerialize["user"] = o.User
 
 	for key, value := range o.AdditionalProperties {
@@ -149,6 +176,7 @@ func (o *GetAccountResponse) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"account",
 		"membership",
+		"operatingMode",
 		"user",
 	}
 
@@ -181,6 +209,7 @@ func (o *GetAccountResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "account")
 		delete(additionalProperties, "membership")
+		delete(additionalProperties, "operatingMode")
 		delete(additionalProperties, "user")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -7,13 +7,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | [**ListPracticesResponseDataInnerAddress**](ListPracticesResponseDataInnerAddress.md) |  |
 **contacts** | [**ListPracticesResponseDataInnerContacts**](ListPracticesResponseDataInnerContacts.md) |  |
-**created_at** | **str** |  |
+**created_at** | **datetime** |  |
 **external_id** | **str** |  |
+**id** | **str** |  |
 **legal_name** | **str** |  |
 **livemode** | **bool** |  |
+**metadata** | **Dict[str, object]** |  |
 **name** | **str** |  |
 **object** | **str** |  |
 **prescribers** | [**List[ListPracticesResponseDataInnerPrescribersInner]**](ListPracticesResponseDataInnerPrescribersInner.md) |  |
+**production_access** | **str** |  |
 **support_email** | **str** |  |
 **support_phone** | **str** |  |
 **timezone** | **str** |  |

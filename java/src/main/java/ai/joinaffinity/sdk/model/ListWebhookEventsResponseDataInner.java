@@ -35,10 +35,12 @@ import ai.joinaffinity.sdk.ApiClient;
 @JsonPropertyOrder({
   ListWebhookEventsResponseDataInner.JSON_PROPERTY_CREATED_AT,
   ListWebhookEventsResponseDataInner.JSON_PROPERTY_EVENT_TYPE,
+  ListWebhookEventsResponseDataInner.JSON_PROPERTY_ID,
   ListWebhookEventsResponseDataInner.JSON_PROPERTY_LIVEMODE,
   ListWebhookEventsResponseDataInner.JSON_PROPERTY_OBJECT,
   ListWebhookEventsResponseDataInner.JSON_PROPERTY_OBJECT_ID,
   ListWebhookEventsResponseDataInner.JSON_PROPERTY_OBJECT_TYPE,
+  ListWebhookEventsResponseDataInner.JSON_PROPERTY_STATUS,
   ListWebhookEventsResponseDataInner.JSON_PROPERTY_UPDATED_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -50,6 +52,10 @@ public class ListWebhookEventsResponseDataInner {
   public static final String JSON_PROPERTY_EVENT_TYPE = "eventType";
   @javax.annotation.Nonnull
   private String eventType;
+
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String JSON_PROPERTY_LIVEMODE = "livemode";
   @javax.annotation.Nonnull
@@ -99,6 +105,49 @@ public class ListWebhookEventsResponseDataInner {
   public static final String JSON_PROPERTY_OBJECT_TYPE = "objectType";
   @javax.annotation.Nonnull
   private String objectType;
+
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    DELIVERED(String.valueOf("delivered")),
+
+    FAILED(String.valueOf("failed")),
+
+    PENDING(String.valueOf("pending")),
+
+    SKIPPED(String.valueOf("skipped"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nonnull
+  private StatusEnum status;
 
   public static final String JSON_PROPERTY_UPDATED_AT = "updatedAt";
   @javax.annotation.Nonnull
@@ -152,6 +201,30 @@ public class ListWebhookEventsResponseDataInner {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEventType(@javax.annotation.Nonnull String eventType) {
     this.eventType = eventType;
+  }
+
+
+  public ListWebhookEventsResponseDataInner id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
   }
 
 
@@ -251,6 +324,30 @@ public class ListWebhookEventsResponseDataInner {
   }
 
 
+  public ListWebhookEventsResponseDataInner status(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
+  }
+
+
   public ListWebhookEventsResponseDataInner updatedAt(@javax.annotation.Nonnull String updatedAt) {
     this.updatedAt = updatedAt;
     return this;
@@ -289,16 +386,18 @@ public class ListWebhookEventsResponseDataInner {
     ListWebhookEventsResponseDataInner listWebhookEventsResponseDataInner = (ListWebhookEventsResponseDataInner) o;
     return Objects.equals(this.createdAt, listWebhookEventsResponseDataInner.createdAt) &&
         Objects.equals(this.eventType, listWebhookEventsResponseDataInner.eventType) &&
+        Objects.equals(this.id, listWebhookEventsResponseDataInner.id) &&
         Objects.equals(this.livemode, listWebhookEventsResponseDataInner.livemode) &&
         Objects.equals(this._object, listWebhookEventsResponseDataInner._object) &&
         Objects.equals(this.objectId, listWebhookEventsResponseDataInner.objectId) &&
         Objects.equals(this.objectType, listWebhookEventsResponseDataInner.objectType) &&
+        Objects.equals(this.status, listWebhookEventsResponseDataInner.status) &&
         Objects.equals(this.updatedAt, listWebhookEventsResponseDataInner.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, eventType, livemode, _object, objectId, objectType, updatedAt);
+    return Objects.hash(createdAt, eventType, id, livemode, _object, objectId, objectType, status, updatedAt);
   }
 
   @Override
@@ -307,10 +406,12 @@ public class ListWebhookEventsResponseDataInner {
     sb.append("class ListWebhookEventsResponseDataInner {\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    eventType: ").append(toIndentedString(eventType)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    objectId: ").append(toIndentedString(objectId)).append("\n");
     sb.append("    objectType: ").append(toIndentedString(objectType)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -366,6 +467,11 @@ public class ListWebhookEventsResponseDataInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%seventType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEventType()))));
     }
 
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
     // add `livemode` to the URL query string
     if (getLivemode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slivemode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLivemode()))));
@@ -384,6 +490,11 @@ public class ListWebhookEventsResponseDataInner {
     // add `objectType` to the URL query string
     if (getObjectType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobjectType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectType()))));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     // add `updatedAt` to the URL query string

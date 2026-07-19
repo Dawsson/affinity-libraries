@@ -24,7 +24,7 @@ export interface ListPracticesResponseDataInnerPrescribersInner {
      * @type {string}
      * @memberof ListPracticesResponseDataInnerPrescribersInner
      */
-    credentials?: string | null;
+    credentials: string | null;
     /**
      *
      * @type {Array<string>}
@@ -49,6 +49,7 @@ export interface ListPracticesResponseDataInnerPrescribersInner {
  * Check if a given object implements the ListPracticesResponseDataInnerPrescribersInner interface.
  */
 export function instanceOfListPracticesResponseDataInnerPrescribersInner(value: object): value is ListPracticesResponseDataInnerPrescribersInner {
+    if (!('credentials' in value) || value['credentials'] === undefined) return false;
     if (!('licenseStates' in value) || value['licenseStates'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('npi' in value) || value['npi'] === undefined) return false;
@@ -65,7 +66,7 @@ export function ListPracticesResponseDataInnerPrescribersInnerFromJSONTyped(json
     }
     return {
 
-        'credentials': json['credentials'] == null ? undefined : json['credentials'],
+        'credentials': json['credentials'],
         'licenseStates': json['licenseStates'],
         'name': json['name'],
         'npi': json['npi'],

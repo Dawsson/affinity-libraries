@@ -87,7 +87,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -221,7 +220,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.organization
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/auth/access:
     get:
       description: "Returns the subject, mode, and scopes for the API key."
@@ -281,7 +280,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -415,7 +413,7 @@ paths:
         file: apps/api-v2/src/routes/platform/public-api/public-api.endpoints.ts
         name: platform.public-api.apiAccess
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/catalog/items:
     get:
       description: Lists the catalog items that are eligible for the authenticated
@@ -526,7 +524,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -660,7 +657,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.catalogItems
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/orders:
     get:
       operationId: listOrders
@@ -786,7 +783,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -920,7 +916,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.orders
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
     post:
       description: "Creates an editable test draft. In live mode, it releases an existing\
         \ signed prescription version."
@@ -1032,7 +1028,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -1197,7 +1192,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.orderCreate
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/orders/{orderId}:
     get:
       operationId: getOrder
@@ -1263,7 +1258,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -1425,7 +1419,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.orderRead
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
     patch:
       description: Updates a test order that is in the draft state.
       operationId: updateOrder
@@ -1498,7 +1492,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -1691,7 +1684,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.orderUpdate
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/orders/{orderId}/cancel:
     post:
       description: "Cancels an order before shipment. To correct an order, cancel\
@@ -1766,7 +1759,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -1959,7 +1951,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.orderCancel
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/orders/{orderId}/events:
     get:
       operationId: listOrderEvents
@@ -2051,7 +2043,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -2213,7 +2204,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.orderEvents
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/orders/{orderId}/submit:
     post:
       description: Checks a test draft and submits it to the test review queue.
@@ -2281,7 +2272,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -2474,7 +2464,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.orderSubmit
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/practices:
     get:
       operationId: listPractices
@@ -2559,7 +2549,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -2693,7 +2682,7 @@ paths:
         file: apps/api-v2/src/routes/platform/public-api/public-api.endpoints.ts
         name: platform.public-api.practices
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
     post:
       description: Creates a practice for the platform. Send Idempotency-Key when
         you retry the same request.
@@ -2793,7 +2782,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -2958,7 +2946,7 @@ paths:
         file: apps/api-v2/src/routes/platform/public-api/public-api.endpoints.ts
         name: platform.public-api.practiceCreate
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/practices/{practiceId}:
     get:
       description: Returns one practice that belongs to the platform.
@@ -3025,7 +3013,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -3187,7 +3174,7 @@ paths:
         file: apps/api-v2/src/routes/platform/public-api/public-api.endpoints.ts
         name: platform.public-api.practiceRead
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
     patch:
       description: Updates one practice that belongs to the platform. Send Idempotency-Key
         when you retry the same request.
@@ -3261,7 +3248,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -3454,7 +3440,7 @@ paths:
         file: apps/api-v2/src/routes/platform/public-api/public-api.endpoints.ts
         name: platform.public-api.practiceUpdate
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/webhook-endpoints:
     get:
       operationId: listWebhookEndpoints
@@ -3539,7 +3525,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -3673,7 +3658,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.webhookEndpoints
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
     post:
       operationId: createWebhookEndpoint
       parameters:
@@ -3738,7 +3723,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -3903,7 +3887,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.webhookEndpointCreate
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/webhook-endpoints/{endpointId}:
     delete:
       operationId: deleteWebhookEndpoint
@@ -3970,7 +3954,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -4163,7 +4146,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.webhookEndpointDelete
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
     patch:
       operationId: updateWebhookEndpoint
       parameters:
@@ -4235,7 +4218,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -4428,7 +4410,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.webhookEndpointUpdate
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/webhook-endpoints/{endpointId}/rotate-secret:
     post:
       operationId: rotateWebhookEndpointSecret
@@ -4495,7 +4477,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -4688,7 +4669,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.webhookEndpointRotateSecret
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/webhook-events:
     get:
       operationId: listWebhookEvents
@@ -4787,7 +4768,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -4921,7 +4901,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.webhookEvents
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/webhook-events/{eventId}:
     get:
       operationId: getWebhookEvent
@@ -4987,7 +4967,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -5149,7 +5128,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.webhookEventRead
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
   /v1/webhook-events/{eventId}/replay:
     post:
       operationId: replayWebhookEvent
@@ -5216,7 +5195,6 @@ paths:
             Request-Id:
               $ref: "#/components/headers/RequestId"
           x-affinity-error-codes:
-          - api_version_required
           - idempotency_key_too_long
           - invalid_cursor
           - invalid_id
@@ -5409,7 +5387,7 @@ paths:
         file: apps/api-v2/src/routes/platform/platform.endpoints.ts
         name: platform.webhookEventReplay
         visibility: public
-      x-affinity-version-required: true
+      x-affinity-version-default: service_account
 components:
   headers:
     AffinityVersion:
@@ -5498,8 +5476,14 @@ components:
     GetAccountResponse:
       additionalProperties: {}
       example:
+        operatingMode: production
         membership:
+          role: clinical_reviewer
+          permissions:
+          - manage_api
+          - manage_api
           roleName: roleName
+          status: active
         user:
           emailVerified: true
           image: image
@@ -5517,27 +5501,40 @@ components:
           alertEmails:
           - alertEmails
           - alertEmails
+          id: id
           slug: slug
           object: account
+          status: active
       properties:
         account:
           $ref: "#/components/schemas/GetAccountResponse_account"
         membership:
           $ref: "#/components/schemas/GetAccountResponse_membership"
+        operatingMode:
+          enum:
+          - production
+          - production_pending
+          - sandbox
+          - suspended
+          type: string
         user:
           $ref: "#/components/schemas/GetAccountResponse_user"
       required:
       - account
       - membership
+      - operatingMode
       - user
     GetApiAccessResponse:
       additionalProperties: {}
       example:
         apiKey:
+          id: id
           keyPrefix: keyPrefix
           object: api_key
         livemode: true
         serviceAccount:
+          apiVersion: 2026-07-19
+          id: id
           subjectType: subjectType
           subjectId: subjectId
           object: service_account
@@ -5570,7 +5567,8 @@ components:
       additionalProperties: {}
       example:
         data:
-        - livemode: true
+        - compounderId: compounderId
+          livemode: true
           strength: strength
           facilityType: facilityType
           dosageForm: dosageForm
@@ -5587,9 +5585,17 @@ components:
           name: name
           compounderName: compounderName
           coldShip: true
+          id: id
           catalogKind: catalogKind
+          pricing:
+            serviceFeePercent: 5
+            currency: USD
+            medicationSubtotalCents: 2147483647
+            serviceFeeCents: 2147483647
+            orderTotalCents: 2147483647
           object: catalog_item
-        - livemode: true
+        - compounderId: compounderId
+          livemode: true
           strength: strength
           facilityType: facilityType
           dosageForm: dosageForm
@@ -5606,7 +5612,14 @@ components:
           name: name
           compounderName: compounderName
           coldShip: true
+          id: id
           catalogKind: catalogKind
+          pricing:
+            serviceFeePercent: 5
+            currency: USD
+            medicationSubtotalCents: 2147483647
+            serviceFeeCents: 2147483647
+            orderTotalCents: 2147483647
           object: catalog_item
         hasMore: true
         url: /v1/catalog/items
@@ -5635,7 +5648,8 @@ components:
       additionalProperties: {}
       example:
         data:
-        - medicationName: medicationName
+        - compounderId: compounderId
+          medicationName: medicationName
           livemode: true
           strength: strength
           prescriberName: prescriberName
@@ -5654,21 +5668,27 @@ components:
             coldShip: true
           prescriberNpi: prescriberNpi
           currency: currency
+          id: id
           trackingNumber: trackingNumber
           updatedAt: updatedAt
           patientName: patientName
           quantity: 0.8008281904610115
           cancellationReason: cancellationReason
+          practiceId: practiceId
           dosageForm: dosageForm
           externalOrderId: externalOrderId
           deliveredAt: deliveredAt
+          catalogItemId: catalogItemId
           carrier: carrier
           directions: directions
           shippedAt: shippedAt
           patientState: patientState
           externalSubmissionAttempted: true
           object: order
-        - medicationName: medicationName
+          replacesOrderId: replacesOrderId
+          status: blocked
+        - compounderId: compounderId
+          medicationName: medicationName
           livemode: true
           strength: strength
           prescriberName: prescriberName
@@ -5687,20 +5707,25 @@ components:
             coldShip: true
           prescriberNpi: prescriberNpi
           currency: currency
+          id: id
           trackingNumber: trackingNumber
           updatedAt: updatedAt
           patientName: patientName
           quantity: 0.8008281904610115
           cancellationReason: cancellationReason
+          practiceId: practiceId
           dosageForm: dosageForm
           externalOrderId: externalOrderId
           deliveredAt: deliveredAt
+          catalogItemId: catalogItemId
           carrier: carrier
           directions: directions
           shippedAt: shippedAt
           patientState: patientState
           externalSubmissionAttempted: true
           object: order
+          replacesOrderId: replacesOrderId
+          status: blocked
         hasMore: true
         url: /v1/orders
         object: list
@@ -5731,6 +5756,7 @@ components:
     CreateOrderResponse:
       additionalProperties: {}
       example:
+        compounderId: compounderId
         medicationName: medicationName
         livemode: true
         strength: strength
@@ -5750,20 +5776,25 @@ components:
           coldShip: true
         prescriberNpi: prescriberNpi
         currency: currency
+        id: id
         trackingNumber: trackingNumber
         updatedAt: updatedAt
         patientName: patientName
         quantity: 0.8008281904610115
         cancellationReason: cancellationReason
+        practiceId: practiceId
         dosageForm: dosageForm
         externalOrderId: externalOrderId
         deliveredAt: deliveredAt
+        catalogItemId: catalogItemId
         carrier: carrier
         directions: directions
         shippedAt: shippedAt
         patientState: patientState
         externalSubmissionAttempted: true
         object: order
+        replacesOrderId: replacesOrderId
+        status: blocked
       properties:
         cancellationReason:
           nullable: true
@@ -5771,12 +5802,20 @@ components:
         carrier:
           nullable: true
           type: string
+        catalogItemId:
+          nullable: true
+          pattern: "^cat_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        practiceId:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        compounderId:
+          nullable: true
+          pattern: "^cmp_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         createdAt:
           type: string
         currency:
-          type: string
-        deliveredAt:
-          nullable: true
           type: string
         directions:
           type: string
@@ -5790,13 +5829,12 @@ components:
         externalSubmissionBlockedReason:
           nullable: true
           type: string
+        id:
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         medicationName:
-          type: string
-        object:
-          enum:
-          - order
           type: string
         patientExternalId:
           type: string
@@ -5815,10 +5853,25 @@ components:
         quoteCents:
           nullable: true
           type: number
+        object:
+          enum:
+          - order
+          type: string
+        replacesOrderId:
+          nullable: true
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         routing:
           $ref: "#/components/schemas/ListOrdersResponse_data_inner_routing"
-        shippedAt:
-          nullable: true
+        status:
+          enum:
+          - blocked
+          - cancelled
+          - delivered
+          - draft
+          - processing
+          - shipped
+          - submitted
           type: string
         strength:
           nullable: true
@@ -5826,11 +5879,19 @@ components:
         trackingNumber:
           nullable: true
           type: string
+        shippedAt:
+          nullable: true
+          type: string
+        deliveredAt:
+          nullable: true
+          type: string
         updatedAt:
           type: string
       required:
       - cancellationReason
       - carrier
+      - catalogItemId
+      - compounderId
       - createdAt
       - currency
       - deliveredAt
@@ -5839,24 +5900,29 @@ components:
       - externalOrderId
       - externalSubmissionAttempted
       - externalSubmissionBlockedReason
+      - id
       - livemode
       - medicationName
       - object
       - patientExternalId
       - patientName
       - patientState
+      - practiceId
       - prescriberName
       - prescriberNpi
       - quantity
       - quoteCents
+      - replacesOrderId
       - routing
       - shippedAt
+      - status
       - strength
       - trackingNumber
       - updatedAt
     GetOrderResponse:
       additionalProperties: false
       example:
+        compounderId: compounderId
         medicationName: medicationName
         livemode: true
         strength: strength
@@ -5876,20 +5942,25 @@ components:
           coldShip: true
         prescriberNpi: prescriberNpi
         currency: currency
+        id: id
         trackingNumber: trackingNumber
         updatedAt: updatedAt
         patientName: patientName
         quantity: 0.8008281904610115
         cancellationReason: cancellationReason
+        practiceId: practiceId
         dosageForm: dosageForm
         externalOrderId: externalOrderId
         deliveredAt: deliveredAt
+        catalogItemId: catalogItemId
         carrier: carrier
         directions: directions
         shippedAt: shippedAt
         patientState: patientState
         externalSubmissionAttempted: true
         object: order
+        replacesOrderId: replacesOrderId
+        status: blocked
       properties:
         cancellationReason:
           nullable: true
@@ -5897,12 +5968,20 @@ components:
         carrier:
           nullable: true
           type: string
+        catalogItemId:
+          nullable: true
+          pattern: "^cat_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        practiceId:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        compounderId:
+          nullable: true
+          pattern: "^cmp_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         createdAt:
           type: string
         currency:
-          type: string
-        deliveredAt:
-          nullable: true
           type: string
         directions:
           type: string
@@ -5916,13 +5995,12 @@ components:
         externalSubmissionBlockedReason:
           nullable: true
           type: string
+        id:
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         medicationName:
-          type: string
-        object:
-          enum:
-          - order
           type: string
         patientExternalId:
           type: string
@@ -5941,10 +6019,25 @@ components:
         quoteCents:
           nullable: true
           type: number
+        object:
+          enum:
+          - order
+          type: string
+        replacesOrderId:
+          nullable: true
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         routing:
           $ref: "#/components/schemas/ListOrdersResponse_data_inner_routing"
-        shippedAt:
-          nullable: true
+        status:
+          enum:
+          - blocked
+          - cancelled
+          - delivered
+          - draft
+          - processing
+          - shipped
+          - submitted
           type: string
         strength:
           nullable: true
@@ -5952,11 +6045,19 @@ components:
         trackingNumber:
           nullable: true
           type: string
+        shippedAt:
+          nullable: true
+          type: string
+        deliveredAt:
+          nullable: true
+          type: string
         updatedAt:
           type: string
       required:
       - cancellationReason
       - carrier
+      - catalogItemId
+      - compounderId
       - createdAt
       - currency
       - deliveredAt
@@ -5965,18 +6066,22 @@ components:
       - externalOrderId
       - externalSubmissionAttempted
       - externalSubmissionBlockedReason
+      - id
       - livemode
       - medicationName
       - object
       - patientExternalId
       - patientName
       - patientState
+      - practiceId
       - prescriberName
       - prescriberNpi
       - quantity
       - quoteCents
+      - replacesOrderId
       - routing
       - shippedAt
+      - status
       - strength
       - trackingNumber
       - updatedAt
@@ -5990,6 +6095,7 @@ components:
     UpdateOrderResponse:
       additionalProperties: false
       example:
+        compounderId: compounderId
         medicationName: medicationName
         livemode: true
         strength: strength
@@ -6009,20 +6115,25 @@ components:
           coldShip: true
         prescriberNpi: prescriberNpi
         currency: currency
+        id: id
         trackingNumber: trackingNumber
         updatedAt: updatedAt
         patientName: patientName
         quantity: 0.8008281904610115
         cancellationReason: cancellationReason
+        practiceId: practiceId
         dosageForm: dosageForm
         externalOrderId: externalOrderId
         deliveredAt: deliveredAt
+        catalogItemId: catalogItemId
         carrier: carrier
         directions: directions
         shippedAt: shippedAt
         patientState: patientState
         externalSubmissionAttempted: true
         object: order
+        replacesOrderId: replacesOrderId
+        status: blocked
       properties:
         cancellationReason:
           nullable: true
@@ -6030,12 +6141,20 @@ components:
         carrier:
           nullable: true
           type: string
+        catalogItemId:
+          nullable: true
+          pattern: "^cat_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        practiceId:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        compounderId:
+          nullable: true
+          pattern: "^cmp_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         createdAt:
           type: string
         currency:
-          type: string
-        deliveredAt:
-          nullable: true
           type: string
         directions:
           type: string
@@ -6049,13 +6168,12 @@ components:
         externalSubmissionBlockedReason:
           nullable: true
           type: string
+        id:
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         medicationName:
-          type: string
-        object:
-          enum:
-          - order
           type: string
         patientExternalId:
           type: string
@@ -6074,10 +6192,25 @@ components:
         quoteCents:
           nullable: true
           type: number
+        object:
+          enum:
+          - order
+          type: string
+        replacesOrderId:
+          nullable: true
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         routing:
           $ref: "#/components/schemas/ListOrdersResponse_data_inner_routing"
-        shippedAt:
-          nullable: true
+        status:
+          enum:
+          - blocked
+          - cancelled
+          - delivered
+          - draft
+          - processing
+          - shipped
+          - submitted
           type: string
         strength:
           nullable: true
@@ -6085,11 +6218,19 @@ components:
         trackingNumber:
           nullable: true
           type: string
+        shippedAt:
+          nullable: true
+          type: string
+        deliveredAt:
+          nullable: true
+          type: string
         updatedAt:
           type: string
       required:
       - cancellationReason
       - carrier
+      - catalogItemId
+      - compounderId
       - createdAt
       - currency
       - deliveredAt
@@ -6098,18 +6239,22 @@ components:
       - externalOrderId
       - externalSubmissionAttempted
       - externalSubmissionBlockedReason
+      - id
       - livemode
       - medicationName
       - object
       - patientExternalId
       - patientName
       - patientState
+      - practiceId
       - prescriberName
       - prescriberNpi
       - quantity
       - quoteCents
+      - replacesOrderId
       - routing
       - shippedAt
+      - status
       - strength
       - trackingNumber
       - updatedAt
@@ -6127,6 +6272,7 @@ components:
     CancelOrderResponse:
       additionalProperties: false
       example:
+        compounderId: compounderId
         medicationName: medicationName
         livemode: true
         strength: strength
@@ -6146,20 +6292,25 @@ components:
           coldShip: true
         prescriberNpi: prescriberNpi
         currency: currency
+        id: id
         trackingNumber: trackingNumber
         updatedAt: updatedAt
         patientName: patientName
         quantity: 0.8008281904610115
         cancellationReason: cancellationReason
+        practiceId: practiceId
         dosageForm: dosageForm
         externalOrderId: externalOrderId
         deliveredAt: deliveredAt
+        catalogItemId: catalogItemId
         carrier: carrier
         directions: directions
         shippedAt: shippedAt
         patientState: patientState
         externalSubmissionAttempted: true
         object: order
+        replacesOrderId: replacesOrderId
+        status: blocked
       properties:
         cancellationReason:
           nullable: true
@@ -6167,12 +6318,20 @@ components:
         carrier:
           nullable: true
           type: string
+        catalogItemId:
+          nullable: true
+          pattern: "^cat_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        practiceId:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        compounderId:
+          nullable: true
+          pattern: "^cmp_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         createdAt:
           type: string
         currency:
-          type: string
-        deliveredAt:
-          nullable: true
           type: string
         directions:
           type: string
@@ -6186,13 +6345,12 @@ components:
         externalSubmissionBlockedReason:
           nullable: true
           type: string
+        id:
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         medicationName:
-          type: string
-        object:
-          enum:
-          - order
           type: string
         patientExternalId:
           type: string
@@ -6211,10 +6369,25 @@ components:
         quoteCents:
           nullable: true
           type: number
+        object:
+          enum:
+          - order
+          type: string
+        replacesOrderId:
+          nullable: true
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         routing:
           $ref: "#/components/schemas/ListOrdersResponse_data_inner_routing"
-        shippedAt:
-          nullable: true
+        status:
+          enum:
+          - blocked
+          - cancelled
+          - delivered
+          - draft
+          - processing
+          - shipped
+          - submitted
           type: string
         strength:
           nullable: true
@@ -6222,11 +6395,19 @@ components:
         trackingNumber:
           nullable: true
           type: string
+        shippedAt:
+          nullable: true
+          type: string
+        deliveredAt:
+          nullable: true
+          type: string
         updatedAt:
           type: string
       required:
       - cancellationReason
       - carrier
+      - catalogItemId
+      - compounderId
       - createdAt
       - currency
       - deliveredAt
@@ -6235,18 +6416,22 @@ components:
       - externalOrderId
       - externalSubmissionAttempted
       - externalSubmissionBlockedReason
+      - id
       - livemode
       - medicationName
       - object
       - patientExternalId
       - patientName
       - patientState
+      - practiceId
       - prescriberName
       - prescriberNpi
       - quantity
       - quoteCents
+      - replacesOrderId
       - routing
       - shippedAt
+      - status
       - strength
       - trackingNumber
       - updatedAt
@@ -6255,11 +6440,17 @@ components:
       example:
         data:
         - createdAt: createdAt
+          metadata:
+            key: ""
           eventType: eventType
+          id: id
           message: message
           object: event
         - createdAt: createdAt
+          metadata:
+            key: ""
           eventType: eventType
+          id: id
           message: message
           object: event
         hasMore: true
@@ -6286,6 +6477,7 @@ components:
     SubmitOrderResponse:
       additionalProperties: false
       example:
+        compounderId: compounderId
         medicationName: medicationName
         livemode: true
         strength: strength
@@ -6305,20 +6497,25 @@ components:
           coldShip: true
         prescriberNpi: prescriberNpi
         currency: currency
+        id: id
         trackingNumber: trackingNumber
         updatedAt: updatedAt
         patientName: patientName
         quantity: 0.8008281904610115
         cancellationReason: cancellationReason
+        practiceId: practiceId
         dosageForm: dosageForm
         externalOrderId: externalOrderId
         deliveredAt: deliveredAt
+        catalogItemId: catalogItemId
         carrier: carrier
         directions: directions
         shippedAt: shippedAt
         patientState: patientState
         externalSubmissionAttempted: true
         object: order
+        replacesOrderId: replacesOrderId
+        status: blocked
       properties:
         cancellationReason:
           nullable: true
@@ -6326,12 +6523,20 @@ components:
         carrier:
           nullable: true
           type: string
+        catalogItemId:
+          nullable: true
+          pattern: "^cat_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        practiceId:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        compounderId:
+          nullable: true
+          pattern: "^cmp_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         createdAt:
           type: string
         currency:
-          type: string
-        deliveredAt:
-          nullable: true
           type: string
         directions:
           type: string
@@ -6345,13 +6550,12 @@ components:
         externalSubmissionBlockedReason:
           nullable: true
           type: string
+        id:
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         medicationName:
-          type: string
-        object:
-          enum:
-          - order
           type: string
         patientExternalId:
           type: string
@@ -6370,10 +6574,25 @@ components:
         quoteCents:
           nullable: true
           type: number
+        object:
+          enum:
+          - order
+          type: string
+        replacesOrderId:
+          nullable: true
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         routing:
           $ref: "#/components/schemas/ListOrdersResponse_data_inner_routing"
-        shippedAt:
-          nullable: true
+        status:
+          enum:
+          - blocked
+          - cancelled
+          - delivered
+          - draft
+          - processing
+          - shipped
+          - submitted
           type: string
         strength:
           nullable: true
@@ -6381,11 +6600,19 @@ components:
         trackingNumber:
           nullable: true
           type: string
+        shippedAt:
+          nullable: true
+          type: string
+        deliveredAt:
+          nullable: true
+          type: string
         updatedAt:
           type: string
       required:
       - cancellationReason
       - carrier
+      - catalogItemId
+      - compounderId
       - createdAt
       - currency
       - deliveredAt
@@ -6394,18 +6621,22 @@ components:
       - externalOrderId
       - externalSubmissionAttempted
       - externalSubmissionBlockedReason
+      - id
       - livemode
       - medicationName
       - object
       - patientExternalId
       - patientName
       - patientState
+      - practiceId
       - prescriberName
       - prescriberNpi
       - quantity
       - quoteCents
+      - replacesOrderId
       - routing
       - shippedAt
+      - status
       - strength
       - trackingNumber
       - updatedAt
@@ -6413,11 +6644,10 @@ components:
       additionalProperties: {}
       example:
         data:
-        - legalName: legalName
-          createdAt: createdAt
-          supportEmail: supportEmail
+        - metadata:
+            key: ""
           address:
-            country: country
+            country: US
             city: city
             postalCode: postalCode
             state: state
@@ -6426,8 +6656,13 @@ components:
           livemode: true
           timezone: timezone
           supportPhone: supportPhone
-          name: name
           externalId: externalId
+          productionAccess: approved
+          legalName: legalName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          supportEmail: supportEmail
+          name: name
+          id: id
           contacts:
             compliance:
               phone: phone
@@ -6451,11 +6686,10 @@ components:
             npi: npi
             name: name
           object: practice
-        - legalName: legalName
-          createdAt: createdAt
-          supportEmail: supportEmail
+        - metadata:
+            key: ""
           address:
-            country: country
+            country: US
             city: city
             postalCode: postalCode
             state: state
@@ -6464,8 +6698,13 @@ components:
           livemode: true
           timezone: timezone
           supportPhone: supportPhone
-          name: name
           externalId: externalId
+          productionAccess: approved
+          legalName: legalName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          supportEmail: supportEmail
+          name: name
+          id: id
           contacts:
             compliance:
               phone: phone
@@ -6609,11 +6848,10 @@ components:
     CreatePracticeResponse:
       additionalProperties: {}
       example:
-        legalName: legalName
-        createdAt: createdAt
-        supportEmail: supportEmail
+        metadata:
+          key: ""
         address:
-          country: country
+          country: US
           city: city
           postalCode: postalCode
           state: state
@@ -6622,8 +6860,13 @@ components:
         livemode: true
         timezone: timezone
         supportPhone: supportPhone
-        name: name
         externalId: externalId
+        productionAccess: approved
+        legalName: legalName
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        supportEmail: supportEmail
+        name: name
+        id: id
         contacts:
           compliance:
             phone: phone
@@ -6653,15 +6896,25 @@ components:
         contacts:
           $ref: "#/components/schemas/ListPracticesResponse_data_inner_contacts"
         createdAt:
+          format: date-time
+          pattern: "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\\
+            d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\\
+            d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\\
+            d(?:\\.\\d+)?)?(?:Z))$"
           type: string
         externalId:
           nullable: true
+          type: string
+        id:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
           type: string
         legalName:
           nullable: true
           type: string
         livemode:
           type: boolean
+        metadata:
+          additionalProperties: {}
         name:
           type: string
         object:
@@ -6672,8 +6925,17 @@ components:
           items:
             $ref: "#/components/schemas/ListPracticesResponse_data_inner_prescribers_inner"
           type: array
+        productionAccess:
+          enum:
+          - approved
+          - not_applicable
+          - pending
+          type: string
         supportEmail:
+          format: email
           nullable: true
+          pattern: "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\
+            -]*\\.)+[A-Za-z]{2,}$"
           type: string
         supportPhone:
           nullable: true
@@ -6685,22 +6947,24 @@ components:
       - contacts
       - createdAt
       - externalId
+      - id
       - legalName
       - livemode
+      - metadata
       - name
       - object
       - prescribers
+      - productionAccess
       - supportEmail
       - supportPhone
       - timezone
     GetPracticeResponse:
       additionalProperties: false
       example:
-        legalName: legalName
-        createdAt: createdAt
-        supportEmail: supportEmail
+        metadata:
+          key: ""
         address:
-          country: country
+          country: US
           city: city
           postalCode: postalCode
           state: state
@@ -6709,8 +6973,13 @@ components:
         livemode: true
         timezone: timezone
         supportPhone: supportPhone
-        name: name
         externalId: externalId
+        productionAccess: approved
+        legalName: legalName
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        supportEmail: supportEmail
+        name: name
+        id: id
         contacts:
           compliance:
             phone: phone
@@ -6740,15 +7009,25 @@ components:
         contacts:
           $ref: "#/components/schemas/ListPracticesResponse_data_inner_contacts"
         createdAt:
+          format: date-time
+          pattern: "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\\
+            d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\\
+            d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\\
+            d(?:\\.\\d+)?)?(?:Z))$"
           type: string
         externalId:
           nullable: true
+          type: string
+        id:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
           type: string
         legalName:
           nullable: true
           type: string
         livemode:
           type: boolean
+        metadata:
+          additionalProperties: {}
         name:
           type: string
         object:
@@ -6759,8 +7038,17 @@ components:
           items:
             $ref: "#/components/schemas/ListPracticesResponse_data_inner_prescribers_inner"
           type: array
+        productionAccess:
+          enum:
+          - approved
+          - not_applicable
+          - pending
+          type: string
         supportEmail:
+          format: email
           nullable: true
+          pattern: "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\
+            -]*\\.)+[A-Za-z]{2,}$"
           type: string
         supportPhone:
           nullable: true
@@ -6772,11 +7060,14 @@ components:
       - contacts
       - createdAt
       - externalId
+      - id
       - legalName
       - livemode
+      - metadata
       - name
       - object
       - prescribers
+      - productionAccess
       - supportEmail
       - supportPhone
       - timezone
@@ -6870,11 +7161,10 @@ components:
     UpdatePracticeResponse:
       additionalProperties: false
       example:
-        legalName: legalName
-        createdAt: createdAt
-        supportEmail: supportEmail
+        metadata:
+          key: ""
         address:
-          country: country
+          country: US
           city: city
           postalCode: postalCode
           state: state
@@ -6883,8 +7173,13 @@ components:
         livemode: true
         timezone: timezone
         supportPhone: supportPhone
-        name: name
         externalId: externalId
+        productionAccess: approved
+        legalName: legalName
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        supportEmail: supportEmail
+        name: name
+        id: id
         contacts:
           compliance:
             phone: phone
@@ -6914,15 +7209,25 @@ components:
         contacts:
           $ref: "#/components/schemas/ListPracticesResponse_data_inner_contacts"
         createdAt:
+          format: date-time
+          pattern: "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\\
+            d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\\
+            d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\\
+            d(?:\\.\\d+)?)?(?:Z))$"
           type: string
         externalId:
           nullable: true
+          type: string
+        id:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
           type: string
         legalName:
           nullable: true
           type: string
         livemode:
           type: boolean
+        metadata:
+          additionalProperties: {}
         name:
           type: string
         object:
@@ -6933,8 +7238,17 @@ components:
           items:
             $ref: "#/components/schemas/ListPracticesResponse_data_inner_prescribers_inner"
           type: array
+        productionAccess:
+          enum:
+          - approved
+          - not_applicable
+          - pending
+          type: string
         supportEmail:
+          format: email
           nullable: true
+          pattern: "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\
+            -]*\\.)+[A-Za-z]{2,}$"
           type: string
         supportPhone:
           nullable: true
@@ -6946,11 +7260,14 @@ components:
       - contacts
       - createdAt
       - externalId
+      - id
       - legalName
       - livemode
+      - metadata
       - name
       - object
       - prescribers
+      - productionAccess
       - supportEmail
       - supportPhone
       - timezone
@@ -6963,16 +7280,20 @@ components:
           enabledEvents:
           - enabledEvents
           - enabledEvents
+          id: id
           url: url
           object: webhook_endpoint
+          status: active
           updatedAt: updatedAt
         - createdAt: createdAt
           livemode: true
           enabledEvents:
           - enabledEvents
           - enabledEvents
+          id: id
           url: url
           object: webhook_endpoint
+          status: active
           updatedAt: updatedAt
         hasMore: true
         url: /v1/webhook-endpoints
@@ -7015,11 +7336,14 @@ components:
       example:
         createdAt: createdAt
         livemode: true
+        signingSecret: signingSecret
         enabledEvents:
         - enabledEvents
         - enabledEvents
+        id: id
         url: url
         object: webhook_endpoint
+        status: active
         updatedAt: updatedAt
       properties:
         createdAt:
@@ -7028,21 +7352,34 @@ components:
           items:
             type: string
           type: array
+        id:
+          pattern: "^whe_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         object:
           enum:
           - webhook_endpoint
           type: string
+        status:
+          enum:
+          - active
+          - disabled
+          type: string
         updatedAt:
           type: string
         url:
           type: string
+        signingSecret:
+          type: string
       required:
       - createdAt
       - enabledEvents
+      - id
       - livemode
       - object
+      - signingSecret
+      - status
       - updatedAt
       - url
     DeleteWebhookEndpointResponse:
@@ -7053,8 +7390,10 @@ components:
         enabledEvents:
         - enabledEvents
         - enabledEvents
+        id: id
         url: url
         object: webhook_endpoint
+        status: active
         updatedAt: updatedAt
       properties:
         createdAt:
@@ -7063,11 +7402,19 @@ components:
           items:
             type: string
           type: array
+        id:
+          pattern: "^whe_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         object:
           enum:
           - webhook_endpoint
+          type: string
+        status:
+          enum:
+          - active
+          - disabled
           type: string
         updatedAt:
           type: string
@@ -7076,8 +7423,10 @@ components:
       required:
       - createdAt
       - enabledEvents
+      - id
       - livemode
       - object
+      - status
       - updatedAt
       - url
     UpdateWebhookEndpointRequest:
@@ -7103,8 +7452,10 @@ components:
         enabledEvents:
         - enabledEvents
         - enabledEvents
+        id: id
         url: url
         object: webhook_endpoint
+        status: active
         updatedAt: updatedAt
       properties:
         createdAt:
@@ -7113,11 +7464,19 @@ components:
           items:
             type: string
           type: array
+        id:
+          pattern: "^whe_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         object:
           enum:
           - webhook_endpoint
+          type: string
+        status:
+          enum:
+          - active
+          - disabled
           type: string
         updatedAt:
           type: string
@@ -7126,8 +7485,10 @@ components:
       required:
       - createdAt
       - enabledEvents
+      - id
       - livemode
       - object
+      - status
       - updatedAt
       - url
     RotateWebhookEndpointSecretResponse:
@@ -7135,11 +7496,14 @@ components:
       example:
         createdAt: createdAt
         livemode: true
+        signingSecret: signingSecret
         enabledEvents:
         - enabledEvents
         - enabledEvents
+        id: id
         url: url
         object: webhook_endpoint
+        status: active
         updatedAt: updatedAt
       properties:
         createdAt:
@@ -7148,21 +7512,34 @@ components:
           items:
             type: string
           type: array
+        id:
+          pattern: "^whe_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         object:
           enum:
           - webhook_endpoint
           type: string
+        status:
+          enum:
+          - active
+          - disabled
+          type: string
         updatedAt:
           type: string
         url:
           type: string
+        signingSecret:
+          type: string
       required:
       - createdAt
       - enabledEvents
+      - id
       - livemode
       - object
+      - signingSecret
+      - status
       - updatedAt
       - url
     ListWebhookEventsResponse:
@@ -7172,16 +7549,20 @@ components:
         - createdAt: createdAt
           livemode: true
           eventType: eventType
+          id: id
           objectId: objectId
           object: webhook_event
           objectType: objectType
+          status: delivered
           updatedAt: updatedAt
         - createdAt: createdAt
           livemode: true
           eventType: eventType
+          id: id
           objectId: objectId
           object: webhook_event
           objectType: objectType
+          status: delivered
           updatedAt: updatedAt
         hasMore: true
         url: /v1/webhook-events
@@ -7207,19 +7588,48 @@ components:
       - object
       - url
     GetWebhookEventResponse:
-      additionalProperties: false
+      additionalProperties: {}
       example:
         createdAt: createdAt
         livemode: true
         eventType: eventType
+        id: id
         objectId: objectId
         object: webhook_event
         objectType: objectType
+        status: delivered
         updatedAt: updatedAt
+        attempts:
+        - responseBody: responseBody
+          success: true
+          errorMessage: errorMessage
+          id: id
+          responseStatus: 0.8008281904610115
+          attemptedAt: attemptedAt
+        - responseBody: responseBody
+          success: true
+          errorMessage: errorMessage
+          id: id
+          responseStatus: 0.8008281904610115
+          attemptedAt: attemptedAt
+        deliveries:
+        - lastError: lastError
+          endpointId: endpointId
+          attemptCount: 6.027456183070403
+          id: id
+          status: dead_letter
+        - lastError: lastError
+          endpointId: endpointId
+          attemptCount: 6.027456183070403
+          id: id
+          status: dead_letter
       properties:
         createdAt:
           type: string
         eventType:
+          type: string
+        id:
+          pattern: "^evt_[0-9a-hjkmnp-tv-z]{26}$"
           type: string
         livemode:
           type: boolean
@@ -7231,15 +7641,34 @@ components:
           type: string
         objectType:
           type: string
+        status:
+          enum:
+          - delivered
+          - failed
+          - pending
+          - skipped
+          type: string
         updatedAt:
           type: string
+        attempts:
+          items:
+            $ref: "#/components/schemas/GetWebhookEventResponse_attempts_inner"
+          type: array
+        deliveries:
+          items:
+            $ref: "#/components/schemas/GetWebhookEventResponse_deliveries_inner"
+          type: array
       required:
+      - attempts
       - createdAt
+      - deliveries
       - eventType
+      - id
       - livemode
       - object
       - objectId
       - objectType
+      - status
       - updatedAt
     ReplayWebhookEventResponse:
       additionalProperties: false
@@ -7247,14 +7676,43 @@ components:
         createdAt: createdAt
         livemode: true
         eventType: eventType
+        id: id
         objectId: objectId
         object: webhook_event
         objectType: objectType
+        status: delivered
         updatedAt: updatedAt
+        attempts:
+        - responseBody: responseBody
+          success: true
+          errorMessage: errorMessage
+          id: id
+          responseStatus: 0.8008281904610115
+          attemptedAt: attemptedAt
+        - responseBody: responseBody
+          success: true
+          errorMessage: errorMessage
+          id: id
+          responseStatus: 0.8008281904610115
+          attemptedAt: attemptedAt
+        deliveries:
+        - lastError: lastError
+          endpointId: endpointId
+          attemptCount: 6.027456183070403
+          id: id
+          status: dead_letter
+        - lastError: lastError
+          endpointId: endpointId
+          attemptCount: 6.027456183070403
+          id: id
+          status: dead_letter
       properties:
         createdAt:
           type: string
         eventType:
+          type: string
+        id:
+          pattern: "^evt_[0-9a-hjkmnp-tv-z]{26}$"
           type: string
         livemode:
           type: boolean
@@ -7266,15 +7724,34 @@ components:
           type: string
         objectType:
           type: string
+        status:
+          enum:
+          - delivered
+          - failed
+          - pending
+          - skipped
+          type: string
         updatedAt:
           type: string
+        attempts:
+          items:
+            $ref: "#/components/schemas/GetWebhookEventResponse_attempts_inner"
+          type: array
+        deliveries:
+          items:
+            $ref: "#/components/schemas/GetWebhookEventResponse_deliveries_inner"
+          type: array
       required:
+      - attempts
       - createdAt
+      - deliveries
       - eventType
+      - id
       - livemode
       - object
       - objectId
       - objectType
+      - status
       - updatedAt
     GetAccountResponse_account:
       additionalProperties: false
@@ -7288,8 +7765,10 @@ components:
         alertEmails:
         - alertEmails
         - alertEmails
+        id: id
         slug: slug
         object: account
+        status: active
       properties:
         alertEmails:
           items:
@@ -7303,11 +7782,20 @@ components:
           type: boolean
         displayName:
           type: string
+        id:
+          pattern: "^acct_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         object:
           enum:
           - account
           type: string
         slug:
+          type: string
+        status:
+          enum:
+          - active
+          - pending
+          - suspended
           type: string
         supportEmail:
           nullable: true
@@ -7321,19 +7809,54 @@ components:
       - alertNewOrders
       - alertStatusChanges
       - displayName
+      - id
       - object
       - slug
+      - status
       - supportEmail
       - websiteUrl
     GetAccountResponse_membership:
       additionalProperties: false
       example:
+        role: clinical_reviewer
+        permissions:
+        - manage_api
+        - manage_api
         roleName: roleName
+        status: active
       properties:
+        permissions:
+          items:
+            enum:
+            - manage_api
+            - manage_orders
+            - manage_organization
+            - read_catalog
+            - read_orders
+            - review_orders
+            type: string
+          type: array
+        role:
+          enum:
+          - clinical_reviewer
+          - developer
+          - operations
+          - owner
+          - viewer
+          type: string
         roleName:
           type: string
+        status:
+          enum:
+          - active
+          - disabled
+          - invited
+          type: string
       required:
+      - permissions
+      - role
       - roleName
+      - status
     GetAccountResponse_user:
       additionalProperties: false
       example:
@@ -7365,9 +7888,13 @@ components:
     GetApiAccessResponse_apiKey:
       additionalProperties: false
       example:
+        id: id
         keyPrefix: keyPrefix
         object: api_key
       properties:
+        id:
+          pattern: "^key_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         keyPrefix:
           type: string
         object:
@@ -7375,15 +7902,25 @@ components:
           - api_key
           type: string
       required:
+      - id
       - keyPrefix
       - object
     GetApiAccessResponse_serviceAccount:
       additionalProperties: false
       example:
+        apiVersion: 2026-07-19
+        id: id
         subjectType: subjectType
         subjectId: subjectId
         object: service_account
       properties:
+        apiVersion:
+          enum:
+          - 2026-07-19
+          type: string
+        id:
+          pattern: "^sa_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         object:
           enum:
           - service_account
@@ -7393,12 +7930,50 @@ components:
         subjectType:
           type: string
       required:
+      - apiVersion
+      - id
       - object
       - subjectId
       - subjectType
+    ListCatalogItemsResponse_data_inner_pricing:
+      additionalProperties: false
+      example:
+        serviceFeePercent: 5
+        currency: USD
+        medicationSubtotalCents: 2147483647
+        serviceFeeCents: 2147483647
+        orderTotalCents: 2147483647
+      properties:
+        currency:
+          enum:
+          - USD
+          type: string
+        medicationSubtotalCents:
+          maximum: 9007199254740991
+          minimum: 0
+          type: integer
+        orderTotalCents:
+          maximum: 9007199254740991
+          minimum: 0
+          type: integer
+        serviceFeeCents:
+          maximum: 9007199254740991
+          minimum: 0
+          type: integer
+        serviceFeePercent:
+          enum:
+          - 15
+          type: integer
+      required:
+      - currency
+      - medicationSubtotalCents
+      - orderTotalCents
+      - serviceFeeCents
+      - serviceFeePercent
     ListCatalogItemsResponse_data_inner:
       additionalProperties: false
       example:
+        compounderId: compounderId
         livemode: true
         strength: strength
         facilityType: facilityType
@@ -7416,7 +7991,14 @@ components:
         name: name
         compounderName: compounderName
         coldShip: true
+        id: id
         catalogKind: catalogKind
+        pricing:
+          serviceFeePercent: 5
+          currency: USD
+          medicationSubtotalCents: 2147483647
+          serviceFeeCents: 2147483647
+          orderTotalCents: 2147483647
         object: catalog_item
       properties:
         allowedStates:
@@ -7427,6 +8009,9 @@ components:
           type: string
         coldShip:
           type: boolean
+        compounderId:
+          pattern: "^cmp_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         compounderName:
           type: string
         description:
@@ -7434,6 +8019,9 @@ components:
         dosageForm:
           type: string
         facilityType:
+          type: string
+        id:
+          pattern: "^cat_[0-9a-hjkmnp-tv-z]{26}$"
           type: string
         isOrderable:
           type: boolean
@@ -7447,6 +8035,8 @@ components:
           type: string
         patientSpecificRequired:
           type: boolean
+        pricing:
+          $ref: "#/components/schemas/ListCatalogItemsResponse_data_inner_pricing"
         restrictedStates:
           items:
             type: string
@@ -7460,15 +8050,18 @@ components:
       - allowedStates
       - catalogKind
       - coldShip
+      - compounderId
       - compounderName
       - description
       - dosageForm
       - facilityType
+      - id
       - isOrderable
       - livemode
       - name
       - object
       - patientSpecificRequired
+      - pricing
       - restrictedStates
       - route
       - strength
@@ -7506,6 +8099,7 @@ components:
     ListOrdersResponse_data_inner:
       additionalProperties: false
       example:
+        compounderId: compounderId
         medicationName: medicationName
         livemode: true
         strength: strength
@@ -7525,20 +8119,25 @@ components:
           coldShip: true
         prescriberNpi: prescriberNpi
         currency: currency
+        id: id
         trackingNumber: trackingNumber
         updatedAt: updatedAt
         patientName: patientName
         quantity: 0.8008281904610115
         cancellationReason: cancellationReason
+        practiceId: practiceId
         dosageForm: dosageForm
         externalOrderId: externalOrderId
         deliveredAt: deliveredAt
+        catalogItemId: catalogItemId
         carrier: carrier
         directions: directions
         shippedAt: shippedAt
         patientState: patientState
         externalSubmissionAttempted: true
         object: order
+        replacesOrderId: replacesOrderId
+        status: blocked
       properties:
         cancellationReason:
           nullable: true
@@ -7546,12 +8145,20 @@ components:
         carrier:
           nullable: true
           type: string
+        catalogItemId:
+          nullable: true
+          pattern: "^cat_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        practiceId:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        compounderId:
+          nullable: true
+          pattern: "^cmp_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         createdAt:
           type: string
         currency:
-          type: string
-        deliveredAt:
-          nullable: true
           type: string
         directions:
           type: string
@@ -7565,13 +8172,12 @@ components:
         externalSubmissionBlockedReason:
           nullable: true
           type: string
+        id:
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         medicationName:
-          type: string
-        object:
-          enum:
-          - order
           type: string
         patientExternalId:
           type: string
@@ -7590,10 +8196,25 @@ components:
         quoteCents:
           nullable: true
           type: number
+        object:
+          enum:
+          - order
+          type: string
+        replacesOrderId:
+          nullable: true
+          pattern: "^ord_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         routing:
           $ref: "#/components/schemas/ListOrdersResponse_data_inner_routing"
-        shippedAt:
-          nullable: true
+        status:
+          enum:
+          - blocked
+          - cancelled
+          - delivered
+          - draft
+          - processing
+          - shipped
+          - submitted
           type: string
         strength:
           nullable: true
@@ -7601,11 +8222,19 @@ components:
         trackingNumber:
           nullable: true
           type: string
+        shippedAt:
+          nullable: true
+          type: string
+        deliveredAt:
+          nullable: true
+          type: string
         updatedAt:
           type: string
       required:
       - cancellationReason
       - carrier
+      - catalogItemId
+      - compounderId
       - createdAt
       - currency
       - deliveredAt
@@ -7614,18 +8243,22 @@ components:
       - externalOrderId
       - externalSubmissionAttempted
       - externalSubmissionBlockedReason
+      - id
       - livemode
       - medicationName
       - object
       - patientExternalId
       - patientName
       - patientState
+      - practiceId
       - prescriberName
       - prescriberNpi
       - quantity
       - quoteCents
+      - replacesOrderId
       - routing
       - shippedAt
+      - status
       - strength
       - trackingNumber
       - updatedAt
@@ -7874,7 +8507,10 @@ components:
       additionalProperties: false
       example:
         createdAt: createdAt
+        metadata:
+          key: ""
         eventType: eventType
+        id: id
         message: message
         object: event
       properties:
@@ -7882,8 +8518,13 @@ components:
           type: string
         eventType:
           type: string
+        id:
+          pattern: "^evt_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         message:
           type: string
+        metadata:
+          additionalProperties: {}
         object:
           enum:
           - event
@@ -7891,12 +8532,14 @@ components:
       required:
       - createdAt
       - eventType
+      - id
       - message
+      - metadata
       - object
     ListPracticesResponse_data_inner_address:
       additionalProperties: false
       example:
-        country: country
+        country: US
         city: city
         postalCode: postalCode
         state: state
@@ -7909,6 +8552,9 @@ components:
           minLength: 1
           type: string
         country:
+          default: US
+          maxLength: 2
+          minLength: 2
           type: string
         line1:
           maxLength: 180
@@ -7923,10 +8569,14 @@ components:
           minLength: 1
           type: string
         state:
+          maxLength: 2
+          minLength: 2
           type: string
       required:
       - city
+      - country
       - line1
+      - line2
       - postalCode
       - state
     ListPracticesResponse_data_inner_contacts_compliance:
@@ -7938,6 +8588,9 @@ components:
       nullable: true
       properties:
         email:
+          format: email
+          pattern: "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\
+            -]*\\.)+[A-Za-z]{2,}$"
           type: string
         name:
           maxLength: 160
@@ -7951,6 +8604,7 @@ components:
       required:
       - email
       - name
+      - phone
     ListPracticesResponse_data_inner_contacts:
       additionalProperties: false
       example:
@@ -7987,26 +8641,30 @@ components:
           type: string
         licenseStates:
           items:
+            maxLength: 2
+            minLength: 2
             type: string
+          minItems: 1
           type: array
         name:
           maxLength: 160
           minLength: 1
           type: string
         npi:
+          pattern: "^\\d{10}$"
           type: string
       required:
+      - credentials
       - licenseStates
       - name
       - npi
     ListPracticesResponse_data_inner:
       additionalProperties: false
       example:
-        legalName: legalName
-        createdAt: createdAt
-        supportEmail: supportEmail
+        metadata:
+          key: ""
         address:
-          country: country
+          country: US
           city: city
           postalCode: postalCode
           state: state
@@ -8015,8 +8673,13 @@ components:
         livemode: true
         timezone: timezone
         supportPhone: supportPhone
-        name: name
         externalId: externalId
+        productionAccess: approved
+        legalName: legalName
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        supportEmail: supportEmail
+        name: name
+        id: id
         contacts:
           compliance:
             phone: phone
@@ -8046,15 +8709,25 @@ components:
         contacts:
           $ref: "#/components/schemas/ListPracticesResponse_data_inner_contacts"
         createdAt:
+          format: date-time
+          pattern: "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\\
+            d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\\
+            d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\\
+            d(?:\\.\\d+)?)?(?:Z))$"
           type: string
         externalId:
           nullable: true
+          type: string
+        id:
+          pattern: "^prac_[0-9a-hjkmnp-tv-z]{26}$"
           type: string
         legalName:
           nullable: true
           type: string
         livemode:
           type: boolean
+        metadata:
+          additionalProperties: {}
         name:
           type: string
         object:
@@ -8065,8 +8738,17 @@ components:
           items:
             $ref: "#/components/schemas/ListPracticesResponse_data_inner_prescribers_inner"
           type: array
+        productionAccess:
+          enum:
+          - approved
+          - not_applicable
+          - pending
+          type: string
         supportEmail:
+          format: email
           nullable: true
+          pattern: "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\
+            -]*\\.)+[A-Za-z]{2,}$"
           type: string
         supportPhone:
           nullable: true
@@ -8078,11 +8760,14 @@ components:
       - contacts
       - createdAt
       - externalId
+      - id
       - legalName
       - livemode
+      - metadata
       - name
       - object
       - prescribers
+      - productionAccess
       - supportEmail
       - supportPhone
       - timezone
@@ -8170,8 +8855,10 @@ components:
         enabledEvents:
         - enabledEvents
         - enabledEvents
+        id: id
         url: url
         object: webhook_endpoint
+        status: active
         updatedAt: updatedAt
       properties:
         createdAt:
@@ -8180,11 +8867,19 @@ components:
           items:
             type: string
           type: array
+        id:
+          pattern: "^whe_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
         livemode:
           type: boolean
         object:
           enum:
           - webhook_endpoint
+          type: string
+        status:
+          enum:
+          - active
+          - disabled
           type: string
         updatedAt:
           type: string
@@ -8193,8 +8888,10 @@ components:
       required:
       - createdAt
       - enabledEvents
+      - id
       - livemode
       - object
+      - status
       - updatedAt
       - url
     ListWebhookEventsResponse_data_inner:
@@ -8203,14 +8900,19 @@ components:
         createdAt: createdAt
         livemode: true
         eventType: eventType
+        id: id
         objectId: objectId
         object: webhook_event
         objectType: objectType
+        status: delivered
         updatedAt: updatedAt
       properties:
         createdAt:
           type: string
         eventType:
+          type: string
+        id:
+          pattern: "^evt_[0-9a-hjkmnp-tv-z]{26}$"
           type: string
         livemode:
           type: boolean
@@ -8222,16 +8924,91 @@ components:
           type: string
         objectType:
           type: string
+        status:
+          enum:
+          - delivered
+          - failed
+          - pending
+          - skipped
+          type: string
         updatedAt:
           type: string
       required:
       - createdAt
       - eventType
+      - id
       - livemode
       - object
       - objectId
       - objectType
+      - status
       - updatedAt
+    GetWebhookEventResponse_attempts_inner:
+      additionalProperties: false
+      example:
+        responseBody: responseBody
+        success: true
+        errorMessage: errorMessage
+        id: id
+        responseStatus: 0.8008281904610115
+        attemptedAt: attemptedAt
+      properties:
+        attemptedAt:
+          type: string
+        errorMessage:
+          nullable: true
+          type: string
+        id:
+          pattern: "^wha_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        responseBody:
+          nullable: true
+          type: string
+        responseStatus:
+          nullable: true
+          type: number
+        success:
+          type: boolean
+      required:
+      - attemptedAt
+      - errorMessage
+      - id
+      - responseBody
+      - responseStatus
+      - success
+    GetWebhookEventResponse_deliveries_inner:
+      additionalProperties: false
+      example:
+        lastError: lastError
+        endpointId: endpointId
+        attemptCount: 6.027456183070403
+        id: id
+        status: dead_letter
+      properties:
+        attemptCount:
+          type: number
+        endpointId:
+          pattern: "^whe_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        id:
+          pattern: "^whd_[0-9a-hjkmnp-tv-z]{26}$"
+          type: string
+        lastError:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - dead_letter
+          - delivered
+          - failed
+          - pending
+          type: string
+      required:
+      - attemptCount
+      - endpointId
+      - id
+      - lastError
+      - status
   securitySchemes:
     affinityApiKey:
       description: Server-side Affinity service key. Use this header when bearer authorization
@@ -8245,8 +9022,9 @@ components:
       scheme: bearer
       type: http
 x-affinity-api-version:
+  defaultSource: service_account
   header: Affinity-Version
-  requiredForRawHttp: true
+  requiredForRawHttp: false
   value: 2026-07-19
 x-tagGroups:
 - name: Platform

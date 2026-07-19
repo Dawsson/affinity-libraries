@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,9 +29,20 @@ class GetApiAccessResponseApiKey(BaseModel):
     """
     GetApiAccessResponseApiKey
     """ # noqa: E501
+    id: Annotated[str, Field(strict=True)]
     key_prefix: StrictStr = Field(alias="keyPrefix")
     object: StrictStr
-    __properties: ClassVar[List[str]] = ["keyPrefix", "object"]
+    __properties: ClassVar[List[str]] = ["id", "keyPrefix", "object"]
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^key_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^key_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
@@ -90,6 +102,7 @@ class GetApiAccessResponseApiKey(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "id": obj.get("id"),
             "keyPrefix": obj.get("keyPrefix"),
             "object": obj.get("object")
         })

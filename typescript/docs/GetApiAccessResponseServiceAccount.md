@@ -6,6 +6,8 @@
 
 Name | Type
 ------------ | -------------
+`apiVersion` | string
+`id` | string
 `object` | string
 `subjectId` | string
 `subjectType` | string
@@ -17,6 +19,8 @@ import type { GetApiAccessResponseServiceAccount } from '@affinity/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "apiVersion": null,
+  "id": null,
   "object": null,
   "subjectId": null,
   "subjectType": null,

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from affinity_sdk.models.get_account_response_account import GetAccountResponseAccount
 from affinity_sdk.models.get_account_response_membership import GetAccountResponseMembership
@@ -33,9 +33,17 @@ class GetAccountResponse(BaseModel):
     """ # noqa: E501
     account: GetAccountResponseAccount
     membership: GetAccountResponseMembership
+    operating_mode: StrictStr = Field(alias="operatingMode")
     user: GetAccountResponseUser
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["account", "membership", "user"]
+    __properties: ClassVar[List[str]] = ["account", "membership", "operatingMode", "user"]
+
+    @field_validator('operating_mode')
+    def operating_mode_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['production', 'production_pending', 'sandbox', 'suspended']):
+            raise ValueError("must be one of enum values ('production', 'production_pending', 'sandbox', 'suspended')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -106,6 +114,7 @@ class GetAccountResponse(BaseModel):
         _obj = cls.model_validate({
             "account": GetAccountResponseAccount.from_dict(obj["account"]) if obj.get("account") is not None else None,
             "membership": GetAccountResponseMembership.from_dict(obj["membership"]) if obj.get("membership") is not None else None,
+            "operatingMode": obj.get("operatingMode"),
             "user": GetAccountResponseUser.from_dict(obj["user"]) if obj.get("user") is not None else None
         })
         # store additional fields in additional_properties

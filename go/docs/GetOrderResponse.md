@@ -6,17 +6,19 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CancellationReason** | **NullableString** |  |
 **Carrier** | **NullableString** |  |
+**CatalogItemId** | **NullableString** |  |
+**PracticeId** | **string** |  |
+**CompounderId** | **NullableString** |  |
 **CreatedAt** | **string** |  |
 **Currency** | **string** |  |
-**DeliveredAt** | **NullableString** |  |
 **Directions** | **string** |  |
 **DosageForm** | **NullableString** |  |
 **ExternalOrderId** | **string** |  |
 **ExternalSubmissionAttempted** | **bool** |  |
 **ExternalSubmissionBlockedReason** | **NullableString** |  |
+**Id** | **string** |  |
 **Livemode** | **bool** |  |
 **MedicationName** | **string** |  |
-**Object** | **string** |  |
 **PatientExternalId** | **string** |  |
 **PatientName** | **string** |  |
 **PatientState** | **string** |  |
@@ -24,17 +26,21 @@ Name | Type | Description | Notes
 **PrescriberNpi** | **NullableString** |  |
 **Quantity** | **float32** |  |
 **QuoteCents** | **NullableFloat32** |  |
+**Object** | **string** |  |
+**ReplacesOrderId** | **NullableString** |  |
 **Routing** | [**NullableListOrdersResponseDataInnerRouting**](ListOrdersResponseDataInnerRouting.md) |  |
-**ShippedAt** | **NullableString** |  |
+**Status** | **string** |  |
 **Strength** | **NullableString** |  |
 **TrackingNumber** | **NullableString** |  |
+**ShippedAt** | **NullableString** |  |
+**DeliveredAt** | **NullableString** |  |
 **UpdatedAt** | **string** |  |
 
 ## Methods
 
 ### NewGetOrderResponse
 
-`func NewGetOrderResponse(cancellationReason NullableString, carrier NullableString, createdAt string, currency string, deliveredAt NullableString, directions string, dosageForm NullableString, externalOrderId string, externalSubmissionAttempted bool, externalSubmissionBlockedReason NullableString, livemode bool, medicationName string, object string, patientExternalId string, patientName string, patientState string, prescriberName NullableString, prescriberNpi NullableString, quantity float32, quoteCents NullableFloat32, routing NullableListOrdersResponseDataInnerRouting, shippedAt NullableString, strength NullableString, trackingNumber NullableString, updatedAt string, ) *GetOrderResponse`
+`func NewGetOrderResponse(cancellationReason NullableString, carrier NullableString, catalogItemId NullableString, practiceId string, compounderId NullableString, createdAt string, currency string, directions string, dosageForm NullableString, externalOrderId string, externalSubmissionAttempted bool, externalSubmissionBlockedReason NullableString, id string, livemode bool, medicationName string, patientExternalId string, patientName string, patientState string, prescriberName NullableString, prescriberNpi NullableString, quantity float32, quoteCents NullableFloat32, object string, replacesOrderId NullableString, routing NullableListOrdersResponseDataInnerRouting, status string, strength NullableString, trackingNumber NullableString, shippedAt NullableString, deliveredAt NullableString, updatedAt string, ) *GetOrderResponse`
 
 NewGetOrderResponse instantiates a new GetOrderResponse object
 This constructor will assign default values to properties that have it defined,
@@ -109,6 +115,86 @@ SetCarrier sets Carrier field to given value.
 `func (o *GetOrderResponse) UnsetCarrier()`
 
 UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
+### GetCatalogItemId
+
+`func (o *GetOrderResponse) GetCatalogItemId() string`
+
+GetCatalogItemId returns the CatalogItemId field if non-nil, zero value otherwise.
+
+### GetCatalogItemIdOk
+
+`func (o *GetOrderResponse) GetCatalogItemIdOk() (*string, bool)`
+
+GetCatalogItemIdOk returns a tuple with the CatalogItemId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCatalogItemId
+
+`func (o *GetOrderResponse) SetCatalogItemId(v string)`
+
+SetCatalogItemId sets CatalogItemId field to given value.
+
+
+### SetCatalogItemIdNil
+
+`func (o *GetOrderResponse) SetCatalogItemIdNil(b bool)`
+
+ SetCatalogItemIdNil sets the value for CatalogItemId to be an explicit nil
+
+### UnsetCatalogItemId
+`func (o *GetOrderResponse) UnsetCatalogItemId()`
+
+UnsetCatalogItemId ensures that no value is present for CatalogItemId, not even an explicit nil
+### GetPracticeId
+
+`func (o *GetOrderResponse) GetPracticeId() string`
+
+GetPracticeId returns the PracticeId field if non-nil, zero value otherwise.
+
+### GetPracticeIdOk
+
+`func (o *GetOrderResponse) GetPracticeIdOk() (*string, bool)`
+
+GetPracticeIdOk returns a tuple with the PracticeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPracticeId
+
+`func (o *GetOrderResponse) SetPracticeId(v string)`
+
+SetPracticeId sets PracticeId field to given value.
+
+
+### GetCompounderId
+
+`func (o *GetOrderResponse) GetCompounderId() string`
+
+GetCompounderId returns the CompounderId field if non-nil, zero value otherwise.
+
+### GetCompounderIdOk
+
+`func (o *GetOrderResponse) GetCompounderIdOk() (*string, bool)`
+
+GetCompounderIdOk returns a tuple with the CompounderId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompounderId
+
+`func (o *GetOrderResponse) SetCompounderId(v string)`
+
+SetCompounderId sets CompounderId field to given value.
+
+
+### SetCompounderIdNil
+
+`func (o *GetOrderResponse) SetCompounderIdNil(b bool)`
+
+ SetCompounderIdNil sets the value for CompounderId to be an explicit nil
+
+### UnsetCompounderId
+`func (o *GetOrderResponse) UnsetCompounderId()`
+
+UnsetCompounderId ensures that no value is present for CompounderId, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *GetOrderResponse) GetCreatedAt() string`
@@ -149,36 +235,6 @@ and a boolean to check if the value has been set.
 SetCurrency sets Currency field to given value.
 
 
-### GetDeliveredAt
-
-`func (o *GetOrderResponse) GetDeliveredAt() string`
-
-GetDeliveredAt returns the DeliveredAt field if non-nil, zero value otherwise.
-
-### GetDeliveredAtOk
-
-`func (o *GetOrderResponse) GetDeliveredAtOk() (*string, bool)`
-
-GetDeliveredAtOk returns a tuple with the DeliveredAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDeliveredAt
-
-`func (o *GetOrderResponse) SetDeliveredAt(v string)`
-
-SetDeliveredAt sets DeliveredAt field to given value.
-
-
-### SetDeliveredAtNil
-
-`func (o *GetOrderResponse) SetDeliveredAtNil(b bool)`
-
- SetDeliveredAtNil sets the value for DeliveredAt to be an explicit nil
-
-### UnsetDeliveredAt
-`func (o *GetOrderResponse) UnsetDeliveredAt()`
-
-UnsetDeliveredAt ensures that no value is present for DeliveredAt, not even an explicit nil
 ### GetDirections
 
 `func (o *GetOrderResponse) GetDirections() string`
@@ -299,6 +355,26 @@ SetExternalSubmissionBlockedReason sets ExternalSubmissionBlockedReason field to
 `func (o *GetOrderResponse) UnsetExternalSubmissionBlockedReason()`
 
 UnsetExternalSubmissionBlockedReason ensures that no value is present for ExternalSubmissionBlockedReason, not even an explicit nil
+### GetId
+
+`func (o *GetOrderResponse) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *GetOrderResponse) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *GetOrderResponse) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetLivemode
 
 `func (o *GetOrderResponse) GetLivemode() bool`
@@ -337,26 +413,6 @@ and a boolean to check if the value has been set.
 `func (o *GetOrderResponse) SetMedicationName(v string)`
 
 SetMedicationName sets MedicationName field to given value.
-
-
-### GetObject
-
-`func (o *GetOrderResponse) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *GetOrderResponse) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *GetOrderResponse) SetObject(v string)`
-
-SetObject sets Object field to given value.
 
 
 ### GetPatientExternalId
@@ -529,6 +585,56 @@ SetQuoteCents sets QuoteCents field to given value.
 `func (o *GetOrderResponse) UnsetQuoteCents()`
 
 UnsetQuoteCents ensures that no value is present for QuoteCents, not even an explicit nil
+### GetObject
+
+`func (o *GetOrderResponse) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *GetOrderResponse) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *GetOrderResponse) SetObject(v string)`
+
+SetObject sets Object field to given value.
+
+
+### GetReplacesOrderId
+
+`func (o *GetOrderResponse) GetReplacesOrderId() string`
+
+GetReplacesOrderId returns the ReplacesOrderId field if non-nil, zero value otherwise.
+
+### GetReplacesOrderIdOk
+
+`func (o *GetOrderResponse) GetReplacesOrderIdOk() (*string, bool)`
+
+GetReplacesOrderIdOk returns a tuple with the ReplacesOrderId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReplacesOrderId
+
+`func (o *GetOrderResponse) SetReplacesOrderId(v string)`
+
+SetReplacesOrderId sets ReplacesOrderId field to given value.
+
+
+### SetReplacesOrderIdNil
+
+`func (o *GetOrderResponse) SetReplacesOrderIdNil(b bool)`
+
+ SetReplacesOrderIdNil sets the value for ReplacesOrderId to be an explicit nil
+
+### UnsetReplacesOrderId
+`func (o *GetOrderResponse) UnsetReplacesOrderId()`
+
+UnsetReplacesOrderId ensures that no value is present for ReplacesOrderId, not even an explicit nil
 ### GetRouting
 
 `func (o *GetOrderResponse) GetRouting() ListOrdersResponseDataInnerRouting`
@@ -559,36 +665,26 @@ SetRouting sets Routing field to given value.
 `func (o *GetOrderResponse) UnsetRouting()`
 
 UnsetRouting ensures that no value is present for Routing, not even an explicit nil
-### GetShippedAt
+### GetStatus
 
-`func (o *GetOrderResponse) GetShippedAt() string`
+`func (o *GetOrderResponse) GetStatus() string`
 
-GetShippedAt returns the ShippedAt field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetShippedAtOk
+### GetStatusOk
 
-`func (o *GetOrderResponse) GetShippedAtOk() (*string, bool)`
+`func (o *GetOrderResponse) GetStatusOk() (*string, bool)`
 
-GetShippedAtOk returns a tuple with the ShippedAt field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetShippedAt
+### SetStatus
 
-`func (o *GetOrderResponse) SetShippedAt(v string)`
+`func (o *GetOrderResponse) SetStatus(v string)`
 
-SetShippedAt sets ShippedAt field to given value.
+SetStatus sets Status field to given value.
 
 
-### SetShippedAtNil
-
-`func (o *GetOrderResponse) SetShippedAtNil(b bool)`
-
- SetShippedAtNil sets the value for ShippedAt to be an explicit nil
-
-### UnsetShippedAt
-`func (o *GetOrderResponse) UnsetShippedAt()`
-
-UnsetShippedAt ensures that no value is present for ShippedAt, not even an explicit nil
 ### GetStrength
 
 `func (o *GetOrderResponse) GetStrength() string`
@@ -649,6 +745,66 @@ SetTrackingNumber sets TrackingNumber field to given value.
 `func (o *GetOrderResponse) UnsetTrackingNumber()`
 
 UnsetTrackingNumber ensures that no value is present for TrackingNumber, not even an explicit nil
+### GetShippedAt
+
+`func (o *GetOrderResponse) GetShippedAt() string`
+
+GetShippedAt returns the ShippedAt field if non-nil, zero value otherwise.
+
+### GetShippedAtOk
+
+`func (o *GetOrderResponse) GetShippedAtOk() (*string, bool)`
+
+GetShippedAtOk returns a tuple with the ShippedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShippedAt
+
+`func (o *GetOrderResponse) SetShippedAt(v string)`
+
+SetShippedAt sets ShippedAt field to given value.
+
+
+### SetShippedAtNil
+
+`func (o *GetOrderResponse) SetShippedAtNil(b bool)`
+
+ SetShippedAtNil sets the value for ShippedAt to be an explicit nil
+
+### UnsetShippedAt
+`func (o *GetOrderResponse) UnsetShippedAt()`
+
+UnsetShippedAt ensures that no value is present for ShippedAt, not even an explicit nil
+### GetDeliveredAt
+
+`func (o *GetOrderResponse) GetDeliveredAt() string`
+
+GetDeliveredAt returns the DeliveredAt field if non-nil, zero value otherwise.
+
+### GetDeliveredAtOk
+
+`func (o *GetOrderResponse) GetDeliveredAtOk() (*string, bool)`
+
+GetDeliveredAtOk returns a tuple with the DeliveredAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeliveredAt
+
+`func (o *GetOrderResponse) SetDeliveredAt(v string)`
+
+SetDeliveredAt sets DeliveredAt field to given value.
+
+
+### SetDeliveredAtNil
+
+`func (o *GetOrderResponse) SetDeliveredAtNil(b bool)`
+
+ SetDeliveredAtNil sets the value for DeliveredAt to be an explicit nil
+
+### UnsetDeliveredAt
+`func (o *GetOrderResponse) UnsetDeliveredAt()`
+
+UnsetDeliveredAt ensures that no value is present for DeliveredAt, not even an explicit nil
 ### GetUpdatedAt
 
 `func (o *GetOrderResponse) GetUpdatedAt() string`

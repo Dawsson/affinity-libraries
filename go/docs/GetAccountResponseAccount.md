@@ -9,8 +9,10 @@ Name | Type | Description | Notes
 **AlertNewOrders** | **bool** |  |
 **AlertStatusChanges** | **bool** |  |
 **DisplayName** | **string** |  |
+**Id** | **string** |  |
 **Object** | **string** |  |
 **Slug** | **string** |  |
+**Status** | **string** |  |
 **SupportEmail** | **NullableString** |  |
 **WebsiteUrl** | **NullableString** |  |
 
@@ -18,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewGetAccountResponseAccount
 
-`func NewGetAccountResponseAccount(alertEmails []string, alertIntegrationIssues bool, alertNewOrders bool, alertStatusChanges bool, displayName string, object string, slug string, supportEmail NullableString, websiteUrl NullableString, ) *GetAccountResponseAccount`
+`func NewGetAccountResponseAccount(alertEmails []string, alertIntegrationIssues bool, alertNewOrders bool, alertStatusChanges bool, displayName string, id string, object string, slug string, status string, supportEmail NullableString, websiteUrl NullableString, ) *GetAccountResponseAccount`
 
 NewGetAccountResponseAccount instantiates a new GetAccountResponseAccount object
 This constructor will assign default values to properties that have it defined,
@@ -133,6 +135,26 @@ and a boolean to check if the value has been set.
 SetDisplayName sets DisplayName field to given value.
 
 
+### GetId
+
+`func (o *GetAccountResponseAccount) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *GetAccountResponseAccount) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *GetAccountResponseAccount) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetObject
 
 `func (o *GetAccountResponseAccount) GetObject() string`
@@ -171,6 +193,26 @@ and a boolean to check if the value has been set.
 `func (o *GetAccountResponseAccount) SetSlug(v string)`
 
 SetSlug sets Slug field to given value.
+
+
+### GetStatus
+
+`func (o *GetAccountResponseAccount) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *GetAccountResponseAccount) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *GetAccountResponseAccount) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetSupportEmail

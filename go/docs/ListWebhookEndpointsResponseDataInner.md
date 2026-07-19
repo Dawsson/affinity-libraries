@@ -6,8 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **string** |  |
 **EnabledEvents** | **[]string** |  |
+**Id** | **string** |  |
 **Livemode** | **bool** |  |
 **Object** | **string** |  |
+**Status** | **string** |  |
 **UpdatedAt** | **string** |  |
 **Url** | **string** |  |
 
@@ -15,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewListWebhookEndpointsResponseDataInner
 
-`func NewListWebhookEndpointsResponseDataInner(createdAt string, enabledEvents []string, livemode bool, object string, updatedAt string, url string, ) *ListWebhookEndpointsResponseDataInner`
+`func NewListWebhookEndpointsResponseDataInner(createdAt string, enabledEvents []string, id string, livemode bool, object string, status string, updatedAt string, url string, ) *ListWebhookEndpointsResponseDataInner`
 
 NewListWebhookEndpointsResponseDataInner instantiates a new ListWebhookEndpointsResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +72,26 @@ and a boolean to check if the value has been set.
 SetEnabledEvents sets EnabledEvents field to given value.
 
 
+### GetId
+
+`func (o *ListWebhookEndpointsResponseDataInner) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ListWebhookEndpointsResponseDataInner) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ListWebhookEndpointsResponseDataInner) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetLivemode
 
 `func (o *ListWebhookEndpointsResponseDataInner) GetLivemode() bool`
@@ -108,6 +130,26 @@ and a boolean to check if the value has been set.
 `func (o *ListWebhookEndpointsResponseDataInner) SetObject(v string)`
 
 SetObject sets Object field to given value.
+
+
+### GetStatus
+
+`func (o *ListWebhookEndpointsResponseDataInner) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *ListWebhookEndpointsResponseDataInner) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *ListWebhookEndpointsResponseDataInner) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetUpdatedAt

@@ -40,8 +40,10 @@ import ai.joinaffinity.sdk.ApiClient;
   GetAccountResponseAccount.JSON_PROPERTY_ALERT_NEW_ORDERS,
   GetAccountResponseAccount.JSON_PROPERTY_ALERT_STATUS_CHANGES,
   GetAccountResponseAccount.JSON_PROPERTY_DISPLAY_NAME,
+  GetAccountResponseAccount.JSON_PROPERTY_ID,
   GetAccountResponseAccount.JSON_PROPERTY_OBJECT,
   GetAccountResponseAccount.JSON_PROPERTY_SLUG,
+  GetAccountResponseAccount.JSON_PROPERTY_STATUS,
   GetAccountResponseAccount.JSON_PROPERTY_SUPPORT_EMAIL,
   GetAccountResponseAccount.JSON_PROPERTY_WEBSITE_URL
 })
@@ -66,6 +68,10 @@ public class GetAccountResponseAccount {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nonnull
   private String displayName;
+
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
 
   /**
    * Gets or Sets _object
@@ -107,6 +113,47 @@ public class GetAccountResponseAccount {
   public static final String JSON_PROPERTY_SLUG = "slug";
   @javax.annotation.Nonnull
   private String slug;
+
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("active")),
+
+    PENDING(String.valueOf("pending")),
+
+    SUSPENDED(String.valueOf("suspended"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nonnull
+  private StatusEnum status;
 
   public static final String JSON_PROPERTY_SUPPORT_EMAIL = "supportEmail";
   @javax.annotation.Nullable
@@ -247,6 +294,30 @@ public class GetAccountResponseAccount {
   }
 
 
+  public GetAccountResponseAccount id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
   public GetAccountResponseAccount _object(@javax.annotation.Nonnull ObjectEnum _object) {
     this._object = _object;
     return this;
@@ -292,6 +363,30 @@ public class GetAccountResponseAccount {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSlug(@javax.annotation.Nonnull String slug) {
     this.slug = slug;
+  }
+
+
+  public GetAccountResponseAccount status(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
   }
 
 
@@ -360,15 +455,17 @@ public class GetAccountResponseAccount {
         Objects.equals(this.alertNewOrders, getAccountResponseAccount.alertNewOrders) &&
         Objects.equals(this.alertStatusChanges, getAccountResponseAccount.alertStatusChanges) &&
         Objects.equals(this.displayName, getAccountResponseAccount.displayName) &&
+        Objects.equals(this.id, getAccountResponseAccount.id) &&
         Objects.equals(this._object, getAccountResponseAccount._object) &&
         Objects.equals(this.slug, getAccountResponseAccount.slug) &&
+        Objects.equals(this.status, getAccountResponseAccount.status) &&
         Objects.equals(this.supportEmail, getAccountResponseAccount.supportEmail) &&
         Objects.equals(this.websiteUrl, getAccountResponseAccount.websiteUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(alertEmails, alertIntegrationIssues, alertNewOrders, alertStatusChanges, displayName, _object, slug, supportEmail, websiteUrl);
+    return Objects.hash(alertEmails, alertIntegrationIssues, alertNewOrders, alertStatusChanges, displayName, id, _object, slug, status, supportEmail, websiteUrl);
   }
 
   @Override
@@ -380,8 +477,10 @@ public class GetAccountResponseAccount {
     sb.append("    alertNewOrders: ").append(toIndentedString(alertNewOrders)).append("\n");
     sb.append("    alertStatusChanges: ").append(toIndentedString(alertStatusChanges)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    supportEmail: ").append(toIndentedString(supportEmail)).append("\n");
     sb.append("    websiteUrl: ").append(toIndentedString(websiteUrl)).append("\n");
     sb.append("}");
@@ -457,6 +556,11 @@ public class GetAccountResponseAccount {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdisplayName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisplayName()))));
     }
 
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
     // add `object` to the URL query string
     if (getObject() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObject()))));
@@ -465,6 +569,11 @@ public class GetAccountResponseAccount {
     // add `slug` to the URL query string
     if (getSlug() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sslug%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSlug()))));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     // add `supportEmail` to the URL query string

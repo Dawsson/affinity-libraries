@@ -25,10 +25,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -52,7 +48,8 @@ public class ListPracticesResponseDataInnerContactsCompliance {
   private String name;
 
   public static final String JSON_PROPERTY_PHONE = "phone";
-  private JsonNullable<String> phone = JsonNullable.<String>undefined();
+  @javax.annotation.Nullable
+  private String phone;
 
   public ListPracticesResponseDataInnerContactsCompliance() {
   }
@@ -106,7 +103,7 @@ public class ListPracticesResponseDataInnerContactsCompliance {
 
 
   public ListPracticesResponseDataInnerContactsCompliance phone(@javax.annotation.Nullable String phone) {
-    this.phone = JsonNullable.<String>of(phone);
+    this.phone = phone;
     return this;
   }
 
@@ -115,25 +112,17 @@ public class ListPracticesResponseDataInnerContactsCompliance {
    * @return phone
    */
   @javax.annotation.Nullable
-  @JsonIgnore
-  public String getPhone() {
-        return phone.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getPhone_JsonNullable() {
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getPhone() {
     return phone;
   }
 
-  @JsonProperty(JSON_PROPERTY_PHONE)
-  public void setPhone_JsonNullable(JsonNullable<String> phone) {
-    this.phone = phone;
-  }
 
+  @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPhone(@javax.annotation.Nullable String phone) {
-    this.phone = JsonNullable.<String>of(phone);
+    this.phone = phone;
   }
 
 
@@ -151,23 +140,12 @@ public class ListPracticesResponseDataInnerContactsCompliance {
     ListPracticesResponseDataInnerContactsCompliance listPracticesResponseDataInnerContactsCompliance = (ListPracticesResponseDataInnerContactsCompliance) o;
     return Objects.equals(this.email, listPracticesResponseDataInnerContactsCompliance.email) &&
         Objects.equals(this.name, listPracticesResponseDataInnerContactsCompliance.name) &&
-        equalsNullable(this.phone, listPracticesResponseDataInnerContactsCompliance.phone);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.phone, listPracticesResponseDataInnerContactsCompliance.phone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, name, hashCodeNullable(phone));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(email, name, phone);
   }
 
   @Override

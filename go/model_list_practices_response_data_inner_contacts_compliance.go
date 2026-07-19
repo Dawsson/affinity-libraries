@@ -22,9 +22,9 @@ var _ MappedNullable = &ListPracticesResponseDataInnerContactsCompliance{}
 
 // ListPracticesResponseDataInnerContactsCompliance struct for ListPracticesResponseDataInnerContactsCompliance
 type ListPracticesResponseDataInnerContactsCompliance struct {
-	Email string         `json:"email"`
+	Email string         `json:"email" validate:"regexp=^(?!\\\\.)(?!.*\\\\.\\\\.)([A-Za-z0-9_'+\\\\-\\\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\\-]*\\\\.)+[A-Za-z]{2,}$"`
 	Name  string         `json:"name"`
-	Phone NullableString `json:"phone,omitempty"`
+	Phone NullableString `json:"phone"`
 }
 
 type _ListPracticesResponseDataInnerContactsCompliance ListPracticesResponseDataInnerContactsCompliance
@@ -33,10 +33,11 @@ type _ListPracticesResponseDataInnerContactsCompliance ListPracticesResponseData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListPracticesResponseDataInnerContactsCompliance(email string, name string) *ListPracticesResponseDataInnerContactsCompliance {
+func NewListPracticesResponseDataInnerContactsCompliance(email string, name string, phone NullableString) *ListPracticesResponseDataInnerContactsCompliance {
 	this := ListPracticesResponseDataInnerContactsCompliance{}
 	this.Email = email
 	this.Name = name
+	this.Phone = phone
 	return &this
 }
 
@@ -96,16 +97,18 @@ func (o *ListPracticesResponseDataInnerContactsCompliance) SetName(v string) {
 	o.Name = v
 }
 
-// GetPhone returns the Phone field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetPhone returns the Phone field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *ListPracticesResponseDataInnerContactsCompliance) GetPhone() string {
-	if o == nil || IsNil(o.Phone.Get()) {
+	if o == nil || o.Phone.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.Phone.Get()
 }
 
-// GetPhoneOk returns a tuple with the Phone field value if set, nil otherwise
+// GetPhoneOk returns a tuple with the Phone field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ListPracticesResponseDataInnerContactsCompliance) GetPhoneOk() (*string, bool) {
@@ -115,28 +118,9 @@ func (o *ListPracticesResponseDataInnerContactsCompliance) GetPhoneOk() (*string
 	return o.Phone.Get(), o.Phone.IsSet()
 }
 
-// HasPhone returns a boolean if a field has been set.
-func (o *ListPracticesResponseDataInnerContactsCompliance) HasPhone() bool {
-	if o != nil && o.Phone.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPhone gets a reference to the given NullableString and assigns it to the Phone field.
+// SetPhone sets field value
 func (o *ListPracticesResponseDataInnerContactsCompliance) SetPhone(v string) {
 	o.Phone.Set(&v)
-}
-
-// SetPhoneNil sets the value for Phone to be an explicit nil
-func (o *ListPracticesResponseDataInnerContactsCompliance) SetPhoneNil() {
-	o.Phone.Set(nil)
-}
-
-// UnsetPhone ensures that no value is present for Phone, not even an explicit nil
-func (o *ListPracticesResponseDataInnerContactsCompliance) UnsetPhone() {
-	o.Phone.Unset()
 }
 
 func (o ListPracticesResponseDataInnerContactsCompliance) MarshalJSON() ([]byte, error) {
@@ -151,9 +135,7 @@ func (o ListPracticesResponseDataInnerContactsCompliance) ToMap() (map[string]in
 	toSerialize := map[string]interface{}{}
 	toSerialize["email"] = o.Email
 	toSerialize["name"] = o.Name
-	if o.Phone.IsSet() {
-		toSerialize["phone"] = o.Phone.Get()
-	}
+	toSerialize["phone"] = o.Phone.Get()
 	return toSerialize, nil
 }
 
@@ -164,6 +146,7 @@ func (o *ListPracticesResponseDataInnerContactsCompliance) UnmarshalJSON(data []
 	requiredProperties := []string{
 		"email",
 		"name",
+		"phone",
 	}
 
 	allProperties := make(map[string]interface{})

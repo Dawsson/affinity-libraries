@@ -6,16 +6,19 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **string** |  |
 **EnabledEvents** | **[]string** |  |
+**Id** | **string** |  |
 **Livemode** | **bool** |  |
 **Object** | **string** |  |
+**Status** | **string** |  |
 **UpdatedAt** | **string** |  |
 **Url** | **string** |  |
+**SigningSecret** | **string** |  |
 
 ## Methods
 
 ### NewCreateWebhookEndpointResponse
 
-`func NewCreateWebhookEndpointResponse(createdAt string, enabledEvents []string, livemode bool, object string, updatedAt string, url string, ) *CreateWebhookEndpointResponse`
+`func NewCreateWebhookEndpointResponse(createdAt string, enabledEvents []string, id string, livemode bool, object string, status string, updatedAt string, url string, signingSecret string, ) *CreateWebhookEndpointResponse`
 
 NewCreateWebhookEndpointResponse instantiates a new CreateWebhookEndpointResponse object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +73,26 @@ and a boolean to check if the value has been set.
 SetEnabledEvents sets EnabledEvents field to given value.
 
 
+### GetId
+
+`func (o *CreateWebhookEndpointResponse) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *CreateWebhookEndpointResponse) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *CreateWebhookEndpointResponse) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetLivemode
 
 `func (o *CreateWebhookEndpointResponse) GetLivemode() bool`
@@ -110,6 +133,26 @@ and a boolean to check if the value has been set.
 SetObject sets Object field to given value.
 
 
+### GetStatus
+
+`func (o *CreateWebhookEndpointResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *CreateWebhookEndpointResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *CreateWebhookEndpointResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+
 ### GetUpdatedAt
 
 `func (o *CreateWebhookEndpointResponse) GetUpdatedAt() string`
@@ -148,6 +191,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateWebhookEndpointResponse) SetUrl(v string)`
 
 SetUrl sets Url field to given value.
+
+
+### GetSigningSecret
+
+`func (o *CreateWebhookEndpointResponse) GetSigningSecret() string`
+
+GetSigningSecret returns the SigningSecret field if non-nil, zero value otherwise.
+
+### GetSigningSecretOk
+
+`func (o *CreateWebhookEndpointResponse) GetSigningSecretOk() (*string, bool)`
+
+GetSigningSecretOk returns a tuple with the SigningSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSigningSecret
+
+`func (o *CreateWebhookEndpointResponse) SetSigningSecret(v string)`
+
+SetSigningSecret sets SigningSecret field to given value.
 
 
 

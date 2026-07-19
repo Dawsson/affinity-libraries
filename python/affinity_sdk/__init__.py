@@ -62,8 +62,11 @@ __all__ = [
     "GetOrderResponse",
     "GetPracticeResponse",
     "GetWebhookEventResponse",
+    "GetWebhookEventResponseAttemptsInner",
+    "GetWebhookEventResponseDeliveriesInner",
     "ListCatalogItemsResponse",
     "ListCatalogItemsResponseDataInner",
+    "ListCatalogItemsResponseDataInnerPricing",
     "ListOrderEventsResponse",
     "ListOrderEventsResponseDataInner",
     "ListOrdersResponse",
@@ -140,8 +143,11 @@ from affinity_sdk.models.get_api_access_response_service_account import GetApiAc
 from affinity_sdk.models.get_order_response import GetOrderResponse as GetOrderResponse
 from affinity_sdk.models.get_practice_response import GetPracticeResponse as GetPracticeResponse
 from affinity_sdk.models.get_webhook_event_response import GetWebhookEventResponse as GetWebhookEventResponse
+from affinity_sdk.models.get_webhook_event_response_attempts_inner import GetWebhookEventResponseAttemptsInner as GetWebhookEventResponseAttemptsInner
+from affinity_sdk.models.get_webhook_event_response_deliveries_inner import GetWebhookEventResponseDeliveriesInner as GetWebhookEventResponseDeliveriesInner
 from affinity_sdk.models.list_catalog_items_response import ListCatalogItemsResponse as ListCatalogItemsResponse
 from affinity_sdk.models.list_catalog_items_response_data_inner import ListCatalogItemsResponseDataInner as ListCatalogItemsResponseDataInner
+from affinity_sdk.models.list_catalog_items_response_data_inner_pricing import ListCatalogItemsResponseDataInnerPricing as ListCatalogItemsResponseDataInnerPricing
 from affinity_sdk.models.list_order_events_response import ListOrderEventsResponse as ListOrderEventsResponse
 from affinity_sdk.models.list_order_events_response_data_inner import ListOrderEventsResponseDataInner as ListOrderEventsResponseDataInner
 from affinity_sdk.models.list_orders_response import ListOrdersResponse as ListOrdersResponse

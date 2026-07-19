@@ -7,10 +7,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **str** |  |
 **event_type** | **str** |  |
+**id** | **str** |  |
 **livemode** | **bool** |  |
 **object** | **str** |  |
 **object_id** | **str** |  |
 **object_type** | **str** |  |
+**status** | **str** |  |
 **updated_at** | **str** |  |
 
 ## Example

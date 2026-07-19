@@ -5,6 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**api_version** | **str** |  |
+**id** | **str** |  |
 **object** | **str** |  |
 **subject_id** | **str** |  |
 **subject_type** | **str** |  |

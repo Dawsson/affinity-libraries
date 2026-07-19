@@ -38,6 +38,7 @@ import ai.joinaffinity.sdk.ApiClient;
 @JsonPropertyOrder({
   GetAccountResponse.JSON_PROPERTY_ACCOUNT,
   GetAccountResponse.JSON_PROPERTY_MEMBERSHIP,
+  GetAccountResponse.JSON_PROPERTY_OPERATING_MODE,
   GetAccountResponse.JSON_PROPERTY_USER
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -49,6 +50,49 @@ public class GetAccountResponse {
   public static final String JSON_PROPERTY_MEMBERSHIP = "membership";
   @javax.annotation.Nonnull
   private GetAccountResponseMembership membership;
+
+  /**
+   * Gets or Sets operatingMode
+   */
+  public enum OperatingModeEnum {
+    PRODUCTION(String.valueOf("production")),
+
+    PRODUCTION_PENDING(String.valueOf("production_pending")),
+
+    SANDBOX(String.valueOf("sandbox")),
+
+    SUSPENDED(String.valueOf("suspended"));
+
+    private String value;
+
+    OperatingModeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static OperatingModeEnum fromValue(String value) {
+      for (OperatingModeEnum b : OperatingModeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_OPERATING_MODE = "operatingMode";
+  @javax.annotation.Nonnull
+  private OperatingModeEnum operatingMode;
 
   public static final String JSON_PROPERTY_USER = "user";
   @javax.annotation.Nonnull
@@ -105,6 +149,30 @@ public class GetAccountResponse {
   }
 
 
+  public GetAccountResponse operatingMode(@javax.annotation.Nonnull OperatingModeEnum operatingMode) {
+    this.operatingMode = operatingMode;
+    return this;
+  }
+
+  /**
+   * Get operatingMode
+   * @return operatingMode
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_OPERATING_MODE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public OperatingModeEnum getOperatingMode() {
+    return operatingMode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OPERATING_MODE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setOperatingMode(@javax.annotation.Nonnull OperatingModeEnum operatingMode) {
+    this.operatingMode = operatingMode;
+  }
+
+
   public GetAccountResponse user(@javax.annotation.Nonnull GetAccountResponseUser user) {
     this.user = user;
     return this;
@@ -143,12 +211,13 @@ public class GetAccountResponse {
     GetAccountResponse getAccountResponse = (GetAccountResponse) o;
     return Objects.equals(this.account, getAccountResponse.account) &&
         Objects.equals(this.membership, getAccountResponse.membership) &&
+        Objects.equals(this.operatingMode, getAccountResponse.operatingMode) &&
         Objects.equals(this.user, getAccountResponse.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, membership, user);
+    return Objects.hash(account, membership, operatingMode, user);
   }
 
   @Override
@@ -157,6 +226,7 @@ public class GetAccountResponse {
     sb.append("class GetAccountResponse {\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    membership: ").append(toIndentedString(membership)).append("\n");
+    sb.append("    operatingMode: ").append(toIndentedString(operatingMode)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -210,6 +280,11 @@ public class GetAccountResponse {
     // add `membership` to the URL query string
     if (getMembership() != null) {
       joiner.add(getMembership().toUrlQueryString(prefix + "membership" + suffix));
+    }
+
+    // add `operatingMode` to the URL query string
+    if (getOperatingMode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soperatingMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOperatingMode()))));
     }
 
     // add `user` to the URL query string

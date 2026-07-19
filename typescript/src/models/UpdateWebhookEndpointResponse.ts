@@ -33,6 +33,12 @@ export interface UpdateWebhookEndpointResponse {
     enabledEvents: Array<string>;
     /**
      *
+     * @type {string}
+     * @memberof UpdateWebhookEndpointResponse
+     */
+    id: string;
+    /**
+     *
      * @type {boolean}
      * @memberof UpdateWebhookEndpointResponse
      */
@@ -43,6 +49,12 @@ export interface UpdateWebhookEndpointResponse {
      * @memberof UpdateWebhookEndpointResponse
      */
     object: UpdateWebhookEndpointResponseObjectEnum;
+    /**
+     *
+     * @type {UpdateWebhookEndpointResponseStatusEnum}
+     * @memberof UpdateWebhookEndpointResponse
+     */
+    status: UpdateWebhookEndpointResponseStatusEnum;
     /**
      *
      * @type {string}
@@ -66,6 +78,15 @@ export const UpdateWebhookEndpointResponseObjectEnum = {
 } as const;
 export type UpdateWebhookEndpointResponseObjectEnum = typeof UpdateWebhookEndpointResponseObjectEnum[keyof typeof UpdateWebhookEndpointResponseObjectEnum];
 
+/**
+ * @export
+ */
+export const UpdateWebhookEndpointResponseStatusEnum = {
+    Active: 'active',
+    Disabled: 'disabled'
+} as const;
+export type UpdateWebhookEndpointResponseStatusEnum = typeof UpdateWebhookEndpointResponseStatusEnum[keyof typeof UpdateWebhookEndpointResponseStatusEnum];
+
 
 /**
  * Check if a given object implements the UpdateWebhookEndpointResponse interface.
@@ -73,8 +94,10 @@ export type UpdateWebhookEndpointResponseObjectEnum = typeof UpdateWebhookEndpoi
 export function instanceOfUpdateWebhookEndpointResponse(value: object): value is UpdateWebhookEndpointResponse {
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('enabledEvents' in value) || value['enabledEvents'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
     return true;
@@ -92,8 +115,10 @@ export function UpdateWebhookEndpointResponseFromJSONTyped(json: any, ignoreDisc
 
         'createdAt': json['createdAt'],
         'enabledEvents': json['enabledEvents'],
+        'id': json['id'],
         'livemode': json['livemode'],
         'object': json['object'],
+        'status': json['status'],
         'updatedAt': json['updatedAt'],
         'url': json['url'],
     };
@@ -112,8 +137,10 @@ export function UpdateWebhookEndpointResponseToJSONTyped(value?: UpdateWebhookEn
 
         'createdAt': value['createdAt'],
         'enabledEvents': value['enabledEvents'],
+        'id': value['id'],
         'livemode': value['livemode'],
         'object': value['object'],
+        'status': value['status'],
         'updatedAt': value['updatedAt'],
         'url': value['url'],
     };

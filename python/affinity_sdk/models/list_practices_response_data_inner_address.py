@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -30,11 +30,11 @@ class ListPracticesResponseDataInnerAddress(BaseModel):
     ListPracticesResponseDataInnerAddress
     """ # noqa: E501
     city: Annotated[str, Field(min_length=1, strict=True, max_length=120)]
-    country: Optional[StrictStr] = None
+    country: Annotated[str, Field(min_length=2, strict=True, max_length=2)]
     line1: Annotated[str, Field(min_length=1, strict=True, max_length=180)]
-    line2: Optional[Annotated[str, Field(strict=True, max_length=180)]] = None
+    line2: Optional[Annotated[str, Field(strict=True, max_length=180)]]
     postal_code: Annotated[str, Field(min_length=1, strict=True, max_length=20)] = Field(alias="postalCode")
-    state: StrictStr
+    state: Annotated[str, Field(min_length=2, strict=True, max_length=2)]
     __properties: ClassVar[List[str]] = ["city", "country", "line1", "line2", "postalCode", "state"]
 
     model_config = ConfigDict(
@@ -94,7 +94,7 @@ class ListPracticesResponseDataInnerAddress(BaseModel):
 
         _obj = cls.model_validate({
             "city": obj.get("city"),
-            "country": obj.get("country"),
+            "country": obj.get("country") if obj.get("country") is not None else 'US',
             "line1": obj.get("line1"),
             "line2": obj.get("line2"),
             "postalCode": obj.get("postalCode"),

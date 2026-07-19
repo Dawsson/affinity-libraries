@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**credentials** | **str** |  | [optional]
+**credentials** | **str** |  |
 **license_states** | **List[str]** |  |
 **name** | **str** |  |
 **npi** | **str** |  |

@@ -19,6 +19,7 @@ import java.util.StringJoiner;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
+import ai.joinaffinity.sdk.model.ListCatalogItemsResponseDataInnerPricing;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,15 +39,18 @@ import ai.joinaffinity.sdk.ApiClient;
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_ALLOWED_STATES,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_CATALOG_KIND,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_COLD_SHIP,
+  ListCatalogItemsResponseDataInner.JSON_PROPERTY_COMPOUNDER_ID,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_COMPOUNDER_NAME,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_DESCRIPTION,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_DOSAGE_FORM,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_FACILITY_TYPE,
+  ListCatalogItemsResponseDataInner.JSON_PROPERTY_ID,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_IS_ORDERABLE,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_LIVEMODE,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_NAME,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_OBJECT,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_PATIENT_SPECIFIC_REQUIRED,
+  ListCatalogItemsResponseDataInner.JSON_PROPERTY_PRICING,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_RESTRICTED_STATES,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_ROUTE,
   ListCatalogItemsResponseDataInner.JSON_PROPERTY_STRENGTH
@@ -65,6 +69,10 @@ public class ListCatalogItemsResponseDataInner {
   @javax.annotation.Nonnull
   private Boolean coldShip;
 
+  public static final String JSON_PROPERTY_COMPOUNDER_ID = "compounderId";
+  @javax.annotation.Nonnull
+  private String compounderId;
+
   public static final String JSON_PROPERTY_COMPOUNDER_NAME = "compounderName";
   @javax.annotation.Nonnull
   private String compounderName;
@@ -80,6 +88,10 @@ public class ListCatalogItemsResponseDataInner {
   public static final String JSON_PROPERTY_FACILITY_TYPE = "facilityType";
   @javax.annotation.Nonnull
   private String facilityType;
+
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String JSON_PROPERTY_IS_ORDERABLE = "isOrderable";
   @javax.annotation.Nonnull
@@ -133,6 +145,10 @@ public class ListCatalogItemsResponseDataInner {
   public static final String JSON_PROPERTY_PATIENT_SPECIFIC_REQUIRED = "patientSpecificRequired";
   @javax.annotation.Nonnull
   private Boolean patientSpecificRequired;
+
+  public static final String JSON_PROPERTY_PRICING = "pricing";
+  @javax.annotation.Nonnull
+  private ListCatalogItemsResponseDataInnerPricing pricing;
 
   public static final String JSON_PROPERTY_RESTRICTED_STATES = "restrictedStates";
   @javax.annotation.Nonnull
@@ -229,6 +245,30 @@ public class ListCatalogItemsResponseDataInner {
   }
 
 
+  public ListCatalogItemsResponseDataInner compounderId(@javax.annotation.Nonnull String compounderId) {
+    this.compounderId = compounderId;
+    return this;
+  }
+
+  /**
+   * Get compounderId
+   * @return compounderId
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_COMPOUNDER_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getCompounderId() {
+    return compounderId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMPOUNDER_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCompounderId(@javax.annotation.Nonnull String compounderId) {
+    this.compounderId = compounderId;
+  }
+
+
   public ListCatalogItemsResponseDataInner compounderName(@javax.annotation.Nonnull String compounderName) {
     this.compounderName = compounderName;
     return this;
@@ -322,6 +362,30 @@ public class ListCatalogItemsResponseDataInner {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFacilityType(@javax.annotation.Nonnull String facilityType) {
     this.facilityType = facilityType;
+  }
+
+
+  public ListCatalogItemsResponseDataInner id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
   }
 
 
@@ -445,6 +509,30 @@ public class ListCatalogItemsResponseDataInner {
   }
 
 
+  public ListCatalogItemsResponseDataInner pricing(@javax.annotation.Nonnull ListCatalogItemsResponseDataInnerPricing pricing) {
+    this.pricing = pricing;
+    return this;
+  }
+
+  /**
+   * Get pricing
+   * @return pricing
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PRICING, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public ListCatalogItemsResponseDataInnerPricing getPricing() {
+    return pricing;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRICING, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPricing(@javax.annotation.Nonnull ListCatalogItemsResponseDataInnerPricing pricing) {
+    this.pricing = pricing;
+  }
+
+
   public ListCatalogItemsResponseDataInner restrictedStates(@javax.annotation.Nonnull List<String> restrictedStates) {
     this.restrictedStates = restrictedStates;
     return this;
@@ -540,15 +628,18 @@ public class ListCatalogItemsResponseDataInner {
     return Objects.equals(this.allowedStates, listCatalogItemsResponseDataInner.allowedStates) &&
         Objects.equals(this.catalogKind, listCatalogItemsResponseDataInner.catalogKind) &&
         Objects.equals(this.coldShip, listCatalogItemsResponseDataInner.coldShip) &&
+        Objects.equals(this.compounderId, listCatalogItemsResponseDataInner.compounderId) &&
         Objects.equals(this.compounderName, listCatalogItemsResponseDataInner.compounderName) &&
         Objects.equals(this.description, listCatalogItemsResponseDataInner.description) &&
         Objects.equals(this.dosageForm, listCatalogItemsResponseDataInner.dosageForm) &&
         Objects.equals(this.facilityType, listCatalogItemsResponseDataInner.facilityType) &&
+        Objects.equals(this.id, listCatalogItemsResponseDataInner.id) &&
         Objects.equals(this.isOrderable, listCatalogItemsResponseDataInner.isOrderable) &&
         Objects.equals(this.livemode, listCatalogItemsResponseDataInner.livemode) &&
         Objects.equals(this.name, listCatalogItemsResponseDataInner.name) &&
         Objects.equals(this._object, listCatalogItemsResponseDataInner._object) &&
         Objects.equals(this.patientSpecificRequired, listCatalogItemsResponseDataInner.patientSpecificRequired) &&
+        Objects.equals(this.pricing, listCatalogItemsResponseDataInner.pricing) &&
         Objects.equals(this.restrictedStates, listCatalogItemsResponseDataInner.restrictedStates) &&
         Objects.equals(this.route, listCatalogItemsResponseDataInner.route) &&
         Objects.equals(this.strength, listCatalogItemsResponseDataInner.strength);
@@ -556,7 +647,7 @@ public class ListCatalogItemsResponseDataInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(allowedStates, catalogKind, coldShip, compounderName, description, dosageForm, facilityType, isOrderable, livemode, name, _object, patientSpecificRequired, restrictedStates, route, strength);
+    return Objects.hash(allowedStates, catalogKind, coldShip, compounderId, compounderName, description, dosageForm, facilityType, id, isOrderable, livemode, name, _object, patientSpecificRequired, pricing, restrictedStates, route, strength);
   }
 
   @Override
@@ -566,15 +657,18 @@ public class ListCatalogItemsResponseDataInner {
     sb.append("    allowedStates: ").append(toIndentedString(allowedStates)).append("\n");
     sb.append("    catalogKind: ").append(toIndentedString(catalogKind)).append("\n");
     sb.append("    coldShip: ").append(toIndentedString(coldShip)).append("\n");
+    sb.append("    compounderId: ").append(toIndentedString(compounderId)).append("\n");
     sb.append("    compounderName: ").append(toIndentedString(compounderName)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    dosageForm: ").append(toIndentedString(dosageForm)).append("\n");
     sb.append("    facilityType: ").append(toIndentedString(facilityType)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isOrderable: ").append(toIndentedString(isOrderable)).append("\n");
     sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    patientSpecificRequired: ").append(toIndentedString(patientSpecificRequired)).append("\n");
+    sb.append("    pricing: ").append(toIndentedString(pricing)).append("\n");
     sb.append("    restrictedStates: ").append(toIndentedString(restrictedStates)).append("\n");
     sb.append("    route: ").append(toIndentedString(route)).append("\n");
     sb.append("    strength: ").append(toIndentedString(strength)).append("\n");
@@ -641,6 +735,11 @@ public class ListCatalogItemsResponseDataInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%scoldShip%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getColdShip()))));
     }
 
+    // add `compounderId` to the URL query string
+    if (getCompounderId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scompounderId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompounderId()))));
+    }
+
     // add `compounderName` to the URL query string
     if (getCompounderName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scompounderName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompounderName()))));
@@ -659,6 +758,11 @@ public class ListCatalogItemsResponseDataInner {
     // add `facilityType` to the URL query string
     if (getFacilityType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfacilityType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFacilityType()))));
+    }
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `isOrderable` to the URL query string
@@ -684,6 +788,11 @@ public class ListCatalogItemsResponseDataInner {
     // add `patientSpecificRequired` to the URL query string
     if (getPatientSpecificRequired() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spatientSpecificRequired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPatientSpecificRequired()))));
+    }
+
+    // add `pricing` to the URL query string
+    if (getPricing() != null) {
+      joiner.add(getPricing().toUrlQueryString(prefix + "pricing" + suffix));
     }
 
     // add `restrictedStates` to the URL query string

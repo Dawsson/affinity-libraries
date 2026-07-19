@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **str** |  |
 **key_prefix** | **str** |  |
 **object** | **str** |  |
 

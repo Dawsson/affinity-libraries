@@ -8,7 +8,9 @@ Name | Type
 ------------ | -------------
 `createdAt` | string
 `eventType` | string
+`id` | string
 `message` | string
+`metadata` | { [key: string]: any; }
 `object` | string
 
 ## Example
@@ -20,7 +22,9 @@ import type { ListOrderEventsResponseDataInner } from '@affinity/sdk'
 const example = {
   "createdAt": null,
   "eventType": null,
+  "id": null,
   "message": null,
+  "metadata": null,
   "object": null,
 } satisfies ListOrderEventsResponseDataInner
 

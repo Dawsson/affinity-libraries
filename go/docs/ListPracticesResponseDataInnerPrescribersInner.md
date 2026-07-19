@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Credentials** | Pointer to **NullableString** |  | [optional]
+**Credentials** | **NullableString** |  |
 **LicenseStates** | **[]string** |  |
 **Name** | **string** |  |
 **Npi** | **string** |  |
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewListPracticesResponseDataInnerPrescribersInner
 
-`func NewListPracticesResponseDataInnerPrescribersInner(licenseStates []string, name string, npi string, ) *ListPracticesResponseDataInnerPrescribersInner`
+`func NewListPracticesResponseDataInnerPrescribersInner(credentials NullableString, licenseStates []string, name string, npi string, ) *ListPracticesResponseDataInnerPrescribersInner`
 
 NewListPracticesResponseDataInnerPrescribersInner instantiates a new ListPracticesResponseDataInnerPrescribersInner object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetCredentials sets Credentials field to given value.
 
-### HasCredentials
-
-`func (o *ListPracticesResponseDataInnerPrescribersInner) HasCredentials() bool`
-
-HasCredentials returns a boolean if a field has been set.
 
 ### SetCredentialsNil
 

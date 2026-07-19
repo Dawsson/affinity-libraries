@@ -37,10 +37,13 @@ import ai.joinaffinity.sdk.ApiClient;
 @JsonPropertyOrder({
   RotateWebhookEndpointSecretResponse.JSON_PROPERTY_CREATED_AT,
   RotateWebhookEndpointSecretResponse.JSON_PROPERTY_ENABLED_EVENTS,
+  RotateWebhookEndpointSecretResponse.JSON_PROPERTY_ID,
   RotateWebhookEndpointSecretResponse.JSON_PROPERTY_LIVEMODE,
   RotateWebhookEndpointSecretResponse.JSON_PROPERTY_OBJECT,
+  RotateWebhookEndpointSecretResponse.JSON_PROPERTY_STATUS,
   RotateWebhookEndpointSecretResponse.JSON_PROPERTY_UPDATED_AT,
-  RotateWebhookEndpointSecretResponse.JSON_PROPERTY_URL
+  RotateWebhookEndpointSecretResponse.JSON_PROPERTY_URL,
+  RotateWebhookEndpointSecretResponse.JSON_PROPERTY_SIGNING_SECRET
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RotateWebhookEndpointSecretResponse {
@@ -51,6 +54,10 @@ public class RotateWebhookEndpointSecretResponse {
   public static final String JSON_PROPERTY_ENABLED_EVENTS = "enabledEvents";
   @javax.annotation.Nonnull
   private List<String> enabledEvents = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String JSON_PROPERTY_LIVEMODE = "livemode";
   @javax.annotation.Nonnull
@@ -93,6 +100,45 @@ public class RotateWebhookEndpointSecretResponse {
   @javax.annotation.Nonnull
   private ObjectEnum _object;
 
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("active")),
+
+    DISABLED(String.valueOf("disabled"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nonnull
+  private StatusEnum status;
+
   public static final String JSON_PROPERTY_UPDATED_AT = "updatedAt";
   @javax.annotation.Nonnull
   private String updatedAt;
@@ -100,6 +146,10 @@ public class RotateWebhookEndpointSecretResponse {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
   private String url;
+
+  public static final String JSON_PROPERTY_SIGNING_SECRET = "signingSecret";
+  @javax.annotation.Nonnull
+  private String signingSecret;
 
   public RotateWebhookEndpointSecretResponse() {
   }
@@ -160,6 +210,30 @@ public class RotateWebhookEndpointSecretResponse {
   }
 
 
+  public RotateWebhookEndpointSecretResponse id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
   public RotateWebhookEndpointSecretResponse livemode(@javax.annotation.Nonnull Boolean livemode) {
     this.livemode = livemode;
     return this;
@@ -205,6 +279,30 @@ public class RotateWebhookEndpointSecretResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setObject(@javax.annotation.Nonnull ObjectEnum _object) {
     this._object = _object;
+  }
+
+
+  public RotateWebhookEndpointSecretResponse status(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
   }
 
 
@@ -256,6 +354,30 @@ public class RotateWebhookEndpointSecretResponse {
   }
 
 
+  public RotateWebhookEndpointSecretResponse signingSecret(@javax.annotation.Nonnull String signingSecret) {
+    this.signingSecret = signingSecret;
+    return this;
+  }
+
+  /**
+   * Get signingSecret
+   * @return signingSecret
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SIGNING_SECRET, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getSigningSecret() {
+    return signingSecret;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SIGNING_SECRET, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSigningSecret(@javax.annotation.Nonnull String signingSecret) {
+    this.signingSecret = signingSecret;
+  }
+
+
   /**
    * Return true if this RotateWebhookEndpointSecretResponse object is equal to o.
    */
@@ -270,15 +392,18 @@ public class RotateWebhookEndpointSecretResponse {
     RotateWebhookEndpointSecretResponse rotateWebhookEndpointSecretResponse = (RotateWebhookEndpointSecretResponse) o;
     return Objects.equals(this.createdAt, rotateWebhookEndpointSecretResponse.createdAt) &&
         Objects.equals(this.enabledEvents, rotateWebhookEndpointSecretResponse.enabledEvents) &&
+        Objects.equals(this.id, rotateWebhookEndpointSecretResponse.id) &&
         Objects.equals(this.livemode, rotateWebhookEndpointSecretResponse.livemode) &&
         Objects.equals(this._object, rotateWebhookEndpointSecretResponse._object) &&
+        Objects.equals(this.status, rotateWebhookEndpointSecretResponse.status) &&
         Objects.equals(this.updatedAt, rotateWebhookEndpointSecretResponse.updatedAt) &&
-        Objects.equals(this.url, rotateWebhookEndpointSecretResponse.url);
+        Objects.equals(this.url, rotateWebhookEndpointSecretResponse.url) &&
+        Objects.equals(this.signingSecret, rotateWebhookEndpointSecretResponse.signingSecret);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, enabledEvents, livemode, _object, updatedAt, url);
+    return Objects.hash(createdAt, enabledEvents, id, livemode, _object, status, updatedAt, url, signingSecret);
   }
 
   @Override
@@ -287,10 +412,13 @@ public class RotateWebhookEndpointSecretResponse {
     sb.append("class RotateWebhookEndpointSecretResponse {\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    enabledEvents: ").append(toIndentedString(enabledEvents)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    signingSecret: ").append(toIndentedString(signingSecret)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -349,6 +477,11 @@ public class RotateWebhookEndpointSecretResponse {
       }
     }
 
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
     // add `livemode` to the URL query string
     if (getLivemode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slivemode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLivemode()))));
@@ -359,6 +492,11 @@ public class RotateWebhookEndpointSecretResponse {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObject()))));
     }
 
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
     // add `updatedAt` to the URL query string
     if (getUpdatedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%supdatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUpdatedAt()))));
@@ -367,6 +505,11 @@ public class RotateWebhookEndpointSecretResponse {
     // add `url` to the URL query string
     if (getUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
+    }
+
+    // add `signingSecret` to the URL query string
+    if (getSigningSecret() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssigningSecret%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSigningSecret()))));
     }
 
     return joiner.toString();

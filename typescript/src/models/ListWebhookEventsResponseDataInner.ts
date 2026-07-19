@@ -33,6 +33,12 @@ export interface ListWebhookEventsResponseDataInner {
     eventType: string;
     /**
      *
+     * @type {string}
+     * @memberof ListWebhookEventsResponseDataInner
+     */
+    id: string;
+    /**
+     *
      * @type {boolean}
      * @memberof ListWebhookEventsResponseDataInner
      */
@@ -57,6 +63,12 @@ export interface ListWebhookEventsResponseDataInner {
     objectType: string;
     /**
      *
+     * @type {ListWebhookEventsResponseDataInnerStatusEnum}
+     * @memberof ListWebhookEventsResponseDataInner
+     */
+    status: ListWebhookEventsResponseDataInnerStatusEnum;
+    /**
+     *
      * @type {string}
      * @memberof ListWebhookEventsResponseDataInner
      */
@@ -72,6 +84,17 @@ export const ListWebhookEventsResponseDataInnerObjectEnum = {
 } as const;
 export type ListWebhookEventsResponseDataInnerObjectEnum = typeof ListWebhookEventsResponseDataInnerObjectEnum[keyof typeof ListWebhookEventsResponseDataInnerObjectEnum];
 
+/**
+ * @export
+ */
+export const ListWebhookEventsResponseDataInnerStatusEnum = {
+    Delivered: 'delivered',
+    Failed: 'failed',
+    Pending: 'pending',
+    Skipped: 'skipped'
+} as const;
+export type ListWebhookEventsResponseDataInnerStatusEnum = typeof ListWebhookEventsResponseDataInnerStatusEnum[keyof typeof ListWebhookEventsResponseDataInnerStatusEnum];
+
 
 /**
  * Check if a given object implements the ListWebhookEventsResponseDataInner interface.
@@ -79,10 +102,12 @@ export type ListWebhookEventsResponseDataInnerObjectEnum = typeof ListWebhookEve
 export function instanceOfListWebhookEventsResponseDataInner(value: object): value is ListWebhookEventsResponseDataInner {
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('eventType' in value) || value['eventType'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
     if (!('objectId' in value) || value['objectId'] === undefined) return false;
     if (!('objectType' in value) || value['objectType'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
@@ -99,10 +124,12 @@ export function ListWebhookEventsResponseDataInnerFromJSONTyped(json: any, ignor
 
         'createdAt': json['createdAt'],
         'eventType': json['eventType'],
+        'id': json['id'],
         'livemode': json['livemode'],
         'object': json['object'],
         'objectId': json['objectId'],
         'objectType': json['objectType'],
+        'status': json['status'],
         'updatedAt': json['updatedAt'],
     };
 }
@@ -120,10 +147,12 @@ export function ListWebhookEventsResponseDataInnerToJSONTyped(value?: ListWebhoo
 
         'createdAt': value['createdAt'],
         'eventType': value['eventType'],
+        'id': value['id'],
         'livemode': value['livemode'],
         'object': value['object'],
         'objectId': value['objectId'],
         'objectType': value['objectType'],
+        'status': value['status'],
         'updatedAt': value['updatedAt'],
     };
 }

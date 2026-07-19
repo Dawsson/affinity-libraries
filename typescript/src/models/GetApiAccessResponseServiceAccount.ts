@@ -21,6 +21,18 @@ import { mapValues } from '../runtime';
 export interface GetApiAccessResponseServiceAccount {
     /**
      *
+     * @type {GetApiAccessResponseServiceAccountApiVersionEnum}
+     * @memberof GetApiAccessResponseServiceAccount
+     */
+    apiVersion: GetApiAccessResponseServiceAccountApiVersionEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof GetApiAccessResponseServiceAccount
+     */
+    id: string;
+    /**
+     *
      * @type {GetApiAccessResponseServiceAccountObjectEnum}
      * @memberof GetApiAccessResponseServiceAccount
      */
@@ -43,6 +55,14 @@ export interface GetApiAccessResponseServiceAccount {
 /**
  * @export
  */
+export const GetApiAccessResponseServiceAccountApiVersionEnum = {
+    _20260719: '2026-07-19'
+} as const;
+export type GetApiAccessResponseServiceAccountApiVersionEnum = typeof GetApiAccessResponseServiceAccountApiVersionEnum[keyof typeof GetApiAccessResponseServiceAccountApiVersionEnum];
+
+/**
+ * @export
+ */
 export const GetApiAccessResponseServiceAccountObjectEnum = {
     ServiceAccount: 'service_account'
 } as const;
@@ -53,6 +73,8 @@ export type GetApiAccessResponseServiceAccountObjectEnum = typeof GetApiAccessRe
  * Check if a given object implements the GetApiAccessResponseServiceAccount interface.
  */
 export function instanceOfGetApiAccessResponseServiceAccount(value: object): value is GetApiAccessResponseServiceAccount {
+    if (!('apiVersion' in value) || value['apiVersion'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
     if (!('subjectId' in value) || value['subjectId'] === undefined) return false;
     if (!('subjectType' in value) || value['subjectType'] === undefined) return false;
@@ -69,6 +91,8 @@ export function GetApiAccessResponseServiceAccountFromJSONTyped(json: any, ignor
     }
     return {
 
+        'apiVersion': json['apiVersion'],
+        'id': json['id'],
         'object': json['object'],
         'subjectId': json['subjectId'],
         'subjectType': json['subjectType'],
@@ -86,6 +110,8 @@ export function GetApiAccessResponseServiceAccountToJSONTyped(value?: GetApiAcce
 
     return {
 
+        'apiVersion': value['apiVersion'],
+        'id': value['id'],
         'object': value['object'],
         'subjectId': value['subjectId'],
         'subjectType': value['subjectType'],

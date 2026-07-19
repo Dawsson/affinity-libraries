@@ -27,8 +27,10 @@ type GetAccountResponseAccount struct {
 	AlertNewOrders         bool           `json:"alertNewOrders"`
 	AlertStatusChanges     bool           `json:"alertStatusChanges"`
 	DisplayName            string         `json:"displayName"`
+	Id                     string         `json:"id" validate:"regexp=^acct_[0-9a-hjkmnp-tv-z]{26}$"`
 	Object                 string         `json:"object"`
 	Slug                   string         `json:"slug"`
+	Status                 string         `json:"status"`
 	SupportEmail           NullableString `json:"supportEmail"`
 	WebsiteUrl             NullableString `json:"websiteUrl"`
 }
@@ -39,15 +41,17 @@ type _GetAccountResponseAccount GetAccountResponseAccount
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetAccountResponseAccount(alertEmails []string, alertIntegrationIssues bool, alertNewOrders bool, alertStatusChanges bool, displayName string, object string, slug string, supportEmail NullableString, websiteUrl NullableString) *GetAccountResponseAccount {
+func NewGetAccountResponseAccount(alertEmails []string, alertIntegrationIssues bool, alertNewOrders bool, alertStatusChanges bool, displayName string, id string, object string, slug string, status string, supportEmail NullableString, websiteUrl NullableString) *GetAccountResponseAccount {
 	this := GetAccountResponseAccount{}
 	this.AlertEmails = alertEmails
 	this.AlertIntegrationIssues = alertIntegrationIssues
 	this.AlertNewOrders = alertNewOrders
 	this.AlertStatusChanges = alertStatusChanges
 	this.DisplayName = displayName
+	this.Id = id
 	this.Object = object
 	this.Slug = slug
+	this.Status = status
 	this.SupportEmail = supportEmail
 	this.WebsiteUrl = websiteUrl
 	return &this
@@ -181,6 +185,30 @@ func (o *GetAccountResponseAccount) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
+// GetId returns the Id field value
+func (o *GetAccountResponseAccount) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountResponseAccount) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetAccountResponseAccount) SetId(v string) {
+	o.Id = v
+}
+
 // GetObject returns the Object field value
 func (o *GetAccountResponseAccount) GetObject() string {
 	if o == nil {
@@ -227,6 +255,30 @@ func (o *GetAccountResponseAccount) GetSlugOk() (*string, bool) {
 // SetSlug sets field value
 func (o *GetAccountResponseAccount) SetSlug(v string) {
 	o.Slug = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetAccountResponseAccount) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountResponseAccount) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetAccountResponseAccount) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetSupportEmail returns the SupportEmail field value
@@ -296,8 +348,10 @@ func (o GetAccountResponseAccount) ToMap() (map[string]interface{}, error) {
 	toSerialize["alertNewOrders"] = o.AlertNewOrders
 	toSerialize["alertStatusChanges"] = o.AlertStatusChanges
 	toSerialize["displayName"] = o.DisplayName
+	toSerialize["id"] = o.Id
 	toSerialize["object"] = o.Object
 	toSerialize["slug"] = o.Slug
+	toSerialize["status"] = o.Status
 	toSerialize["supportEmail"] = o.SupportEmail.Get()
 	toSerialize["websiteUrl"] = o.WebsiteUrl.Get()
 	return toSerialize, nil
@@ -313,8 +367,10 @@ func (o *GetAccountResponseAccount) UnmarshalJSON(data []byte) (err error) {
 		"alertNewOrders",
 		"alertStatusChanges",
 		"displayName",
+		"id",
 		"object",
 		"slug",
+		"status",
 		"supportEmail",
 		"websiteUrl",
 	}

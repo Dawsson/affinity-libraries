@@ -27,9 +27,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,11 +45,14 @@ import ai.joinaffinity.sdk.ApiClient;
   CreatePracticeResponse.JSON_PROPERTY_CONTACTS,
   CreatePracticeResponse.JSON_PROPERTY_CREATED_AT,
   CreatePracticeResponse.JSON_PROPERTY_EXTERNAL_ID,
+  CreatePracticeResponse.JSON_PROPERTY_ID,
   CreatePracticeResponse.JSON_PROPERTY_LEGAL_NAME,
   CreatePracticeResponse.JSON_PROPERTY_LIVEMODE,
+  CreatePracticeResponse.JSON_PROPERTY_METADATA,
   CreatePracticeResponse.JSON_PROPERTY_NAME,
   CreatePracticeResponse.JSON_PROPERTY_OBJECT,
   CreatePracticeResponse.JSON_PROPERTY_PRESCRIBERS,
+  CreatePracticeResponse.JSON_PROPERTY_PRODUCTION_ACCESS,
   CreatePracticeResponse.JSON_PROPERTY_SUPPORT_EMAIL,
   CreatePracticeResponse.JSON_PROPERTY_SUPPORT_PHONE,
   CreatePracticeResponse.JSON_PROPERTY_TIMEZONE
@@ -63,11 +69,15 @@ public class CreatePracticeResponse {
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nonnull
-  private String createdAt;
+  private OffsetDateTime createdAt;
 
   public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
   @javax.annotation.Nullable
   private String externalId;
+
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String JSON_PROPERTY_LEGAL_NAME = "legalName";
   @javax.annotation.Nullable
@@ -76,6 +86,10 @@ public class CreatePracticeResponse {
   public static final String JSON_PROPERTY_LIVEMODE = "livemode";
   @javax.annotation.Nonnull
   private Boolean livemode;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  @javax.annotation.Nonnull
+  private Map<String, Object> metadata = new HashMap<>();
 
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -121,6 +135,47 @@ public class CreatePracticeResponse {
   public static final String JSON_PROPERTY_PRESCRIBERS = "prescribers";
   @javax.annotation.Nonnull
   private List<ListPracticesResponseDataInnerPrescribersInner> prescribers = new ArrayList<>();
+
+  /**
+   * Gets or Sets productionAccess
+   */
+  public enum ProductionAccessEnum {
+    APPROVED(String.valueOf("approved")),
+
+    NOT_APPLICABLE(String.valueOf("not_applicable")),
+
+    PENDING(String.valueOf("pending"));
+
+    private String value;
+
+    ProductionAccessEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ProductionAccessEnum fromValue(String value) {
+      for (ProductionAccessEnum b : ProductionAccessEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PRODUCTION_ACCESS = "productionAccess";
+  @javax.annotation.Nonnull
+  private ProductionAccessEnum productionAccess;
 
   public static final String JSON_PROPERTY_SUPPORT_EMAIL = "supportEmail";
   @javax.annotation.Nullable
@@ -185,7 +240,7 @@ public class CreatePracticeResponse {
   }
 
 
-  public CreatePracticeResponse createdAt(@javax.annotation.Nonnull String createdAt) {
+  public CreatePracticeResponse createdAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -197,14 +252,14 @@ public class CreatePracticeResponse {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_CREATED_AT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getCreatedAt() {
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CREATED_AT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreatedAt(@javax.annotation.Nonnull String createdAt) {
+  public void setCreatedAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
@@ -230,6 +285,30 @@ public class CreatePracticeResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setExternalId(@javax.annotation.Nullable String externalId) {
     this.externalId = externalId;
+  }
+
+
+  public CreatePracticeResponse id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
   }
 
 
@@ -278,6 +357,38 @@ public class CreatePracticeResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLivemode(@javax.annotation.Nonnull Boolean livemode) {
     this.livemode = livemode;
+  }
+
+
+  public CreatePracticeResponse metadata(@javax.annotation.Nonnull Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public CreatePracticeResponse putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * @return metadata
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = true)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = true)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
+  public void setMetadata(@javax.annotation.Nonnull Map<String, Object> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -358,6 +469,30 @@ public class CreatePracticeResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPrescribers(@javax.annotation.Nonnull List<ListPracticesResponseDataInnerPrescribersInner> prescribers) {
     this.prescribers = prescribers;
+  }
+
+
+  public CreatePracticeResponse productionAccess(@javax.annotation.Nonnull ProductionAccessEnum productionAccess) {
+    this.productionAccess = productionAccess;
+    return this;
+  }
+
+  /**
+   * Get productionAccess
+   * @return productionAccess
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PRODUCTION_ACCESS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public ProductionAccessEnum getProductionAccess() {
+    return productionAccess;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRODUCTION_ACCESS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setProductionAccess(@javax.annotation.Nonnull ProductionAccessEnum productionAccess) {
+    this.productionAccess = productionAccess;
   }
 
 
@@ -449,11 +584,14 @@ public class CreatePracticeResponse {
         Objects.equals(this.contacts, createPracticeResponse.contacts) &&
         Objects.equals(this.createdAt, createPracticeResponse.createdAt) &&
         Objects.equals(this.externalId, createPracticeResponse.externalId) &&
+        Objects.equals(this.id, createPracticeResponse.id) &&
         Objects.equals(this.legalName, createPracticeResponse.legalName) &&
         Objects.equals(this.livemode, createPracticeResponse.livemode) &&
+        Objects.equals(this.metadata, createPracticeResponse.metadata) &&
         Objects.equals(this.name, createPracticeResponse.name) &&
         Objects.equals(this._object, createPracticeResponse._object) &&
         Objects.equals(this.prescribers, createPracticeResponse.prescribers) &&
+        Objects.equals(this.productionAccess, createPracticeResponse.productionAccess) &&
         Objects.equals(this.supportEmail, createPracticeResponse.supportEmail) &&
         Objects.equals(this.supportPhone, createPracticeResponse.supportPhone) &&
         Objects.equals(this.timezone, createPracticeResponse.timezone);
@@ -461,7 +599,7 @@ public class CreatePracticeResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(address, contacts, createdAt, externalId, legalName, livemode, name, _object, prescribers, supportEmail, supportPhone, timezone);
+    return Objects.hash(address, contacts, createdAt, externalId, id, legalName, livemode, metadata, name, _object, prescribers, productionAccess, supportEmail, supportPhone, timezone);
   }
 
   @Override
@@ -472,11 +610,14 @@ public class CreatePracticeResponse {
     sb.append("    contacts: ").append(toIndentedString(contacts)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    legalName: ").append(toIndentedString(legalName)).append("\n");
     sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    prescribers: ").append(toIndentedString(prescribers)).append("\n");
+    sb.append("    productionAccess: ").append(toIndentedString(productionAccess)).append("\n");
     sb.append("    supportEmail: ").append(toIndentedString(supportEmail)).append("\n");
     sb.append("    supportPhone: ").append(toIndentedString(supportPhone)).append("\n");
     sb.append("    timezone: ").append(toIndentedString(timezone)).append("\n");
@@ -544,6 +685,11 @@ public class CreatePracticeResponse {
       joiner.add(String.format(java.util.Locale.ROOT, "%sexternalId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExternalId()))));
     }
 
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
     // add `legalName` to the URL query string
     if (getLegalName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slegalName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLegalName()))));
@@ -552,6 +698,15 @@ public class CreatePracticeResponse {
     // add `livemode` to the URL query string
     if (getLivemode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slivemode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLivemode()))));
+    }
+
+    // add `metadata` to the URL query string
+    if (getMetadata() != null) {
+      for (String _key : getMetadata().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
+      }
     }
 
     // add `name` to the URL query string
@@ -572,6 +727,11 @@ public class CreatePracticeResponse {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `productionAccess` to the URL query string
+    if (getProductionAccess() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproductionAccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProductionAccess()))));
     }
 
     // add `supportEmail` to the URL query string

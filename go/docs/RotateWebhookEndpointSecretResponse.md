@@ -6,16 +6,19 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **string** |  |
 **EnabledEvents** | **[]string** |  |
+**Id** | **string** |  |
 **Livemode** | **bool** |  |
 **Object** | **string** |  |
+**Status** | **string** |  |
 **UpdatedAt** | **string** |  |
 **Url** | **string** |  |
+**SigningSecret** | **string** |  |
 
 ## Methods
 
 ### NewRotateWebhookEndpointSecretResponse
 
-`func NewRotateWebhookEndpointSecretResponse(createdAt string, enabledEvents []string, livemode bool, object string, updatedAt string, url string, ) *RotateWebhookEndpointSecretResponse`
+`func NewRotateWebhookEndpointSecretResponse(createdAt string, enabledEvents []string, id string, livemode bool, object string, status string, updatedAt string, url string, signingSecret string, ) *RotateWebhookEndpointSecretResponse`
 
 NewRotateWebhookEndpointSecretResponse instantiates a new RotateWebhookEndpointSecretResponse object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +73,26 @@ and a boolean to check if the value has been set.
 SetEnabledEvents sets EnabledEvents field to given value.
 
 
+### GetId
+
+`func (o *RotateWebhookEndpointSecretResponse) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *RotateWebhookEndpointSecretResponse) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *RotateWebhookEndpointSecretResponse) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetLivemode
 
 `func (o *RotateWebhookEndpointSecretResponse) GetLivemode() bool`
@@ -110,6 +133,26 @@ and a boolean to check if the value has been set.
 SetObject sets Object field to given value.
 
 
+### GetStatus
+
+`func (o *RotateWebhookEndpointSecretResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *RotateWebhookEndpointSecretResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *RotateWebhookEndpointSecretResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+
 ### GetUpdatedAt
 
 `func (o *RotateWebhookEndpointSecretResponse) GetUpdatedAt() string`
@@ -148,6 +191,26 @@ and a boolean to check if the value has been set.
 `func (o *RotateWebhookEndpointSecretResponse) SetUrl(v string)`
 
 SetUrl sets Url field to given value.
+
+
+### GetSigningSecret
+
+`func (o *RotateWebhookEndpointSecretResponse) GetSigningSecret() string`
+
+GetSigningSecret returns the SigningSecret field if non-nil, zero value otherwise.
+
+### GetSigningSecretOk
+
+`func (o *RotateWebhookEndpointSecretResponse) GetSigningSecretOk() (*string, bool)`
+
+GetSigningSecretOk returns a tuple with the SigningSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSigningSecret
+
+`func (o *RotateWebhookEndpointSecretResponse) SetSigningSecret(v string)`
+
+SetSigningSecret sets SigningSecret field to given value.
 
 
 

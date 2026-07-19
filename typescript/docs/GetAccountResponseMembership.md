@@ -6,7 +6,10 @@
 
 Name | Type
 ------------ | -------------
+`permissions` | Array&lt;string&gt;
+`role` | string
 `roleName` | string
+`status` | string
 
 ## Example
 
@@ -15,7 +18,10 @@ import type { GetAccountResponseMembership } from '@affinity/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "permissions": null,
+  "role": null,
   "roleName": null,
+  "status": null,
 } satisfies GetAccountResponseMembership
 
 console.log(example)

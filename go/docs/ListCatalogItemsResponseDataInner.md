@@ -7,15 +7,18 @@ Name | Type | Description | Notes
 **AllowedStates** | **[]string** |  |
 **CatalogKind** | **string** |  |
 **ColdShip** | **bool** |  |
+**CompounderId** | **string** |  |
 **CompounderName** | **string** |  |
 **Description** | **string** |  |
 **DosageForm** | **string** |  |
 **FacilityType** | **string** |  |
+**Id** | **string** |  |
 **IsOrderable** | **bool** |  |
 **Livemode** | **bool** |  |
 **Name** | **string** |  |
 **Object** | **string** |  |
 **PatientSpecificRequired** | **bool** |  |
+**Pricing** | [**ListCatalogItemsResponseDataInnerPricing**](ListCatalogItemsResponseDataInnerPricing.md) |  |
 **RestrictedStates** | **[]string** |  |
 **Route** | **string** |  |
 **Strength** | **NullableString** |  |
@@ -24,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewListCatalogItemsResponseDataInner
 
-`func NewListCatalogItemsResponseDataInner(allowedStates []string, catalogKind string, coldShip bool, compounderName string, description string, dosageForm string, facilityType string, isOrderable bool, livemode bool, name string, object string, patientSpecificRequired bool, restrictedStates []string, route string, strength NullableString, ) *ListCatalogItemsResponseDataInner`
+`func NewListCatalogItemsResponseDataInner(allowedStates []string, catalogKind string, coldShip bool, compounderId string, compounderName string, description string, dosageForm string, facilityType string, id string, isOrderable bool, livemode bool, name string, object string, patientSpecificRequired bool, pricing ListCatalogItemsResponseDataInnerPricing, restrictedStates []string, route string, strength NullableString, ) *ListCatalogItemsResponseDataInner`
 
 NewListCatalogItemsResponseDataInner instantiates a new ListCatalogItemsResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -97,6 +100,26 @@ and a boolean to check if the value has been set.
 `func (o *ListCatalogItemsResponseDataInner) SetColdShip(v bool)`
 
 SetColdShip sets ColdShip field to given value.
+
+
+### GetCompounderId
+
+`func (o *ListCatalogItemsResponseDataInner) GetCompounderId() string`
+
+GetCompounderId returns the CompounderId field if non-nil, zero value otherwise.
+
+### GetCompounderIdOk
+
+`func (o *ListCatalogItemsResponseDataInner) GetCompounderIdOk() (*string, bool)`
+
+GetCompounderIdOk returns a tuple with the CompounderId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompounderId
+
+`func (o *ListCatalogItemsResponseDataInner) SetCompounderId(v string)`
+
+SetCompounderId sets CompounderId field to given value.
 
 
 ### GetCompounderName
@@ -177,6 +200,26 @@ and a boolean to check if the value has been set.
 `func (o *ListCatalogItemsResponseDataInner) SetFacilityType(v string)`
 
 SetFacilityType sets FacilityType field to given value.
+
+
+### GetId
+
+`func (o *ListCatalogItemsResponseDataInner) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ListCatalogItemsResponseDataInner) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ListCatalogItemsResponseDataInner) SetId(v string)`
+
+SetId sets Id field to given value.
 
 
 ### GetIsOrderable
@@ -277,6 +320,26 @@ and a boolean to check if the value has been set.
 `func (o *ListCatalogItemsResponseDataInner) SetPatientSpecificRequired(v bool)`
 
 SetPatientSpecificRequired sets PatientSpecificRequired field to given value.
+
+
+### GetPricing
+
+`func (o *ListCatalogItemsResponseDataInner) GetPricing() ListCatalogItemsResponseDataInnerPricing`
+
+GetPricing returns the Pricing field if non-nil, zero value otherwise.
+
+### GetPricingOk
+
+`func (o *ListCatalogItemsResponseDataInner) GetPricingOk() (*ListCatalogItemsResponseDataInnerPricing, bool)`
+
+GetPricingOk returns a tuple with the Pricing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPricing
+
+`func (o *ListCatalogItemsResponseDataInner) SetPricing(v ListCatalogItemsResponseDataInnerPricing)`
+
+SetPricing sets Pricing field to given value.
 
 
 ### GetRestrictedStates

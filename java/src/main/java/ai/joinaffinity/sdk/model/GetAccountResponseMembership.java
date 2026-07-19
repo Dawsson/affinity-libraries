@@ -24,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -33,16 +35,208 @@ import ai.joinaffinity.sdk.ApiClient;
  * GetAccountResponseMembership
  */
 @JsonPropertyOrder({
-  GetAccountResponseMembership.JSON_PROPERTY_ROLE_NAME
+  GetAccountResponseMembership.JSON_PROPERTY_PERMISSIONS,
+  GetAccountResponseMembership.JSON_PROPERTY_ROLE,
+  GetAccountResponseMembership.JSON_PROPERTY_ROLE_NAME,
+  GetAccountResponseMembership.JSON_PROPERTY_STATUS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class GetAccountResponseMembership {
+  /**
+   * Gets or Sets permissions
+   */
+  public enum PermissionsEnum {
+    MANAGE_API(String.valueOf("manage_api")),
+
+    MANAGE_ORDERS(String.valueOf("manage_orders")),
+
+    MANAGE_ORGANIZATION(String.valueOf("manage_organization")),
+
+    READ_CATALOG(String.valueOf("read_catalog")),
+
+    READ_ORDERS(String.valueOf("read_orders")),
+
+    REVIEW_ORDERS(String.valueOf("review_orders"));
+
+    private String value;
+
+    PermissionsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PermissionsEnum fromValue(String value) {
+      for (PermissionsEnum b : PermissionsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PERMISSIONS = "permissions";
+  @javax.annotation.Nonnull
+  private List<PermissionsEnum> permissions = new ArrayList<>();
+
+  /**
+   * Gets or Sets role
+   */
+  public enum RoleEnum {
+    CLINICAL_REVIEWER(String.valueOf("clinical_reviewer")),
+
+    DEVELOPER(String.valueOf("developer")),
+
+    OPERATIONS(String.valueOf("operations")),
+
+    OWNER(String.valueOf("owner")),
+
+    VIEWER(String.valueOf("viewer"));
+
+    private String value;
+
+    RoleEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RoleEnum fromValue(String value) {
+      for (RoleEnum b : RoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ROLE = "role";
+  @javax.annotation.Nonnull
+  private RoleEnum role;
+
   public static final String JSON_PROPERTY_ROLE_NAME = "roleName";
   @javax.annotation.Nonnull
   private String roleName;
 
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("active")),
+
+    DISABLED(String.valueOf("disabled")),
+
+    INVITED(String.valueOf("invited"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nonnull
+  private StatusEnum status;
+
   public GetAccountResponseMembership() {
   }
+
+  public GetAccountResponseMembership permissions(@javax.annotation.Nonnull List<PermissionsEnum> permissions) {
+    this.permissions = permissions;
+    return this;
+  }
+
+  public GetAccountResponseMembership addPermissionsItem(PermissionsEnum permissionsItem) {
+    if (this.permissions == null) {
+      this.permissions = new ArrayList<>();
+    }
+    this.permissions.add(permissionsItem);
+    return this;
+  }
+
+  /**
+   * Get permissions
+   * @return permissions
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PERMISSIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<PermissionsEnum> getPermissions() {
+    return permissions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PERMISSIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPermissions(@javax.annotation.Nonnull List<PermissionsEnum> permissions) {
+    this.permissions = permissions;
+  }
+
+
+  public GetAccountResponseMembership role(@javax.annotation.Nonnull RoleEnum role) {
+    this.role = role;
+    return this;
+  }
+
+  /**
+   * Get role
+   * @return role
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ROLE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public RoleEnum getRole() {
+    return role;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ROLE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setRole(@javax.annotation.Nonnull RoleEnum role) {
+    this.role = role;
+  }
+
 
   public GetAccountResponseMembership roleName(@javax.annotation.Nonnull String roleName) {
     this.roleName = roleName;
@@ -68,6 +262,30 @@ public class GetAccountResponseMembership {
   }
 
 
+  public GetAccountResponseMembership status(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
+  }
+
+
   /**
    * Return true if this GetAccountResponse_membership object is equal to o.
    */
@@ -80,19 +298,25 @@ public class GetAccountResponseMembership {
       return false;
     }
     GetAccountResponseMembership getAccountResponseMembership = (GetAccountResponseMembership) o;
-    return Objects.equals(this.roleName, getAccountResponseMembership.roleName);
+    return Objects.equals(this.permissions, getAccountResponseMembership.permissions) &&
+        Objects.equals(this.role, getAccountResponseMembership.role) &&
+        Objects.equals(this.roleName, getAccountResponseMembership.roleName) &&
+        Objects.equals(this.status, getAccountResponseMembership.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(roleName);
+    return Objects.hash(permissions, role, roleName, status);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetAccountResponseMembership {\n");
+    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    roleName: ").append(toIndentedString(roleName)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -137,9 +361,28 @@ public class GetAccountResponseMembership {
 
     StringJoiner joiner = new StringJoiner("&");
 
+    // add `permissions` to the URL query string
+    if (getPermissions() != null) {
+      for (int i = 0; i < getPermissions().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%spermissions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getPermissions().get(i)))));
+      }
+    }
+
+    // add `role` to the URL query string
+    if (getRole() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srole%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRole()))));
+    }
+
     // add `roleName` to the URL query string
     if (getRoleName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroleName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoleName()))));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     return joiner.toString();

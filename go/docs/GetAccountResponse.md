@@ -6,13 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Account** | [**GetAccountResponseAccount**](GetAccountResponseAccount.md) |  |
 **Membership** | [**GetAccountResponseMembership**](GetAccountResponseMembership.md) |  |
+**OperatingMode** | **string** |  |
 **User** | [**GetAccountResponseUser**](GetAccountResponseUser.md) |  |
 
 ## Methods
 
 ### NewGetAccountResponse
 
-`func NewGetAccountResponse(account GetAccountResponseAccount, membership GetAccountResponseMembership, user GetAccountResponseUser, ) *GetAccountResponse`
+`func NewGetAccountResponse(account GetAccountResponseAccount, membership GetAccountResponseMembership, operatingMode string, user GetAccountResponseUser, ) *GetAccountResponse`
 
 NewGetAccountResponse instantiates a new GetAccountResponse object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +66,26 @@ and a boolean to check if the value has been set.
 `func (o *GetAccountResponse) SetMembership(v GetAccountResponseMembership)`
 
 SetMembership sets Membership field to given value.
+
+
+### GetOperatingMode
+
+`func (o *GetAccountResponse) GetOperatingMode() string`
+
+GetOperatingMode returns the OperatingMode field if non-nil, zero value otherwise.
+
+### GetOperatingModeOk
+
+`func (o *GetAccountResponse) GetOperatingModeOk() (*string, bool)`
+
+GetOperatingModeOk returns a tuple with the OperatingMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOperatingMode
+
+`func (o *GetAccountResponse) SetOperatingMode(v string)`
+
+SetOperatingMode sets OperatingMode field to given value.
 
 
 ### GetUser

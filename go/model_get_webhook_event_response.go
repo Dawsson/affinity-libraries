@@ -12,7 +12,6 @@ Contact: support@joinaffinityai.com
 package affinity
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,13 +21,18 @@ var _ MappedNullable = &GetWebhookEventResponse{}
 
 // GetWebhookEventResponse struct for GetWebhookEventResponse
 type GetWebhookEventResponse struct {
-	CreatedAt  string `json:"createdAt"`
-	EventType  string `json:"eventType"`
-	Livemode   bool   `json:"livemode"`
-	Object     string `json:"object"`
-	ObjectId   string `json:"objectId"`
-	ObjectType string `json:"objectType"`
-	UpdatedAt  string `json:"updatedAt"`
+	CreatedAt            string                                   `json:"createdAt"`
+	EventType            string                                   `json:"eventType"`
+	Id                   string                                   `json:"id" validate:"regexp=^evt_[0-9a-hjkmnp-tv-z]{26}$"`
+	Livemode             bool                                     `json:"livemode"`
+	Object               string                                   `json:"object"`
+	ObjectId             string                                   `json:"objectId"`
+	ObjectType           string                                   `json:"objectType"`
+	Status               string                                   `json:"status"`
+	UpdatedAt            string                                   `json:"updatedAt"`
+	Attempts             []GetWebhookEventResponseAttemptsInner   `json:"attempts"`
+	Deliveries           []GetWebhookEventResponseDeliveriesInner `json:"deliveries"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetWebhookEventResponse GetWebhookEventResponse
@@ -37,15 +41,19 @@ type _GetWebhookEventResponse GetWebhookEventResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetWebhookEventResponse(createdAt string, eventType string, livemode bool, object string, objectId string, objectType string, updatedAt string) *GetWebhookEventResponse {
+func NewGetWebhookEventResponse(createdAt string, eventType string, id string, livemode bool, object string, objectId string, objectType string, status string, updatedAt string, attempts []GetWebhookEventResponseAttemptsInner, deliveries []GetWebhookEventResponseDeliveriesInner) *GetWebhookEventResponse {
 	this := GetWebhookEventResponse{}
 	this.CreatedAt = createdAt
 	this.EventType = eventType
+	this.Id = id
 	this.Livemode = livemode
 	this.Object = object
 	this.ObjectId = objectId
 	this.ObjectType = objectType
+	this.Status = status
 	this.UpdatedAt = updatedAt
+	this.Attempts = attempts
+	this.Deliveries = deliveries
 	return &this
 }
 
@@ -103,6 +111,30 @@ func (o *GetWebhookEventResponse) GetEventTypeOk() (*string, bool) {
 // SetEventType sets field value
 func (o *GetWebhookEventResponse) SetEventType(v string) {
 	o.EventType = v
+}
+
+// GetId returns the Id field value
+func (o *GetWebhookEventResponse) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetWebhookEventResponse) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetWebhookEventResponse) SetId(v string) {
+	o.Id = v
 }
 
 // GetLivemode returns the Livemode field value
@@ -201,6 +233,30 @@ func (o *GetWebhookEventResponse) SetObjectType(v string) {
 	o.ObjectType = v
 }
 
+// GetStatus returns the Status field value
+func (o *GetWebhookEventResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetWebhookEventResponse) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetWebhookEventResponse) SetStatus(v string) {
+	o.Status = v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *GetWebhookEventResponse) GetUpdatedAt() string {
 	if o == nil {
@@ -225,6 +281,54 @@ func (o *GetWebhookEventResponse) SetUpdatedAt(v string) {
 	o.UpdatedAt = v
 }
 
+// GetAttempts returns the Attempts field value
+func (o *GetWebhookEventResponse) GetAttempts() []GetWebhookEventResponseAttemptsInner {
+	if o == nil {
+		var ret []GetWebhookEventResponseAttemptsInner
+		return ret
+	}
+
+	return o.Attempts
+}
+
+// GetAttemptsOk returns a tuple with the Attempts field value
+// and a boolean to check if the value has been set.
+func (o *GetWebhookEventResponse) GetAttemptsOk() ([]GetWebhookEventResponseAttemptsInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Attempts, true
+}
+
+// SetAttempts sets field value
+func (o *GetWebhookEventResponse) SetAttempts(v []GetWebhookEventResponseAttemptsInner) {
+	o.Attempts = v
+}
+
+// GetDeliveries returns the Deliveries field value
+func (o *GetWebhookEventResponse) GetDeliveries() []GetWebhookEventResponseDeliveriesInner {
+	if o == nil {
+		var ret []GetWebhookEventResponseDeliveriesInner
+		return ret
+	}
+
+	return o.Deliveries
+}
+
+// GetDeliveriesOk returns a tuple with the Deliveries field value
+// and a boolean to check if the value has been set.
+func (o *GetWebhookEventResponse) GetDeliveriesOk() ([]GetWebhookEventResponseDeliveriesInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Deliveries, true
+}
+
+// SetDeliveries sets field value
+func (o *GetWebhookEventResponse) SetDeliveries(v []GetWebhookEventResponseDeliveriesInner) {
+	o.Deliveries = v
+}
+
 func (o GetWebhookEventResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -237,11 +341,20 @@ func (o GetWebhookEventResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["eventType"] = o.EventType
+	toSerialize["id"] = o.Id
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["object"] = o.Object
 	toSerialize["objectId"] = o.ObjectId
 	toSerialize["objectType"] = o.ObjectType
+	toSerialize["status"] = o.Status
 	toSerialize["updatedAt"] = o.UpdatedAt
+	toSerialize["attempts"] = o.Attempts
+	toSerialize["deliveries"] = o.Deliveries
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -252,11 +365,15 @@ func (o *GetWebhookEventResponse) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"createdAt",
 		"eventType",
+		"id",
 		"livemode",
 		"object",
 		"objectId",
 		"objectType",
+		"status",
 		"updatedAt",
+		"attempts",
+		"deliveries",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -275,15 +392,30 @@ func (o *GetWebhookEventResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetWebhookEventResponse := _GetWebhookEventResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetWebhookEventResponse)
+	err = json.Unmarshal(data, &varGetWebhookEventResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetWebhookEventResponse(varGetWebhookEventResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "eventType")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "livemode")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "objectId")
+		delete(additionalProperties, "objectType")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "attempts")
+		delete(additionalProperties, "deliveries")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,18 +31,37 @@ class ListWebhookEventsResponseDataInner(BaseModel):
     """ # noqa: E501
     created_at: StrictStr = Field(alias="createdAt")
     event_type: StrictStr = Field(alias="eventType")
+    id: Annotated[str, Field(strict=True)]
     livemode: StrictBool
     object: StrictStr
     object_id: StrictStr = Field(alias="objectId")
     object_type: StrictStr = Field(alias="objectType")
+    status: StrictStr
     updated_at: StrictStr = Field(alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["createdAt", "eventType", "livemode", "object", "objectId", "objectType", "updatedAt"]
+    __properties: ClassVar[List[str]] = ["createdAt", "eventType", "id", "livemode", "object", "objectId", "objectType", "status", "updatedAt"]
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^evt_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^evt_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['webhook_event']):
             raise ValueError("must be one of enum values ('webhook_event')")
+        return value
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['delivered', 'failed', 'pending', 'skipped']):
+            raise ValueError("must be one of enum values ('delivered', 'failed', 'pending', 'skipped')")
         return value
 
     model_config = ConfigDict(
@@ -97,10 +117,12 @@ class ListWebhookEventsResponseDataInner(BaseModel):
         _obj = cls.model_validate({
             "createdAt": obj.get("createdAt"),
             "eventType": obj.get("eventType"),
+            "id": obj.get("id"),
             "livemode": obj.get("livemode"),
             "object": obj.get("object"),
             "objectId": obj.get("objectId"),
             "objectType": obj.get("objectType"),
+            "status": obj.get("status"),
             "updatedAt": obj.get("updatedAt")
         })
         return _obj

@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ApiVersion** | **string** |  |
+**Id** | **string** |  |
 **Object** | **string** |  |
 **SubjectId** | **string** |  |
 **SubjectType** | **string** |  |
@@ -12,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewGetApiAccessResponseServiceAccount
 
-`func NewGetApiAccessResponseServiceAccount(object string, subjectId string, subjectType string, ) *GetApiAccessResponseServiceAccount`
+`func NewGetApiAccessResponseServiceAccount(apiVersion string, id string, object string, subjectId string, subjectType string, ) *GetApiAccessResponseServiceAccount`
 
 NewGetApiAccessResponseServiceAccount instantiates a new GetApiAccessResponseServiceAccount object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +28,46 @@ will change when the set of required properties is changed
 NewGetApiAccessResponseServiceAccountWithDefaults instantiates a new GetApiAccessResponseServiceAccount object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetApiVersion
+
+`func (o *GetApiAccessResponseServiceAccount) GetApiVersion() string`
+
+GetApiVersion returns the ApiVersion field if non-nil, zero value otherwise.
+
+### GetApiVersionOk
+
+`func (o *GetApiAccessResponseServiceAccount) GetApiVersionOk() (*string, bool)`
+
+GetApiVersionOk returns a tuple with the ApiVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiVersion
+
+`func (o *GetApiAccessResponseServiceAccount) SetApiVersion(v string)`
+
+SetApiVersion sets ApiVersion field to given value.
+
+
+### GetId
+
+`func (o *GetApiAccessResponseServiceAccount) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *GetApiAccessResponseServiceAccount) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *GetApiAccessResponseServiceAccount) SetId(v string)`
+
+SetId sets Id field to given value.
+
 
 ### GetObject
 

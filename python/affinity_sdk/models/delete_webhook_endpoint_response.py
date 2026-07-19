@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,17 +31,36 @@ class DeleteWebhookEndpointResponse(BaseModel):
     """ # noqa: E501
     created_at: StrictStr = Field(alias="createdAt")
     enabled_events: List[StrictStr] = Field(alias="enabledEvents")
+    id: Annotated[str, Field(strict=True)]
     livemode: StrictBool
     object: StrictStr
+    status: StrictStr
     updated_at: StrictStr = Field(alias="updatedAt")
     url: StrictStr
-    __properties: ClassVar[List[str]] = ["createdAt", "enabledEvents", "livemode", "object", "updatedAt", "url"]
+    __properties: ClassVar[List[str]] = ["createdAt", "enabledEvents", "id", "livemode", "object", "status", "updatedAt", "url"]
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^whe_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^whe_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['webhook_endpoint']):
             raise ValueError("must be one of enum values ('webhook_endpoint')")
+        return value
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['active', 'disabled']):
+            raise ValueError("must be one of enum values ('active', 'disabled')")
         return value
 
     model_config = ConfigDict(
@@ -96,8 +116,10 @@ class DeleteWebhookEndpointResponse(BaseModel):
         _obj = cls.model_validate({
             "createdAt": obj.get("createdAt"),
             "enabledEvents": obj.get("enabledEvents"),
+            "id": obj.get("id"),
             "livemode": obj.get("livemode"),
             "object": obj.get("object"),
+            "status": obj.get("status"),
             "updatedAt": obj.get("updatedAt"),
             "url": obj.get("url")
         })

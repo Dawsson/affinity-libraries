@@ -23,9 +23,9 @@ var _ MappedNullable = &ListPracticesResponseDataInnerAddress{}
 // ListPracticesResponseDataInnerAddress struct for ListPracticesResponseDataInnerAddress
 type ListPracticesResponseDataInnerAddress struct {
 	City       string         `json:"city"`
-	Country    *string        `json:"country,omitempty"`
+	Country    string         `json:"country"`
 	Line1      string         `json:"line1"`
-	Line2      NullableString `json:"line2,omitempty"`
+	Line2      NullableString `json:"line2"`
 	PostalCode string         `json:"postalCode"`
 	State      string         `json:"state"`
 }
@@ -36,10 +36,12 @@ type _ListPracticesResponseDataInnerAddress ListPracticesResponseDataInnerAddres
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListPracticesResponseDataInnerAddress(city string, line1 string, postalCode string, state string) *ListPracticesResponseDataInnerAddress {
+func NewListPracticesResponseDataInnerAddress(city string, country string, line1 string, line2 NullableString, postalCode string, state string) *ListPracticesResponseDataInnerAddress {
 	this := ListPracticesResponseDataInnerAddress{}
 	this.City = city
+	this.Country = country
 	this.Line1 = line1
+	this.Line2 = line2
 	this.PostalCode = postalCode
 	this.State = state
 	return &this
@@ -50,6 +52,8 @@ func NewListPracticesResponseDataInnerAddress(city string, line1 string, postalC
 // but it doesn't guarantee that properties required by API are set
 func NewListPracticesResponseDataInnerAddressWithDefaults() *ListPracticesResponseDataInnerAddress {
 	this := ListPracticesResponseDataInnerAddress{}
+	var country string = "US"
+	this.Country = country
 	return &this
 }
 
@@ -77,36 +81,28 @@ func (o *ListPracticesResponseDataInnerAddress) SetCity(v string) {
 	o.City = v
 }
 
-// GetCountry returns the Country field value if set, zero value otherwise.
+// GetCountry returns the Country field value
 func (o *ListPracticesResponseDataInnerAddress) GetCountry() string {
-	if o == nil || IsNil(o.Country) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Country
+
+	return o.Country
 }
 
-// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
+// GetCountryOk returns a tuple with the Country field value
 // and a boolean to check if the value has been set.
 func (o *ListPracticesResponseDataInnerAddress) GetCountryOk() (*string, bool) {
-	if o == nil || IsNil(o.Country) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Country, true
+	return &o.Country, true
 }
 
-// HasCountry returns a boolean if a field has been set.
-func (o *ListPracticesResponseDataInnerAddress) HasCountry() bool {
-	if o != nil && !IsNil(o.Country) {
-		return true
-	}
-
-	return false
-}
-
-// SetCountry gets a reference to the given string and assigns it to the Country field.
+// SetCountry sets field value
 func (o *ListPracticesResponseDataInnerAddress) SetCountry(v string) {
-	o.Country = &v
+	o.Country = v
 }
 
 // GetLine1 returns the Line1 field value
@@ -133,16 +129,18 @@ func (o *ListPracticesResponseDataInnerAddress) SetLine1(v string) {
 	o.Line1 = v
 }
 
-// GetLine2 returns the Line2 field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLine2 returns the Line2 field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *ListPracticesResponseDataInnerAddress) GetLine2() string {
-	if o == nil || IsNil(o.Line2.Get()) {
+	if o == nil || o.Line2.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.Line2.Get()
 }
 
-// GetLine2Ok returns a tuple with the Line2 field value if set, nil otherwise
+// GetLine2Ok returns a tuple with the Line2 field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ListPracticesResponseDataInnerAddress) GetLine2Ok() (*string, bool) {
@@ -152,28 +150,9 @@ func (o *ListPracticesResponseDataInnerAddress) GetLine2Ok() (*string, bool) {
 	return o.Line2.Get(), o.Line2.IsSet()
 }
 
-// HasLine2 returns a boolean if a field has been set.
-func (o *ListPracticesResponseDataInnerAddress) HasLine2() bool {
-	if o != nil && o.Line2.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLine2 gets a reference to the given NullableString and assigns it to the Line2 field.
+// SetLine2 sets field value
 func (o *ListPracticesResponseDataInnerAddress) SetLine2(v string) {
 	o.Line2.Set(&v)
-}
-
-// SetLine2Nil sets the value for Line2 to be an explicit nil
-func (o *ListPracticesResponseDataInnerAddress) SetLine2Nil() {
-	o.Line2.Set(nil)
-}
-
-// UnsetLine2 ensures that no value is present for Line2, not even an explicit nil
-func (o *ListPracticesResponseDataInnerAddress) UnsetLine2() {
-	o.Line2.Unset()
 }
 
 // GetPostalCode returns the PostalCode field value
@@ -235,13 +214,9 @@ func (o ListPracticesResponseDataInnerAddress) MarshalJSON() ([]byte, error) {
 func (o ListPracticesResponseDataInnerAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["city"] = o.City
-	if !IsNil(o.Country) {
-		toSerialize["country"] = o.Country
-	}
+	toSerialize["country"] = o.Country
 	toSerialize["line1"] = o.Line1
-	if o.Line2.IsSet() {
-		toSerialize["line2"] = o.Line2.Get()
-	}
+	toSerialize["line2"] = o.Line2.Get()
 	toSerialize["postalCode"] = o.PostalCode
 	toSerialize["state"] = o.State
 	return toSerialize, nil
@@ -253,7 +228,9 @@ func (o *ListPracticesResponseDataInnerAddress) UnmarshalJSON(data []byte) (err 
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"city",
+		"country",
 		"line1",
+		"line2",
 		"postalCode",
 		"state",
 	}

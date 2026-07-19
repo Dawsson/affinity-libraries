@@ -33,6 +33,12 @@ export interface ListWebhookEndpointsResponseDataInner {
     enabledEvents: Array<string>;
     /**
      *
+     * @type {string}
+     * @memberof ListWebhookEndpointsResponseDataInner
+     */
+    id: string;
+    /**
+     *
      * @type {boolean}
      * @memberof ListWebhookEndpointsResponseDataInner
      */
@@ -43,6 +49,12 @@ export interface ListWebhookEndpointsResponseDataInner {
      * @memberof ListWebhookEndpointsResponseDataInner
      */
     object: ListWebhookEndpointsResponseDataInnerObjectEnum;
+    /**
+     *
+     * @type {ListWebhookEndpointsResponseDataInnerStatusEnum}
+     * @memberof ListWebhookEndpointsResponseDataInner
+     */
+    status: ListWebhookEndpointsResponseDataInnerStatusEnum;
     /**
      *
      * @type {string}
@@ -66,6 +78,15 @@ export const ListWebhookEndpointsResponseDataInnerObjectEnum = {
 } as const;
 export type ListWebhookEndpointsResponseDataInnerObjectEnum = typeof ListWebhookEndpointsResponseDataInnerObjectEnum[keyof typeof ListWebhookEndpointsResponseDataInnerObjectEnum];
 
+/**
+ * @export
+ */
+export const ListWebhookEndpointsResponseDataInnerStatusEnum = {
+    Active: 'active',
+    Disabled: 'disabled'
+} as const;
+export type ListWebhookEndpointsResponseDataInnerStatusEnum = typeof ListWebhookEndpointsResponseDataInnerStatusEnum[keyof typeof ListWebhookEndpointsResponseDataInnerStatusEnum];
+
 
 /**
  * Check if a given object implements the ListWebhookEndpointsResponseDataInner interface.
@@ -73,8 +94,10 @@ export type ListWebhookEndpointsResponseDataInnerObjectEnum = typeof ListWebhook
 export function instanceOfListWebhookEndpointsResponseDataInner(value: object): value is ListWebhookEndpointsResponseDataInner {
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('enabledEvents' in value) || value['enabledEvents'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
     return true;
@@ -92,8 +115,10 @@ export function ListWebhookEndpointsResponseDataInnerFromJSONTyped(json: any, ig
 
         'createdAt': json['createdAt'],
         'enabledEvents': json['enabledEvents'],
+        'id': json['id'],
         'livemode': json['livemode'],
         'object': json['object'],
+        'status': json['status'],
         'updatedAt': json['updatedAt'],
         'url': json['url'],
     };
@@ -112,8 +137,10 @@ export function ListWebhookEndpointsResponseDataInnerToJSONTyped(value?: ListWeb
 
         'createdAt': value['createdAt'],
         'enabledEvents': value['enabledEvents'],
+        'id': value['id'],
         'livemode': value['livemode'],
         'object': value['object'],
+        'status': value['status'],
         'updatedAt': value['updatedAt'],
         'url': value['url'],
     };

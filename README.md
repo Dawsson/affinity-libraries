@@ -76,8 +76,9 @@ test-mode key until Affinity separately approves production access. Keep test an
 credentials, webhooks, and logs isolated.
 
 Raw HTTP mutations accept `Idempotency-Key`; reuse the same key only when retrying the same
-operation. Raw HTTP requests require `Affinity-Version`, while official SDKs inject their pinned
-version automatically. Webhook consumers must verify signatures before processing payloads.
+operation. Raw HTTP requests default to the authenticated service account's pinned version and may
+override it with `Affinity-Version`; official SDKs inject their pinned version automatically.
+Webhook consumers must verify signatures before processing payloads.
 
 ## One-command maintenance
 

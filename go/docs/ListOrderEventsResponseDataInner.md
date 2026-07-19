@@ -6,14 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **string** |  |
 **EventType** | **string** |  |
+**Id** | **string** |  |
 **Message** | **string** |  |
+**Metadata** | **map[string]interface{}** |  |
 **Object** | **string** |  |
 
 ## Methods
 
 ### NewListOrderEventsResponseDataInner
 
-`func NewListOrderEventsResponseDataInner(createdAt string, eventType string, message string, object string, ) *ListOrderEventsResponseDataInner`
+`func NewListOrderEventsResponseDataInner(createdAt string, eventType string, id string, message string, metadata map[string]interface{}, object string, ) *ListOrderEventsResponseDataInner`
 
 NewListOrderEventsResponseDataInner instantiates a new ListOrderEventsResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -68,6 +70,26 @@ and a boolean to check if the value has been set.
 SetEventType sets EventType field to given value.
 
 
+### GetId
+
+`func (o *ListOrderEventsResponseDataInner) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ListOrderEventsResponseDataInner) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ListOrderEventsResponseDataInner) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetMessage
 
 `func (o *ListOrderEventsResponseDataInner) GetMessage() string`
@@ -86,6 +108,26 @@ and a boolean to check if the value has been set.
 `func (o *ListOrderEventsResponseDataInner) SetMessage(v string)`
 
 SetMessage sets Message field to given value.
+
+
+### GetMetadata
+
+`func (o *ListOrderEventsResponseDataInner) GetMetadata() map[string]interface{}`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *ListOrderEventsResponseDataInner) GetMetadataOk() (*map[string]interface{}, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *ListOrderEventsResponseDataInner) SetMetadata(v map[string]interface{})`
+
+SetMetadata sets Metadata field to given value.
 
 
 ### GetObject

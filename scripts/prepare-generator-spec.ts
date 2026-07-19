@@ -6,6 +6,7 @@ if (!sourcePath || !outputPath) {
 }
 
 const document = JSON.parse(await readFile(sourcePath, "utf8")) as Record<string, unknown>;
+normalizeIntegerConstants(document);
 const paths = document.paths as Record<string, Record<string, Record<string, unknown>>>;
 let operationCount = 0;
 
@@ -35,3 +36,15 @@ if (components?.parameters) delete components.parameters.AffinityVersion;
 document["x-affinity-sdk-injected-headers"] = ["Affinity-Version"];
 
 await writeFile(outputPath, `${JSON.stringify(document, null, 2)}\n`);
+
+function normalizeIntegerConstants(value: unknown): void {
+  if (!value || typeof value !== "object") return;
+  if (Array.isArray(value)) {
+    for (const item of value) normalizeIntegerConstants(item);
+    return;
+  }
+
+  const record = value as Record<string, unknown>;
+  if (record.type === "number" && Number.isInteger(record.const)) record.type = "integer";
+  for (const child of Object.values(record)) normalizeIntegerConstants(child);
+}

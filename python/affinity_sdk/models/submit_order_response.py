@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from affinity_sdk.models.list_orders_response_data_inner_routing import ListOrdersResponseDataInnerRouting
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,17 +32,19 @@ class SubmitOrderResponse(BaseModel):
     """ # noqa: E501
     cancellation_reason: Optional[StrictStr] = Field(alias="cancellationReason")
     carrier: Optional[StrictStr]
+    catalog_item_id: Optional[Annotated[str, Field(strict=True)]] = Field(alias="catalogItemId")
+    practice_id: Annotated[str, Field(strict=True)] = Field(alias="practiceId")
+    compounder_id: Optional[Annotated[str, Field(strict=True)]] = Field(alias="compounderId")
     created_at: StrictStr = Field(alias="createdAt")
     currency: StrictStr
-    delivered_at: Optional[StrictStr] = Field(alias="deliveredAt")
     directions: StrictStr
     dosage_form: Optional[StrictStr] = Field(alias="dosageForm")
     external_order_id: StrictStr = Field(alias="externalOrderId")
     external_submission_attempted: StrictBool = Field(alias="externalSubmissionAttempted")
     external_submission_blocked_reason: Optional[StrictStr] = Field(alias="externalSubmissionBlockedReason")
+    id: Annotated[str, Field(strict=True)]
     livemode: StrictBool
     medication_name: StrictStr = Field(alias="medicationName")
-    object: StrictStr
     patient_external_id: StrictStr = Field(alias="patientExternalId")
     patient_name: StrictStr = Field(alias="patientName")
     patient_state: StrictStr = Field(alias="patientState")
@@ -49,18 +52,88 @@ class SubmitOrderResponse(BaseModel):
     prescriber_npi: Optional[StrictStr] = Field(alias="prescriberNpi")
     quantity: Union[StrictFloat, StrictInt]
     quote_cents: Optional[Union[StrictFloat, StrictInt]] = Field(alias="quoteCents")
+    object: StrictStr
+    replaces_order_id: Optional[Annotated[str, Field(strict=True)]] = Field(alias="replacesOrderId")
     routing: Optional[ListOrdersResponseDataInnerRouting]
-    shipped_at: Optional[StrictStr] = Field(alias="shippedAt")
+    status: StrictStr
     strength: Optional[StrictStr]
     tracking_number: Optional[StrictStr] = Field(alias="trackingNumber")
+    shipped_at: Optional[StrictStr] = Field(alias="shippedAt")
+    delivered_at: Optional[StrictStr] = Field(alias="deliveredAt")
     updated_at: StrictStr = Field(alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["cancellationReason", "carrier", "createdAt", "currency", "deliveredAt", "directions", "dosageForm", "externalOrderId", "externalSubmissionAttempted", "externalSubmissionBlockedReason", "livemode", "medicationName", "object", "patientExternalId", "patientName", "patientState", "prescriberName", "prescriberNpi", "quantity", "quoteCents", "routing", "shippedAt", "strength", "trackingNumber", "updatedAt"]
+    __properties: ClassVar[List[str]] = ["cancellationReason", "carrier", "catalogItemId", "practiceId", "compounderId", "createdAt", "currency", "directions", "dosageForm", "externalOrderId", "externalSubmissionAttempted", "externalSubmissionBlockedReason", "id", "livemode", "medicationName", "patientExternalId", "patientName", "patientState", "prescriberName", "prescriberNpi", "quantity", "quoteCents", "object", "replacesOrderId", "routing", "status", "strength", "trackingNumber", "shippedAt", "deliveredAt", "updatedAt"]
+
+    @field_validator('catalog_item_id')
+    def catalog_item_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^cat_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^cat_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
+
+    @field_validator('practice_id')
+    def practice_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^prac_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^prac_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
+
+    @field_validator('compounder_id')
+    def compounder_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^cmp_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^cmp_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^ord_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^ord_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['order']):
             raise ValueError("must be one of enum values ('order')")
+        return value
+
+    @field_validator('replaces_order_id')
+    def replaces_order_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^ord_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^ord_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['blocked', 'cancelled', 'delivered', 'draft', 'processing', 'shipped', 'submitted']):
+            raise ValueError("must be one of enum values ('blocked', 'cancelled', 'delivered', 'draft', 'processing', 'shipped', 'submitted')")
         return value
 
     model_config = ConfigDict(
@@ -115,10 +188,15 @@ class SubmitOrderResponse(BaseModel):
         if self.carrier is None and "carrier" in self.model_fields_set:
             _dict['carrier'] = None
 
-        # set to None if delivered_at (nullable) is None
+        # set to None if catalog_item_id (nullable) is None
         # and model_fields_set contains the field
-        if self.delivered_at is None and "delivered_at" in self.model_fields_set:
-            _dict['deliveredAt'] = None
+        if self.catalog_item_id is None and "catalog_item_id" in self.model_fields_set:
+            _dict['catalogItemId'] = None
+
+        # set to None if compounder_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.compounder_id is None and "compounder_id" in self.model_fields_set:
+            _dict['compounderId'] = None
 
         # set to None if dosage_form (nullable) is None
         # and model_fields_set contains the field
@@ -145,15 +223,15 @@ class SubmitOrderResponse(BaseModel):
         if self.quote_cents is None and "quote_cents" in self.model_fields_set:
             _dict['quoteCents'] = None
 
+        # set to None if replaces_order_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.replaces_order_id is None and "replaces_order_id" in self.model_fields_set:
+            _dict['replacesOrderId'] = None
+
         # set to None if routing (nullable) is None
         # and model_fields_set contains the field
         if self.routing is None and "routing" in self.model_fields_set:
             _dict['routing'] = None
-
-        # set to None if shipped_at (nullable) is None
-        # and model_fields_set contains the field
-        if self.shipped_at is None and "shipped_at" in self.model_fields_set:
-            _dict['shippedAt'] = None
 
         # set to None if strength (nullable) is None
         # and model_fields_set contains the field
@@ -164,6 +242,16 @@ class SubmitOrderResponse(BaseModel):
         # and model_fields_set contains the field
         if self.tracking_number is None and "tracking_number" in self.model_fields_set:
             _dict['trackingNumber'] = None
+
+        # set to None if shipped_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.shipped_at is None and "shipped_at" in self.model_fields_set:
+            _dict['shippedAt'] = None
+
+        # set to None if delivered_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.delivered_at is None and "delivered_at" in self.model_fields_set:
+            _dict['deliveredAt'] = None
 
         return _dict
 
@@ -179,17 +267,19 @@ class SubmitOrderResponse(BaseModel):
         _obj = cls.model_validate({
             "cancellationReason": obj.get("cancellationReason"),
             "carrier": obj.get("carrier"),
+            "catalogItemId": obj.get("catalogItemId"),
+            "practiceId": obj.get("practiceId"),
+            "compounderId": obj.get("compounderId"),
             "createdAt": obj.get("createdAt"),
             "currency": obj.get("currency"),
-            "deliveredAt": obj.get("deliveredAt"),
             "directions": obj.get("directions"),
             "dosageForm": obj.get("dosageForm"),
             "externalOrderId": obj.get("externalOrderId"),
             "externalSubmissionAttempted": obj.get("externalSubmissionAttempted"),
             "externalSubmissionBlockedReason": obj.get("externalSubmissionBlockedReason"),
+            "id": obj.get("id"),
             "livemode": obj.get("livemode"),
             "medicationName": obj.get("medicationName"),
-            "object": obj.get("object"),
             "patientExternalId": obj.get("patientExternalId"),
             "patientName": obj.get("patientName"),
             "patientState": obj.get("patientState"),
@@ -197,10 +287,14 @@ class SubmitOrderResponse(BaseModel):
             "prescriberNpi": obj.get("prescriberNpi"),
             "quantity": obj.get("quantity"),
             "quoteCents": obj.get("quoteCents"),
+            "object": obj.get("object"),
+            "replacesOrderId": obj.get("replacesOrderId"),
             "routing": ListOrdersResponseDataInnerRouting.from_dict(obj["routing"]) if obj.get("routing") is not None else None,
-            "shippedAt": obj.get("shippedAt"),
+            "status": obj.get("status"),
             "strength": obj.get("strength"),
             "trackingNumber": obj.get("trackingNumber"),
+            "shippedAt": obj.get("shippedAt"),
+            "deliveredAt": obj.get("deliveredAt"),
             "updatedAt": obj.get("updatedAt")
         })
         return _obj

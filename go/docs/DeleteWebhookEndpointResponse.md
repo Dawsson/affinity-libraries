@@ -6,8 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **string** |  |
 **EnabledEvents** | **[]string** |  |
+**Id** | **string** |  |
 **Livemode** | **bool** |  |
 **Object** | **string** |  |
+**Status** | **string** |  |
 **UpdatedAt** | **string** |  |
 **Url** | **string** |  |
 
@@ -15,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewDeleteWebhookEndpointResponse
 
-`func NewDeleteWebhookEndpointResponse(createdAt string, enabledEvents []string, livemode bool, object string, updatedAt string, url string, ) *DeleteWebhookEndpointResponse`
+`func NewDeleteWebhookEndpointResponse(createdAt string, enabledEvents []string, id string, livemode bool, object string, status string, updatedAt string, url string, ) *DeleteWebhookEndpointResponse`
 
 NewDeleteWebhookEndpointResponse instantiates a new DeleteWebhookEndpointResponse object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +72,26 @@ and a boolean to check if the value has been set.
 SetEnabledEvents sets EnabledEvents field to given value.
 
 
+### GetId
+
+`func (o *DeleteWebhookEndpointResponse) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *DeleteWebhookEndpointResponse) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *DeleteWebhookEndpointResponse) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetLivemode
 
 `func (o *DeleteWebhookEndpointResponse) GetLivemode() bool`
@@ -108,6 +130,26 @@ and a boolean to check if the value has been set.
 `func (o *DeleteWebhookEndpointResponse) SetObject(v string)`
 
 SetObject sets Object field to given value.
+
+
+### GetStatus
+
+`func (o *DeleteWebhookEndpointResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *DeleteWebhookEndpointResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *DeleteWebhookEndpointResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetUpdatedAt

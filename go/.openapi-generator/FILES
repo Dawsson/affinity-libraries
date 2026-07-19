@@ -40,8 +40,11 @@ docs/GetApiAccessResponseServiceAccount.md
 docs/GetOrderResponse.md
 docs/GetPracticeResponse.md
 docs/GetWebhookEventResponse.md
+docs/GetWebhookEventResponseAttemptsInner.md
+docs/GetWebhookEventResponseDeliveriesInner.md
 docs/ListCatalogItemsResponse.md
 docs/ListCatalogItemsResponseDataInner.md
+docs/ListCatalogItemsResponseDataInnerPricing.md
 docs/ListOrderEventsResponse.md
 docs/ListOrderEventsResponseDataInner.md
 docs/ListOrdersResponse.md
@@ -103,8 +106,11 @@ model_get_api_access_response_service_account.go
 model_get_order_response.go
 model_get_practice_response.go
 model_get_webhook_event_response.go
+model_get_webhook_event_response_attempts_inner.go
+model_get_webhook_event_response_deliveries_inner.go
 model_list_catalog_items_response.go
 model_list_catalog_items_response_data_inner.go
+model_list_catalog_items_response_data_inner_pricing.go
 model_list_order_events_response.go
 model_list_order_events_response_data_inner.go
 model_list_orders_response.go

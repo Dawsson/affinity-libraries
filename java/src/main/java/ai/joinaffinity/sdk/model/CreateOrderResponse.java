@@ -37,17 +37,19 @@ import ai.joinaffinity.sdk.ApiClient;
 @JsonPropertyOrder({
   CreateOrderResponse.JSON_PROPERTY_CANCELLATION_REASON,
   CreateOrderResponse.JSON_PROPERTY_CARRIER,
+  CreateOrderResponse.JSON_PROPERTY_CATALOG_ITEM_ID,
+  CreateOrderResponse.JSON_PROPERTY_PRACTICE_ID,
+  CreateOrderResponse.JSON_PROPERTY_COMPOUNDER_ID,
   CreateOrderResponse.JSON_PROPERTY_CREATED_AT,
   CreateOrderResponse.JSON_PROPERTY_CURRENCY,
-  CreateOrderResponse.JSON_PROPERTY_DELIVERED_AT,
   CreateOrderResponse.JSON_PROPERTY_DIRECTIONS,
   CreateOrderResponse.JSON_PROPERTY_DOSAGE_FORM,
   CreateOrderResponse.JSON_PROPERTY_EXTERNAL_ORDER_ID,
   CreateOrderResponse.JSON_PROPERTY_EXTERNAL_SUBMISSION_ATTEMPTED,
   CreateOrderResponse.JSON_PROPERTY_EXTERNAL_SUBMISSION_BLOCKED_REASON,
+  CreateOrderResponse.JSON_PROPERTY_ID,
   CreateOrderResponse.JSON_PROPERTY_LIVEMODE,
   CreateOrderResponse.JSON_PROPERTY_MEDICATION_NAME,
-  CreateOrderResponse.JSON_PROPERTY_OBJECT,
   CreateOrderResponse.JSON_PROPERTY_PATIENT_EXTERNAL_ID,
   CreateOrderResponse.JSON_PROPERTY_PATIENT_NAME,
   CreateOrderResponse.JSON_PROPERTY_PATIENT_STATE,
@@ -55,10 +57,14 @@ import ai.joinaffinity.sdk.ApiClient;
   CreateOrderResponse.JSON_PROPERTY_PRESCRIBER_NPI,
   CreateOrderResponse.JSON_PROPERTY_QUANTITY,
   CreateOrderResponse.JSON_PROPERTY_QUOTE_CENTS,
+  CreateOrderResponse.JSON_PROPERTY_OBJECT,
+  CreateOrderResponse.JSON_PROPERTY_REPLACES_ORDER_ID,
   CreateOrderResponse.JSON_PROPERTY_ROUTING,
-  CreateOrderResponse.JSON_PROPERTY_SHIPPED_AT,
+  CreateOrderResponse.JSON_PROPERTY_STATUS,
   CreateOrderResponse.JSON_PROPERTY_STRENGTH,
   CreateOrderResponse.JSON_PROPERTY_TRACKING_NUMBER,
+  CreateOrderResponse.JSON_PROPERTY_SHIPPED_AT,
+  CreateOrderResponse.JSON_PROPERTY_DELIVERED_AT,
   CreateOrderResponse.JSON_PROPERTY_UPDATED_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -71,6 +77,18 @@ public class CreateOrderResponse {
   @javax.annotation.Nullable
   private String carrier;
 
+  public static final String JSON_PROPERTY_CATALOG_ITEM_ID = "catalogItemId";
+  @javax.annotation.Nullable
+  private String catalogItemId;
+
+  public static final String JSON_PROPERTY_PRACTICE_ID = "practiceId";
+  @javax.annotation.Nonnull
+  private String practiceId;
+
+  public static final String JSON_PROPERTY_COMPOUNDER_ID = "compounderId";
+  @javax.annotation.Nullable
+  private String compounderId;
+
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nonnull
   private String createdAt;
@@ -78,10 +96,6 @@ public class CreateOrderResponse {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nonnull
   private String currency;
-
-  public static final String JSON_PROPERTY_DELIVERED_AT = "deliveredAt";
-  @javax.annotation.Nullable
-  private String deliveredAt;
 
   public static final String JSON_PROPERTY_DIRECTIONS = "directions";
   @javax.annotation.Nonnull
@@ -103,6 +117,10 @@ public class CreateOrderResponse {
   @javax.annotation.Nullable
   private String externalSubmissionBlockedReason;
 
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
+
   public static final String JSON_PROPERTY_LIVEMODE = "livemode";
   @javax.annotation.Nonnull
   private Boolean livemode;
@@ -110,6 +128,34 @@ public class CreateOrderResponse {
   public static final String JSON_PROPERTY_MEDICATION_NAME = "medicationName";
   @javax.annotation.Nonnull
   private String medicationName;
+
+  public static final String JSON_PROPERTY_PATIENT_EXTERNAL_ID = "patientExternalId";
+  @javax.annotation.Nonnull
+  private String patientExternalId;
+
+  public static final String JSON_PROPERTY_PATIENT_NAME = "patientName";
+  @javax.annotation.Nonnull
+  private String patientName;
+
+  public static final String JSON_PROPERTY_PATIENT_STATE = "patientState";
+  @javax.annotation.Nonnull
+  private String patientState;
+
+  public static final String JSON_PROPERTY_PRESCRIBER_NAME = "prescriberName";
+  @javax.annotation.Nullable
+  private String prescriberName;
+
+  public static final String JSON_PROPERTY_PRESCRIBER_NPI = "prescriberNpi";
+  @javax.annotation.Nullable
+  private String prescriberNpi;
+
+  public static final String JSON_PROPERTY_QUANTITY = "quantity";
+  @javax.annotation.Nonnull
+  private BigDecimal quantity;
+
+  public static final String JSON_PROPERTY_QUOTE_CENTS = "quoteCents";
+  @javax.annotation.Nullable
+  private BigDecimal quoteCents;
 
   /**
    * Gets or Sets _object
@@ -148,41 +194,62 @@ public class CreateOrderResponse {
   @javax.annotation.Nonnull
   private ObjectEnum _object;
 
-  public static final String JSON_PROPERTY_PATIENT_EXTERNAL_ID = "patientExternalId";
-  @javax.annotation.Nonnull
-  private String patientExternalId;
-
-  public static final String JSON_PROPERTY_PATIENT_NAME = "patientName";
-  @javax.annotation.Nonnull
-  private String patientName;
-
-  public static final String JSON_PROPERTY_PATIENT_STATE = "patientState";
-  @javax.annotation.Nonnull
-  private String patientState;
-
-  public static final String JSON_PROPERTY_PRESCRIBER_NAME = "prescriberName";
+  public static final String JSON_PROPERTY_REPLACES_ORDER_ID = "replacesOrderId";
   @javax.annotation.Nullable
-  private String prescriberName;
-
-  public static final String JSON_PROPERTY_PRESCRIBER_NPI = "prescriberNpi";
-  @javax.annotation.Nullable
-  private String prescriberNpi;
-
-  public static final String JSON_PROPERTY_QUANTITY = "quantity";
-  @javax.annotation.Nonnull
-  private BigDecimal quantity;
-
-  public static final String JSON_PROPERTY_QUOTE_CENTS = "quoteCents";
-  @javax.annotation.Nullable
-  private BigDecimal quoteCents;
+  private String replacesOrderId;
 
   public static final String JSON_PROPERTY_ROUTING = "routing";
   @javax.annotation.Nullable
   private ListOrdersResponseDataInnerRouting routing;
 
-  public static final String JSON_PROPERTY_SHIPPED_AT = "shippedAt";
-  @javax.annotation.Nullable
-  private String shippedAt;
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    BLOCKED(String.valueOf("blocked")),
+
+    CANCELLED(String.valueOf("cancelled")),
+
+    DELIVERED(String.valueOf("delivered")),
+
+    DRAFT(String.valueOf("draft")),
+
+    PROCESSING(String.valueOf("processing")),
+
+    SHIPPED(String.valueOf("shipped")),
+
+    SUBMITTED(String.valueOf("submitted"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nonnull
+  private StatusEnum status;
 
   public static final String JSON_PROPERTY_STRENGTH = "strength";
   @javax.annotation.Nullable
@@ -191,6 +258,14 @@ public class CreateOrderResponse {
   public static final String JSON_PROPERTY_TRACKING_NUMBER = "trackingNumber";
   @javax.annotation.Nullable
   private String trackingNumber;
+
+  public static final String JSON_PROPERTY_SHIPPED_AT = "shippedAt";
+  @javax.annotation.Nullable
+  private String shippedAt;
+
+  public static final String JSON_PROPERTY_DELIVERED_AT = "deliveredAt";
+  @javax.annotation.Nullable
+  private String deliveredAt;
 
   public static final String JSON_PROPERTY_UPDATED_AT = "updatedAt";
   @javax.annotation.Nonnull
@@ -247,6 +322,78 @@ public class CreateOrderResponse {
   }
 
 
+  public CreateOrderResponse catalogItemId(@javax.annotation.Nullable String catalogItemId) {
+    this.catalogItemId = catalogItemId;
+    return this;
+  }
+
+  /**
+   * Get catalogItemId
+   * @return catalogItemId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CATALOG_ITEM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getCatalogItemId() {
+    return catalogItemId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CATALOG_ITEM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCatalogItemId(@javax.annotation.Nullable String catalogItemId) {
+    this.catalogItemId = catalogItemId;
+  }
+
+
+  public CreateOrderResponse practiceId(@javax.annotation.Nonnull String practiceId) {
+    this.practiceId = practiceId;
+    return this;
+  }
+
+  /**
+   * Get practiceId
+   * @return practiceId
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PRACTICE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getPracticeId() {
+    return practiceId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRACTICE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPracticeId(@javax.annotation.Nonnull String practiceId) {
+    this.practiceId = practiceId;
+  }
+
+
+  public CreateOrderResponse compounderId(@javax.annotation.Nullable String compounderId) {
+    this.compounderId = compounderId;
+    return this;
+  }
+
+  /**
+   * Get compounderId
+   * @return compounderId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMPOUNDER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getCompounderId() {
+    return compounderId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMPOUNDER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCompounderId(@javax.annotation.Nullable String compounderId) {
+    this.compounderId = compounderId;
+  }
+
+
   public CreateOrderResponse createdAt(@javax.annotation.Nonnull String createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -292,30 +439,6 @@ public class CreateOrderResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCurrency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
-  }
-
-
-  public CreateOrderResponse deliveredAt(@javax.annotation.Nullable String deliveredAt) {
-    this.deliveredAt = deliveredAt;
-    return this;
-  }
-
-  /**
-   * Get deliveredAt
-   * @return deliveredAt
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DELIVERED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getDeliveredAt() {
-    return deliveredAt;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DELIVERED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDeliveredAt(@javax.annotation.Nullable String deliveredAt) {
-    this.deliveredAt = deliveredAt;
   }
 
 
@@ -439,6 +562,30 @@ public class CreateOrderResponse {
   }
 
 
+  public CreateOrderResponse id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
   public CreateOrderResponse livemode(@javax.annotation.Nonnull Boolean livemode) {
     this.livemode = livemode;
     return this;
@@ -484,30 +631,6 @@ public class CreateOrderResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMedicationName(@javax.annotation.Nonnull String medicationName) {
     this.medicationName = medicationName;
-  }
-
-
-  public CreateOrderResponse _object(@javax.annotation.Nonnull ObjectEnum _object) {
-    this._object = _object;
-    return this;
-  }
-
-  /**
-   * Get _object
-   * @return _object
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_OBJECT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public ObjectEnum getObject() {
-    return _object;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_OBJECT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(@javax.annotation.Nonnull ObjectEnum _object) {
-    this._object = _object;
   }
 
 
@@ -679,6 +802,54 @@ public class CreateOrderResponse {
   }
 
 
+  public CreateOrderResponse _object(@javax.annotation.Nonnull ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  /**
+   * Get _object
+   * @return _object
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_OBJECT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OBJECT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setObject(@javax.annotation.Nonnull ObjectEnum _object) {
+    this._object = _object;
+  }
+
+
+  public CreateOrderResponse replacesOrderId(@javax.annotation.Nullable String replacesOrderId) {
+    this.replacesOrderId = replacesOrderId;
+    return this;
+  }
+
+  /**
+   * Get replacesOrderId
+   * @return replacesOrderId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REPLACES_ORDER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getReplacesOrderId() {
+    return replacesOrderId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REPLACES_ORDER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setReplacesOrderId(@javax.annotation.Nullable String replacesOrderId) {
+    this.replacesOrderId = replacesOrderId;
+  }
+
+
   public CreateOrderResponse routing(@javax.annotation.Nullable ListOrdersResponseDataInnerRouting routing) {
     this.routing = routing;
     return this;
@@ -703,27 +874,27 @@ public class CreateOrderResponse {
   }
 
 
-  public CreateOrderResponse shippedAt(@javax.annotation.Nullable String shippedAt) {
-    this.shippedAt = shippedAt;
+  public CreateOrderResponse status(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
     return this;
   }
 
   /**
-   * Get shippedAt
-   * @return shippedAt
+   * Get status
+   * @return status
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SHIPPED_AT, required = false)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getShippedAt() {
-    return shippedAt;
+  public StatusEnum getStatus() {
+    return status;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SHIPPED_AT, required = false)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setShippedAt(@javax.annotation.Nullable String shippedAt) {
-    this.shippedAt = shippedAt;
+  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
+    this.status = status;
   }
 
 
@@ -775,6 +946,54 @@ public class CreateOrderResponse {
   }
 
 
+  public CreateOrderResponse shippedAt(@javax.annotation.Nullable String shippedAt) {
+    this.shippedAt = shippedAt;
+    return this;
+  }
+
+  /**
+   * Get shippedAt
+   * @return shippedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SHIPPED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getShippedAt() {
+    return shippedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SHIPPED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setShippedAt(@javax.annotation.Nullable String shippedAt) {
+    this.shippedAt = shippedAt;
+  }
+
+
+  public CreateOrderResponse deliveredAt(@javax.annotation.Nullable String deliveredAt) {
+    this.deliveredAt = deliveredAt;
+    return this;
+  }
+
+  /**
+   * Get deliveredAt
+   * @return deliveredAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DELIVERED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getDeliveredAt() {
+    return deliveredAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DELIVERED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDeliveredAt(@javax.annotation.Nullable String deliveredAt) {
+    this.deliveredAt = deliveredAt;
+  }
+
+
   public CreateOrderResponse updatedAt(@javax.annotation.Nonnull String updatedAt) {
     this.updatedAt = updatedAt;
     return this;
@@ -813,17 +1032,19 @@ public class CreateOrderResponse {
     CreateOrderResponse createOrderResponse = (CreateOrderResponse) o;
     return Objects.equals(this.cancellationReason, createOrderResponse.cancellationReason) &&
         Objects.equals(this.carrier, createOrderResponse.carrier) &&
+        Objects.equals(this.catalogItemId, createOrderResponse.catalogItemId) &&
+        Objects.equals(this.practiceId, createOrderResponse.practiceId) &&
+        Objects.equals(this.compounderId, createOrderResponse.compounderId) &&
         Objects.equals(this.createdAt, createOrderResponse.createdAt) &&
         Objects.equals(this.currency, createOrderResponse.currency) &&
-        Objects.equals(this.deliveredAt, createOrderResponse.deliveredAt) &&
         Objects.equals(this.directions, createOrderResponse.directions) &&
         Objects.equals(this.dosageForm, createOrderResponse.dosageForm) &&
         Objects.equals(this.externalOrderId, createOrderResponse.externalOrderId) &&
         Objects.equals(this.externalSubmissionAttempted, createOrderResponse.externalSubmissionAttempted) &&
         Objects.equals(this.externalSubmissionBlockedReason, createOrderResponse.externalSubmissionBlockedReason) &&
+        Objects.equals(this.id, createOrderResponse.id) &&
         Objects.equals(this.livemode, createOrderResponse.livemode) &&
         Objects.equals(this.medicationName, createOrderResponse.medicationName) &&
-        Objects.equals(this._object, createOrderResponse._object) &&
         Objects.equals(this.patientExternalId, createOrderResponse.patientExternalId) &&
         Objects.equals(this.patientName, createOrderResponse.patientName) &&
         Objects.equals(this.patientState, createOrderResponse.patientState) &&
@@ -831,16 +1052,20 @@ public class CreateOrderResponse {
         Objects.equals(this.prescriberNpi, createOrderResponse.prescriberNpi) &&
         Objects.equals(this.quantity, createOrderResponse.quantity) &&
         Objects.equals(this.quoteCents, createOrderResponse.quoteCents) &&
+        Objects.equals(this._object, createOrderResponse._object) &&
+        Objects.equals(this.replacesOrderId, createOrderResponse.replacesOrderId) &&
         Objects.equals(this.routing, createOrderResponse.routing) &&
-        Objects.equals(this.shippedAt, createOrderResponse.shippedAt) &&
+        Objects.equals(this.status, createOrderResponse.status) &&
         Objects.equals(this.strength, createOrderResponse.strength) &&
         Objects.equals(this.trackingNumber, createOrderResponse.trackingNumber) &&
+        Objects.equals(this.shippedAt, createOrderResponse.shippedAt) &&
+        Objects.equals(this.deliveredAt, createOrderResponse.deliveredAt) &&
         Objects.equals(this.updatedAt, createOrderResponse.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cancellationReason, carrier, createdAt, currency, deliveredAt, directions, dosageForm, externalOrderId, externalSubmissionAttempted, externalSubmissionBlockedReason, livemode, medicationName, _object, patientExternalId, patientName, patientState, prescriberName, prescriberNpi, quantity, quoteCents, routing, shippedAt, strength, trackingNumber, updatedAt);
+    return Objects.hash(cancellationReason, carrier, catalogItemId, practiceId, compounderId, createdAt, currency, directions, dosageForm, externalOrderId, externalSubmissionAttempted, externalSubmissionBlockedReason, id, livemode, medicationName, patientExternalId, patientName, patientState, prescriberName, prescriberNpi, quantity, quoteCents, _object, replacesOrderId, routing, status, strength, trackingNumber, shippedAt, deliveredAt, updatedAt);
   }
 
   @Override
@@ -849,17 +1074,19 @@ public class CreateOrderResponse {
     sb.append("class CreateOrderResponse {\n");
     sb.append("    cancellationReason: ").append(toIndentedString(cancellationReason)).append("\n");
     sb.append("    carrier: ").append(toIndentedString(carrier)).append("\n");
+    sb.append("    catalogItemId: ").append(toIndentedString(catalogItemId)).append("\n");
+    sb.append("    practiceId: ").append(toIndentedString(practiceId)).append("\n");
+    sb.append("    compounderId: ").append(toIndentedString(compounderId)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    deliveredAt: ").append(toIndentedString(deliveredAt)).append("\n");
     sb.append("    directions: ").append(toIndentedString(directions)).append("\n");
     sb.append("    dosageForm: ").append(toIndentedString(dosageForm)).append("\n");
     sb.append("    externalOrderId: ").append(toIndentedString(externalOrderId)).append("\n");
     sb.append("    externalSubmissionAttempted: ").append(toIndentedString(externalSubmissionAttempted)).append("\n");
     sb.append("    externalSubmissionBlockedReason: ").append(toIndentedString(externalSubmissionBlockedReason)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    medicationName: ").append(toIndentedString(medicationName)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    patientExternalId: ").append(toIndentedString(patientExternalId)).append("\n");
     sb.append("    patientName: ").append(toIndentedString(patientName)).append("\n");
     sb.append("    patientState: ").append(toIndentedString(patientState)).append("\n");
@@ -867,10 +1094,14 @@ public class CreateOrderResponse {
     sb.append("    prescriberNpi: ").append(toIndentedString(prescriberNpi)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    quoteCents: ").append(toIndentedString(quoteCents)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    replacesOrderId: ").append(toIndentedString(replacesOrderId)).append("\n");
     sb.append("    routing: ").append(toIndentedString(routing)).append("\n");
-    sb.append("    shippedAt: ").append(toIndentedString(shippedAt)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    strength: ").append(toIndentedString(strength)).append("\n");
     sb.append("    trackingNumber: ").append(toIndentedString(trackingNumber)).append("\n");
+    sb.append("    shippedAt: ").append(toIndentedString(shippedAt)).append("\n");
+    sb.append("    deliveredAt: ").append(toIndentedString(deliveredAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -926,6 +1157,21 @@ public class CreateOrderResponse {
       joiner.add(String.format(java.util.Locale.ROOT, "%scarrier%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCarrier()))));
     }
 
+    // add `catalogItemId` to the URL query string
+    if (getCatalogItemId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scatalogItemId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCatalogItemId()))));
+    }
+
+    // add `practiceId` to the URL query string
+    if (getPracticeId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spracticeId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPracticeId()))));
+    }
+
+    // add `compounderId` to the URL query string
+    if (getCompounderId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scompounderId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompounderId()))));
+    }
+
     // add `createdAt` to the URL query string
     if (getCreatedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%screatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedAt()))));
@@ -934,11 +1180,6 @@ public class CreateOrderResponse {
     // add `currency` to the URL query string
     if (getCurrency() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scurrency%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrency()))));
-    }
-
-    // add `deliveredAt` to the URL query string
-    if (getDeliveredAt() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdeliveredAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeliveredAt()))));
     }
 
     // add `directions` to the URL query string
@@ -966,6 +1207,11 @@ public class CreateOrderResponse {
       joiner.add(String.format(java.util.Locale.ROOT, "%sexternalSubmissionBlockedReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExternalSubmissionBlockedReason()))));
     }
 
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
     // add `livemode` to the URL query string
     if (getLivemode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slivemode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLivemode()))));
@@ -974,11 +1220,6 @@ public class CreateOrderResponse {
     // add `medicationName` to the URL query string
     if (getMedicationName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smedicationName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMedicationName()))));
-    }
-
-    // add `object` to the URL query string
-    if (getObject() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sobject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObject()))));
     }
 
     // add `patientExternalId` to the URL query string
@@ -1016,14 +1257,24 @@ public class CreateOrderResponse {
       joiner.add(String.format(java.util.Locale.ROOT, "%squoteCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQuoteCents()))));
     }
 
+    // add `object` to the URL query string
+    if (getObject() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sobject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObject()))));
+    }
+
+    // add `replacesOrderId` to the URL query string
+    if (getReplacesOrderId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreplacesOrderId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReplacesOrderId()))));
+    }
+
     // add `routing` to the URL query string
     if (getRouting() != null) {
       joiner.add(getRouting().toUrlQueryString(prefix + "routing" + suffix));
     }
 
-    // add `shippedAt` to the URL query string
-    if (getShippedAt() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sshippedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getShippedAt()))));
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     // add `strength` to the URL query string
@@ -1034,6 +1285,16 @@ public class CreateOrderResponse {
     // add `trackingNumber` to the URL query string
     if (getTrackingNumber() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%strackingNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTrackingNumber()))));
+    }
+
+    // add `shippedAt` to the URL query string
+    if (getShippedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sshippedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getShippedAt()))));
+    }
+
+    // add `deliveredAt` to the URL query string
+    if (getDeliveredAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdeliveredAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeliveredAt()))));
     }
 
     // add `updatedAt` to the URL query string

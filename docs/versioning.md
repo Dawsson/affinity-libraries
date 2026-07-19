@@ -11,14 +11,15 @@ const affinity = new Affinity(process.env.AFFINITY_API_KEY!, {
 });
 ```
 
-Raw HTTP clients must send the version on every request:
+Raw HTTP clients may override the service account's pinned version on any request:
 
 ```http
 Affinity-Version: 2026-07-19
 ```
 
-A missing header returns `400 api_version_required`. An unknown or retired version returns
-`400 unsupported_api_version`. Successful responses echo the effective `Affinity-Version`.
+When the header is omitted, Affinity uses the API version pinned to the authenticated service
+account. An unknown or retired version returns `400 unsupported_api_version`. Successful responses
+echo the effective `Affinity-Version`.
 
 ## Upgrading
 

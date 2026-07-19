@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,17 +34,36 @@ class GetAccountResponseAccount(BaseModel):
     alert_new_orders: StrictBool = Field(alias="alertNewOrders")
     alert_status_changes: StrictBool = Field(alias="alertStatusChanges")
     display_name: StrictStr = Field(alias="displayName")
+    id: Annotated[str, Field(strict=True)]
     object: StrictStr
     slug: StrictStr
+    status: StrictStr
     support_email: Optional[StrictStr] = Field(alias="supportEmail")
     website_url: Optional[StrictStr] = Field(alias="websiteUrl")
-    __properties: ClassVar[List[str]] = ["alertEmails", "alertIntegrationIssues", "alertNewOrders", "alertStatusChanges", "displayName", "object", "slug", "supportEmail", "websiteUrl"]
+    __properties: ClassVar[List[str]] = ["alertEmails", "alertIntegrationIssues", "alertNewOrders", "alertStatusChanges", "displayName", "id", "object", "slug", "status", "supportEmail", "websiteUrl"]
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^acct_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^acct_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['account']):
             raise ValueError("must be one of enum values ('account')")
+        return value
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['active', 'pending', 'suspended']):
+            raise ValueError("must be one of enum values ('active', 'pending', 'suspended')")
         return value
 
     model_config = ConfigDict(
@@ -112,8 +132,10 @@ class GetAccountResponseAccount(BaseModel):
             "alertNewOrders": obj.get("alertNewOrders"),
             "alertStatusChanges": obj.get("alertStatusChanges"),
             "displayName": obj.get("displayName"),
+            "id": obj.get("id"),
             "object": obj.get("object"),
             "slug": obj.get("slug"),
+            "status": obj.get("status"),
             "supportEmail": obj.get("supportEmail"),
             "websiteUrl": obj.get("websiteUrl")
         })

@@ -12,8 +12,10 @@
 |**alertNewOrders** | **Boolean** |  |  |
 |**alertStatusChanges** | **Boolean** |  |  |
 |**displayName** | **String** |  |  |
+|**id** | **String** |  |  |
 |**_object** | [**ObjectEnum**](#ObjectEnum) |  |  |
 |**slug** | **String** |  |  |
+|**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**supportEmail** | **String** |  |  |
 |**websiteUrl** | **String** |  |  |
 
@@ -24,6 +26,16 @@
 | Name | Value |
 |---- | -----|
 | ACCOUNT | &quot;account&quot; |
+
+
+
+## Enum: StatusEnum
+
+| Name | Value |
+|---- | -----|
+| ACTIVE | &quot;active&quot; |
+| PENDING | &quot;pending&quot; |
+| SUSPENDED | &quot;suspended&quot; |
 
 
 

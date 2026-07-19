@@ -10,8 +10,10 @@ Name | Type | Description | Notes
 **alert_new_orders** | **bool** |  |
 **alert_status_changes** | **bool** |  |
 **display_name** | **str** |  |
+**id** | **str** |  |
 **object** | **str** |  |
 **slug** | **str** |  |
+**status** | **str** |  |
 **support_email** | **str** |  |
 **website_url** | **str** |  |
 

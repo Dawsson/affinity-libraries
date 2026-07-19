@@ -36,7 +36,19 @@ export interface ListOrderEventsResponseDataInner {
      * @type {string}
      * @memberof ListOrderEventsResponseDataInner
      */
+    id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ListOrderEventsResponseDataInner
+     */
     message: string;
+    /**
+     *
+     * @type {{ [key: string]: any; }}
+     * @memberof ListOrderEventsResponseDataInner
+     */
+    metadata: { [key: string]: any; };
     /**
      *
      * @type {ListOrderEventsResponseDataInnerObjectEnum}
@@ -61,7 +73,9 @@ export type ListOrderEventsResponseDataInnerObjectEnum = typeof ListOrderEventsR
 export function instanceOfListOrderEventsResponseDataInner(value: object): value is ListOrderEventsResponseDataInner {
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('eventType' in value) || value['eventType'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
     return true;
 }
@@ -78,7 +92,9 @@ export function ListOrderEventsResponseDataInnerFromJSONTyped(json: any, ignoreD
 
         'createdAt': json['createdAt'],
         'eventType': json['eventType'],
+        'id': json['id'],
         'message': json['message'],
+        'metadata': json['metadata'],
         'object': json['object'],
     };
 }
@@ -96,7 +112,9 @@ export function ListOrderEventsResponseDataInnerToJSONTyped(value?: ListOrderEve
 
         'createdAt': value['createdAt'],
         'eventType': value['eventType'],
+        'id': value['id'],
         'message': value['message'],
+        'metadata': value['metadata'],
         'object': value['object'],
     };
 }

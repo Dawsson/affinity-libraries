@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** |  |
 **Name** | **string** |  |
-**Phone** | Pointer to **NullableString** |  | [optional]
+**Phone** | **NullableString** |  |
 
 ## Methods
 
 ### NewListPracticesResponseDataInnerContactsCompliance
 
-`func NewListPracticesResponseDataInnerContactsCompliance(email string, name string, ) *ListPracticesResponseDataInnerContactsCompliance`
+`func NewListPracticesResponseDataInnerContactsCompliance(email string, name string, phone NullableString, ) *ListPracticesResponseDataInnerContactsCompliance`
 
 NewListPracticesResponseDataInnerContactsCompliance instantiates a new ListPracticesResponseDataInnerContactsCompliance object
 This constructor will assign default values to properties that have it defined,
@@ -86,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetPhone sets Phone field to given value.
 
-### HasPhone
-
-`func (o *ListPracticesResponseDataInnerContactsCompliance) HasPhone() bool`
-
-HasPhone returns a boolean if a field has been set.
 
 ### SetPhoneNil
 

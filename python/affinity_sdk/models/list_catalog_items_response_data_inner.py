@@ -20,6 +20,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
+from affinity_sdk.models.list_catalog_items_response_data_inner_pricing import ListCatalogItemsResponseDataInnerPricing
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,19 +33,42 @@ class ListCatalogItemsResponseDataInner(BaseModel):
     allowed_states: List[StrictStr] = Field(alias="allowedStates")
     catalog_kind: StrictStr = Field(alias="catalogKind")
     cold_ship: StrictBool = Field(alias="coldShip")
+    compounder_id: Annotated[str, Field(strict=True)] = Field(alias="compounderId")
     compounder_name: StrictStr = Field(alias="compounderName")
     description: StrictStr
     dosage_form: StrictStr = Field(alias="dosageForm")
     facility_type: StrictStr = Field(alias="facilityType")
+    id: Annotated[str, Field(strict=True)]
     is_orderable: StrictBool = Field(alias="isOrderable")
     livemode: StrictBool
     name: StrictStr
     object: StrictStr
     patient_specific_required: StrictBool = Field(alias="patientSpecificRequired")
+    pricing: ListCatalogItemsResponseDataInnerPricing
     restricted_states: List[StrictStr] = Field(alias="restrictedStates")
     route: StrictStr
     strength: Optional[StrictStr]
-    __properties: ClassVar[List[str]] = ["allowedStates", "catalogKind", "coldShip", "compounderName", "description", "dosageForm", "facilityType", "isOrderable", "livemode", "name", "object", "patientSpecificRequired", "restrictedStates", "route", "strength"]
+    __properties: ClassVar[List[str]] = ["allowedStates", "catalogKind", "coldShip", "compounderId", "compounderName", "description", "dosageForm", "facilityType", "id", "isOrderable", "livemode", "name", "object", "patientSpecificRequired", "pricing", "restrictedStates", "route", "strength"]
+
+    @field_validator('compounder_id')
+    def compounder_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^cmp_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^cmp_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^cat_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^cat_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
@@ -91,6 +116,9 @@ class ListCatalogItemsResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of pricing
+        if self.pricing:
+            _dict['pricing'] = self.pricing.to_dict()
         # set to None if strength (nullable) is None
         # and model_fields_set contains the field
         if self.strength is None and "strength" in self.model_fields_set:
@@ -111,15 +139,18 @@ class ListCatalogItemsResponseDataInner(BaseModel):
             "allowedStates": obj.get("allowedStates"),
             "catalogKind": obj.get("catalogKind"),
             "coldShip": obj.get("coldShip"),
+            "compounderId": obj.get("compounderId"),
             "compounderName": obj.get("compounderName"),
             "description": obj.get("description"),
             "dosageForm": obj.get("dosageForm"),
             "facilityType": obj.get("facilityType"),
+            "id": obj.get("id"),
             "isOrderable": obj.get("isOrderable"),
             "livemode": obj.get("livemode"),
             "name": obj.get("name"),
             "object": obj.get("object"),
             "patientSpecificRequired": obj.get("patientSpecificRequired"),
+            "pricing": ListCatalogItemsResponseDataInnerPricing.from_dict(obj["pricing"]) if obj.get("pricing") is not None else None,
             "restrictedStates": obj.get("restrictedStates"),
             "route": obj.get("route"),
             "strength": obj.get("strength")

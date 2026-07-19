@@ -33,11 +33,16 @@ import ai.joinaffinity.sdk.ApiClient;
  * GetApiAccessResponseApiKey
  */
 @JsonPropertyOrder({
+  GetApiAccessResponseApiKey.JSON_PROPERTY_ID,
   GetApiAccessResponseApiKey.JSON_PROPERTY_KEY_PREFIX,
   GetApiAccessResponseApiKey.JSON_PROPERTY_OBJECT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class GetApiAccessResponseApiKey {
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
+
   public static final String JSON_PROPERTY_KEY_PREFIX = "keyPrefix";
   @javax.annotation.Nonnull
   private String keyPrefix;
@@ -81,6 +86,30 @@ public class GetApiAccessResponseApiKey {
 
   public GetApiAccessResponseApiKey() {
   }
+
+  public GetApiAccessResponseApiKey id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
 
   public GetApiAccessResponseApiKey keyPrefix(@javax.annotation.Nonnull String keyPrefix) {
     this.keyPrefix = keyPrefix;
@@ -142,19 +171,21 @@ public class GetApiAccessResponseApiKey {
       return false;
     }
     GetApiAccessResponseApiKey getApiAccessResponseApiKey = (GetApiAccessResponseApiKey) o;
-    return Objects.equals(this.keyPrefix, getApiAccessResponseApiKey.keyPrefix) &&
+    return Objects.equals(this.id, getApiAccessResponseApiKey.id) &&
+        Objects.equals(this.keyPrefix, getApiAccessResponseApiKey.keyPrefix) &&
         Objects.equals(this._object, getApiAccessResponseApiKey._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(keyPrefix, _object);
+    return Objects.hash(id, keyPrefix, _object);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetApiAccessResponseApiKey {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    keyPrefix: ").append(toIndentedString(keyPrefix)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
@@ -200,6 +231,11 @@ public class GetApiAccessResponseApiKey {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
 
     // add `keyPrefix` to the URL query string
     if (getKeyPrefix() != null) {

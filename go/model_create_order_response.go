@@ -23,17 +23,19 @@ var _ MappedNullable = &CreateOrderResponse{}
 type CreateOrderResponse struct {
 	CancellationReason              NullableString                             `json:"cancellationReason"`
 	Carrier                         NullableString                             `json:"carrier"`
+	CatalogItemId                   NullableString                             `json:"catalogItemId" validate:"regexp=^cat_[0-9a-hjkmnp-tv-z]{26}$"`
+	PracticeId                      string                                     `json:"practiceId" validate:"regexp=^prac_[0-9a-hjkmnp-tv-z]{26}$"`
+	CompounderId                    NullableString                             `json:"compounderId" validate:"regexp=^cmp_[0-9a-hjkmnp-tv-z]{26}$"`
 	CreatedAt                       string                                     `json:"createdAt"`
 	Currency                        string                                     `json:"currency"`
-	DeliveredAt                     NullableString                             `json:"deliveredAt"`
 	Directions                      string                                     `json:"directions"`
 	DosageForm                      NullableString                             `json:"dosageForm"`
 	ExternalOrderId                 string                                     `json:"externalOrderId"`
 	ExternalSubmissionAttempted     bool                                       `json:"externalSubmissionAttempted"`
 	ExternalSubmissionBlockedReason NullableString                             `json:"externalSubmissionBlockedReason"`
+	Id                              string                                     `json:"id" validate:"regexp=^ord_[0-9a-hjkmnp-tv-z]{26}$"`
 	Livemode                        bool                                       `json:"livemode"`
 	MedicationName                  string                                     `json:"medicationName"`
-	Object                          string                                     `json:"object"`
 	PatientExternalId               string                                     `json:"patientExternalId"`
 	PatientName                     string                                     `json:"patientName"`
 	PatientState                    string                                     `json:"patientState"`
@@ -41,10 +43,14 @@ type CreateOrderResponse struct {
 	PrescriberNpi                   NullableString                             `json:"prescriberNpi"`
 	Quantity                        float32                                    `json:"quantity"`
 	QuoteCents                      NullableFloat32                            `json:"quoteCents"`
+	Object                          string                                     `json:"object"`
+	ReplacesOrderId                 NullableString                             `json:"replacesOrderId" validate:"regexp=^ord_[0-9a-hjkmnp-tv-z]{26}$"`
 	Routing                         NullableListOrdersResponseDataInnerRouting `json:"routing"`
-	ShippedAt                       NullableString                             `json:"shippedAt"`
+	Status                          string                                     `json:"status"`
 	Strength                        NullableString                             `json:"strength"`
 	TrackingNumber                  NullableString                             `json:"trackingNumber"`
+	ShippedAt                       NullableString                             `json:"shippedAt"`
+	DeliveredAt                     NullableString                             `json:"deliveredAt"`
 	UpdatedAt                       string                                     `json:"updatedAt"`
 	AdditionalProperties            map[string]interface{}
 }
@@ -55,21 +61,23 @@ type _CreateOrderResponse CreateOrderResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateOrderResponse(cancellationReason NullableString, carrier NullableString, createdAt string, currency string, deliveredAt NullableString, directions string, dosageForm NullableString, externalOrderId string, externalSubmissionAttempted bool, externalSubmissionBlockedReason NullableString, livemode bool, medicationName string, object string, patientExternalId string, patientName string, patientState string, prescriberName NullableString, prescriberNpi NullableString, quantity float32, quoteCents NullableFloat32, routing NullableListOrdersResponseDataInnerRouting, shippedAt NullableString, strength NullableString, trackingNumber NullableString, updatedAt string) *CreateOrderResponse {
+func NewCreateOrderResponse(cancellationReason NullableString, carrier NullableString, catalogItemId NullableString, practiceId string, compounderId NullableString, createdAt string, currency string, directions string, dosageForm NullableString, externalOrderId string, externalSubmissionAttempted bool, externalSubmissionBlockedReason NullableString, id string, livemode bool, medicationName string, patientExternalId string, patientName string, patientState string, prescriberName NullableString, prescriberNpi NullableString, quantity float32, quoteCents NullableFloat32, object string, replacesOrderId NullableString, routing NullableListOrdersResponseDataInnerRouting, status string, strength NullableString, trackingNumber NullableString, shippedAt NullableString, deliveredAt NullableString, updatedAt string) *CreateOrderResponse {
 	this := CreateOrderResponse{}
 	this.CancellationReason = cancellationReason
 	this.Carrier = carrier
+	this.CatalogItemId = catalogItemId
+	this.PracticeId = practiceId
+	this.CompounderId = compounderId
 	this.CreatedAt = createdAt
 	this.Currency = currency
-	this.DeliveredAt = deliveredAt
 	this.Directions = directions
 	this.DosageForm = dosageForm
 	this.ExternalOrderId = externalOrderId
 	this.ExternalSubmissionAttempted = externalSubmissionAttempted
 	this.ExternalSubmissionBlockedReason = externalSubmissionBlockedReason
+	this.Id = id
 	this.Livemode = livemode
 	this.MedicationName = medicationName
-	this.Object = object
 	this.PatientExternalId = patientExternalId
 	this.PatientName = patientName
 	this.PatientState = patientState
@@ -77,10 +85,14 @@ func NewCreateOrderResponse(cancellationReason NullableString, carrier NullableS
 	this.PrescriberNpi = prescriberNpi
 	this.Quantity = quantity
 	this.QuoteCents = quoteCents
+	this.Object = object
+	this.ReplacesOrderId = replacesOrderId
 	this.Routing = routing
-	this.ShippedAt = shippedAt
+	this.Status = status
 	this.Strength = strength
 	this.TrackingNumber = trackingNumber
+	this.ShippedAt = shippedAt
+	this.DeliveredAt = deliveredAt
 	this.UpdatedAt = updatedAt
 	return &this
 }
@@ -145,6 +157,82 @@ func (o *CreateOrderResponse) SetCarrier(v string) {
 	o.Carrier.Set(&v)
 }
 
+// GetCatalogItemId returns the CatalogItemId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CreateOrderResponse) GetCatalogItemId() string {
+	if o == nil || o.CatalogItemId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.CatalogItemId.Get()
+}
+
+// GetCatalogItemIdOk returns a tuple with the CatalogItemId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateOrderResponse) GetCatalogItemIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CatalogItemId.Get(), o.CatalogItemId.IsSet()
+}
+
+// SetCatalogItemId sets field value
+func (o *CreateOrderResponse) SetCatalogItemId(v string) {
+	o.CatalogItemId.Set(&v)
+}
+
+// GetPracticeId returns the PracticeId field value
+func (o *CreateOrderResponse) GetPracticeId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PracticeId
+}
+
+// GetPracticeIdOk returns a tuple with the PracticeId field value
+// and a boolean to check if the value has been set.
+func (o *CreateOrderResponse) GetPracticeIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PracticeId, true
+}
+
+// SetPracticeId sets field value
+func (o *CreateOrderResponse) SetPracticeId(v string) {
+	o.PracticeId = v
+}
+
+// GetCompounderId returns the CompounderId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CreateOrderResponse) GetCompounderId() string {
+	if o == nil || o.CompounderId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.CompounderId.Get()
+}
+
+// GetCompounderIdOk returns a tuple with the CompounderId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateOrderResponse) GetCompounderIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CompounderId.Get(), o.CompounderId.IsSet()
+}
+
+// SetCompounderId sets field value
+func (o *CreateOrderResponse) SetCompounderId(v string) {
+	o.CompounderId.Set(&v)
+}
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *CreateOrderResponse) GetCreatedAt() string {
 	if o == nil {
@@ -191,32 +279,6 @@ func (o *CreateOrderResponse) GetCurrencyOk() (*string, bool) {
 // SetCurrency sets field value
 func (o *CreateOrderResponse) SetCurrency(v string) {
 	o.Currency = v
-}
-
-// GetDeliveredAt returns the DeliveredAt field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *CreateOrderResponse) GetDeliveredAt() string {
-	if o == nil || o.DeliveredAt.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.DeliveredAt.Get()
-}
-
-// GetDeliveredAtOk returns a tuple with the DeliveredAt field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateOrderResponse) GetDeliveredAtOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DeliveredAt.Get(), o.DeliveredAt.IsSet()
-}
-
-// SetDeliveredAt sets field value
-func (o *CreateOrderResponse) SetDeliveredAt(v string) {
-	o.DeliveredAt.Set(&v)
 }
 
 // GetDirections returns the Directions field value
@@ -343,6 +405,30 @@ func (o *CreateOrderResponse) SetExternalSubmissionBlockedReason(v string) {
 	o.ExternalSubmissionBlockedReason.Set(&v)
 }
 
+// GetId returns the Id field value
+func (o *CreateOrderResponse) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateOrderResponse) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateOrderResponse) SetId(v string) {
+	o.Id = v
+}
+
 // GetLivemode returns the Livemode field value
 func (o *CreateOrderResponse) GetLivemode() bool {
 	if o == nil {
@@ -389,30 +475,6 @@ func (o *CreateOrderResponse) GetMedicationNameOk() (*string, bool) {
 // SetMedicationName sets field value
 func (o *CreateOrderResponse) SetMedicationName(v string) {
 	o.MedicationName = v
-}
-
-// GetObject returns the Object field value
-func (o *CreateOrderResponse) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *CreateOrderResponse) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *CreateOrderResponse) SetObject(v string) {
-	o.Object = v
 }
 
 // GetPatientExternalId returns the PatientExternalId field value
@@ -589,6 +651,56 @@ func (o *CreateOrderResponse) SetQuoteCents(v float32) {
 	o.QuoteCents.Set(&v)
 }
 
+// GetObject returns the Object field value
+func (o *CreateOrderResponse) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *CreateOrderResponse) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *CreateOrderResponse) SetObject(v string) {
+	o.Object = v
+}
+
+// GetReplacesOrderId returns the ReplacesOrderId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CreateOrderResponse) GetReplacesOrderId() string {
+	if o == nil || o.ReplacesOrderId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.ReplacesOrderId.Get()
+}
+
+// GetReplacesOrderIdOk returns a tuple with the ReplacesOrderId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateOrderResponse) GetReplacesOrderIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ReplacesOrderId.Get(), o.ReplacesOrderId.IsSet()
+}
+
+// SetReplacesOrderId sets field value
+func (o *CreateOrderResponse) SetReplacesOrderId(v string) {
+	o.ReplacesOrderId.Set(&v)
+}
+
 // GetRouting returns the Routing field value
 // If the value is explicit nil, the zero value for ListOrdersResponseDataInnerRouting will be returned
 func (o *CreateOrderResponse) GetRouting() ListOrdersResponseDataInnerRouting {
@@ -615,30 +727,28 @@ func (o *CreateOrderResponse) SetRouting(v ListOrdersResponseDataInnerRouting) {
 	o.Routing.Set(&v)
 }
 
-// GetShippedAt returns the ShippedAt field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *CreateOrderResponse) GetShippedAt() string {
-	if o == nil || o.ShippedAt.Get() == nil {
+// GetStatus returns the Status field value
+func (o *CreateOrderResponse) GetStatus() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.ShippedAt.Get()
+	return o.Status
 }
 
-// GetShippedAtOk returns a tuple with the ShippedAt field value
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateOrderResponse) GetShippedAtOk() (*string, bool) {
+func (o *CreateOrderResponse) GetStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ShippedAt.Get(), o.ShippedAt.IsSet()
+	return &o.Status, true
 }
 
-// SetShippedAt sets field value
-func (o *CreateOrderResponse) SetShippedAt(v string) {
-	o.ShippedAt.Set(&v)
+// SetStatus sets field value
+func (o *CreateOrderResponse) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetStrength returns the Strength field value
@@ -693,6 +803,58 @@ func (o *CreateOrderResponse) SetTrackingNumber(v string) {
 	o.TrackingNumber.Set(&v)
 }
 
+// GetShippedAt returns the ShippedAt field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CreateOrderResponse) GetShippedAt() string {
+	if o == nil || o.ShippedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.ShippedAt.Get()
+}
+
+// GetShippedAtOk returns a tuple with the ShippedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateOrderResponse) GetShippedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ShippedAt.Get(), o.ShippedAt.IsSet()
+}
+
+// SetShippedAt sets field value
+func (o *CreateOrderResponse) SetShippedAt(v string) {
+	o.ShippedAt.Set(&v)
+}
+
+// GetDeliveredAt returns the DeliveredAt field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CreateOrderResponse) GetDeliveredAt() string {
+	if o == nil || o.DeliveredAt.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.DeliveredAt.Get()
+}
+
+// GetDeliveredAtOk returns a tuple with the DeliveredAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateOrderResponse) GetDeliveredAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeliveredAt.Get(), o.DeliveredAt.IsSet()
+}
+
+// SetDeliveredAt sets field value
+func (o *CreateOrderResponse) SetDeliveredAt(v string) {
+	o.DeliveredAt.Set(&v)
+}
+
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *CreateOrderResponse) GetUpdatedAt() string {
 	if o == nil {
@@ -729,17 +891,19 @@ func (o CreateOrderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cancellationReason"] = o.CancellationReason.Get()
 	toSerialize["carrier"] = o.Carrier.Get()
+	toSerialize["catalogItemId"] = o.CatalogItemId.Get()
+	toSerialize["practiceId"] = o.PracticeId
+	toSerialize["compounderId"] = o.CompounderId.Get()
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["currency"] = o.Currency
-	toSerialize["deliveredAt"] = o.DeliveredAt.Get()
 	toSerialize["directions"] = o.Directions
 	toSerialize["dosageForm"] = o.DosageForm.Get()
 	toSerialize["externalOrderId"] = o.ExternalOrderId
 	toSerialize["externalSubmissionAttempted"] = o.ExternalSubmissionAttempted
 	toSerialize["externalSubmissionBlockedReason"] = o.ExternalSubmissionBlockedReason.Get()
+	toSerialize["id"] = o.Id
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["medicationName"] = o.MedicationName
-	toSerialize["object"] = o.Object
 	toSerialize["patientExternalId"] = o.PatientExternalId
 	toSerialize["patientName"] = o.PatientName
 	toSerialize["patientState"] = o.PatientState
@@ -747,10 +911,14 @@ func (o CreateOrderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["prescriberNpi"] = o.PrescriberNpi.Get()
 	toSerialize["quantity"] = o.Quantity
 	toSerialize["quoteCents"] = o.QuoteCents.Get()
+	toSerialize["object"] = o.Object
+	toSerialize["replacesOrderId"] = o.ReplacesOrderId.Get()
 	toSerialize["routing"] = o.Routing.Get()
-	toSerialize["shippedAt"] = o.ShippedAt.Get()
+	toSerialize["status"] = o.Status
 	toSerialize["strength"] = o.Strength.Get()
 	toSerialize["trackingNumber"] = o.TrackingNumber.Get()
+	toSerialize["shippedAt"] = o.ShippedAt.Get()
+	toSerialize["deliveredAt"] = o.DeliveredAt.Get()
 	toSerialize["updatedAt"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
@@ -767,17 +935,19 @@ func (o *CreateOrderResponse) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"cancellationReason",
 		"carrier",
+		"catalogItemId",
+		"practiceId",
+		"compounderId",
 		"createdAt",
 		"currency",
-		"deliveredAt",
 		"directions",
 		"dosageForm",
 		"externalOrderId",
 		"externalSubmissionAttempted",
 		"externalSubmissionBlockedReason",
+		"id",
 		"livemode",
 		"medicationName",
-		"object",
 		"patientExternalId",
 		"patientName",
 		"patientState",
@@ -785,10 +955,14 @@ func (o *CreateOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		"prescriberNpi",
 		"quantity",
 		"quoteCents",
+		"object",
+		"replacesOrderId",
 		"routing",
-		"shippedAt",
+		"status",
 		"strength",
 		"trackingNumber",
+		"shippedAt",
+		"deliveredAt",
 		"updatedAt",
 	}
 
@@ -821,17 +995,19 @@ func (o *CreateOrderResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "cancellationReason")
 		delete(additionalProperties, "carrier")
+		delete(additionalProperties, "catalogItemId")
+		delete(additionalProperties, "practiceId")
+		delete(additionalProperties, "compounderId")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "currency")
-		delete(additionalProperties, "deliveredAt")
 		delete(additionalProperties, "directions")
 		delete(additionalProperties, "dosageForm")
 		delete(additionalProperties, "externalOrderId")
 		delete(additionalProperties, "externalSubmissionAttempted")
 		delete(additionalProperties, "externalSubmissionBlockedReason")
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "livemode")
 		delete(additionalProperties, "medicationName")
-		delete(additionalProperties, "object")
 		delete(additionalProperties, "patientExternalId")
 		delete(additionalProperties, "patientName")
 		delete(additionalProperties, "patientState")
@@ -839,10 +1015,14 @@ func (o *CreateOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "prescriberNpi")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "quoteCents")
+		delete(additionalProperties, "object")
+		delete(additionalProperties, "replacesOrderId")
 		delete(additionalProperties, "routing")
-		delete(additionalProperties, "shippedAt")
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "strength")
 		delete(additionalProperties, "trackingNumber")
+		delete(additionalProperties, "shippedAt")
+		delete(additionalProperties, "deliveredAt")
 		delete(additionalProperties, "updatedAt")
 		o.AdditionalProperties = additionalProperties
 	}

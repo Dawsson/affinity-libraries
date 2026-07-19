@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **city** | **str** |  |
-**country** | **str** |  | [optional]
+**country** | **str** |  | [default to 'US']
 **line1** | **str** |  |
-**line2** | **str** |  | [optional]
+**line2** | **str** |  |
 **postal_code** | **str** |  |
 **state** | **str** |  |
 

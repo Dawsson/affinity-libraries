@@ -9,7 +9,9 @@
 |------------ | ------------- | ------------- | -------------|
 |**createdAt** | **String** |  |  |
 |**eventType** | **String** |  |  |
+|**id** | **String** |  |  |
 |**message** | **String** |  |  |
+|**metadata** | **Map&lt;String, Object&gt;** |  |  |
 |**_object** | [**ObjectEnum**](#ObjectEnum) |  |  |
 
 

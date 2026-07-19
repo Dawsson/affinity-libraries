@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -29,11 +29,21 @@ class ListPracticesResponseDataInnerPrescribersInner(BaseModel):
     """
     ListPracticesResponseDataInnerPrescribersInner
     """ # noqa: E501
-    credentials: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=80)]] = None
-    license_states: List[StrictStr] = Field(alias="licenseStates")
+    credentials: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=80)]]
+    license_states: Annotated[List[Annotated[str, Field(min_length=2, strict=True, max_length=2)]], Field(min_length=1)] = Field(alias="licenseStates")
     name: Annotated[str, Field(min_length=1, strict=True, max_length=160)]
-    npi: StrictStr
+    npi: Annotated[str, Field(strict=True)]
     __properties: ClassVar[List[str]] = ["credentials", "licenseStates", "name", "npi"]
+
+    @field_validator('npi')
+    def npi_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^\d{10}$", value):
+            raise ValueError(r"must validate the regular expression /^\d{10}$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

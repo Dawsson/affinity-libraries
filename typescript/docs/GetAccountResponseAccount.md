@@ -11,8 +11,10 @@ Name | Type
 `alertNewOrders` | boolean
 `alertStatusChanges` | boolean
 `displayName` | string
+`id` | string
 `object` | string
 `slug` | string
+`status` | string
 `supportEmail` | string
 `websiteUrl` | string
 
@@ -28,8 +30,10 @@ const example = {
   "alertNewOrders": null,
   "alertStatusChanges": null,
   "displayName": null,
+  "id": null,
   "object": null,
   "slug": null,
+  "status": null,
   "supportEmail": null,
   "websiteUrl": null,
 } satisfies GetAccountResponseAccount

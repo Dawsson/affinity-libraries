@@ -13,6 +13,21 @@
  */
 
 import { mapValues } from '../runtime';
+import type { GetWebhookEventResponseAttemptsInner } from './GetWebhookEventResponseAttemptsInner';
+import {
+    GetWebhookEventResponseAttemptsInnerFromJSON,
+    GetWebhookEventResponseAttemptsInnerFromJSONTyped,
+    GetWebhookEventResponseAttemptsInnerToJSON,
+    GetWebhookEventResponseAttemptsInnerToJSONTyped,
+} from './GetWebhookEventResponseAttemptsInner';
+import type { GetWebhookEventResponseDeliveriesInner } from './GetWebhookEventResponseDeliveriesInner';
+import {
+    GetWebhookEventResponseDeliveriesInnerFromJSON,
+    GetWebhookEventResponseDeliveriesInnerFromJSONTyped,
+    GetWebhookEventResponseDeliveriesInnerToJSON,
+    GetWebhookEventResponseDeliveriesInnerToJSONTyped,
+} from './GetWebhookEventResponseDeliveriesInner';
+
 /**
  *
  * @export
@@ -31,6 +46,12 @@ export interface GetWebhookEventResponse {
      * @memberof GetWebhookEventResponse
      */
     eventType: string;
+    /**
+     *
+     * @type {string}
+     * @memberof GetWebhookEventResponse
+     */
+    id: string;
     /**
      *
      * @type {boolean}
@@ -57,10 +78,28 @@ export interface GetWebhookEventResponse {
     objectType: string;
     /**
      *
+     * @type {GetWebhookEventResponseStatusEnum}
+     * @memberof GetWebhookEventResponse
+     */
+    status: GetWebhookEventResponseStatusEnum;
+    /**
+     *
      * @type {string}
      * @memberof GetWebhookEventResponse
      */
     updatedAt: string;
+    /**
+     *
+     * @type {Array<GetWebhookEventResponseAttemptsInner>}
+     * @memberof GetWebhookEventResponse
+     */
+    attempts: Array<GetWebhookEventResponseAttemptsInner>;
+    /**
+     *
+     * @type {Array<GetWebhookEventResponseDeliveriesInner>}
+     * @memberof GetWebhookEventResponse
+     */
+    deliveries: Array<GetWebhookEventResponseDeliveriesInner>;
 }
 
 
@@ -72,6 +111,17 @@ export const GetWebhookEventResponseObjectEnum = {
 } as const;
 export type GetWebhookEventResponseObjectEnum = typeof GetWebhookEventResponseObjectEnum[keyof typeof GetWebhookEventResponseObjectEnum];
 
+/**
+ * @export
+ */
+export const GetWebhookEventResponseStatusEnum = {
+    Delivered: 'delivered',
+    Failed: 'failed',
+    Pending: 'pending',
+    Skipped: 'skipped'
+} as const;
+export type GetWebhookEventResponseStatusEnum = typeof GetWebhookEventResponseStatusEnum[keyof typeof GetWebhookEventResponseStatusEnum];
+
 
 /**
  * Check if a given object implements the GetWebhookEventResponse interface.
@@ -79,11 +129,15 @@ export type GetWebhookEventResponseObjectEnum = typeof GetWebhookEventResponseOb
 export function instanceOfGetWebhookEventResponse(value: object): value is GetWebhookEventResponse {
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('eventType' in value) || value['eventType'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('livemode' in value) || value['livemode'] === undefined) return false;
     if (!('object' in value) || value['object'] === undefined) return false;
     if (!('objectId' in value) || value['objectId'] === undefined) return false;
     if (!('objectType' in value) || value['objectType'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
+    if (!('attempts' in value) || value['attempts'] === undefined) return false;
+    if (!('deliveries' in value) || value['deliveries'] === undefined) return false;
     return true;
 }
 
@@ -99,11 +153,15 @@ export function GetWebhookEventResponseFromJSONTyped(json: any, ignoreDiscrimina
 
         'createdAt': json['createdAt'],
         'eventType': json['eventType'],
+        'id': json['id'],
         'livemode': json['livemode'],
         'object': json['object'],
         'objectId': json['objectId'],
         'objectType': json['objectType'],
+        'status': json['status'],
         'updatedAt': json['updatedAt'],
+        'attempts': ((json['attempts'] as Array<any>).map(GetWebhookEventResponseAttemptsInnerFromJSON)),
+        'deliveries': ((json['deliveries'] as Array<any>).map(GetWebhookEventResponseDeliveriesInnerFromJSON)),
     };
 }
 
@@ -120,11 +178,15 @@ export function GetWebhookEventResponseToJSONTyped(value?: GetWebhookEventRespon
 
         'createdAt': value['createdAt'],
         'eventType': value['eventType'],
+        'id': value['id'],
         'livemode': value['livemode'],
         'object': value['object'],
         'objectId': value['objectId'],
         'objectType': value['objectType'],
+        'status': value['status'],
         'updatedAt': value['updatedAt'],
+        'attempts': ((value['attempts'] as Array<any>).map(GetWebhookEventResponseAttemptsInnerToJSON)),
+        'deliveries': ((value['deliveries'] as Array<any>).map(GetWebhookEventResponseDeliveriesInnerToJSON)),
     };
 }
 

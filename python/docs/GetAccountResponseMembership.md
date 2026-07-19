@@ -5,7 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**permissions** | **List[str]** |  |
+**role** | **str** |  |
 **role_name** | **str** |  |
+**status** | **str** |  |
 
 ## Example
 

@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,9 +31,21 @@ class ListOrderEventsResponseDataInner(BaseModel):
     """ # noqa: E501
     created_at: StrictStr = Field(alias="createdAt")
     event_type: StrictStr = Field(alias="eventType")
+    id: Annotated[str, Field(strict=True)]
     message: StrictStr
+    metadata: Dict[str, Any]
     object: StrictStr
-    __properties: ClassVar[List[str]] = ["createdAt", "eventType", "message", "object"]
+    __properties: ClassVar[List[str]] = ["createdAt", "eventType", "id", "message", "metadata", "object"]
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^evt_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^evt_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
@@ -94,7 +107,9 @@ class ListOrderEventsResponseDataInner(BaseModel):
         _obj = cls.model_validate({
             "createdAt": obj.get("createdAt"),
             "eventType": obj.get("eventType"),
+            "id": obj.get("id"),
             "message": obj.get("message"),
+            "metadata": obj.get("metadata"),
             "object": obj.get("object")
         })
         return _obj

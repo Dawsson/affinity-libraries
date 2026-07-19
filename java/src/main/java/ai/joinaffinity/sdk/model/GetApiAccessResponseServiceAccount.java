@@ -33,12 +33,55 @@ import ai.joinaffinity.sdk.ApiClient;
  * GetApiAccessResponseServiceAccount
  */
 @JsonPropertyOrder({
+  GetApiAccessResponseServiceAccount.JSON_PROPERTY_API_VERSION,
+  GetApiAccessResponseServiceAccount.JSON_PROPERTY_ID,
   GetApiAccessResponseServiceAccount.JSON_PROPERTY_OBJECT,
   GetApiAccessResponseServiceAccount.JSON_PROPERTY_SUBJECT_ID,
   GetApiAccessResponseServiceAccount.JSON_PROPERTY_SUBJECT_TYPE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class GetApiAccessResponseServiceAccount {
+  /**
+   * Gets or Sets apiVersion
+   */
+  public enum ApiVersionEnum {
+    _2026_07_19(String.valueOf("2026-07-19"));
+
+    private String value;
+
+    ApiVersionEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ApiVersionEnum fromValue(String value) {
+      for (ApiVersionEnum b : ApiVersionEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_API_VERSION = "apiVersion";
+  @javax.annotation.Nonnull
+  private ApiVersionEnum apiVersion;
+
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
+
   /**
    * Gets or Sets _object
    */
@@ -86,6 +129,54 @@ public class GetApiAccessResponseServiceAccount {
 
   public GetApiAccessResponseServiceAccount() {
   }
+
+  public GetApiAccessResponseServiceAccount apiVersion(@javax.annotation.Nonnull ApiVersionEnum apiVersion) {
+    this.apiVersion = apiVersion;
+    return this;
+  }
+
+  /**
+   * Get apiVersion
+   * @return apiVersion
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_API_VERSION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public ApiVersionEnum getApiVersion() {
+    return apiVersion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_API_VERSION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setApiVersion(@javax.annotation.Nonnull ApiVersionEnum apiVersion) {
+    this.apiVersion = apiVersion;
+  }
+
+
+  public GetApiAccessResponseServiceAccount id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
 
   public GetApiAccessResponseServiceAccount _object(@javax.annotation.Nonnull ObjectEnum _object) {
     this._object = _object;
@@ -171,20 +262,24 @@ public class GetApiAccessResponseServiceAccount {
       return false;
     }
     GetApiAccessResponseServiceAccount getApiAccessResponseServiceAccount = (GetApiAccessResponseServiceAccount) o;
-    return Objects.equals(this._object, getApiAccessResponseServiceAccount._object) &&
+    return Objects.equals(this.apiVersion, getApiAccessResponseServiceAccount.apiVersion) &&
+        Objects.equals(this.id, getApiAccessResponseServiceAccount.id) &&
+        Objects.equals(this._object, getApiAccessResponseServiceAccount._object) &&
         Objects.equals(this.subjectId, getApiAccessResponseServiceAccount.subjectId) &&
         Objects.equals(this.subjectType, getApiAccessResponseServiceAccount.subjectType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_object, subjectId, subjectType);
+    return Objects.hash(apiVersion, id, _object, subjectId, subjectType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetApiAccessResponseServiceAccount {\n");
+    sb.append("    apiVersion: ").append(toIndentedString(apiVersion)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    subjectId: ").append(toIndentedString(subjectId)).append("\n");
     sb.append("    subjectType: ").append(toIndentedString(subjectType)).append("\n");
@@ -231,6 +326,16 @@ public class GetApiAccessResponseServiceAccount {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `apiVersion` to the URL query string
+    if (getApiVersion() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sapiVersion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getApiVersion()))));
+    }
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
 
     // add `object` to the URL query string
     if (getObject() != null) {

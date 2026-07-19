@@ -24,10 +24,12 @@ var _ MappedNullable = &ListWebhookEventsResponseDataInner{}
 type ListWebhookEventsResponseDataInner struct {
 	CreatedAt  string `json:"createdAt"`
 	EventType  string `json:"eventType"`
+	Id         string `json:"id" validate:"regexp=^evt_[0-9a-hjkmnp-tv-z]{26}$"`
 	Livemode   bool   `json:"livemode"`
 	Object     string `json:"object"`
 	ObjectId   string `json:"objectId"`
 	ObjectType string `json:"objectType"`
+	Status     string `json:"status"`
 	UpdatedAt  string `json:"updatedAt"`
 }
 
@@ -37,14 +39,16 @@ type _ListWebhookEventsResponseDataInner ListWebhookEventsResponseDataInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWebhookEventsResponseDataInner(createdAt string, eventType string, livemode bool, object string, objectId string, objectType string, updatedAt string) *ListWebhookEventsResponseDataInner {
+func NewListWebhookEventsResponseDataInner(createdAt string, eventType string, id string, livemode bool, object string, objectId string, objectType string, status string, updatedAt string) *ListWebhookEventsResponseDataInner {
 	this := ListWebhookEventsResponseDataInner{}
 	this.CreatedAt = createdAt
 	this.EventType = eventType
+	this.Id = id
 	this.Livemode = livemode
 	this.Object = object
 	this.ObjectId = objectId
 	this.ObjectType = objectType
+	this.Status = status
 	this.UpdatedAt = updatedAt
 	return &this
 }
@@ -103,6 +107,30 @@ func (o *ListWebhookEventsResponseDataInner) GetEventTypeOk() (*string, bool) {
 // SetEventType sets field value
 func (o *ListWebhookEventsResponseDataInner) SetEventType(v string) {
 	o.EventType = v
+}
+
+// GetId returns the Id field value
+func (o *ListWebhookEventsResponseDataInner) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListWebhookEventsResponseDataInner) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListWebhookEventsResponseDataInner) SetId(v string) {
+	o.Id = v
 }
 
 // GetLivemode returns the Livemode field value
@@ -201,6 +229,30 @@ func (o *ListWebhookEventsResponseDataInner) SetObjectType(v string) {
 	o.ObjectType = v
 }
 
+// GetStatus returns the Status field value
+func (o *ListWebhookEventsResponseDataInner) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListWebhookEventsResponseDataInner) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListWebhookEventsResponseDataInner) SetStatus(v string) {
+	o.Status = v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *ListWebhookEventsResponseDataInner) GetUpdatedAt() string {
 	if o == nil {
@@ -237,10 +289,12 @@ func (o ListWebhookEventsResponseDataInner) ToMap() (map[string]interface{}, err
 	toSerialize := map[string]interface{}{}
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["eventType"] = o.EventType
+	toSerialize["id"] = o.Id
 	toSerialize["livemode"] = o.Livemode
 	toSerialize["object"] = o.Object
 	toSerialize["objectId"] = o.ObjectId
 	toSerialize["objectType"] = o.ObjectType
+	toSerialize["status"] = o.Status
 	toSerialize["updatedAt"] = o.UpdatedAt
 	return toSerialize, nil
 }
@@ -252,10 +306,12 @@ func (o *ListWebhookEventsResponseDataInner) UnmarshalJSON(data []byte) (err err
 	requiredProperties := []string{
 		"createdAt",
 		"eventType",
+		"id",
 		"livemode",
 		"object",
 		"objectId",
 		"objectType",
+		"status",
 		"updatedAt",
 	}
 

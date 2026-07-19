@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **City** | **string** |  |
-**Country** | Pointer to **string** |  | [optional]
+**Country** | **string** |  | [default to "US"]
 **Line1** | **string** |  |
-**Line2** | Pointer to **NullableString** |  | [optional]
+**Line2** | **NullableString** |  |
 **PostalCode** | **string** |  |
 **State** | **string** |  |
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewListPracticesResponseDataInnerAddress
 
-`func NewListPracticesResponseDataInnerAddress(city string, line1 string, postalCode string, state string, ) *ListPracticesResponseDataInnerAddress`
+`func NewListPracticesResponseDataInnerAddress(city string, country string, line1 string, line2 NullableString, postalCode string, state string, ) *ListPracticesResponseDataInnerAddress`
 
 NewListPracticesResponseDataInnerAddress instantiates a new ListPracticesResponseDataInnerAddress object
 This constructor will assign default values to properties that have it defined,
@@ -69,11 +69,6 @@ and a boolean to check if the value has been set.
 
 SetCountry sets Country field to given value.
 
-### HasCountry
-
-`func (o *ListPracticesResponseDataInnerAddress) HasCountry() bool`
-
-HasCountry returns a boolean if a field has been set.
 
 ### GetLine1
 
@@ -114,11 +109,6 @@ and a boolean to check if the value has been set.
 
 SetLine2 sets Line2 field to given value.
 
-### HasLine2
-
-`func (o *ListPracticesResponseDataInnerAddress) HasLine2() bool`
-
-HasLine2 returns a boolean if a field has been set.
 
 ### SetLine2Nil
 

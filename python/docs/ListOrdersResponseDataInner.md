@@ -7,17 +7,19 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cancellation_reason** | **str** |  |
 **carrier** | **str** |  |
+**catalog_item_id** | **str** |  |
+**practice_id** | **str** |  |
+**compounder_id** | **str** |  |
 **created_at** | **str** |  |
 **currency** | **str** |  |
-**delivered_at** | **str** |  |
 **directions** | **str** |  |
 **dosage_form** | **str** |  |
 **external_order_id** | **str** |  |
 **external_submission_attempted** | **bool** |  |
 **external_submission_blocked_reason** | **str** |  |
+**id** | **str** |  |
 **livemode** | **bool** |  |
 **medication_name** | **str** |  |
-**object** | **str** |  |
 **patient_external_id** | **str** |  |
 **patient_name** | **str** |  |
 **patient_state** | **str** |  |
@@ -25,10 +27,14 @@ Name | Type | Description | Notes
 **prescriber_npi** | **str** |  |
 **quantity** | **float** |  |
 **quote_cents** | **float** |  |
+**object** | **str** |  |
+**replaces_order_id** | **str** |  |
 **routing** | [**ListOrdersResponseDataInnerRouting**](ListOrdersResponseDataInnerRouting.md) |  |
-**shipped_at** | **str** |  |
+**status** | **str** |  |
 **strength** | **str** |  |
 **tracking_number** | **str** |  |
+**shipped_at** | **str** |  |
+**delivered_at** | **str** |  |
 **updated_at** | **str** |  |
 
 ## Example

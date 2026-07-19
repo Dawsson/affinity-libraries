@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** |  |  |
 |**keyPrefix** | **String** |  |  |
 |**_object** | [**ObjectEnum**](#ObjectEnum) |  |  |
 

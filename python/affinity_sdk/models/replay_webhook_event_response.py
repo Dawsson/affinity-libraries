@@ -20,6 +20,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
+from affinity_sdk.models.get_webhook_event_response_attempts_inner import GetWebhookEventResponseAttemptsInner
+from affinity_sdk.models.get_webhook_event_response_deliveries_inner import GetWebhookEventResponseDeliveriesInner
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,18 +33,39 @@ class ReplayWebhookEventResponse(BaseModel):
     """ # noqa: E501
     created_at: StrictStr = Field(alias="createdAt")
     event_type: StrictStr = Field(alias="eventType")
+    id: Annotated[str, Field(strict=True)]
     livemode: StrictBool
     object: StrictStr
     object_id: StrictStr = Field(alias="objectId")
     object_type: StrictStr = Field(alias="objectType")
+    status: StrictStr
     updated_at: StrictStr = Field(alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["createdAt", "eventType", "livemode", "object", "objectId", "objectType", "updatedAt"]
+    attempts: List[GetWebhookEventResponseAttemptsInner]
+    deliveries: List[GetWebhookEventResponseDeliveriesInner]
+    __properties: ClassVar[List[str]] = ["createdAt", "eventType", "id", "livemode", "object", "objectId", "objectType", "status", "updatedAt", "attempts", "deliveries"]
+
+    @field_validator('id')
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^evt_[0-9a-hjkmnp-tv-z]{26}$", value):
+            raise ValueError(r"must validate the regular expression /^evt_[0-9a-hjkmnp-tv-z]{26}$/")
+        return value
 
     @field_validator('object')
     def object_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['webhook_event']):
             raise ValueError("must be one of enum values ('webhook_event')")
+        return value
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['delivered', 'failed', 'pending', 'skipped']):
+            raise ValueError("must be one of enum values ('delivered', 'failed', 'pending', 'skipped')")
         return value
 
     model_config = ConfigDict(
@@ -83,6 +107,20 @@ class ReplayWebhookEventResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in attempts (list)
+        _items = []
+        if self.attempts:
+            for _item_attempts in self.attempts:
+                if _item_attempts:
+                    _items.append(_item_attempts.to_dict())
+            _dict['attempts'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in deliveries (list)
+        _items = []
+        if self.deliveries:
+            for _item_deliveries in self.deliveries:
+                if _item_deliveries:
+                    _items.append(_item_deliveries.to_dict())
+            _dict['deliveries'] = _items
         return _dict
 
     @classmethod
@@ -97,11 +135,15 @@ class ReplayWebhookEventResponse(BaseModel):
         _obj = cls.model_validate({
             "createdAt": obj.get("createdAt"),
             "eventType": obj.get("eventType"),
+            "id": obj.get("id"),
             "livemode": obj.get("livemode"),
             "object": obj.get("object"),
             "objectId": obj.get("objectId"),
             "objectType": obj.get("objectType"),
-            "updatedAt": obj.get("updatedAt")
+            "status": obj.get("status"),
+            "updatedAt": obj.get("updatedAt"),
+            "attempts": [GetWebhookEventResponseAttemptsInner.from_dict(_item) for _item in obj["attempts"]] if obj.get("attempts") is not None else None,
+            "deliveries": [GetWebhookEventResponseDeliveriesInner.from_dict(_item) for _item in obj["deliveries"]] if obj.get("deliveries") is not None else None
         })
         return _obj
 
