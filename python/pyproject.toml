@@ -5,6 +5,7 @@ description = "Affinity API"
 authors = [
   {name = "Affinity API Support",email = "support@joinaffinityai.com"},
 ]
+license = { text = "Apache 2.0" }
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Affinity API"]
 requires-python = ">=3.9"

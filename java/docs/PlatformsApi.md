@@ -4,18 +4,18 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getPlatformOrganization**](PlatformsApi.md#getPlatformOrganization) | **GET** /v1/platform/organization | Read platform organization |
-| [**getPlatformOrganizationWithHttpInfo**](PlatformsApi.md#getPlatformOrganizationWithHttpInfo) | **GET** /v1/platform/organization | Read platform organization |
+| [**getAccount**](PlatformsApi.md#getAccount) | **GET** /v1/account | Read account |
+| [**getAccountWithHttpInfo**](PlatformsApi.md#getAccountWithHttpInfo) | **GET** /v1/account | Read account |
 
 
 
-## getPlatformOrganization
+## getAccount
 
-> GetPlatformOrganization200Response getPlatformOrganization(orgId)
+> GetAccountResponse getAccount(orgId)
 
-Read platform organization
+Read account
 
-Reads the authenticated platform organization and current role.
+Returns the platform organization and the current role.
 
 ### Example
 
@@ -46,10 +46,10 @@ public class Example {
         PlatformsApi apiInstance = new PlatformsApi(defaultClient);
         String orgId = "orgId_example"; // String |
         try {
-            GetPlatformOrganization200Response result = apiInstance.getPlatformOrganization(orgId);
+            GetAccountResponse result = apiInstance.getAccount(orgId);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling PlatformsApi#getPlatformOrganization");
+            System.err.println("Exception when calling PlatformsApi#getAccount");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -68,7 +68,7 @@ public class Example {
 
 ### Return type
 
-[**GetPlatformOrganization200Response**](GetPlatformOrganization200Response.md)
+[**GetAccountResponse**](GetAccountResponse.md)
 
 
 ### Authorization
@@ -83,23 +83,20 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
-## getPlatformOrganizationWithHttpInfo
+## getAccountWithHttpInfo
 
-> ApiResponse<GetPlatformOrganization200Response> getPlatformOrganizationWithHttpInfo(orgId)
+> ApiResponse<GetAccountResponse> getAccountWithHttpInfo(orgId)
 
-Read platform organization
+Read account
 
-Reads the authenticated platform organization and current role.
+Returns the platform organization and the current role.
 
 ### Example
 
@@ -131,12 +128,12 @@ public class Example {
         PlatformsApi apiInstance = new PlatformsApi(defaultClient);
         String orgId = "orgId_example"; // String |
         try {
-            ApiResponse<GetPlatformOrganization200Response> response = apiInstance.getPlatformOrganizationWithHttpInfo(orgId);
+            ApiResponse<GetAccountResponse> response = apiInstance.getAccountWithHttpInfo(orgId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling PlatformsApi#getPlatformOrganization");
+            System.err.println("Exception when calling PlatformsApi#getAccount");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -155,7 +152,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetPlatformOrganization200Response**](GetPlatformOrganization200Response.md)>
+ApiResponse<[**GetAccountResponse**](GetAccountResponse.md)>
 
 
 ### Authorization
@@ -170,13 +167,10 @@ ApiResponse<[**GetPlatformOrganization200Response**](GetPlatformOrganization200R
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 

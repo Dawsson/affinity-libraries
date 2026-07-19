@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorizedPhiTransfer** | **bool** |  |
 **AuthorizedPracticeRelationship** | **bool** |  |
+**AuthorizedPhiTransfer** | **bool** |  |
 **MinimumNecessaryPhi** | **bool** |  |
 **ProviderDataAccuracy** | **bool** |  |
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCreatePracticeRequestAttestations
 
-`func NewCreatePracticeRequestAttestations(authorizedPhiTransfer bool, authorizedPracticeRelationship bool, minimumNecessaryPhi bool, providerDataAccuracy bool, ) *CreatePracticeRequestAttestations`
+`func NewCreatePracticeRequestAttestations(authorizedPracticeRelationship bool, authorizedPhiTransfer bool, minimumNecessaryPhi bool, providerDataAccuracy bool, ) *CreatePracticeRequestAttestations`
 
 NewCreatePracticeRequestAttestations instantiates a new CreatePracticeRequestAttestations object
 This constructor will assign default values to properties that have it defined,
@@ -27,26 +27,6 @@ will change when the set of required properties is changed
 NewCreatePracticeRequestAttestationsWithDefaults instantiates a new CreatePracticeRequestAttestations object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAuthorizedPhiTransfer
-
-`func (o *CreatePracticeRequestAttestations) GetAuthorizedPhiTransfer() bool`
-
-GetAuthorizedPhiTransfer returns the AuthorizedPhiTransfer field if non-nil, zero value otherwise.
-
-### GetAuthorizedPhiTransferOk
-
-`func (o *CreatePracticeRequestAttestations) GetAuthorizedPhiTransferOk() (*bool, bool)`
-
-GetAuthorizedPhiTransferOk returns a tuple with the AuthorizedPhiTransfer field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthorizedPhiTransfer
-
-`func (o *CreatePracticeRequestAttestations) SetAuthorizedPhiTransfer(v bool)`
-
-SetAuthorizedPhiTransfer sets AuthorizedPhiTransfer field to given value.
-
 
 ### GetAuthorizedPracticeRelationship
 
@@ -66,6 +46,26 @@ and a boolean to check if the value has been set.
 `func (o *CreatePracticeRequestAttestations) SetAuthorizedPracticeRelationship(v bool)`
 
 SetAuthorizedPracticeRelationship sets AuthorizedPracticeRelationship field to given value.
+
+
+### GetAuthorizedPhiTransfer
+
+`func (o *CreatePracticeRequestAttestations) GetAuthorizedPhiTransfer() bool`
+
+GetAuthorizedPhiTransfer returns the AuthorizedPhiTransfer field if non-nil, zero value otherwise.
+
+### GetAuthorizedPhiTransferOk
+
+`func (o *CreatePracticeRequestAttestations) GetAuthorizedPhiTransferOk() (*bool, bool)`
+
+GetAuthorizedPhiTransferOk returns a tuple with the AuthorizedPhiTransfer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthorizedPhiTransfer
+
+`func (o *CreatePracticeRequestAttestations) SetAuthorizedPhiTransfer(v bool)`
+
+SetAuthorizedPhiTransfer sets AuthorizedPhiTransfer field to given value.
 
 
 ### GetMinimumNecessaryPhi

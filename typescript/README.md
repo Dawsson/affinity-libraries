@@ -84,86 +84,76 @@ All URIs are relative to *https://api.joinaffinityai.com*
 *PlatformWebhooksApi* | [**replayWebhookEvent**](docs/PlatformWebhooksApi.md#replaywebhookevent) | **POST** /v1/webhook-events/{eventId}/replay | Replay webhook event
 *PlatformWebhooksApi* | [**rotateWebhookEndpointSecret**](docs/PlatformWebhooksApi.md#rotatewebhookendpointsecret) | **POST** /v1/webhook-endpoints/{endpointId}/rotate-secret | Rotate webhook signing secret
 *PlatformWebhooksApi* | [**updateWebhookEndpoint**](docs/PlatformWebhooksApi.md#updatewebhookendpointoperation) | **PATCH** /v1/webhook-endpoints/{endpointId} | Update webhook endpoint
-*PlatformsApi* | [**getPlatformOrganization**](docs/PlatformsApi.md#getplatformorganization) | **GET** /v1/platform/organization | Read platform organization
+*PlatformsApi* | [**getAccount**](docs/PlatformsApi.md#getaccount) | **GET** /v1/account | Read account
 *PracticesApi* | [**createPractice**](docs/PracticesApi.md#createpracticeoperation) | **POST** /v1/practices | Create practice
 *PracticesApi* | [**getPractice**](docs/PracticesApi.md#getpractice) | **GET** /v1/practices/{practiceId} | Read practice
 *PracticesApi* | [**listPractices**](docs/PracticesApi.md#listpractices) | **GET** /v1/practices | List practices
-*PracticesApi* | [**updatePractice**](docs/PracticesApi.md#updatepractice) | **PATCH** /v1/practices/{practiceId} | Update practice
+*PracticesApi* | [**updatePractice**](docs/PracticesApi.md#updatepracticeoperation) | **PATCH** /v1/practices/{practiceId} | Update practice
 
 
 ### Models
 
 - [CancelOrderRequest](docs/CancelOrderRequest.md)
-- [CreateOrder200Response](docs/CreateOrder200Response.md)
-- [CreateOrder200ResponseOrder](docs/CreateOrder200ResponseOrder.md)
-- [CreateOrder200ResponseOrderRouting](docs/CreateOrder200ResponseOrderRouting.md)
+- [CancelOrderResponse](docs/CancelOrderResponse.md)
 - [CreateOrderRequest](docs/CreateOrderRequest.md)
 - [CreateOrderRequestAnyOf](docs/CreateOrderRequestAnyOf.md)
 - [CreateOrderRequestAnyOf1](docs/CreateOrderRequestAnyOf1.md)
-- [CreateOrderRequestAnyOf1ShippingAddress](docs/CreateOrderRequestAnyOf1ShippingAddress.md)
 - [CreateOrderRequestAnyOfPatient](docs/CreateOrderRequestAnyOfPatient.md)
 - [CreateOrderRequestAnyOfPatientAddress](docs/CreateOrderRequestAnyOfPatientAddress.md)
 - [CreateOrderRequestAnyOfPrescriber](docs/CreateOrderRequestAnyOfPrescriber.md)
 - [CreateOrderRequestAnyOfPrescription](docs/CreateOrderRequestAnyOfPrescription.md)
-- [CreatePractice200Response](docs/CreatePractice200Response.md)
-- [CreatePractice200ResponseAddress](docs/CreatePractice200ResponseAddress.md)
-- [CreatePractice200ResponseContacts](docs/CreatePractice200ResponseContacts.md)
+- [CreateOrderResponse](docs/CreateOrderResponse.md)
 - [CreatePracticeRequest](docs/CreatePracticeRequest.md)
-- [CreatePracticeRequestAddress](docs/CreatePracticeRequestAddress.md)
 - [CreatePracticeRequestAttestations](docs/CreatePracticeRequestAttestations.md)
+- [CreatePracticeRequestComplianceContact](docs/CreatePracticeRequestComplianceContact.md)
 - [CreatePracticeRequestPrescribersInner](docs/CreatePracticeRequestPrescribersInner.md)
-- [CreateWebhookEndpoint200Response](docs/CreateWebhookEndpoint200Response.md)
-- [CreateWebhookEndpoint200ResponseEndpoint](docs/CreateWebhookEndpoint200ResponseEndpoint.md)
+- [CreatePracticeResponse](docs/CreatePracticeResponse.md)
 - [CreateWebhookEndpointRequest](docs/CreateWebhookEndpointRequest.md)
-- [DeleteWebhookEndpoint200Response](docs/DeleteWebhookEndpoint200Response.md)
-- [GetApiAccess200Response](docs/GetApiAccess200Response.md)
-- [GetApiAccess200ResponseApiKey](docs/GetApiAccess200ResponseApiKey.md)
-- [GetApiAccess200ResponseServiceAccount](docs/GetApiAccess200ResponseServiceAccount.md)
-- [GetApiAccess400Response](docs/GetApiAccess400Response.md)
-- [GetPlatformOrganization200Response](docs/GetPlatformOrganization200Response.md)
-- [GetPlatformOrganization200ResponseAccount](docs/GetPlatformOrganization200ResponseAccount.md)
-- [GetPlatformOrganization200ResponseMembership](docs/GetPlatformOrganization200ResponseMembership.md)
-- [GetPlatformOrganization200ResponseUser](docs/GetPlatformOrganization200ResponseUser.md)
-- [GetWebhookEvent200Response](docs/GetWebhookEvent200Response.md)
-- [GetWebhookEvent200ResponseAttemptsInner](docs/GetWebhookEvent200ResponseAttemptsInner.md)
-- [GetWebhookEvent200ResponseDeliveriesInner](docs/GetWebhookEvent200ResponseDeliveriesInner.md)
-- [GetWebhookEvent200ResponseEvent](docs/GetWebhookEvent200ResponseEvent.md)
-- [ListCatalogItems200Response](docs/ListCatalogItems200Response.md)
-- [ListCatalogItems200ResponseItemsInner](docs/ListCatalogItems200ResponseItemsInner.md)
-- [ListCatalogItems400Response](docs/ListCatalogItems400Response.md)
-- [ListOrderEvents200Response](docs/ListOrderEvents200Response.md)
-- [ListOrderEvents200ResponseEventsInner](docs/ListOrderEvents200ResponseEventsInner.md)
-- [ListOrders200Response](docs/ListOrders200Response.md)
-- [ListOrders200ResponseOrdersInner](docs/ListOrders200ResponseOrdersInner.md)
-- [ListOrders200ResponseOrdersInnerRouting](docs/ListOrders200ResponseOrdersInnerRouting.md)
-- [ListOrders400Response](docs/ListOrders400Response.md)
-- [ListPractices200Response](docs/ListPractices200Response.md)
-- [ListPractices200ResponseDataInner](docs/ListPractices200ResponseDataInner.md)
-- [ListPractices200ResponseDataInnerAddress](docs/ListPractices200ResponseDataInnerAddress.md)
-- [ListPractices200ResponseDataInnerContacts](docs/ListPractices200ResponseDataInnerContacts.md)
-- [ListPractices200ResponseDataInnerContactsCompliance](docs/ListPractices200ResponseDataInnerContactsCompliance.md)
-- [ListPractices200ResponseDataInnerContactsPrimary](docs/ListPractices200ResponseDataInnerContactsPrimary.md)
-- [ListPractices200ResponseDataInnerPrescribersInner](docs/ListPractices200ResponseDataInnerPrescribersInner.md)
-- [ListWebhookEndpoints200Response](docs/ListWebhookEndpoints200Response.md)
-- [ListWebhookEndpoints200ResponseEndpointsInner](docs/ListWebhookEndpoints200ResponseEndpointsInner.md)
-- [ListWebhookEvents200Response](docs/ListWebhookEvents200Response.md)
-- [ListWebhookEvents200ResponseEventsInner](docs/ListWebhookEvents200ResponseEventsInner.md)
-- [ModelError](docs/ModelError.md)
-- [ReplayWebhookEvent200Response](docs/ReplayWebhookEvent200Response.md)
-- [ReplayWebhookEvent200ResponseAttemptsInner](docs/ReplayWebhookEvent200ResponseAttemptsInner.md)
-- [ReplayWebhookEvent200ResponseDeliveriesInner](docs/ReplayWebhookEvent200ResponseDeliveriesInner.md)
+- [CreateWebhookEndpointResponse](docs/CreateWebhookEndpointResponse.md)
+- [DeleteWebhookEndpointResponse](docs/DeleteWebhookEndpointResponse.md)
+- [GetAccountResponse](docs/GetAccountResponse.md)
+- [GetAccountResponseAccount](docs/GetAccountResponseAccount.md)
+- [GetAccountResponseMembership](docs/GetAccountResponseMembership.md)
+- [GetAccountResponseUser](docs/GetAccountResponseUser.md)
+- [GetApiAccessResponse](docs/GetApiAccessResponse.md)
+- [GetApiAccessResponseApiKey](docs/GetApiAccessResponseApiKey.md)
+- [GetApiAccessResponseServiceAccount](docs/GetApiAccessResponseServiceAccount.md)
+- [GetOrderResponse](docs/GetOrderResponse.md)
+- [GetPracticeResponse](docs/GetPracticeResponse.md)
+- [GetWebhookEventResponse](docs/GetWebhookEventResponse.md)
+- [ListCatalogItemsResponse](docs/ListCatalogItemsResponse.md)
+- [ListCatalogItemsResponseDataInner](docs/ListCatalogItemsResponseDataInner.md)
+- [ListOrderEventsResponse](docs/ListOrderEventsResponse.md)
+- [ListOrderEventsResponseDataInner](docs/ListOrderEventsResponseDataInner.md)
+- [ListOrdersResponse](docs/ListOrdersResponse.md)
+- [ListOrdersResponseDataInner](docs/ListOrdersResponseDataInner.md)
+- [ListOrdersResponseDataInnerRouting](docs/ListOrdersResponseDataInnerRouting.md)
+- [ListPracticesResponse](docs/ListPracticesResponse.md)
+- [ListPracticesResponseDataInner](docs/ListPracticesResponseDataInner.md)
+- [ListPracticesResponseDataInnerAddress](docs/ListPracticesResponseDataInnerAddress.md)
+- [ListPracticesResponseDataInnerContacts](docs/ListPracticesResponseDataInnerContacts.md)
+- [ListPracticesResponseDataInnerContactsCompliance](docs/ListPracticesResponseDataInnerContactsCompliance.md)
+- [ListPracticesResponseDataInnerPrescribersInner](docs/ListPracticesResponseDataInnerPrescribersInner.md)
+- [ListWebhookEndpointsResponse](docs/ListWebhookEndpointsResponse.md)
+- [ListWebhookEndpointsResponseDataInner](docs/ListWebhookEndpointsResponseDataInner.md)
+- [ListWebhookEventsResponse](docs/ListWebhookEventsResponse.md)
+- [ListWebhookEventsResponseDataInner](docs/ListWebhookEventsResponseDataInner.md)
+- [Problem](docs/Problem.md)
+- [ProblemError](docs/ProblemError.md)
+- [ReplayWebhookEventResponse](docs/ReplayWebhookEventResponse.md)
+- [RotateWebhookEndpointSecretResponse](docs/RotateWebhookEndpointSecretResponse.md)
+- [SubmitOrderResponse](docs/SubmitOrderResponse.md)
 - [UpdateOrderRequest](docs/UpdateOrderRequest.md)
+- [UpdateOrderResponse](docs/UpdateOrderResponse.md)
+- [UpdatePracticeRequest](docs/UpdatePracticeRequest.md)
+- [UpdatePracticeResponse](docs/UpdatePracticeResponse.md)
 - [UpdateWebhookEndpointRequest](docs/UpdateWebhookEndpointRequest.md)
+- [UpdateWebhookEndpointResponse](docs/UpdateWebhookEndpointResponse.md)
 
 ### Authorization
 
 
 Authentication schemes defined for the API:
-<a id="bearerAuth"></a>
-#### bearerAuth
-
-
-- **Type**: HTTP Bearer Token authentication
 <a id="affinityApiKey"></a>
 #### affinityApiKey
 
@@ -171,6 +161,11 @@ Authentication schemes defined for the API:
 - **Type**: API key
 - **API key parameter name**: `x-affinity-api-key`
 - **Location**: HTTP header
+<a id="bearerAuth"></a>
+#### bearerAuth
+
+
+- **Type**: HTTP Bearer Token authentication
 
 ## About
 
@@ -178,7 +173,7 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `2026-07-09`
+- API version: `2026-07-19`
 - Package version: `0.1.0`
 - Generator version: `7.22.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
@@ -219,4 +214,4 @@ npm publish
 
 ## License
 
-[]()
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)

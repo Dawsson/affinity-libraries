@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -26,8 +26,13 @@ type PracticesAPIService service
 type ApiCreatePracticeRequest struct {
 	ctx                   context.Context
 	ApiService            *PracticesAPIService
-	idempotencyKey        *string
 	createPracticeRequest *CreatePracticeRequest
+	idempotencyKey        *string
+}
+
+func (r ApiCreatePracticeRequest) CreatePracticeRequest(createPracticeRequest CreatePracticeRequest) ApiCreatePracticeRequest {
+	r.createPracticeRequest = &createPracticeRequest
+	return r
 }
 
 // Unique operation key required for every mutation.
@@ -36,19 +41,14 @@ func (r ApiCreatePracticeRequest) IdempotencyKey(idempotencyKey string) ApiCreat
 	return r
 }
 
-func (r ApiCreatePracticeRequest) CreatePracticeRequest(createPracticeRequest CreatePracticeRequest) ApiCreatePracticeRequest {
-	r.createPracticeRequest = &createPracticeRequest
-	return r
-}
-
-func (r ApiCreatePracticeRequest) Execute() (*CreatePractice200Response, *http.Response, error) {
+func (r ApiCreatePracticeRequest) Execute() (*CreatePracticeResponse, *http.Response, error) {
 	return r.ApiService.CreatePracticeExecute(r)
 }
 
 /*
 CreatePractice Create practice
 
-Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+Creates a practice for the platform. Send Idempotency-Key when you retry the same request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreatePracticeRequest
@@ -62,13 +62,13 @@ func (a *PracticesAPIService) CreatePractice(ctx context.Context) ApiCreatePract
 
 // Execute executes the request
 //
-//	@return CreatePractice200Response
-func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) (*CreatePractice200Response, *http.Response, error) {
+//	@return CreatePracticeResponse
+func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) (*CreatePracticeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreatePractice200Response
+		localVarReturnValue *CreatePracticeResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PracticesAPIService.CreatePractice")
@@ -81,12 +81,6 @@ func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.idempotencyKey == nil {
-		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
-	}
-	if strlen(*r.idempotencyKey) > 255 {
-		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
-	}
 	if r.createPracticeRequest == nil {
 		return localVarReturnValue, nil, reportError("createPracticeRequest is required and must be specified")
 	}
@@ -108,7 +102,9 @@ func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.createPracticeRequest
 	if r.ctx != nil {
@@ -148,7 +144,7 @@ func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +155,7 @@ func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,18 +166,7 @@ func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -192,18 +177,7 @@ func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -214,7 +188,7 @@ func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -225,7 +199,7 @@ func (a *PracticesAPIService) CreatePracticeExecute(r ApiCreatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -255,14 +229,14 @@ type ApiGetPracticeRequest struct {
 	practiceId string
 }
 
-func (r ApiGetPracticeRequest) Execute() (*CreatePractice200Response, *http.Response, error) {
+func (r ApiGetPracticeRequest) Execute() (*GetPracticeResponse, *http.Response, error) {
 	return r.ApiService.GetPracticeExecute(r)
 }
 
 /*
 GetPractice Read practice
 
-Reads a platform-owned practice by id.
+Returns one practice that belongs to the platform.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param practiceId
@@ -278,13 +252,13 @@ func (a *PracticesAPIService) GetPractice(ctx context.Context, practiceId string
 
 // Execute executes the request
 //
-//	@return CreatePractice200Response
-func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*CreatePractice200Response, *http.Response, error) {
+//	@return GetPracticeResponse
+func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*GetPracticeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreatePractice200Response
+		localVarReturnValue *GetPracticeResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PracticesAPIService.GetPractice")
@@ -298,12 +272,6 @@ func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*Crea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.practiceId) < 1 {
-		return localVarReturnValue, nil, reportError("practiceId must have at least 1 elements")
-	}
-	if strlen(r.practiceId) > 160 {
-		return localVarReturnValue, nil, reportError("practiceId must have less than 160 elements")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -359,7 +327,7 @@ func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*Crea
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +338,7 @@ func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*Crea
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -381,7 +349,7 @@ func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*Crea
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -392,29 +360,7 @@ func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*Crea
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -425,7 +371,7 @@ func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*Crea
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -436,7 +382,7 @@ func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*Crea
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -461,11 +407,29 @@ func (a *PracticesAPIService) GetPracticeExecute(r ApiGetPracticeRequest) (*Crea
 }
 
 type ApiListPracticesRequest struct {
-	ctx        context.Context
-	ApiService *PracticesAPIService
+	ctx           context.Context
+	ApiService    *PracticesAPIService
+	limit         *int32
+	startingAfter *string
+	endingBefore  *string
 }
 
-func (r ApiListPracticesRequest) Execute() (*ListPractices200Response, *http.Response, error) {
+func (r ApiListPracticesRequest) Limit(limit int32) ApiListPracticesRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiListPracticesRequest) StartingAfter(startingAfter string) ApiListPracticesRequest {
+	r.startingAfter = &startingAfter
+	return r
+}
+
+func (r ApiListPracticesRequest) EndingBefore(endingBefore string) ApiListPracticesRequest {
+	r.endingBefore = &endingBefore
+	return r
+}
+
+func (r ApiListPracticesRequest) Execute() (*ListPracticesResponse, *http.Response, error) {
 	return r.ApiService.ListPracticesExecute(r)
 }
 
@@ -484,13 +448,13 @@ func (a *PracticesAPIService) ListPractices(ctx context.Context) ApiListPractice
 
 // Execute executes the request
 //
-//	@return ListPractices200Response
-func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*ListPractices200Response, *http.Response, error) {
+//	@return ListPracticesResponse
+func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*ListPracticesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListPractices200Response
+		localVarReturnValue *ListPracticesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PracticesAPIService.ListPractices")
@@ -504,6 +468,19 @@ func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 25
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+		r.limit = &defaultValue
+	}
+	if r.startingAfter != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "form", "")
+	}
+	if r.endingBefore != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -558,7 +535,7 @@ func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -569,7 +546,7 @@ func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -580,40 +557,7 @@ func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -624,7 +568,7 @@ func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -635,7 +579,7 @@ func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -660,10 +604,16 @@ func (a *PracticesAPIService) ListPracticesExecute(r ApiListPracticesRequest) (*
 }
 
 type ApiUpdatePracticeRequest struct {
-	ctx            context.Context
-	ApiService     *PracticesAPIService
-	practiceId     string
-	idempotencyKey *string
+	ctx                   context.Context
+	ApiService            *PracticesAPIService
+	practiceId            string
+	updatePracticeRequest *UpdatePracticeRequest
+	idempotencyKey        *string
+}
+
+func (r ApiUpdatePracticeRequest) UpdatePracticeRequest(updatePracticeRequest UpdatePracticeRequest) ApiUpdatePracticeRequest {
+	r.updatePracticeRequest = &updatePracticeRequest
+	return r
 }
 
 // Unique operation key required for every mutation.
@@ -672,14 +622,14 @@ func (r ApiUpdatePracticeRequest) IdempotencyKey(idempotencyKey string) ApiUpdat
 	return r
 }
 
-func (r ApiUpdatePracticeRequest) Execute() (*CreatePractice200Response, *http.Response, error) {
+func (r ApiUpdatePracticeRequest) Execute() (*UpdatePracticeResponse, *http.Response, error) {
 	return r.ApiService.UpdatePracticeExecute(r)
 }
 
 /*
 UpdatePractice Update practice
 
-Updates a platform-owned practice. Send Idempotency-Key for safe retries.
+Updates one practice that belongs to the platform. Send Idempotency-Key when you retry the same request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param practiceId
@@ -695,13 +645,13 @@ func (a *PracticesAPIService) UpdatePractice(ctx context.Context, practiceId str
 
 // Execute executes the request
 //
-//	@return CreatePractice200Response
-func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) (*CreatePractice200Response, *http.Response, error) {
+//	@return UpdatePracticeResponse
+func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) (*UpdatePracticeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreatePractice200Response
+		localVarReturnValue *UpdatePracticeResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PracticesAPIService.UpdatePractice")
@@ -715,21 +665,12 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.practiceId) < 1 {
-		return localVarReturnValue, nil, reportError("practiceId must have at least 1 elements")
-	}
-	if strlen(r.practiceId) > 160 {
-		return localVarReturnValue, nil, reportError("practiceId must have less than 160 elements")
-	}
-	if r.idempotencyKey == nil {
-		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
-	}
-	if strlen(*r.idempotencyKey) > 255 {
-		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
+	if r.updatePracticeRequest == nil {
+		return localVarReturnValue, nil, reportError("updatePracticeRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -745,7 +686,11 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.updatePracticeRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -783,7 +728,7 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -794,7 +739,7 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -805,7 +750,7 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -816,7 +761,7 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -827,18 +772,7 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -849,7 +783,7 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -860,7 +794,7 @@ func (a *PracticesAPIService) UpdatePracticeExecute(r ApiUpdatePracticeRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

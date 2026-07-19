@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **get_api_access**
-> GetApiAccess200Response get_api_access()
+> GetApiAccessResponse get_api_access()
 
 Read API key access
 
-Returns the authenticated API key subject, mode, and scopes.
+Returns the subject, mode, and scopes for the API key.
 
 ### Example
 
@@ -21,7 +21,7 @@ Returns the authenticated API key subject, mode, and scopes.
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.get_api_access200_response import GetApiAccess200Response
+from affinity_sdk.models.get_api_access_response import GetApiAccessResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -69,7 +69,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetApiAccess200Response**](GetApiAccess200Response.md)
+[**GetApiAccessResponse**](GetApiAccessResponse.md)
 
 ### Authorization
 
@@ -84,15 +84,12 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

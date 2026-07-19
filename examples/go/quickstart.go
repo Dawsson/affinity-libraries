@@ -17,7 +17,7 @@ func main() {
 	}
 
 	client := affinity.NewClient(apiKey, affinity.ClientOptions{
-		APIVersion: "2026-07-09",
+		APIVersion: "2026-07-19",
 		Host:       "https://api.joinaffinityai.com",
 	})
 
@@ -44,8 +44,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("search catalog: %v", err)
 	}
-	fmt.Printf("Found %d matching sandbox catalog items\n", len(catalog.Items))
-	for index, item := range catalog.Items {
+	fmt.Printf("Found %d matching sandbox catalog items\n", len(catalog.Data))
+	for index, item := range catalog.Data {
 		if index == 3 {
 			break
 		}
@@ -62,12 +62,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("list orders: %v", err)
 	}
-	fmt.Printf("Found %d sandbox orders\n", len(orders.Orders))
+	fmt.Printf("Found %d sandbox orders\n", len(orders.Data))
 
 	webhooks, err := client.Webhooks.ListEndpoints(ctx)
 	if err != nil {
 		log.Fatalf("list webhook endpoints: %v", err)
 	}
-	fmt.Printf("Found %d test webhook endpoints\n", len(webhooks.Endpoints))
+	fmt.Printf("Found %d test webhook endpoints\n", len(webhooks.Data))
 	fmt.Println("The SDK is authenticated and ready for sandbox integration work.")
 }

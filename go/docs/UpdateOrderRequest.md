@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Quantity** | Pointer to **NullableFloat32** |  | [optional]
+**Quantity** | Pointer to **float32** |  | [optional]
 
 ## Methods
 
@@ -50,16 +50,6 @@ SetQuantity sets Quantity field to given value.
 
 HasQuantity returns a boolean if a field has been set.
 
-### SetQuantityNil
-
-`func (o *UpdateOrderRequest) SetQuantityNil(b bool)`
-
- SetQuantityNil sets the value for Quantity to be an explicit nil
-
-### UnsetQuantity
-`func (o *UpdateOrderRequest) UnsetQuantity()`
-
-UnsetQuantity ensures that no value is present for Quantity, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

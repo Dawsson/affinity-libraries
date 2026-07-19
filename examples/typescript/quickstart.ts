@@ -4,7 +4,7 @@ const apiKey = process.env.AFFINITY_API_KEY;
 if (!apiKey) throw new Error("Set AFFINITY_API_KEY to a test-mode service key");
 
 const affinity = new Affinity(apiKey, {
-  apiVersion: "2026-07-09",
+  apiVersion: "2026-07-19",
   host: "api.joinaffinityai.com",
 });
 
@@ -33,16 +33,16 @@ async function main() {
   ]);
 
   console.log("Organization", organization.account);
-  console.log(`Found ${catalog.items.length} matching sandbox catalog items`);
-  for (const item of catalog.items.slice(0, 3)) console.log("Catalog item", item);
+  console.log(`Found ${catalog.data.length} matching sandbox catalog items`);
+  for (const item of catalog.data.slice(0, 3)) console.log("Catalog item", item);
 
   console.log(`Found ${practices.data.length} practices`);
   for (const practice of practices.data) console.log("Practice", practice);
 
-  console.log(`Found ${orders.orders.length} sandbox orders`);
-  for (const order of orders.orders.slice(0, 5)) console.log("Order", order);
+  console.log(`Found ${orders.data.length} sandbox orders`);
+  for (const order of orders.data.slice(0, 5)) console.log("Order", order);
 
-  console.log(`Found ${webhooks.endpoints.length} test webhook endpoints`);
+  console.log(`Found ${webhooks.data.length} test webhook endpoints`);
   console.log("The SDK is authenticated and ready for sandbox integration work.");
 }
 

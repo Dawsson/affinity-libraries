@@ -17,11 +17,11 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 ## createPractice
 
-> CreatePractice200Response createPractice(idempotencyKey, createPracticeRequest)
+> CreatePracticeResponse createPractice(createPracticeRequest, idempotencyKey)
 
 Create practice
 
-Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+Creates a practice for the platform. Send Idempotency-Key when you retry the same request.
 
 ### Example
 
@@ -50,10 +50,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         CreatePracticeRequest createPracticeRequest = new CreatePracticeRequest(); // CreatePracticeRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreatePractice200Response result = apiInstance.createPractice(idempotencyKey, createPracticeRequest);
+            CreatePracticeResponse result = apiInstance.createPractice(createPracticeRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PracticesApi#createPractice");
@@ -71,12 +71,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createPracticeRequest** | [**CreatePracticeRequest**](CreatePracticeRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**CreatePracticeResponse**](CreatePracticeResponse.md)
 
 
 ### Authorization
@@ -91,23 +91,21 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## createPracticeWithHttpInfo
 
-> ApiResponse<CreatePractice200Response> createPracticeWithHttpInfo(idempotencyKey, createPracticeRequest)
+> ApiResponse<CreatePracticeResponse> createPracticeWithHttpInfo(createPracticeRequest, idempotencyKey)
 
 Create practice
 
-Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+Creates a practice for the platform. Send Idempotency-Key when you retry the same request.
 
 ### Example
 
@@ -137,10 +135,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         CreatePracticeRequest createPracticeRequest = new CreatePracticeRequest(); // CreatePracticeRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreatePractice200Response> response = apiInstance.createPracticeWithHttpInfo(idempotencyKey, createPracticeRequest);
+            ApiResponse<CreatePracticeResponse> response = apiInstance.createPracticeWithHttpInfo(createPracticeRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -160,12 +158,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createPracticeRequest** | [**CreatePracticeRequest**](CreatePracticeRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
+ApiResponse<[**CreatePracticeResponse**](CreatePracticeResponse.md)>
 
 
 ### Authorization
@@ -180,24 +178,22 @@ ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## getPractice
 
-> CreatePractice200Response getPractice(practiceId)
+> GetPracticeResponse getPractice(practiceId)
 
 Read practice
 
-Reads a platform-owned practice by id.
+Returns one practice that belongs to the platform.
 
 ### Example
 
@@ -228,7 +224,7 @@ public class Example {
         PracticesApi apiInstance = new PracticesApi(defaultClient);
         String practiceId = "practiceId_example"; // String |
         try {
-            CreatePractice200Response result = apiInstance.getPractice(practiceId);
+            GetPracticeResponse result = apiInstance.getPractice(practiceId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PracticesApi#getPractice");
@@ -250,7 +246,7 @@ public class Example {
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**GetPracticeResponse**](GetPracticeResponse.md)
 
 
 ### Authorization
@@ -265,23 +261,21 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## getPracticeWithHttpInfo
 
-> ApiResponse<CreatePractice200Response> getPracticeWithHttpInfo(practiceId)
+> ApiResponse<GetPracticeResponse> getPracticeWithHttpInfo(practiceId)
 
 Read practice
 
-Reads a platform-owned practice by id.
+Returns one practice that belongs to the platform.
 
 ### Example
 
@@ -313,7 +307,7 @@ public class Example {
         PracticesApi apiInstance = new PracticesApi(defaultClient);
         String practiceId = "practiceId_example"; // String |
         try {
-            ApiResponse<CreatePractice200Response> response = apiInstance.getPracticeWithHttpInfo(practiceId);
+            ApiResponse<GetPracticeResponse> response = apiInstance.getPracticeWithHttpInfo(practiceId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -337,7 +331,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
+ApiResponse<[**GetPracticeResponse**](GetPracticeResponse.md)>
 
 
 ### Authorization
@@ -352,20 +346,18 @@ ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## listPractices
 
-> ListPractices200Response listPractices()
+> ListPracticesResponse listPractices(limit, startingAfter, endingBefore)
 
 List practices
 
@@ -396,8 +388,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
+        Integer limit = 25; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
         try {
-            ListPractices200Response result = apiInstance.listPractices();
+            ListPracticesResponse result = apiInstance.listPractices(limit, startingAfter, endingBefore);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PracticesApi#listPractices");
@@ -412,11 +407,16 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
 
 ### Return type
 
-[**ListPractices200Response**](ListPractices200Response.md)
+[**ListPracticesResponse**](ListPracticesResponse.md)
 
 
 ### Authorization
@@ -431,19 +431,16 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## listPracticesWithHttpInfo
 
-> ApiResponse<ListPractices200Response> listPracticesWithHttpInfo()
+> ApiResponse<ListPracticesResponse> listPracticesWithHttpInfo(limit, startingAfter, endingBefore)
 
 List practices
 
@@ -475,8 +472,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
+        Integer limit = 25; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
         try {
-            ApiResponse<ListPractices200Response> response = apiInstance.listPracticesWithHttpInfo();
+            ApiResponse<ListPracticesResponse> response = apiInstance.listPracticesWithHttpInfo(limit, startingAfter, endingBefore);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -493,11 +493,16 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
 
 ### Return type
 
-ApiResponse<[**ListPractices200Response**](ListPractices200Response.md)>
+ApiResponse<[**ListPracticesResponse**](ListPracticesResponse.md)>
 
 
 ### Authorization
@@ -512,24 +517,21 @@ ApiResponse<[**ListPractices200Response**](ListPractices200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## updatePractice
 
-> CreatePractice200Response updatePractice(practiceId, idempotencyKey)
+> UpdatePracticeResponse updatePractice(practiceId, updatePracticeRequest, idempotencyKey)
 
 Update practice
 
-Updates a platform-owned practice. Send Idempotency-Key for safe retries.
+Updates one practice that belongs to the platform. Send Idempotency-Key when you retry the same request.
 
 ### Example
 
@@ -559,9 +561,10 @@ public class Example {
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
         String practiceId = "practiceId_example"; // String |
+        UpdatePracticeRequest updatePracticeRequest = new UpdatePracticeRequest(); // UpdatePracticeRequest |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreatePractice200Response result = apiInstance.updatePractice(practiceId, idempotencyKey);
+            UpdatePracticeResponse result = apiInstance.updatePractice(practiceId, updatePracticeRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PracticesApi#updatePractice");
@@ -580,11 +583,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **practiceId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **updatePracticeRequest** | [**UpdatePracticeRequest**](UpdatePracticeRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**UpdatePracticeResponse**](UpdatePracticeResponse.md)
 
 
 ### Authorization
@@ -593,29 +597,28 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## updatePracticeWithHttpInfo
 
-> ApiResponse<CreatePractice200Response> updatePracticeWithHttpInfo(practiceId, idempotencyKey)
+> ApiResponse<UpdatePracticeResponse> updatePracticeWithHttpInfo(practiceId, updatePracticeRequest, idempotencyKey)
 
 Update practice
 
-Updates a platform-owned practice. Send Idempotency-Key for safe retries.
+Updates one practice that belongs to the platform. Send Idempotency-Key when you retry the same request.
 
 ### Example
 
@@ -646,9 +649,10 @@ public class Example {
 
         PracticesApi apiInstance = new PracticesApi(defaultClient);
         String practiceId = "practiceId_example"; // String |
+        UpdatePracticeRequest updatePracticeRequest = new UpdatePracticeRequest(); // UpdatePracticeRequest |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreatePractice200Response> response = apiInstance.updatePracticeWithHttpInfo(practiceId, idempotencyKey);
+            ApiResponse<UpdatePracticeResponse> response = apiInstance.updatePracticeWithHttpInfo(practiceId, updatePracticeRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -669,11 +673,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **practiceId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **updatePracticeRequest** | [**UpdatePracticeRequest**](UpdatePracticeRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
+ApiResponse<[**UpdatePracticeResponse**](UpdatePracticeResponse.md)>
 
 
 ### Authorization
@@ -682,19 +687,18 @@ ApiResponse<[**CreatePractice200Response**](CreatePractice200Response.md)>
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 

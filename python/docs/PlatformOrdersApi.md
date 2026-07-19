@@ -14,11 +14,11 @@ Method | HTTP request | Description
 
 
 # **cancel_order**
-> CreateOrder200Response cancel_order(order_id, idempotency_key, cancel_order_request)
+> CancelOrderResponse cancel_order(order_id, cancel_order_request, idempotency_key=idempotency_key)
 
 Cancel order
 
-Cancels an order before shipment. Corrections use cancel-and-replace.
+Cancels an order before shipment. To correct an order, cancel it and create a replacement.
 
 ### Example
 
@@ -28,7 +28,7 @@ Cancels an order before shipment. Corrections use cancel-and-replace.
 ```python
 import affinity_sdk
 from affinity_sdk.models.cancel_order_request import CancelOrderRequest
-from affinity_sdk.models.create_order200_response import CreateOrder200Response
+from affinity_sdk.models.cancel_order_response import CancelOrderResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -59,12 +59,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
     order_id = 'order_id_example' # str |
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
     cancel_order_request = affinity_sdk.CancelOrderRequest() # CancelOrderRequest |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Cancel order
-        api_response = api_instance.cancel_order(order_id, idempotency_key, cancel_order_request)
+        api_response = api_instance.cancel_order(order_id, cancel_order_request, idempotency_key=idempotency_key)
         print("The response of PlatformOrdersApi->cancel_order:\n")
         pprint(api_response)
     except Exception as e:
@@ -79,12 +79,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **str**|  |
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
  **cancel_order_request** | [**CancelOrderRequest**](CancelOrderRequest.md)|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**CancelOrderResponse**](CancelOrderResponse.md)
 
 ### Authorization
 
@@ -99,24 +99,23 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_order**
-> CreateOrder200Response create_order(idempotency_key, create_order_request)
+> CreateOrderResponse create_order(create_order_request, idempotency_key=idempotency_key)
 
 Create order
 
-Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
+Creates an editable test draft. In live mode, it releases an existing signed prescription version.
 
 ### Example
 
@@ -125,8 +124,8 @@ Creates an editable synthetic draft in test mode or releases an existing signed 
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_order200_response import CreateOrder200Response
 from affinity_sdk.models.create_order_request import CreateOrderRequest
+from affinity_sdk.models.create_order_response import CreateOrderResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -156,12 +155,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
-    create_order_request = {"catalogItemId":"catalog_item_123","practiceId":"3f4bd943-a34d-4d4c-aa41-00556569a71d","directions":"Inject 0.25 mL subcutaneously once weekly.","externalOrderId":"order_123","patient":{"address":{"city":"Los Angeles","country":"US","line1":"100 Main Street","line2":null,"postalCode":"90001","state":"CA"},"dateOfBirth":"1988-05-12","email":"patient@example.com","externalPatientId":"patient_123","name":"Example Patient","state":"CA"},"prescriber":{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"},"prescription":{"authorized":true,"signedAt":"2026-07-10T12:00:00.000Z"},"quantity":1} # CreateOrderRequest |
+    create_order_request = {"catalogItemId":"cat_01j00000000000000000000000","practiceId":"prac_01j00000000000000000000000","directions":"Inject 0.25 mL subcutaneously once weekly.","externalOrderId":"order_123","patient":{"address":{"city":"Los Angeles","country":"US","line1":"100 Main Street","line2":null,"postalCode":"90001","state":"CA"},"dateOfBirth":"1988-05-12","email":"patient@example.com","externalPatientId":"patient_123","name":"Example Patient","state":"CA"},"prescriber":{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"},"prescription":{"authorized":true,"signedAt":"2026-07-10T12:00:00.000Z"},"quantity":1} # CreateOrderRequest |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Create order
-        api_response = api_instance.create_order(idempotency_key, create_order_request)
+        api_response = api_instance.create_order(create_order_request, idempotency_key=idempotency_key)
         print("The response of PlatformOrdersApi->create_order:\n")
         pprint(api_response)
     except Exception as e:
@@ -175,12 +174,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
  **create_order_request** | [**CreateOrderRequest**](CreateOrderRequest.md)|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**CreateOrderResponse**](CreateOrderResponse.md)
 
 ### Authorization
 
@@ -195,20 +194,18 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_order**
-> CreateOrder200Response get_order(order_id)
+> GetOrderResponse get_order(order_id)
 
 Read order
 
@@ -219,7 +216,7 @@ Read order
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_order200_response import CreateOrder200Response
+from affinity_sdk.models.get_order_response import GetOrderResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -271,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**GetOrderResponse**](GetOrderResponse.md)
 
 ### Authorization
 
@@ -286,20 +283,18 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_order_events**
-> ListOrderEvents200Response list_order_events(order_id)
+> ListOrderEventsResponse list_order_events(order_id, limit=limit, starting_after=starting_after, ending_before=ending_before)
 
 List order events
 
@@ -310,7 +305,7 @@ List order events
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.list_order_events200_response import ListOrderEvents200Response
+from affinity_sdk.models.list_order_events_response import ListOrderEventsResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -341,10 +336,13 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
     order_id = 'order_id_example' # str |
+    limit = 25 # int |  (optional) (default to 25)
+    starting_after = 'starting_after_example' # str |  (optional)
+    ending_before = 'ending_before_example' # str |  (optional)
 
     try:
         # List order events
-        api_response = api_instance.list_order_events(order_id)
+        api_response = api_instance.list_order_events(order_id, limit=limit, starting_after=starting_after, ending_before=ending_before)
         print("The response of PlatformOrdersApi->list_order_events:\n")
         pprint(api_response)
     except Exception as e:
@@ -359,10 +357,13 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **str**|  |
+ **limit** | **int**|  | [optional] [default to 25]
+ **starting_after** | **str**|  | [optional]
+ **ending_before** | **str**|  | [optional]
 
 ### Return type
 
-[**ListOrderEvents200Response**](ListOrderEvents200Response.md)
+[**ListOrderEventsResponse**](ListOrderEventsResponse.md)
 
 ### Authorization
 
@@ -377,20 +378,18 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_orders**
-> ListOrders200Response list_orders(external_order_id=external_order_id, patient_external_id=patient_external_id)
+> ListOrdersResponse list_orders(external_order_id=external_order_id, patient_external_id=patient_external_id, limit=limit, starting_after=starting_after, ending_before=ending_before, practice_id=practice_id, status=status)
 
 List platform orders
 
@@ -401,7 +400,7 @@ List platform orders
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.list_orders200_response import ListOrders200Response
+from affinity_sdk.models.list_orders_response import ListOrdersResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -433,10 +432,15 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
     external_order_id = 'external_order_id_example' # str |  (optional)
     patient_external_id = 'patient_external_id_example' # str |  (optional)
+    limit = 100 # int |  (optional) (default to 100)
+    starting_after = 'starting_after_example' # str |  (optional)
+    ending_before = 'ending_before_example' # str |  (optional)
+    practice_id = 'practice_id_example' # str |  (optional)
+    status = 'status_example' # str |  (optional)
 
     try:
         # List platform orders
-        api_response = api_instance.list_orders(external_order_id=external_order_id, patient_external_id=patient_external_id)
+        api_response = api_instance.list_orders(external_order_id=external_order_id, patient_external_id=patient_external_id, limit=limit, starting_after=starting_after, ending_before=ending_before, practice_id=practice_id, status=status)
         print("The response of PlatformOrdersApi->list_orders:\n")
         pprint(api_response)
     except Exception as e:
@@ -452,10 +456,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_order_id** | **str**|  | [optional]
  **patient_external_id** | **str**|  | [optional]
+ **limit** | **int**|  | [optional] [default to 100]
+ **starting_after** | **str**|  | [optional]
+ **ending_before** | **str**|  | [optional]
+ **practice_id** | **str**|  | [optional]
+ **status** | **str**|  | [optional]
 
 ### Return type
 
-[**ListOrders200Response**](ListOrders200Response.md)
+[**ListOrdersResponse**](ListOrdersResponse.md)
 
 ### Authorization
 
@@ -470,24 +479,21 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submit_order**
-> CreateOrder200Response submit_order(order_id, idempotency_key)
+> SubmitOrderResponse submit_order(order_id, idempotency_key=idempotency_key)
 
 Submit order
 
-Validates and submits an immutable order to the Affinity review queue.
+Checks a test draft and submits it to the test review queue.
 
 ### Example
 
@@ -496,7 +502,7 @@ Validates and submits an immutable order to the Affinity review queue.
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_order200_response import CreateOrder200Response
+from affinity_sdk.models.submit_order_response import SubmitOrderResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -527,11 +533,11 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
     order_id = 'order_id_example' # str |
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Submit order
-        api_response = api_instance.submit_order(order_id, idempotency_key)
+        api_response = api_instance.submit_order(order_id, idempotency_key=idempotency_key)
         print("The response of PlatformOrdersApi->submit_order:\n")
         pprint(api_response)
     except Exception as e:
@@ -546,11 +552,11 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **str**|  |
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**SubmitOrderResponse**](SubmitOrderResponse.md)
 
 ### Authorization
 
@@ -565,24 +571,23 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_order**
-> CreateOrder200Response update_order(order_id, idempotency_key, update_order_request)
+> UpdateOrderResponse update_order(order_id, update_order_request, idempotency_key=idempotency_key)
 
 Update draft order
 
-Updates an order while it remains a draft.
+Updates a test order that is in the draft state.
 
 ### Example
 
@@ -591,8 +596,8 @@ Updates an order while it remains a draft.
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_order200_response import CreateOrder200Response
 from affinity_sdk.models.update_order_request import UpdateOrderRequest
+from affinity_sdk.models.update_order_response import UpdateOrderResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -623,12 +628,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformOrdersApi(api_client)
     order_id = 'order_id_example' # str |
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
     update_order_request = affinity_sdk.UpdateOrderRequest() # UpdateOrderRequest |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Update draft order
-        api_response = api_instance.update_order(order_id, idempotency_key, update_order_request)
+        api_response = api_instance.update_order(order_id, update_order_request, idempotency_key=idempotency_key)
         print("The response of PlatformOrdersApi->update_order:\n")
         pprint(api_response)
     except Exception as e:
@@ -643,12 +648,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **str**|  |
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
  **update_order_request** | [**UpdateOrderRequest**](UpdateOrderRequest.md)|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**UpdateOrderResponse**](UpdateOrderResponse.md)
 
 ### Authorization
 
@@ -663,15 +668,14 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

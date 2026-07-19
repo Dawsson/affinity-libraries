@@ -17,7 +17,7 @@ yet. Start with the [examples](./examples) or the [first-client checklist](./doc
 Set a test service key on your server:
 
 ```sh
-export AFFINITY_API_KEY=aff_sk_test_...
+export AFFINITY_API_KEY=sk_test_...
 ```
 
 Create one client and use its product resources:
@@ -26,7 +26,7 @@ Create one client and use its product resources:
 import { Affinity } from "@affinity/sdk";
 
 const affinity = new Affinity(process.env.AFFINITY_API_KEY!, {
-  apiVersion: "2026-07-09",
+  apiVersion: "2026-07-19",
 });
 
 const catalog = await affinity.catalog.list({ query: "semaglutide" });

@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -41,7 +41,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Affinity API API v2026-07-09
+// APIClient manages communication with the Affinity API API v2026-07-19
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

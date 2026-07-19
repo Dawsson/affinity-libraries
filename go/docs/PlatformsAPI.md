@@ -4,15 +4,15 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetPlatformOrganization**](PlatformsAPI.md#GetPlatformOrganization) | **Get** /v1/platform/organization | Read platform organization
+[**GetAccount**](PlatformsAPI.md#GetAccount) | **Get** /v1/account | Read account
 
 
 
-## GetPlatformOrganization
+## GetAccount
 
-> GetPlatformOrganization200Response GetPlatformOrganization(ctx).OrgId(orgId).Execute()
+> GetAccountResponse GetAccount(ctx).OrgId(orgId).Execute()
 
-Read platform organization
+Read account
 
 
 
@@ -33,13 +33,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformsAPI.GetPlatformOrganization(context.Background()).OrgId(orgId).Execute()
+	resp, r, err := apiClient.PlatformsAPI.GetAccount(context.Background()).OrgId(orgId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PlatformsAPI.GetPlatformOrganization``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PlatformsAPI.GetAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetPlatformOrganization`: GetPlatformOrganization200Response
-	fmt.Fprintf(os.Stdout, "Response from `PlatformsAPI.GetPlatformOrganization`: %v\n", resp)
+	// response from `GetAccount`: GetAccountResponse
+	fmt.Fprintf(os.Stdout, "Response from `PlatformsAPI.GetAccount`: %v\n", resp)
 }
 ```
 
@@ -49,7 +49,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetPlatformOrganizationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetAccountRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetPlatformOrganization200Response**](GetPlatformOrganization200Response.md)
+[**GetAccountResponse**](GetAccountResponse.md)
 
 ### Authorization
 

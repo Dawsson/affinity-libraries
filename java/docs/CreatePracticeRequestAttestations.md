@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**authorizedPhiTransfer** | **Boolean** |  |  |
 |**authorizedPracticeRelationship** | **Boolean** |  |  |
+|**authorizedPhiTransfer** | **Boolean** |  |  |
 |**minimumNecessaryPhi** | **Boolean** |  |  |
 |**providerDataAccuracy** | **Boolean** |  |  |
 

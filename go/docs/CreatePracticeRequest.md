@@ -4,23 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | [**CreatePracticeRequestAddress**](CreatePracticeRequestAddress.md) |  |
+**Address** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  |
 **Attestations** | [**CreatePracticeRequestAttestations**](CreatePracticeRequestAttestations.md) |  |
-**ComplianceContact** | Pointer to [**NullableListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional]
+**ComplianceContact** | Pointer to [**NullableCreatePracticeRequestComplianceContact**](CreatePracticeRequestComplianceContact.md) |  | [optional]
 **ExternalId** | Pointer to **NullableString** |  | [optional]
 **LegalName** | Pointer to **NullableString** |  | [optional]
-**Name** | **NullableString** |  |
-**Prescribers** | Pointer to [**[]CreatePracticeRequestPrescribersInner**](CreatePracticeRequestPrescribersInner.md) |  | [optional]
-**PrimaryContact** | Pointer to [**NullableListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional]
+**Metadata** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
+**Name** | **string** |  |
+**Prescribers** | Pointer to [**[]CreatePracticeRequestPrescribersInner**](CreatePracticeRequestPrescribersInner.md) |  | [optional] [default to {}]
+**PrimaryContact** | Pointer to [**NullableCreatePracticeRequestComplianceContact**](CreatePracticeRequestComplianceContact.md) |  | [optional]
 **SupportEmail** | Pointer to **NullableString** |  | [optional]
 **SupportPhone** | Pointer to **NullableString** |  | [optional]
-**Timezone** | Pointer to **NullableString** |  | [optional]
+**Timezone** | Pointer to **string** |  | [optional] [default to "America/Detroit"]
 
 ## Methods
 
 ### NewCreatePracticeRequest
 
-`func NewCreatePracticeRequest(address CreatePracticeRequestAddress, attestations CreatePracticeRequestAttestations, name NullableString, ) *CreatePracticeRequest`
+`func NewCreatePracticeRequest(address CreateOrderRequestAnyOfPatientAddress, attestations CreatePracticeRequestAttestations, name string, ) *CreatePracticeRequest`
 
 NewCreatePracticeRequest instantiates a new CreatePracticeRequest object
 This constructor will assign default values to properties that have it defined,
@@ -37,20 +38,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAddress
 
-`func (o *CreatePracticeRequest) GetAddress() CreatePracticeRequestAddress`
+`func (o *CreatePracticeRequest) GetAddress() CreateOrderRequestAnyOfPatientAddress`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *CreatePracticeRequest) GetAddressOk() (*CreatePracticeRequestAddress, bool)`
+`func (o *CreatePracticeRequest) GetAddressOk() (*CreateOrderRequestAnyOfPatientAddress, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *CreatePracticeRequest) SetAddress(v CreatePracticeRequestAddress)`
+`func (o *CreatePracticeRequest) SetAddress(v CreateOrderRequestAnyOfPatientAddress)`
 
 SetAddress sets Address field to given value.
 
@@ -77,20 +78,20 @@ SetAttestations sets Attestations field to given value.
 
 ### GetComplianceContact
 
-`func (o *CreatePracticeRequest) GetComplianceContact() ListPractices200ResponseDataInnerContactsPrimary`
+`func (o *CreatePracticeRequest) GetComplianceContact() CreatePracticeRequestComplianceContact`
 
 GetComplianceContact returns the ComplianceContact field if non-nil, zero value otherwise.
 
 ### GetComplianceContactOk
 
-`func (o *CreatePracticeRequest) GetComplianceContactOk() (*ListPractices200ResponseDataInnerContactsPrimary, bool)`
+`func (o *CreatePracticeRequest) GetComplianceContactOk() (*CreatePracticeRequestComplianceContact, bool)`
 
 GetComplianceContactOk returns a tuple with the ComplianceContact field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetComplianceContact
 
-`func (o *CreatePracticeRequest) SetComplianceContact(v ListPractices200ResponseDataInnerContactsPrimary)`
+`func (o *CreatePracticeRequest) SetComplianceContact(v CreatePracticeRequestComplianceContact)`
 
 SetComplianceContact sets ComplianceContact field to given value.
 
@@ -180,6 +181,31 @@ HasLegalName returns a boolean if a field has been set.
 `func (o *CreatePracticeRequest) UnsetLegalName()`
 
 UnsetLegalName ensures that no value is present for LegalName, not even an explicit nil
+### GetMetadata
+
+`func (o *CreatePracticeRequest) GetMetadata() map[string]interface{}`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *CreatePracticeRequest) GetMetadataOk() (*map[string]interface{}, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *CreatePracticeRequest) SetMetadata(v map[string]interface{})`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *CreatePracticeRequest) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *CreatePracticeRequest) GetName() string`
@@ -200,16 +226,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### SetNameNil
-
-`func (o *CreatePracticeRequest) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CreatePracticeRequest) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPrescribers
 
 `func (o *CreatePracticeRequest) GetPrescribers() []CreatePracticeRequestPrescribersInner`
@@ -237,20 +253,20 @@ HasPrescribers returns a boolean if a field has been set.
 
 ### GetPrimaryContact
 
-`func (o *CreatePracticeRequest) GetPrimaryContact() ListPractices200ResponseDataInnerContactsPrimary`
+`func (o *CreatePracticeRequest) GetPrimaryContact() CreatePracticeRequestComplianceContact`
 
 GetPrimaryContact returns the PrimaryContact field if non-nil, zero value otherwise.
 
 ### GetPrimaryContactOk
 
-`func (o *CreatePracticeRequest) GetPrimaryContactOk() (*ListPractices200ResponseDataInnerContactsPrimary, bool)`
+`func (o *CreatePracticeRequest) GetPrimaryContactOk() (*CreatePracticeRequestComplianceContact, bool)`
 
 GetPrimaryContactOk returns a tuple with the PrimaryContact field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrimaryContact
 
-`func (o *CreatePracticeRequest) SetPrimaryContact(v ListPractices200ResponseDataInnerContactsPrimary)`
+`func (o *CreatePracticeRequest) SetPrimaryContact(v CreatePracticeRequestComplianceContact)`
 
 SetPrimaryContact sets PrimaryContact field to given value.
 
@@ -365,16 +381,6 @@ SetTimezone sets Timezone field to given value.
 
 HasTimezone returns a boolean if a field has been set.
 
-### SetTimezoneNil
-
-`func (o *CreatePracticeRequest) SetTimezoneNil(b bool)`
-
- SetTimezoneNil sets the value for Timezone to be an explicit nil
-
-### UnsetTimezone
-`func (o *CreatePracticeRequest) UnsetTimezone()`
-
-UnsetTimezone ensures that no value is present for Timezone, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

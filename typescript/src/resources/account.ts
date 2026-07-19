@@ -11,6 +11,6 @@ export class AccountResource {
     return this.accessApi.getApiAccess();
   }
   retrieve(organizationId?: string) {
-    return this.platformsApi.getPlatformOrganization({ orgId: organizationId });
+    return this.platformsApi.getAccount({ orgId: organizationId });
   }
 }

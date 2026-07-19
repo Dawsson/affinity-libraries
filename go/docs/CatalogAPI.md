@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## ListCatalogItems
 
-> ListCatalogItems200Response ListCatalogItems(ctx).Query(query).Execute()
+> ListCatalogItemsResponse ListCatalogItems(ctx).Query(query).Limit(limit).StartingAfter(startingAfter).EndingBefore(endingBefore).Route(route).Execute()
 
 List catalog items
 
@@ -30,15 +30,19 @@ import (
 
 func main() {
 	query := "query_example" // string |  (optional)
+	limit := int32(56) // int32 |  (optional) (default to 50)
+	startingAfter := "startingAfter_example" // string |  (optional)
+	endingBefore := "endingBefore_example" // string |  (optional)
+	route := "route_example" // string |  (optional) (default to "all")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CatalogAPI.ListCatalogItems(context.Background()).Query(query).Execute()
+	resp, r, err := apiClient.CatalogAPI.ListCatalogItems(context.Background()).Query(query).Limit(limit).StartingAfter(startingAfter).EndingBefore(endingBefore).Route(route).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CatalogAPI.ListCatalogItems``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListCatalogItems`: ListCatalogItems200Response
+	// response from `ListCatalogItems`: ListCatalogItemsResponse
 	fmt.Fprintf(os.Stdout, "Response from `CatalogAPI.ListCatalogItems`: %v\n", resp)
 }
 ```
@@ -55,10 +59,14 @@ Other parameters are passed through a pointer to a apiListCatalogItemsRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **string** |  |
+ **limit** | **int32** |  | [default to 50]
+ **startingAfter** | **string** |  |
+ **endingBefore** | **string** |  |
+ **route** | **string** |  | [default to &quot;all&quot;]
 
 ### Return type
 
-[**ListCatalogItems200Response**](ListCatalogItems200Response.md)
+[**ListCatalogItemsResponse**](ListCatalogItemsResponse.md)
 
 ### Authorization
 

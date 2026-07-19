@@ -3,6 +3,8 @@
 package affinity
 
 import (
+	"crypto/rand"
+	"encoding/hex"
 	"net/http"
 	"strings"
 )
@@ -13,6 +15,18 @@ type ClientOptions struct {
 	HTTPClient *http.Client
 }
 type MutationOptions struct{ IdempotencyKey string }
+
+func idempotencyKey(options ...MutationOptions) string {
+	if len(options) > 0 && options[0].IdempotencyKey != "" {
+		return options[0].IdempotencyKey
+	}
+	value := make([]byte, 16)
+	if _, err := rand.Read(value); err != nil {
+		panic("affinity: could not generate idempotency key")
+	}
+	return hex.EncodeToString(value)
+}
+
 type Client struct {
 	Account   *AccountResource
 	Catalog   *CatalogResource
@@ -30,7 +44,7 @@ func NewClient(apiKey string, options ...ClientOptions) *Client {
 		option = options[0]
 	}
 	if option.APIVersion == "" {
-		option.APIVersion = "2026-07-09"
+		option.APIVersion = "2026-07-19"
 	}
 	if option.Host == "" {
 		option.Host = "https://api.joinaffinityai.com"

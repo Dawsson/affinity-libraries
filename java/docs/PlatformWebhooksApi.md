@@ -25,7 +25,7 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 ## createWebhookEndpoint
 
-> CreateWebhookEndpoint200Response createWebhookEndpoint(idempotencyKey, createWebhookEndpointRequest)
+> CreateWebhookEndpointResponse createWebhookEndpoint(createWebhookEndpointRequest, idempotencyKey)
 
 Create webhook endpoint
 
@@ -56,10 +56,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         CreateWebhookEndpointRequest createWebhookEndpointRequest = new CreateWebhookEndpointRequest(); // CreateWebhookEndpointRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreateWebhookEndpoint200Response result = apiInstance.createWebhookEndpoint(idempotencyKey, createWebhookEndpointRequest);
+            CreateWebhookEndpointResponse result = apiInstance.createWebhookEndpoint(createWebhookEndpointRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#createWebhookEndpoint");
@@ -77,12 +77,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createWebhookEndpointRequest** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Response.md)
+[**CreateWebhookEndpointResponse**](CreateWebhookEndpointResponse.md)
 
 
 ### Authorization
@@ -97,19 +97,17 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## createWebhookEndpointWithHttpInfo
 
-> ApiResponse<CreateWebhookEndpoint200Response> createWebhookEndpointWithHttpInfo(idempotencyKey, createWebhookEndpointRequest)
+> ApiResponse<CreateWebhookEndpointResponse> createWebhookEndpointWithHttpInfo(createWebhookEndpointRequest, idempotencyKey)
 
 Create webhook endpoint
 
@@ -141,10 +139,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         CreateWebhookEndpointRequest createWebhookEndpointRequest = new CreateWebhookEndpointRequest(); // CreateWebhookEndpointRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreateWebhookEndpoint200Response> response = apiInstance.createWebhookEndpointWithHttpInfo(idempotencyKey, createWebhookEndpointRequest);
+            ApiResponse<CreateWebhookEndpointResponse> response = apiInstance.createWebhookEndpointWithHttpInfo(createWebhookEndpointRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -164,12 +162,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createWebhookEndpointRequest** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Response.md)>
+ApiResponse<[**CreateWebhookEndpointResponse**](CreateWebhookEndpointResponse.md)>
 
 
 ### Authorization
@@ -184,20 +182,18 @@ ApiResponse<[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Respo
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## deleteWebhookEndpoint
 
-> DeleteWebhookEndpoint200Response deleteWebhookEndpoint(endpointId, idempotencyKey)
+> DeleteWebhookEndpointResponse deleteWebhookEndpoint(endpointId, idempotencyKey)
 
 Disable webhook endpoint
 
@@ -231,7 +227,7 @@ public class Example {
         String endpointId = "endpointId_example"; // String |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            DeleteWebhookEndpoint200Response result = apiInstance.deleteWebhookEndpoint(endpointId, idempotencyKey);
+            DeleteWebhookEndpointResponse result = apiInstance.deleteWebhookEndpoint(endpointId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#deleteWebhookEndpoint");
@@ -250,11 +246,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Response.md)
+[**DeleteWebhookEndpointResponse**](DeleteWebhookEndpointResponse.md)
 
 
 ### Authorization
@@ -269,19 +265,18 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## deleteWebhookEndpointWithHttpInfo
 
-> ApiResponse<DeleteWebhookEndpoint200Response> deleteWebhookEndpointWithHttpInfo(endpointId, idempotencyKey)
+> ApiResponse<DeleteWebhookEndpointResponse> deleteWebhookEndpointWithHttpInfo(endpointId, idempotencyKey)
 
 Disable webhook endpoint
 
@@ -316,7 +311,7 @@ public class Example {
         String endpointId = "endpointId_example"; // String |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<DeleteWebhookEndpoint200Response> response = apiInstance.deleteWebhookEndpointWithHttpInfo(endpointId, idempotencyKey);
+            ApiResponse<DeleteWebhookEndpointResponse> response = apiInstance.deleteWebhookEndpointWithHttpInfo(endpointId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -337,11 +332,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Response.md)>
+ApiResponse<[**DeleteWebhookEndpointResponse**](DeleteWebhookEndpointResponse.md)>
 
 
 ### Authorization
@@ -356,20 +351,19 @@ ApiResponse<[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Respo
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## getWebhookEvent
 
-> GetWebhookEvent200Response getWebhookEvent(eventId)
+> GetWebhookEventResponse getWebhookEvent(eventId)
 
 Read webhook event attempts
 
@@ -402,7 +396,7 @@ public class Example {
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
         String eventId = "eventId_example"; // String |
         try {
-            GetWebhookEvent200Response result = apiInstance.getWebhookEvent(eventId);
+            GetWebhookEventResponse result = apiInstance.getWebhookEvent(eventId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#getWebhookEvent");
@@ -424,7 +418,7 @@ public class Example {
 
 ### Return type
 
-[**GetWebhookEvent200Response**](GetWebhookEvent200Response.md)
+[**GetWebhookEventResponse**](GetWebhookEventResponse.md)
 
 
 ### Authorization
@@ -439,19 +433,17 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## getWebhookEventWithHttpInfo
 
-> ApiResponse<GetWebhookEvent200Response> getWebhookEventWithHttpInfo(eventId)
+> ApiResponse<GetWebhookEventResponse> getWebhookEventWithHttpInfo(eventId)
 
 Read webhook event attempts
 
@@ -485,7 +477,7 @@ public class Example {
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
         String eventId = "eventId_example"; // String |
         try {
-            ApiResponse<GetWebhookEvent200Response> response = apiInstance.getWebhookEventWithHttpInfo(eventId);
+            ApiResponse<GetWebhookEventResponse> response = apiInstance.getWebhookEventWithHttpInfo(eventId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -509,7 +501,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetWebhookEvent200Response**](GetWebhookEvent200Response.md)>
+ApiResponse<[**GetWebhookEventResponse**](GetWebhookEventResponse.md)>
 
 
 ### Authorization
@@ -524,20 +516,18 @@ ApiResponse<[**GetWebhookEvent200Response**](GetWebhookEvent200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## listWebhookEndpoints
 
-> ListWebhookEndpoints200Response listWebhookEndpoints()
+> ListWebhookEndpointsResponse listWebhookEndpoints(limit, startingAfter, endingBefore)
 
 List webhook endpoints
 
@@ -568,8 +558,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
+        Integer limit = 25; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
         try {
-            ListWebhookEndpoints200Response result = apiInstance.listWebhookEndpoints();
+            ListWebhookEndpointsResponse result = apiInstance.listWebhookEndpoints(limit, startingAfter, endingBefore);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#listWebhookEndpoints");
@@ -584,11 +577,16 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
 
 ### Return type
 
-[**ListWebhookEndpoints200Response**](ListWebhookEndpoints200Response.md)
+[**ListWebhookEndpointsResponse**](ListWebhookEndpointsResponse.md)
 
 
 ### Authorization
@@ -603,19 +601,16 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## listWebhookEndpointsWithHttpInfo
 
-> ApiResponse<ListWebhookEndpoints200Response> listWebhookEndpointsWithHttpInfo()
+> ApiResponse<ListWebhookEndpointsResponse> listWebhookEndpointsWithHttpInfo(limit, startingAfter, endingBefore)
 
 List webhook endpoints
 
@@ -647,8 +642,11 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
+        Integer limit = 25; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
         try {
-            ApiResponse<ListWebhookEndpoints200Response> response = apiInstance.listWebhookEndpointsWithHttpInfo();
+            ApiResponse<ListWebhookEndpointsResponse> response = apiInstance.listWebhookEndpointsWithHttpInfo(limit, startingAfter, endingBefore);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -665,11 +663,16 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
 
 ### Return type
 
-ApiResponse<[**ListWebhookEndpoints200Response**](ListWebhookEndpoints200Response.md)>
+ApiResponse<[**ListWebhookEndpointsResponse**](ListWebhookEndpointsResponse.md)>
 
 
 ### Authorization
@@ -684,20 +687,17 @@ ApiResponse<[**ListWebhookEndpoints200Response**](ListWebhookEndpoints200Respons
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## listWebhookEvents
 
-> ListWebhookEvents200Response listWebhookEvents()
+> ListWebhookEventsResponse listWebhookEvents(limit, status, startingAfter, endingBefore)
 
 List webhook events
 
@@ -728,8 +728,12 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
+        Integer limit = 25; // Integer |
+        String status = "all"; // String |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
         try {
-            ListWebhookEvents200Response result = apiInstance.listWebhookEvents();
+            ListWebhookEventsResponse result = apiInstance.listWebhookEvents(limit, status, startingAfter, endingBefore);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#listWebhookEvents");
@@ -744,11 +748,17 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **status** | **String**|  | [optional] [default to all] [enum: all, delivered, failed, pending, skipped] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
 
 ### Return type
 
-[**ListWebhookEvents200Response**](ListWebhookEvents200Response.md)
+[**ListWebhookEventsResponse**](ListWebhookEventsResponse.md)
 
 
 ### Authorization
@@ -763,19 +773,16 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## listWebhookEventsWithHttpInfo
 
-> ApiResponse<ListWebhookEvents200Response> listWebhookEventsWithHttpInfo()
+> ApiResponse<ListWebhookEventsResponse> listWebhookEventsWithHttpInfo(limit, status, startingAfter, endingBefore)
 
 List webhook events
 
@@ -807,8 +814,12 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
+        Integer limit = 25; // Integer |
+        String status = "all"; // String |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
         try {
-            ApiResponse<ListWebhookEvents200Response> response = apiInstance.listWebhookEventsWithHttpInfo();
+            ApiResponse<ListWebhookEventsResponse> response = apiInstance.listWebhookEventsWithHttpInfo(limit, status, startingAfter, endingBefore);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -825,11 +836,17 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **status** | **String**|  | [optional] [default to all] [enum: all, delivered, failed, pending, skipped] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
 
 ### Return type
 
-ApiResponse<[**ListWebhookEvents200Response**](ListWebhookEvents200Response.md)>
+ApiResponse<[**ListWebhookEventsResponse**](ListWebhookEventsResponse.md)>
 
 
 ### Authorization
@@ -844,20 +861,17 @@ ApiResponse<[**ListWebhookEvents200Response**](ListWebhookEvents200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## replayWebhookEvent
 
-> ReplayWebhookEvent200Response replayWebhookEvent(eventId, idempotencyKey)
+> ReplayWebhookEventResponse replayWebhookEvent(eventId, idempotencyKey)
 
 Replay webhook event
 
@@ -891,7 +905,7 @@ public class Example {
         String eventId = "eventId_example"; // String |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ReplayWebhookEvent200Response result = apiInstance.replayWebhookEvent(eventId, idempotencyKey);
+            ReplayWebhookEventResponse result = apiInstance.replayWebhookEvent(eventId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#replayWebhookEvent");
@@ -910,11 +924,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**ReplayWebhookEvent200Response**](ReplayWebhookEvent200Response.md)
+[**ReplayWebhookEventResponse**](ReplayWebhookEventResponse.md)
 
 
 ### Authorization
@@ -929,19 +943,18 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## replayWebhookEventWithHttpInfo
 
-> ApiResponse<ReplayWebhookEvent200Response> replayWebhookEventWithHttpInfo(eventId, idempotencyKey)
+> ApiResponse<ReplayWebhookEventResponse> replayWebhookEventWithHttpInfo(eventId, idempotencyKey)
 
 Replay webhook event
 
@@ -976,7 +989,7 @@ public class Example {
         String eventId = "eventId_example"; // String |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<ReplayWebhookEvent200Response> response = apiInstance.replayWebhookEventWithHttpInfo(eventId, idempotencyKey);
+            ApiResponse<ReplayWebhookEventResponse> response = apiInstance.replayWebhookEventWithHttpInfo(eventId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -997,11 +1010,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**ReplayWebhookEvent200Response**](ReplayWebhookEvent200Response.md)>
+ApiResponse<[**ReplayWebhookEventResponse**](ReplayWebhookEventResponse.md)>
 
 
 ### Authorization
@@ -1016,20 +1029,19 @@ ApiResponse<[**ReplayWebhookEvent200Response**](ReplayWebhookEvent200Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## rotateWebhookEndpointSecret
 
-> CreateWebhookEndpoint200Response rotateWebhookEndpointSecret(endpointId, idempotencyKey)
+> RotateWebhookEndpointSecretResponse rotateWebhookEndpointSecret(endpointId, idempotencyKey)
 
 Rotate webhook signing secret
 
@@ -1063,7 +1075,7 @@ public class Example {
         String endpointId = "endpointId_example"; // String |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreateWebhookEndpoint200Response result = apiInstance.rotateWebhookEndpointSecret(endpointId, idempotencyKey);
+            RotateWebhookEndpointSecretResponse result = apiInstance.rotateWebhookEndpointSecret(endpointId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#rotateWebhookEndpointSecret");
@@ -1082,11 +1094,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Response.md)
+[**RotateWebhookEndpointSecretResponse**](RotateWebhookEndpointSecretResponse.md)
 
 
 ### Authorization
@@ -1101,19 +1113,18 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## rotateWebhookEndpointSecretWithHttpInfo
 
-> ApiResponse<CreateWebhookEndpoint200Response> rotateWebhookEndpointSecretWithHttpInfo(endpointId, idempotencyKey)
+> ApiResponse<RotateWebhookEndpointSecretResponse> rotateWebhookEndpointSecretWithHttpInfo(endpointId, idempotencyKey)
 
 Rotate webhook signing secret
 
@@ -1148,7 +1159,7 @@ public class Example {
         String endpointId = "endpointId_example"; // String |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreateWebhookEndpoint200Response> response = apiInstance.rotateWebhookEndpointSecretWithHttpInfo(endpointId, idempotencyKey);
+            ApiResponse<RotateWebhookEndpointSecretResponse> response = apiInstance.rotateWebhookEndpointSecretWithHttpInfo(endpointId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1169,11 +1180,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Response.md)>
+ApiResponse<[**RotateWebhookEndpointSecretResponse**](RotateWebhookEndpointSecretResponse.md)>
 
 
 ### Authorization
@@ -1188,20 +1199,19 @@ ApiResponse<[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Respo
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## updateWebhookEndpoint
 
-> DeleteWebhookEndpoint200Response updateWebhookEndpoint(endpointId, idempotencyKey, updateWebhookEndpointRequest)
+> UpdateWebhookEndpointResponse updateWebhookEndpoint(endpointId, updateWebhookEndpointRequest, idempotencyKey)
 
 Update webhook endpoint
 
@@ -1233,10 +1243,10 @@ public class Example {
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
         String endpointId = "endpointId_example"; // String |
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         UpdateWebhookEndpointRequest updateWebhookEndpointRequest = new UpdateWebhookEndpointRequest(); // UpdateWebhookEndpointRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            DeleteWebhookEndpoint200Response result = apiInstance.updateWebhookEndpoint(endpointId, idempotencyKey, updateWebhookEndpointRequest);
+            UpdateWebhookEndpointResponse result = apiInstance.updateWebhookEndpoint(endpointId, updateWebhookEndpointRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformWebhooksApi#updateWebhookEndpoint");
@@ -1255,12 +1265,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **updateWebhookEndpointRequest** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Response.md)
+[**UpdateWebhookEndpointResponse**](UpdateWebhookEndpointResponse.md)
 
 
 ### Authorization
@@ -1275,19 +1285,18 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## updateWebhookEndpointWithHttpInfo
 
-> ApiResponse<DeleteWebhookEndpoint200Response> updateWebhookEndpointWithHttpInfo(endpointId, idempotencyKey, updateWebhookEndpointRequest)
+> ApiResponse<UpdateWebhookEndpointResponse> updateWebhookEndpointWithHttpInfo(endpointId, updateWebhookEndpointRequest, idempotencyKey)
 
 Update webhook endpoint
 
@@ -1320,10 +1329,10 @@ public class Example {
 
         PlatformWebhooksApi apiInstance = new PlatformWebhooksApi(defaultClient);
         String endpointId = "endpointId_example"; // String |
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         UpdateWebhookEndpointRequest updateWebhookEndpointRequest = new UpdateWebhookEndpointRequest(); // UpdateWebhookEndpointRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<DeleteWebhookEndpoint200Response> response = apiInstance.updateWebhookEndpointWithHttpInfo(endpointId, idempotencyKey, updateWebhookEndpointRequest);
+            ApiResponse<UpdateWebhookEndpointResponse> response = apiInstance.updateWebhookEndpointWithHttpInfo(endpointId, updateWebhookEndpointRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1344,12 +1353,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **endpointId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **updateWebhookEndpointRequest** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Response.md)>
+ApiResponse<[**UpdateWebhookEndpointResponse**](UpdateWebhookEndpointResponse.md)>
 
 
 ### Authorization
@@ -1364,13 +1373,12 @@ ApiResponse<[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Respo
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 

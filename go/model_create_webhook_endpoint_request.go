@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -20,11 +20,8 @@ var _ MappedNullable = &CreateWebhookEndpointRequest{}
 
 // CreateWebhookEndpointRequest struct for CreateWebhookEndpointRequest
 type CreateWebhookEndpointRequest struct {
-	EnabledEvents        []string `json:"enabledEvents,omitempty"`
-	AdditionalProperties map[string]interface{}
+	EnabledEvents []string `json:"enabledEvents,omitempty"`
 }
-
-type _CreateWebhookEndpointRequest CreateWebhookEndpointRequest
 
 // NewCreateWebhookEndpointRequest instantiates a new CreateWebhookEndpointRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -88,33 +85,7 @@ func (o CreateWebhookEndpointRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EnabledEvents) {
 		toSerialize["enabledEvents"] = o.EnabledEvents
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *CreateWebhookEndpointRequest) UnmarshalJSON(data []byte) (err error) {
-	varCreateWebhookEndpointRequest := _CreateWebhookEndpointRequest{}
-
-	err = json.Unmarshal(data, &varCreateWebhookEndpointRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CreateWebhookEndpointRequest(varCreateWebhookEndpointRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "enabledEvents")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCreateWebhookEndpointRequest struct {

@@ -5,17 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | [**CreatePracticeRequestAddress**](CreatePracticeRequestAddress.md) |  |
+**address** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  |
 **attestations** | [**CreatePracticeRequestAttestations**](CreatePracticeRequestAttestations.md) |  |
-**compliance_contact** | [**ListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional]
+**compliance_contact** | [**CreatePracticeRequestComplianceContact**](CreatePracticeRequestComplianceContact.md) |  | [optional]
 **external_id** | **str** |  | [optional]
 **legal_name** | **str** |  | [optional]
+**metadata** | **Dict[str, object]** |  | [optional]
 **name** | **str** |  |
-**prescribers** | [**List[CreatePracticeRequestPrescribersInner]**](CreatePracticeRequestPrescribersInner.md) |  | [optional]
-**primary_contact** | [**ListPractices200ResponseDataInnerContactsPrimary**](ListPractices200ResponseDataInnerContactsPrimary.md) |  | [optional]
+**prescribers** | [**List[CreatePracticeRequestPrescribersInner]**](CreatePracticeRequestPrescribersInner.md) |  | [optional] [default to []]
+**primary_contact** | [**CreatePracticeRequestComplianceContact**](CreatePracticeRequestComplianceContact.md) |  | [optional]
 **support_email** | **str** |  | [optional]
 **support_phone** | **str** |  | [optional]
-**timezone** | **str** |  | [optional]
+**timezone** | **str** |  | [optional] [default to 'America/Detroit']
 
 ## Example
 

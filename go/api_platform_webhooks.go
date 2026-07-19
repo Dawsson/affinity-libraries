@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -26,8 +26,13 @@ type PlatformWebhooksAPIService service
 type ApiCreateWebhookEndpointRequest struct {
 	ctx                          context.Context
 	ApiService                   *PlatformWebhooksAPIService
-	idempotencyKey               *string
 	createWebhookEndpointRequest *CreateWebhookEndpointRequest
+	idempotencyKey               *string
+}
+
+func (r ApiCreateWebhookEndpointRequest) CreateWebhookEndpointRequest(createWebhookEndpointRequest CreateWebhookEndpointRequest) ApiCreateWebhookEndpointRequest {
+	r.createWebhookEndpointRequest = &createWebhookEndpointRequest
+	return r
 }
 
 // Unique operation key required for every mutation.
@@ -36,12 +41,7 @@ func (r ApiCreateWebhookEndpointRequest) IdempotencyKey(idempotencyKey string) A
 	return r
 }
 
-func (r ApiCreateWebhookEndpointRequest) CreateWebhookEndpointRequest(createWebhookEndpointRequest CreateWebhookEndpointRequest) ApiCreateWebhookEndpointRequest {
-	r.createWebhookEndpointRequest = &createWebhookEndpointRequest
-	return r
-}
-
-func (r ApiCreateWebhookEndpointRequest) Execute() (*CreateWebhookEndpoint200Response, *http.Response, error) {
+func (r ApiCreateWebhookEndpointRequest) Execute() (*CreateWebhookEndpointResponse, *http.Response, error) {
 	return r.ApiService.CreateWebhookEndpointExecute(r)
 }
 
@@ -60,13 +60,13 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpoint(ctx context.Context) 
 
 // Execute executes the request
 //
-//	@return CreateWebhookEndpoint200Response
-func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWebhookEndpointRequest) (*CreateWebhookEndpoint200Response, *http.Response, error) {
+//	@return CreateWebhookEndpointResponse
+func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWebhookEndpointRequest) (*CreateWebhookEndpointResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateWebhookEndpoint200Response
+		localVarReturnValue *CreateWebhookEndpointResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlatformWebhooksAPIService.CreateWebhookEndpoint")
@@ -79,12 +79,6 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWeb
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.idempotencyKey == nil {
-		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
-	}
-	if strlen(*r.idempotencyKey) > 255 {
-		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
-	}
 	if r.createWebhookEndpointRequest == nil {
 		return localVarReturnValue, nil, reportError("createWebhookEndpointRequest is required and must be specified")
 	}
@@ -106,7 +100,9 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWeb
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.createWebhookEndpointRequest
 	if r.ctx != nil {
@@ -146,7 +142,7 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWeb
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -157,7 +153,7 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -168,18 +164,7 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -190,18 +175,7 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -212,7 +186,7 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -223,7 +197,7 @@ func (a *PlatformWebhooksAPIService) CreateWebhookEndpointExecute(r ApiCreateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -260,7 +234,7 @@ func (r ApiDeleteWebhookEndpointRequest) IdempotencyKey(idempotencyKey string) A
 	return r
 }
 
-func (r ApiDeleteWebhookEndpointRequest) Execute() (*DeleteWebhookEndpoint200Response, *http.Response, error) {
+func (r ApiDeleteWebhookEndpointRequest) Execute() (*DeleteWebhookEndpointResponse, *http.Response, error) {
 	return r.ApiService.DeleteWebhookEndpointExecute(r)
 }
 
@@ -281,13 +255,13 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpoint(ctx context.Context, 
 
 // Execute executes the request
 //
-//	@return DeleteWebhookEndpoint200Response
-func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWebhookEndpointRequest) (*DeleteWebhookEndpoint200Response, *http.Response, error) {
+//	@return DeleteWebhookEndpointResponse
+func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWebhookEndpointRequest) (*DeleteWebhookEndpointResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *DeleteWebhookEndpoint200Response
+		localVarReturnValue *DeleteWebhookEndpointResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlatformWebhooksAPIService.DeleteWebhookEndpoint")
@@ -301,12 +275,6 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.idempotencyKey == nil {
-		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
-	}
-	if strlen(*r.idempotencyKey) > 255 {
-		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -325,7 +293,9 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -363,7 +333,7 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -374,7 +344,7 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -385,7 +355,7 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -396,7 +366,7 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -407,18 +377,7 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -429,7 +388,7 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -440,7 +399,7 @@ func (a *PlatformWebhooksAPIService) DeleteWebhookEndpointExecute(r ApiDeleteWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -470,7 +429,7 @@ type ApiGetWebhookEventRequest struct {
 	eventId    string
 }
 
-func (r ApiGetWebhookEventRequest) Execute() (*GetWebhookEvent200Response, *http.Response, error) {
+func (r ApiGetWebhookEventRequest) Execute() (*GetWebhookEventResponse, *http.Response, error) {
 	return r.ApiService.GetWebhookEventExecute(r)
 }
 
@@ -491,13 +450,13 @@ func (a *PlatformWebhooksAPIService) GetWebhookEvent(ctx context.Context, eventI
 
 // Execute executes the request
 //
-//	@return GetWebhookEvent200Response
-func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEventRequest) (*GetWebhookEvent200Response, *http.Response, error) {
+//	@return GetWebhookEventResponse
+func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEventRequest) (*GetWebhookEventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetWebhookEvent200Response
+		localVarReturnValue *GetWebhookEventResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlatformWebhooksAPIService.GetWebhookEvent")
@@ -566,7 +525,7 @@ func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEvent
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -577,7 +536,7 @@ func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEvent
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -588,7 +547,7 @@ func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEvent
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -599,29 +558,7 @@ func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEvent
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -632,7 +569,7 @@ func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEvent
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -643,7 +580,7 @@ func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEvent
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -668,11 +605,29 @@ func (a *PlatformWebhooksAPIService) GetWebhookEventExecute(r ApiGetWebhookEvent
 }
 
 type ApiListWebhookEndpointsRequest struct {
-	ctx        context.Context
-	ApiService *PlatformWebhooksAPIService
+	ctx           context.Context
+	ApiService    *PlatformWebhooksAPIService
+	limit         *int32
+	startingAfter *string
+	endingBefore  *string
 }
 
-func (r ApiListWebhookEndpointsRequest) Execute() (*ListWebhookEndpoints200Response, *http.Response, error) {
+func (r ApiListWebhookEndpointsRequest) Limit(limit int32) ApiListWebhookEndpointsRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiListWebhookEndpointsRequest) StartingAfter(startingAfter string) ApiListWebhookEndpointsRequest {
+	r.startingAfter = &startingAfter
+	return r
+}
+
+func (r ApiListWebhookEndpointsRequest) EndingBefore(endingBefore string) ApiListWebhookEndpointsRequest {
+	r.endingBefore = &endingBefore
+	return r
+}
+
+func (r ApiListWebhookEndpointsRequest) Execute() (*ListWebhookEndpointsResponse, *http.Response, error) {
 	return r.ApiService.ListWebhookEndpointsExecute(r)
 }
 
@@ -691,13 +646,13 @@ func (a *PlatformWebhooksAPIService) ListWebhookEndpoints(ctx context.Context) A
 
 // Execute executes the request
 //
-//	@return ListWebhookEndpoints200Response
-func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhookEndpointsRequest) (*ListWebhookEndpoints200Response, *http.Response, error) {
+//	@return ListWebhookEndpointsResponse
+func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhookEndpointsRequest) (*ListWebhookEndpointsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListWebhookEndpoints200Response
+		localVarReturnValue *ListWebhookEndpointsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlatformWebhooksAPIService.ListWebhookEndpoints")
@@ -711,6 +666,19 @@ func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhoo
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 25
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+		r.limit = &defaultValue
+	}
+	if r.startingAfter != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "form", "")
+	}
+	if r.endingBefore != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -765,7 +733,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhoo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -776,7 +744,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -787,40 +755,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -831,7 +766,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -842,7 +777,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -867,11 +802,35 @@ func (a *PlatformWebhooksAPIService) ListWebhookEndpointsExecute(r ApiListWebhoo
 }
 
 type ApiListWebhookEventsRequest struct {
-	ctx        context.Context
-	ApiService *PlatformWebhooksAPIService
+	ctx           context.Context
+	ApiService    *PlatformWebhooksAPIService
+	limit         *int32
+	status        *string
+	startingAfter *string
+	endingBefore  *string
 }
 
-func (r ApiListWebhookEventsRequest) Execute() (*ListWebhookEvents200Response, *http.Response, error) {
+func (r ApiListWebhookEventsRequest) Limit(limit int32) ApiListWebhookEventsRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiListWebhookEventsRequest) Status(status string) ApiListWebhookEventsRequest {
+	r.status = &status
+	return r
+}
+
+func (r ApiListWebhookEventsRequest) StartingAfter(startingAfter string) ApiListWebhookEventsRequest {
+	r.startingAfter = &startingAfter
+	return r
+}
+
+func (r ApiListWebhookEventsRequest) EndingBefore(endingBefore string) ApiListWebhookEventsRequest {
+	r.endingBefore = &endingBefore
+	return r
+}
+
+func (r ApiListWebhookEventsRequest) Execute() (*ListWebhookEventsResponse, *http.Response, error) {
 	return r.ApiService.ListWebhookEventsExecute(r)
 }
 
@@ -890,13 +849,13 @@ func (a *PlatformWebhooksAPIService) ListWebhookEvents(ctx context.Context) ApiL
 
 // Execute executes the request
 //
-//	@return ListWebhookEvents200Response
-func (a *PlatformWebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEventsRequest) (*ListWebhookEvents200Response, *http.Response, error) {
+//	@return ListWebhookEventsResponse
+func (a *PlatformWebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEventsRequest) (*ListWebhookEventsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListWebhookEvents200Response
+		localVarReturnValue *ListWebhookEventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlatformWebhooksAPIService.ListWebhookEvents")
@@ -910,6 +869,26 @@ func (a *PlatformWebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEv
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 25
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+		r.limit = &defaultValue
+	}
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
+	} else {
+		var defaultValue string = "all"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", defaultValue, "form", "")
+		r.status = &defaultValue
+	}
+	if r.startingAfter != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "form", "")
+	}
+	if r.endingBefore != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -964,7 +943,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEv
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -975,7 +954,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -986,40 +965,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1030,7 +976,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1041,7 +987,7 @@ func (a *PlatformWebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEv
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1078,7 +1024,7 @@ func (r ApiReplayWebhookEventRequest) IdempotencyKey(idempotencyKey string) ApiR
 	return r
 }
 
-func (r ApiReplayWebhookEventRequest) Execute() (*ReplayWebhookEvent200Response, *http.Response, error) {
+func (r ApiReplayWebhookEventRequest) Execute() (*ReplayWebhookEventResponse, *http.Response, error) {
 	return r.ApiService.ReplayWebhookEventExecute(r)
 }
 
@@ -1099,13 +1045,13 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEvent(ctx context.Context, eve
 
 // Execute executes the request
 //
-//	@return ReplayWebhookEvent200Response
-func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhookEventRequest) (*ReplayWebhookEvent200Response, *http.Response, error) {
+//	@return ReplayWebhookEventResponse
+func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhookEventRequest) (*ReplayWebhookEventResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ReplayWebhookEvent200Response
+		localVarReturnValue *ReplayWebhookEventResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlatformWebhooksAPIService.ReplayWebhookEvent")
@@ -1119,12 +1065,6 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.idempotencyKey == nil {
-		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
-	}
-	if strlen(*r.idempotencyKey) > 255 {
-		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1143,7 +1083,9 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1181,7 +1123,7 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1192,7 +1134,7 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1203,7 +1145,7 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1214,7 +1156,7 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1225,18 +1167,7 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1247,7 +1178,7 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1258,7 +1189,7 @@ func (a *PlatformWebhooksAPIService) ReplayWebhookEventExecute(r ApiReplayWebhoo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1295,7 +1226,7 @@ func (r ApiRotateWebhookEndpointSecretRequest) IdempotencyKey(idempotencyKey str
 	return r
 }
 
-func (r ApiRotateWebhookEndpointSecretRequest) Execute() (*CreateWebhookEndpoint200Response, *http.Response, error) {
+func (r ApiRotateWebhookEndpointSecretRequest) Execute() (*RotateWebhookEndpointSecretResponse, *http.Response, error) {
 	return r.ApiService.RotateWebhookEndpointSecretExecute(r)
 }
 
@@ -1316,13 +1247,13 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecret(ctx context.Con
 
 // Execute executes the request
 //
-//	@return CreateWebhookEndpoint200Response
-func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRotateWebhookEndpointSecretRequest) (*CreateWebhookEndpoint200Response, *http.Response, error) {
+//	@return RotateWebhookEndpointSecretResponse
+func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRotateWebhookEndpointSecretRequest) (*RotateWebhookEndpointSecretResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateWebhookEndpoint200Response
+		localVarReturnValue *RotateWebhookEndpointSecretResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlatformWebhooksAPIService.RotateWebhookEndpointSecret")
@@ -1336,12 +1267,6 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.idempotencyKey == nil {
-		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
-	}
-	if strlen(*r.idempotencyKey) > 255 {
-		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1360,7 +1285,9 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1398,7 +1325,7 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1409,7 +1336,7 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1420,7 +1347,7 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1431,7 +1358,7 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1442,18 +1369,7 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1464,7 +1380,7 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1475,7 +1391,7 @@ func (a *PlatformWebhooksAPIService) RotateWebhookEndpointSecretExecute(r ApiRot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1503,8 +1419,13 @@ type ApiUpdateWebhookEndpointRequest struct {
 	ctx                          context.Context
 	ApiService                   *PlatformWebhooksAPIService
 	endpointId                   string
-	idempotencyKey               *string
 	updateWebhookEndpointRequest *UpdateWebhookEndpointRequest
+	idempotencyKey               *string
+}
+
+func (r ApiUpdateWebhookEndpointRequest) UpdateWebhookEndpointRequest(updateWebhookEndpointRequest UpdateWebhookEndpointRequest) ApiUpdateWebhookEndpointRequest {
+	r.updateWebhookEndpointRequest = &updateWebhookEndpointRequest
+	return r
 }
 
 // Unique operation key required for every mutation.
@@ -1513,12 +1434,7 @@ func (r ApiUpdateWebhookEndpointRequest) IdempotencyKey(idempotencyKey string) A
 	return r
 }
 
-func (r ApiUpdateWebhookEndpointRequest) UpdateWebhookEndpointRequest(updateWebhookEndpointRequest UpdateWebhookEndpointRequest) ApiUpdateWebhookEndpointRequest {
-	r.updateWebhookEndpointRequest = &updateWebhookEndpointRequest
-	return r
-}
-
-func (r ApiUpdateWebhookEndpointRequest) Execute() (*DeleteWebhookEndpoint200Response, *http.Response, error) {
+func (r ApiUpdateWebhookEndpointRequest) Execute() (*UpdateWebhookEndpointResponse, *http.Response, error) {
 	return r.ApiService.UpdateWebhookEndpointExecute(r)
 }
 
@@ -1539,13 +1455,13 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpoint(ctx context.Context, 
 
 // Execute executes the request
 //
-//	@return DeleteWebhookEndpoint200Response
-func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWebhookEndpointRequest) (*DeleteWebhookEndpoint200Response, *http.Response, error) {
+//	@return UpdateWebhookEndpointResponse
+func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWebhookEndpointRequest) (*UpdateWebhookEndpointResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *DeleteWebhookEndpoint200Response
+		localVarReturnValue *UpdateWebhookEndpointResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlatformWebhooksAPIService.UpdateWebhookEndpoint")
@@ -1559,12 +1475,6 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.idempotencyKey == nil {
-		return localVarReturnValue, nil, reportError("idempotencyKey is required and must be specified")
-	}
-	if strlen(*r.idempotencyKey) > 255 {
-		return localVarReturnValue, nil, reportError("idempotencyKey must have less than 255 elements")
-	}
 	if r.updateWebhookEndpointRequest == nil {
 		return localVarReturnValue, nil, reportError("updateWebhookEndpointRequest is required and must be specified")
 	}
@@ -1586,7 +1496,9 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.updateWebhookEndpointRequest
 	if r.ctx != nil {
@@ -1626,7 +1538,7 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1637,7 +1549,7 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1648,7 +1560,7 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1659,7 +1571,7 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1670,18 +1582,7 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListOrders400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1692,7 +1593,7 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1703,7 +1604,7 @@ func (a *PlatformWebhooksAPIService) UpdateWebhookEndpointExecute(r ApiUpdateWeb
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListOrders400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

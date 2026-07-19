@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Credentials** | Pointer to **string** |  | [optional]
 **LicenseStates** | **[]string** |  |
-**Name** | **NullableString** |  |
+**Name** | **string** |  |
 **Npi** | **string** |  |
 
 ## Methods
 
 ### NewCreateOrderRequestAnyOfPrescriber
 
-`func NewCreateOrderRequestAnyOfPrescriber(licenseStates []string, name NullableString, npi string, ) *CreateOrderRequestAnyOfPrescriber`
+`func NewCreateOrderRequestAnyOfPrescriber(licenseStates []string, name string, npi string, ) *CreateOrderRequestAnyOfPrescriber`
 
 NewCreateOrderRequestAnyOfPrescriber instantiates a new CreateOrderRequestAnyOfPrescriber object
 This constructor will assign default values to properties that have it defined,
@@ -93,16 +93,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### SetNameNil
-
-`func (o *CreateOrderRequestAnyOfPrescriber) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CreateOrderRequestAnyOfPrescriber) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetNpi
 
 `func (o *CreateOrderRequestAnyOfPrescriber) GetNpi() string`

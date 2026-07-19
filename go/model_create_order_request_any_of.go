@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -22,15 +22,15 @@ var _ MappedNullable = &CreateOrderRequestAnyOf{}
 
 // CreateOrderRequestAnyOf struct for CreateOrderRequestAnyOf
 type CreateOrderRequestAnyOf struct {
-	CatalogItemId   string                              `json:"catalogItemId"`
-	PracticeId      string                              `json:"practiceId"`
+	CatalogItemId   string                              `json:"catalogItemId" validate:"regexp=^cat_[0-9a-hjkmnp-tv-z]{26}$"`
+	PracticeId      string                              `json:"practiceId" validate:"regexp=^prac_[0-9a-hjkmnp-tv-z]{26}$"`
 	Directions      string                              `json:"directions"`
 	ExternalOrderId string                              `json:"externalOrderId"`
 	Patient         CreateOrderRequestAnyOfPatient      `json:"patient"`
 	Prescriber      CreateOrderRequestAnyOfPrescriber   `json:"prescriber"`
 	Prescription    CreateOrderRequestAnyOfPrescription `json:"prescription"`
 	Quantity        *int32                              `json:"quantity,omitempty"`
-	ReplacesOrderId *string                             `json:"replacesOrderId,omitempty" validate:"regexp=^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"`
+	ReplacesOrderId *string                             `json:"replacesOrderId,omitempty" validate:"regexp=^ord_[0-9a-hjkmnp-tv-z]{26}$"`
 }
 
 type _CreateOrderRequestAnyOf CreateOrderRequestAnyOf

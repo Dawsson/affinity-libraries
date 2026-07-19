@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetApiAccess
 
-> GetApiAccess200Response GetApiAccess(ctx).Execute()
+> GetApiAccessResponse GetApiAccess(ctx).Execute()
 
 Read API key access
 
@@ -37,7 +37,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.GetApiAccess``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetApiAccess`: GetApiAccess200Response
+	// response from `GetApiAccess`: GetApiAccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.GetApiAccess`: %v\n", resp)
 }
 ```
@@ -53,7 +53,7 @@ Other parameters are passed through a pointer to a apiGetApiAccessRequest struct
 
 ### Return type
 
-[**GetApiAccess200Response**](GetApiAccess200Response.md)
+[**GetApiAccessResponse**](GetApiAccessResponse.md)
 
 ### Authorization
 

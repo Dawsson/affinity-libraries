@@ -8,7 +8,8 @@ OpenAPI transport while keeping transport-class names out of application code.
 
 - `list()`
 - `retrieve()`
-- `create()`
+- `createTestDraft()`
+- `releasePrescription()`
 - `update()`
 - `submit()`
 - `cancel()`
@@ -32,5 +33,5 @@ result, err := affinityClient.Orders.List(ctx)
 var result = affinity.orders().list();
 ```
 
-Mutation methods additionally require an idempotency key. Consult the generated model types for the
-request and response fields accepted by the current dated API contract.
+Mutation methods generate an idempotency key automatically. Pass one through mutation options only
+when retrying the same logical request. Consult the generated model types for current fields.

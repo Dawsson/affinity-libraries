@@ -10,7 +10,7 @@ from affinity_sdk.resources.practices import PracticesResource
 from affinity_sdk.resources.webhooks import WebhooksResource
 
 class Affinity:
-    def __init__(self, api_key: str, *, api_version: str = "2026-07-09", host: str = "https://api.joinaffinityai.com") -> None:
+    def __init__(self, api_key: str, *, api_version: str = "2026-07-19", host: str = "https://api.joinaffinityai.com") -> None:
         if not api_key.strip(): raise ValueError("Affinity requires a service API key")
         if "://" not in host: host = f"https://{host}"
         configuration = Configuration(host=host.rstrip("/"), access_token=api_key)

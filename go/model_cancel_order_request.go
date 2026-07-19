@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -12,6 +12,7 @@ Contact: support@joinaffinityai.com
 package affinity
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +22,7 @@ var _ MappedNullable = &CancelOrderRequest{}
 
 // CancelOrderRequest struct for CancelOrderRequest
 type CancelOrderRequest struct {
-	Reason               string `json:"reason"`
-	AdditionalProperties map[string]interface{}
+	Reason string `json:"reason"`
 }
 
 type _CancelOrderRequest CancelOrderRequest
@@ -80,11 +80,6 @@ func (o CancelOrderRequest) MarshalJSON() ([]byte, error) {
 func (o CancelOrderRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["reason"] = o.Reason
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -112,20 +107,15 @@ func (o *CancelOrderRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varCancelOrderRequest := _CancelOrderRequest{}
 
-	err = json.Unmarshal(data, &varCancelOrderRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCancelOrderRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CancelOrderRequest(varCancelOrderRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "reason")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

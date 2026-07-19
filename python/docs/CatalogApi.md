@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **list_catalog_items**
-> ListCatalogItems200Response list_catalog_items(query=query)
+> ListCatalogItemsResponse list_catalog_items(query=query, limit=limit, starting_after=starting_after, ending_before=ending_before, route=route)
 
 List catalog items
 
-Searches the Affinity catalog across all connected compounders and routing restrictions.
+Lists the catalog items that are eligible for the authenticated account and mode.
 
 ### Example
 
@@ -21,7 +21,7 @@ Searches the Affinity catalog across all connected compounders and routing restr
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.list_catalog_items200_response import ListCatalogItems200Response
+from affinity_sdk.models.list_catalog_items_response import ListCatalogItemsResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -52,10 +52,14 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.CatalogApi(api_client)
     query = 'query_example' # str |  (optional)
+    limit = 50 # int |  (optional) (default to 50)
+    starting_after = 'starting_after_example' # str |  (optional)
+    ending_before = 'ending_before_example' # str |  (optional)
+    route = all # str |  (optional) (default to all)
 
     try:
         # List catalog items
-        api_response = api_instance.list_catalog_items(query=query)
+        api_response = api_instance.list_catalog_items(query=query, limit=limit, starting_after=starting_after, ending_before=ending_before, route=route)
         print("The response of CatalogApi->list_catalog_items:\n")
         pprint(api_response)
     except Exception as e:
@@ -70,10 +74,14 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **str**|  | [optional]
+ **limit** | **int**|  | [optional] [default to 50]
+ **starting_after** | **str**|  | [optional]
+ **ending_before** | **str**|  | [optional]
+ **route** | **str**|  | [optional] [default to all]
 
 ### Return type
 
-[**ListCatalogItems200Response**](ListCatalogItems200Response.md)
+[**ListCatalogItemsResponse**](ListCatalogItemsResponse.md)
 
 ### Authorization
 
@@ -88,15 +96,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

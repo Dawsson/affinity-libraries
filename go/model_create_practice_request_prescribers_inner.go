@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -25,7 +25,7 @@ type CreatePracticeRequestPrescribersInner struct {
 	Credentials   NullableString `json:"credentials,omitempty"`
 	LicenseStates []string       `json:"licenseStates"`
 	Name          string         `json:"name"`
-	Npi           string         `json:"npi"`
+	Npi           string         `json:"npi" validate:"regexp=^\\\\d{10}$"`
 }
 
 type _CreatePracticeRequestPrescribersInner CreatePracticeRequestPrescribersInner

@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -22,10 +22,10 @@ var _ MappedNullable = &CreateOrderRequestAnyOfPrescriber{}
 
 // CreateOrderRequestAnyOfPrescriber struct for CreateOrderRequestAnyOfPrescriber
 type CreateOrderRequestAnyOfPrescriber struct {
-	Credentials   *string        `json:"credentials,omitempty"`
-	LicenseStates []string       `json:"licenseStates"`
-	Name          NullableString `json:"name"`
-	Npi           string         `json:"npi" validate:"regexp=^\\\\d{10}$"`
+	Credentials   *string  `json:"credentials,omitempty"`
+	LicenseStates []string `json:"licenseStates"`
+	Name          string   `json:"name"`
+	Npi           string   `json:"npi" validate:"regexp=^\\\\d{10}$"`
 }
 
 type _CreateOrderRequestAnyOfPrescriber CreateOrderRequestAnyOfPrescriber
@@ -34,7 +34,7 @@ type _CreateOrderRequestAnyOfPrescriber CreateOrderRequestAnyOfPrescriber
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateOrderRequestAnyOfPrescriber(licenseStates []string, name NullableString, npi string) *CreateOrderRequestAnyOfPrescriber {
+func NewCreateOrderRequestAnyOfPrescriber(licenseStates []string, name string, npi string) *CreateOrderRequestAnyOfPrescriber {
 	this := CreateOrderRequestAnyOfPrescriber{}
 	this.LicenseStates = licenseStates
 	this.Name = name
@@ -107,29 +107,27 @@ func (o *CreateOrderRequestAnyOfPrescriber) SetLicenseStates(v []string) {
 }
 
 // GetName returns the Name field value
-// If the value is explicit nil, the zero value for string will be returned
 func (o *CreateOrderRequestAnyOfPrescriber) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Name.Get()
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateOrderRequestAnyOfPrescriber) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return &o.Name, true
 }
 
 // SetName sets field value
 func (o *CreateOrderRequestAnyOfPrescriber) SetName(v string) {
-	o.Name.Set(&v)
+	o.Name = v
 }
 
 // GetNpi returns the Npi field value
@@ -170,7 +168,7 @@ func (o CreateOrderRequestAnyOfPrescriber) ToMap() (map[string]interface{}, erro
 		toSerialize["credentials"] = o.Credentials
 	}
 	toSerialize["licenseStates"] = o.LicenseStates
-	toSerialize["name"] = o.Name.Get()
+	toSerialize["name"] = o.Name
 	toSerialize["npi"] = o.Npi
 	return toSerialize, nil
 }

@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -12,6 +12,7 @@ Contact: support@joinaffinityai.com
 package affinity
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,11 +22,10 @@ var _ MappedNullable = &CreatePracticeRequestAttestations{}
 
 // CreatePracticeRequestAttestations struct for CreatePracticeRequestAttestations
 type CreatePracticeRequestAttestations struct {
-	AuthorizedPhiTransfer          bool `json:"authorizedPhiTransfer"`
 	AuthorizedPracticeRelationship bool `json:"authorizedPracticeRelationship"`
+	AuthorizedPhiTransfer          bool `json:"authorizedPhiTransfer"`
 	MinimumNecessaryPhi            bool `json:"minimumNecessaryPhi"`
 	ProviderDataAccuracy           bool `json:"providerDataAccuracy"`
-	AdditionalProperties           map[string]interface{}
 }
 
 type _CreatePracticeRequestAttestations CreatePracticeRequestAttestations
@@ -34,10 +34,10 @@ type _CreatePracticeRequestAttestations CreatePracticeRequestAttestations
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreatePracticeRequestAttestations(authorizedPhiTransfer bool, authorizedPracticeRelationship bool, minimumNecessaryPhi bool, providerDataAccuracy bool) *CreatePracticeRequestAttestations {
+func NewCreatePracticeRequestAttestations(authorizedPracticeRelationship bool, authorizedPhiTransfer bool, minimumNecessaryPhi bool, providerDataAccuracy bool) *CreatePracticeRequestAttestations {
 	this := CreatePracticeRequestAttestations{}
-	this.AuthorizedPhiTransfer = authorizedPhiTransfer
 	this.AuthorizedPracticeRelationship = authorizedPracticeRelationship
+	this.AuthorizedPhiTransfer = authorizedPhiTransfer
 	this.MinimumNecessaryPhi = minimumNecessaryPhi
 	this.ProviderDataAccuracy = providerDataAccuracy
 	return &this
@@ -49,30 +49,6 @@ func NewCreatePracticeRequestAttestations(authorizedPhiTransfer bool, authorized
 func NewCreatePracticeRequestAttestationsWithDefaults() *CreatePracticeRequestAttestations {
 	this := CreatePracticeRequestAttestations{}
 	return &this
-}
-
-// GetAuthorizedPhiTransfer returns the AuthorizedPhiTransfer field value
-func (o *CreatePracticeRequestAttestations) GetAuthorizedPhiTransfer() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.AuthorizedPhiTransfer
-}
-
-// GetAuthorizedPhiTransferOk returns a tuple with the AuthorizedPhiTransfer field value
-// and a boolean to check if the value has been set.
-func (o *CreatePracticeRequestAttestations) GetAuthorizedPhiTransferOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizedPhiTransfer, true
-}
-
-// SetAuthorizedPhiTransfer sets field value
-func (o *CreatePracticeRequestAttestations) SetAuthorizedPhiTransfer(v bool) {
-	o.AuthorizedPhiTransfer = v
 }
 
 // GetAuthorizedPracticeRelationship returns the AuthorizedPracticeRelationship field value
@@ -97,6 +73,30 @@ func (o *CreatePracticeRequestAttestations) GetAuthorizedPracticeRelationshipOk(
 // SetAuthorizedPracticeRelationship sets field value
 func (o *CreatePracticeRequestAttestations) SetAuthorizedPracticeRelationship(v bool) {
 	o.AuthorizedPracticeRelationship = v
+}
+
+// GetAuthorizedPhiTransfer returns the AuthorizedPhiTransfer field value
+func (o *CreatePracticeRequestAttestations) GetAuthorizedPhiTransfer() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AuthorizedPhiTransfer
+}
+
+// GetAuthorizedPhiTransferOk returns a tuple with the AuthorizedPhiTransfer field value
+// and a boolean to check if the value has been set.
+func (o *CreatePracticeRequestAttestations) GetAuthorizedPhiTransferOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizedPhiTransfer, true
+}
+
+// SetAuthorizedPhiTransfer sets field value
+func (o *CreatePracticeRequestAttestations) SetAuthorizedPhiTransfer(v bool) {
+	o.AuthorizedPhiTransfer = v
 }
 
 // GetMinimumNecessaryPhi returns the MinimumNecessaryPhi field value
@@ -157,15 +157,10 @@ func (o CreatePracticeRequestAttestations) MarshalJSON() ([]byte, error) {
 
 func (o CreatePracticeRequestAttestations) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authorizedPhiTransfer"] = o.AuthorizedPhiTransfer
 	toSerialize["authorizedPracticeRelationship"] = o.AuthorizedPracticeRelationship
+	toSerialize["authorizedPhiTransfer"] = o.AuthorizedPhiTransfer
 	toSerialize["minimumNecessaryPhi"] = o.MinimumNecessaryPhi
 	toSerialize["providerDataAccuracy"] = o.ProviderDataAccuracy
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -174,8 +169,8 @@ func (o *CreatePracticeRequestAttestations) UnmarshalJSON(data []byte) (err erro
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authorizedPhiTransfer",
 		"authorizedPracticeRelationship",
+		"authorizedPhiTransfer",
 		"minimumNecessaryPhi",
 		"providerDataAccuracy",
 	}
@@ -196,23 +191,15 @@ func (o *CreatePracticeRequestAttestations) UnmarshalJSON(data []byte) (err erro
 
 	varCreatePracticeRequestAttestations := _CreatePracticeRequestAttestations{}
 
-	err = json.Unmarshal(data, &varCreatePracticeRequestAttestations)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreatePracticeRequestAttestations)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreatePracticeRequestAttestations(varCreatePracticeRequestAttestations)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorizedPhiTransfer")
-		delete(additionalProperties, "authorizedPracticeRelationship")
-		delete(additionalProperties, "minimumNecessaryPhi")
-		delete(additionalProperties, "providerDataAccuracy")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

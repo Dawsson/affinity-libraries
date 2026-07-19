@@ -15,7 +15,7 @@
 |**prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  |  |
 |**prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  |  |
 |**quantity** | **Integer** |  |  [optional] |
-|**replacesOrderId** | **UUID** |  |  [optional] |
+|**replacesOrderId** | **String** |  |  [optional] |
 
 
 

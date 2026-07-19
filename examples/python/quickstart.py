@@ -11,7 +11,7 @@ def main() -> None:
 
     with affinity_sdk.Affinity(
         api_key,
-        api_version="2026-07-09",
+        api_version="2026-07-19",
         host="api.joinaffinityai.com",
     ) as affinity:
 
@@ -35,19 +35,19 @@ def main() -> None:
         webhooks = affinity.webhooks.list_endpoints()
 
         print("Organization", organization.account)
-        print(f"Found {len(catalog.items)} matching sandbox catalog items")
-        for item in catalog.items[:3]:
+        print(f"Found {len(catalog.data)} matching sandbox catalog items")
+        for item in catalog.data[:3]:
             print("Catalog item", item)
 
         print(f"Found {len(practices.data)} practices")
         for practice in practices.data:
             print("Practice", practice)
 
-        print(f"Found {len(orders.orders)} sandbox orders")
-        for order in orders.orders[:5]:
+        print(f"Found {len(orders.data)} sandbox orders")
+        for order in orders.data[:5]:
             print("Order", order)
 
-        print(f"Found {len(webhooks.endpoints)} test webhook endpoints")
+        print(f"Found {len(webhooks.data)} test webhook endpoints")
         print("The SDK is authenticated and ready for sandbox integration work.")
 
 

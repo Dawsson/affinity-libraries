@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **create_webhook_endpoint**
-> CreateWebhookEndpoint200Response create_webhook_endpoint(idempotency_key, create_webhook_endpoint_request)
+> CreateWebhookEndpointResponse create_webhook_endpoint(create_webhook_endpoint_request, idempotency_key=idempotency_key)
 
 Create webhook endpoint
 
@@ -26,8 +26,8 @@ Create webhook endpoint
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_webhook_endpoint200_response import CreateWebhookEndpoint200Response
 from affinity_sdk.models.create_webhook_endpoint_request import CreateWebhookEndpointRequest
+from affinity_sdk.models.create_webhook_endpoint_response import CreateWebhookEndpointResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -57,12 +57,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
     create_webhook_endpoint_request = affinity_sdk.CreateWebhookEndpointRequest() # CreateWebhookEndpointRequest |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Create webhook endpoint
-        api_response = api_instance.create_webhook_endpoint(idempotency_key, create_webhook_endpoint_request)
+        api_response = api_instance.create_webhook_endpoint(create_webhook_endpoint_request, idempotency_key=idempotency_key)
         print("The response of PlatformWebhooksApi->create_webhook_endpoint:\n")
         pprint(api_response)
     except Exception as e:
@@ -76,12 +76,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
  **create_webhook_endpoint_request** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md)|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Response.md)
+[**CreateWebhookEndpointResponse**](CreateWebhookEndpointResponse.md)
 
 ### Authorization
 
@@ -96,20 +96,18 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_webhook_endpoint**
-> DeleteWebhookEndpoint200Response delete_webhook_endpoint(endpoint_id, idempotency_key)
+> DeleteWebhookEndpointResponse delete_webhook_endpoint(endpoint_id, idempotency_key=idempotency_key)
 
 Disable webhook endpoint
 
@@ -120,7 +118,7 @@ Disable webhook endpoint
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.delete_webhook_endpoint200_response import DeleteWebhookEndpoint200Response
+from affinity_sdk.models.delete_webhook_endpoint_response import DeleteWebhookEndpointResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -151,11 +149,11 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
     endpoint_id = 'endpoint_id_example' # str |
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Disable webhook endpoint
-        api_response = api_instance.delete_webhook_endpoint(endpoint_id, idempotency_key)
+        api_response = api_instance.delete_webhook_endpoint(endpoint_id, idempotency_key=idempotency_key)
         print("The response of PlatformWebhooksApi->delete_webhook_endpoint:\n")
         pprint(api_response)
     except Exception as e:
@@ -170,11 +168,11 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpoint_id** | **str**|  |
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Response.md)
+[**DeleteWebhookEndpointResponse**](DeleteWebhookEndpointResponse.md)
 
 ### Authorization
 
@@ -189,20 +187,19 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_webhook_event**
-> GetWebhookEvent200Response get_webhook_event(event_id)
+> GetWebhookEventResponse get_webhook_event(event_id)
 
 Read webhook event attempts
 
@@ -213,7 +210,7 @@ Read webhook event attempts
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.get_webhook_event200_response import GetWebhookEvent200Response
+from affinity_sdk.models.get_webhook_event_response import GetWebhookEventResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -265,7 +262,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetWebhookEvent200Response**](GetWebhookEvent200Response.md)
+[**GetWebhookEventResponse**](GetWebhookEventResponse.md)
 
 ### Authorization
 
@@ -280,20 +277,18 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_webhook_endpoints**
-> ListWebhookEndpoints200Response list_webhook_endpoints()
+> ListWebhookEndpointsResponse list_webhook_endpoints(limit=limit, starting_after=starting_after, ending_before=ending_before)
 
 List webhook endpoints
 
@@ -304,7 +299,7 @@ List webhook endpoints
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.list_webhook_endpoints200_response import ListWebhookEndpoints200Response
+from affinity_sdk.models.list_webhook_endpoints_response import ListWebhookEndpointsResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -334,10 +329,13 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
+    limit = 25 # int |  (optional) (default to 25)
+    starting_after = 'starting_after_example' # str |  (optional)
+    ending_before = 'ending_before_example' # str |  (optional)
 
     try:
         # List webhook endpoints
-        api_response = api_instance.list_webhook_endpoints()
+        api_response = api_instance.list_webhook_endpoints(limit=limit, starting_after=starting_after, ending_before=ending_before)
         print("The response of PlatformWebhooksApi->list_webhook_endpoints:\n")
         pprint(api_response)
     except Exception as e:
@@ -348,11 +346,16 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int**|  | [optional] [default to 25]
+ **starting_after** | **str**|  | [optional]
+ **ending_before** | **str**|  | [optional]
 
 ### Return type
 
-[**ListWebhookEndpoints200Response**](ListWebhookEndpoints200Response.md)
+[**ListWebhookEndpointsResponse**](ListWebhookEndpointsResponse.md)
 
 ### Authorization
 
@@ -367,20 +370,17 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_webhook_events**
-> ListWebhookEvents200Response list_webhook_events()
+> ListWebhookEventsResponse list_webhook_events(limit=limit, status=status, starting_after=starting_after, ending_before=ending_before)
 
 List webhook events
 
@@ -391,7 +391,7 @@ List webhook events
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.list_webhook_events200_response import ListWebhookEvents200Response
+from affinity_sdk.models.list_webhook_events_response import ListWebhookEventsResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -421,10 +421,14 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
+    limit = 25 # int |  (optional) (default to 25)
+    status = all # str |  (optional) (default to all)
+    starting_after = 'starting_after_example' # str |  (optional)
+    ending_before = 'ending_before_example' # str |  (optional)
 
     try:
         # List webhook events
-        api_response = api_instance.list_webhook_events()
+        api_response = api_instance.list_webhook_events(limit=limit, status=status, starting_after=starting_after, ending_before=ending_before)
         print("The response of PlatformWebhooksApi->list_webhook_events:\n")
         pprint(api_response)
     except Exception as e:
@@ -435,11 +439,17 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int**|  | [optional] [default to 25]
+ **status** | **str**|  | [optional] [default to all]
+ **starting_after** | **str**|  | [optional]
+ **ending_before** | **str**|  | [optional]
 
 ### Return type
 
-[**ListWebhookEvents200Response**](ListWebhookEvents200Response.md)
+[**ListWebhookEventsResponse**](ListWebhookEventsResponse.md)
 
 ### Authorization
 
@@ -454,20 +464,17 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replay_webhook_event**
-> ReplayWebhookEvent200Response replay_webhook_event(event_id, idempotency_key)
+> ReplayWebhookEventResponse replay_webhook_event(event_id, idempotency_key=idempotency_key)
 
 Replay webhook event
 
@@ -478,7 +485,7 @@ Replay webhook event
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.replay_webhook_event200_response import ReplayWebhookEvent200Response
+from affinity_sdk.models.replay_webhook_event_response import ReplayWebhookEventResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -509,11 +516,11 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
     event_id = 'event_id_example' # str |
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Replay webhook event
-        api_response = api_instance.replay_webhook_event(event_id, idempotency_key)
+        api_response = api_instance.replay_webhook_event(event_id, idempotency_key=idempotency_key)
         print("The response of PlatformWebhooksApi->replay_webhook_event:\n")
         pprint(api_response)
     except Exception as e:
@@ -528,11 +535,11 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **event_id** | **str**|  |
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**ReplayWebhookEvent200Response**](ReplayWebhookEvent200Response.md)
+[**ReplayWebhookEventResponse**](ReplayWebhookEventResponse.md)
 
 ### Authorization
 
@@ -547,20 +554,19 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rotate_webhook_endpoint_secret**
-> CreateWebhookEndpoint200Response rotate_webhook_endpoint_secret(endpoint_id, idempotency_key)
+> RotateWebhookEndpointSecretResponse rotate_webhook_endpoint_secret(endpoint_id, idempotency_key=idempotency_key)
 
 Rotate webhook signing secret
 
@@ -571,7 +577,7 @@ Rotate webhook signing secret
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_webhook_endpoint200_response import CreateWebhookEndpoint200Response
+from affinity_sdk.models.rotate_webhook_endpoint_secret_response import RotateWebhookEndpointSecretResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -602,11 +608,11 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
     endpoint_id = 'endpoint_id_example' # str |
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Rotate webhook signing secret
-        api_response = api_instance.rotate_webhook_endpoint_secret(endpoint_id, idempotency_key)
+        api_response = api_instance.rotate_webhook_endpoint_secret(endpoint_id, idempotency_key=idempotency_key)
         print("The response of PlatformWebhooksApi->rotate_webhook_endpoint_secret:\n")
         pprint(api_response)
     except Exception as e:
@@ -621,11 +627,11 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpoint_id** | **str**|  |
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Response.md)
+[**RotateWebhookEndpointSecretResponse**](RotateWebhookEndpointSecretResponse.md)
 
 ### Authorization
 
@@ -640,20 +646,19 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_webhook_endpoint**
-> DeleteWebhookEndpoint200Response update_webhook_endpoint(endpoint_id, idempotency_key, update_webhook_endpoint_request)
+> UpdateWebhookEndpointResponse update_webhook_endpoint(endpoint_id, update_webhook_endpoint_request, idempotency_key=idempotency_key)
 
 Update webhook endpoint
 
@@ -664,8 +669,8 @@ Update webhook endpoint
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.delete_webhook_endpoint200_response import DeleteWebhookEndpoint200Response
 from affinity_sdk.models.update_webhook_endpoint_request import UpdateWebhookEndpointRequest
+from affinity_sdk.models.update_webhook_endpoint_response import UpdateWebhookEndpointResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -696,12 +701,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PlatformWebhooksApi(api_client)
     endpoint_id = 'endpoint_id_example' # str |
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
     update_webhook_endpoint_request = affinity_sdk.UpdateWebhookEndpointRequest() # UpdateWebhookEndpointRequest |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Update webhook endpoint
-        api_response = api_instance.update_webhook_endpoint(endpoint_id, idempotency_key, update_webhook_endpoint_request)
+        api_response = api_instance.update_webhook_endpoint(endpoint_id, update_webhook_endpoint_request, idempotency_key=idempotency_key)
         print("The response of PlatformWebhooksApi->update_webhook_endpoint:\n")
         pprint(api_response)
     except Exception as e:
@@ -716,12 +721,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpoint_id** | **str**|  |
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
  **update_webhook_endpoint_request** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md)|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Response.md)
+[**UpdateWebhookEndpointResponse**](UpdateWebhookEndpointResponse.md)
 
 ### Authorization
 
@@ -736,15 +741,14 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

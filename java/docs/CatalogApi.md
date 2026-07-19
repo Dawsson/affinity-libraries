@@ -11,11 +11,11 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 ## listCatalogItems
 
-> ListCatalogItems200Response listCatalogItems(query)
+> ListCatalogItemsResponse listCatalogItems(query, limit, startingAfter, endingBefore, route)
 
 List catalog items
 
-Searches the Affinity catalog across all connected compounders and routing restrictions.
+Lists the catalog items that are eligible for the authenticated account and mode.
 
 ### Example
 
@@ -45,8 +45,12 @@ public class Example {
 
         CatalogApi apiInstance = new CatalogApi(defaultClient);
         String query = "query_example"; // String |
+        Integer limit = 50; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
+        String route = "all"; // String |
         try {
-            ListCatalogItems200Response result = apiInstance.listCatalogItems(query);
+            ListCatalogItemsResponse result = apiInstance.listCatalogItems(query, limit, startingAfter, endingBefore, route);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CatalogApi#listCatalogItems");
@@ -65,10 +69,14 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**|  | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
+| **route** | **String**|  | [optional] [default to all] [enum: all, injectable, nasal, oral, sublingual, topical, unknown] |
 
 ### Return type
 
-[**ListCatalogItems200Response**](ListCatalogItems200Response.md)
+[**ListCatalogItemsResponse**](ListCatalogItemsResponse.md)
 
 
 ### Authorization
@@ -83,23 +91,20 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## listCatalogItemsWithHttpInfo
 
-> ApiResponse<ListCatalogItems200Response> listCatalogItemsWithHttpInfo(query)
+> ApiResponse<ListCatalogItemsResponse> listCatalogItemsWithHttpInfo(query, limit, startingAfter, endingBefore, route)
 
 List catalog items
 
-Searches the Affinity catalog across all connected compounders and routing restrictions.
+Lists the catalog items that are eligible for the authenticated account and mode.
 
 ### Example
 
@@ -130,8 +135,12 @@ public class Example {
 
         CatalogApi apiInstance = new CatalogApi(defaultClient);
         String query = "query_example"; // String |
+        Integer limit = 50; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
+        String route = "all"; // String |
         try {
-            ApiResponse<ListCatalogItems200Response> response = apiInstance.listCatalogItemsWithHttpInfo(query);
+            ApiResponse<ListCatalogItemsResponse> response = apiInstance.listCatalogItemsWithHttpInfo(query, limit, startingAfter, endingBefore, route);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -152,10 +161,14 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**|  | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
+| **route** | **String**|  | [optional] [default to all] [enum: all, injectable, nasal, oral, sublingual, topical, unknown] |
 
 ### Return type
 
-ApiResponse<[**ListCatalogItems200Response**](ListCatalogItems200Response.md)>
+ApiResponse<[**ListCatalogItemsResponse**](ListCatalogItemsResponse.md)>
 
 
 ### Authorization
@@ -170,13 +183,10 @@ ApiResponse<[**ListCatalogItems200Response**](ListCatalogItems200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 

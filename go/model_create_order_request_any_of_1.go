@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -22,13 +22,13 @@ var _ MappedNullable = &CreateOrderRequestAnyOf1{}
 
 // CreateOrderRequestAnyOf1 struct for CreateOrderRequestAnyOf1
 type CreateOrderRequestAnyOf1 struct {
-	PracticeId             NullableString                          `json:"practiceId"`
-	ExternalOrderId        string                                  `json:"externalOrderId"`
-	PharmacyOrganizationId string                                  `json:"pharmacyOrganizationId" validate:"regexp=^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"`
-	PrescriptionId         string                                  `json:"prescriptionId" validate:"regexp=^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"`
-	PrescriptionVersionId  string                                  `json:"prescriptionVersionId" validate:"regexp=^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"`
-	RegisteredLocationId   string                                  `json:"registeredLocationId" validate:"regexp=^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"`
-	ShippingAddress        CreateOrderRequestAnyOf1ShippingAddress `json:"shippingAddress"`
+	PracticeId             string                                `json:"practiceId" validate:"regexp=^prac_[0-9a-hjkmnp-tv-z]{26}$"`
+	ExternalOrderId        string                                `json:"externalOrderId"`
+	PharmacyOrganizationId string                                `json:"pharmacyOrganizationId" validate:"regexp=^pharm_[0-9a-hjkmnp-tv-z]{26}$"`
+	PrescriptionId         string                                `json:"prescriptionId" validate:"regexp=^rx_[0-9a-hjkmnp-tv-z]{26}$"`
+	PrescriptionVersionId  string                                `json:"prescriptionVersionId" validate:"regexp=^rxv_[0-9a-hjkmnp-tv-z]{26}$"`
+	RegisteredLocationId   string                                `json:"registeredLocationId" validate:"regexp=^loc_[0-9a-hjkmnp-tv-z]{26}$"`
+	ShippingAddress        CreateOrderRequestAnyOfPatientAddress `json:"shippingAddress"`
 }
 
 type _CreateOrderRequestAnyOf1 CreateOrderRequestAnyOf1
@@ -37,7 +37,7 @@ type _CreateOrderRequestAnyOf1 CreateOrderRequestAnyOf1
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateOrderRequestAnyOf1(practiceId NullableString, externalOrderId string, pharmacyOrganizationId string, prescriptionId string, prescriptionVersionId string, registeredLocationId string, shippingAddress CreateOrderRequestAnyOf1ShippingAddress) *CreateOrderRequestAnyOf1 {
+func NewCreateOrderRequestAnyOf1(practiceId string, externalOrderId string, pharmacyOrganizationId string, prescriptionId string, prescriptionVersionId string, registeredLocationId string, shippingAddress CreateOrderRequestAnyOfPatientAddress) *CreateOrderRequestAnyOf1 {
 	this := CreateOrderRequestAnyOf1{}
 	this.PracticeId = practiceId
 	this.ExternalOrderId = externalOrderId
@@ -58,29 +58,27 @@ func NewCreateOrderRequestAnyOf1WithDefaults() *CreateOrderRequestAnyOf1 {
 }
 
 // GetPracticeId returns the PracticeId field value
-// If the value is explicit nil, the zero value for string will be returned
 func (o *CreateOrderRequestAnyOf1) GetPracticeId() string {
-	if o == nil || o.PracticeId.Get() == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.PracticeId.Get()
+	return o.PracticeId
 }
 
 // GetPracticeIdOk returns a tuple with the PracticeId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateOrderRequestAnyOf1) GetPracticeIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PracticeId.Get(), o.PracticeId.IsSet()
+	return &o.PracticeId, true
 }
 
 // SetPracticeId sets field value
 func (o *CreateOrderRequestAnyOf1) SetPracticeId(v string) {
-	o.PracticeId.Set(&v)
+	o.PracticeId = v
 }
 
 // GetExternalOrderId returns the ExternalOrderId field value
@@ -204,9 +202,9 @@ func (o *CreateOrderRequestAnyOf1) SetRegisteredLocationId(v string) {
 }
 
 // GetShippingAddress returns the ShippingAddress field value
-func (o *CreateOrderRequestAnyOf1) GetShippingAddress() CreateOrderRequestAnyOf1ShippingAddress {
+func (o *CreateOrderRequestAnyOf1) GetShippingAddress() CreateOrderRequestAnyOfPatientAddress {
 	if o == nil {
-		var ret CreateOrderRequestAnyOf1ShippingAddress
+		var ret CreateOrderRequestAnyOfPatientAddress
 		return ret
 	}
 
@@ -215,7 +213,7 @@ func (o *CreateOrderRequestAnyOf1) GetShippingAddress() CreateOrderRequestAnyOf1
 
 // GetShippingAddressOk returns a tuple with the ShippingAddress field value
 // and a boolean to check if the value has been set.
-func (o *CreateOrderRequestAnyOf1) GetShippingAddressOk() (*CreateOrderRequestAnyOf1ShippingAddress, bool) {
+func (o *CreateOrderRequestAnyOf1) GetShippingAddressOk() (*CreateOrderRequestAnyOfPatientAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -223,7 +221,7 @@ func (o *CreateOrderRequestAnyOf1) GetShippingAddressOk() (*CreateOrderRequestAn
 }
 
 // SetShippingAddress sets field value
-func (o *CreateOrderRequestAnyOf1) SetShippingAddress(v CreateOrderRequestAnyOf1ShippingAddress) {
+func (o *CreateOrderRequestAnyOf1) SetShippingAddress(v CreateOrderRequestAnyOfPatientAddress) {
 	o.ShippingAddress = v
 }
 
@@ -237,7 +235,7 @@ func (o CreateOrderRequestAnyOf1) MarshalJSON() ([]byte, error) {
 
 func (o CreateOrderRequestAnyOf1) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["practiceId"] = o.PracticeId.Get()
+	toSerialize["practiceId"] = o.PracticeId
 	toSerialize["externalOrderId"] = o.ExternalOrderId
 	toSerialize["pharmacyOrganizationId"] = o.PharmacyOrganizationId
 	toSerialize["prescriptionId"] = o.PrescriptionId

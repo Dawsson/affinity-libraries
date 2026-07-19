@@ -4,15 +4,15 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_platform_organization**](PlatformsApi.md#get_platform_organization) | **GET** /v1/platform/organization | Read platform organization
+[**get_account**](PlatformsApi.md#get_account) | **GET** /v1/account | Read account
 
 
-# **get_platform_organization**
-> GetPlatformOrganization200Response get_platform_organization(org_id=org_id)
+# **get_account**
+> GetAccountResponse get_account(org_id=org_id)
 
-Read platform organization
+Read account
 
-Reads the authenticated platform organization and current role.
+Returns the platform organization and the current role.
 
 ### Example
 
@@ -21,7 +21,7 @@ Reads the authenticated platform organization and current role.
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.get_platform_organization200_response import GetPlatformOrganization200Response
+from affinity_sdk.models.get_account_response import GetAccountResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -54,12 +54,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     org_id = 'org_id_example' # str |  (optional)
 
     try:
-        # Read platform organization
-        api_response = api_instance.get_platform_organization(org_id=org_id)
-        print("The response of PlatformsApi->get_platform_organization:\n")
+        # Read account
+        api_response = api_instance.get_account(org_id=org_id)
+        print("The response of PlatformsApi->get_account:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PlatformsApi->get_platform_organization: %s\n" % e)
+        print("Exception when calling PlatformsApi->get_account: %s\n" % e)
 ```
 
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetPlatformOrganization200Response**](GetPlatformOrganization200Response.md)
+[**GetAccountResponse**](GetAccountResponse.md)
 
 ### Authorization
 
@@ -88,15 +88,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

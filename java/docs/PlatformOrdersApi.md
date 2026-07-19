@@ -23,11 +23,11 @@ All URIs are relative to *https://api.joinaffinityai.com*
 
 ## cancelOrder
 
-> CreateOrder200Response cancelOrder(orderId, idempotencyKey, cancelOrderRequest)
+> CancelOrderResponse cancelOrder(orderId, cancelOrderRequest, idempotencyKey)
 
 Cancel order
 
-Cancels an order before shipment. Corrections use cancel-and-replace.
+Cancels an order before shipment. To correct an order, cancel it and create a replacement.
 
 ### Example
 
@@ -57,10 +57,10 @@ public class Example {
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String orderId = "orderId_example"; // String |
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         CancelOrderRequest cancelOrderRequest = new CancelOrderRequest(); // CancelOrderRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreateOrder200Response result = apiInstance.cancelOrder(orderId, idempotencyKey, cancelOrderRequest);
+            CancelOrderResponse result = apiInstance.cancelOrder(orderId, cancelOrderRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#cancelOrder");
@@ -79,12 +79,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **cancelOrderRequest** | [**CancelOrderRequest**](CancelOrderRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**CancelOrderResponse**](CancelOrderResponse.md)
 
 
 ### Authorization
@@ -99,23 +99,22 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## cancelOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> cancelOrderWithHttpInfo(orderId, idempotencyKey, cancelOrderRequest)
+> ApiResponse<CancelOrderResponse> cancelOrderWithHttpInfo(orderId, cancelOrderRequest, idempotencyKey)
 
 Cancel order
 
-Cancels an order before shipment. Corrections use cancel-and-replace.
+Cancels an order before shipment. To correct an order, cancel it and create a replacement.
 
 ### Example
 
@@ -146,10 +145,10 @@ public class Example {
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String orderId = "orderId_example"; // String |
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         CancelOrderRequest cancelOrderRequest = new CancelOrderRequest(); // CancelOrderRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.cancelOrderWithHttpInfo(orderId, idempotencyKey, cancelOrderRequest);
+            ApiResponse<CancelOrderResponse> response = apiInstance.cancelOrderWithHttpInfo(orderId, cancelOrderRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -170,12 +169,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **cancelOrderRequest** | [**CancelOrderRequest**](CancelOrderRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
+ApiResponse<[**CancelOrderResponse**](CancelOrderResponse.md)>
 
 
 ### Authorization
@@ -190,24 +189,23 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## createOrder
 
-> CreateOrder200Response createOrder(idempotencyKey, createOrderRequest)
+> CreateOrderResponse createOrder(createOrderRequest, idempotencyKey)
 
 Create order
 
-Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
+Creates an editable test draft. In live mode, it releases an existing signed prescription version.
 
 ### Example
 
@@ -236,10 +234,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         CreateOrderRequest createOrderRequest = new CreateOrderRequest(); // CreateOrderRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreateOrder200Response result = apiInstance.createOrder(idempotencyKey, createOrderRequest);
+            CreateOrderResponse result = apiInstance.createOrder(createOrderRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#createOrder");
@@ -257,12 +255,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createOrderRequest** | [**CreateOrderRequest**](CreateOrderRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**CreateOrderResponse**](CreateOrderResponse.md)
 
 
 ### Authorization
@@ -277,23 +275,21 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## createOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> createOrderWithHttpInfo(idempotencyKey, createOrderRequest)
+> ApiResponse<CreateOrderResponse> createOrderWithHttpInfo(createOrderRequest, idempotencyKey)
 
 Create order
 
-Creates an editable synthetic draft in test mode or releases an existing signed immutable prescription version in live mode.
+Creates an editable test draft. In live mode, it releases an existing signed prescription version.
 
 ### Example
 
@@ -323,10 +319,10 @@ public class Example {
         //affinityApiKey.setApiKeyPrefix("Token");
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         CreateOrderRequest createOrderRequest = new CreateOrderRequest(); // CreateOrderRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.createOrderWithHttpInfo(idempotencyKey, createOrderRequest);
+            ApiResponse<CreateOrderResponse> response = apiInstance.createOrderWithHttpInfo(createOrderRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -346,12 +342,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **createOrderRequest** | [**CreateOrderRequest**](CreateOrderRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
+ApiResponse<[**CreateOrderResponse**](CreateOrderResponse.md)>
 
 
 ### Authorization
@@ -366,20 +362,18 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## getOrder
 
-> CreateOrder200Response getOrder(orderId)
+> GetOrderResponse getOrder(orderId)
 
 Read order
 
@@ -412,7 +406,7 @@ public class Example {
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String orderId = "orderId_example"; // String |
         try {
-            CreateOrder200Response result = apiInstance.getOrder(orderId);
+            GetOrderResponse result = apiInstance.getOrder(orderId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#getOrder");
@@ -434,7 +428,7 @@ public class Example {
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**GetOrderResponse**](GetOrderResponse.md)
 
 
 ### Authorization
@@ -449,19 +443,17 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## getOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> getOrderWithHttpInfo(orderId)
+> ApiResponse<GetOrderResponse> getOrderWithHttpInfo(orderId)
 
 Read order
 
@@ -495,7 +487,7 @@ public class Example {
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String orderId = "orderId_example"; // String |
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.getOrderWithHttpInfo(orderId);
+            ApiResponse<GetOrderResponse> response = apiInstance.getOrderWithHttpInfo(orderId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -519,7 +511,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
+ApiResponse<[**GetOrderResponse**](GetOrderResponse.md)>
 
 
 ### Authorization
@@ -534,20 +526,18 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## listOrderEvents
 
-> ListOrderEvents200Response listOrderEvents(orderId)
+> ListOrderEventsResponse listOrderEvents(orderId, limit, startingAfter, endingBefore)
 
 List order events
 
@@ -579,8 +569,11 @@ public class Example {
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String orderId = "orderId_example"; // String |
+        Integer limit = 25; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
         try {
-            ListOrderEvents200Response result = apiInstance.listOrderEvents(orderId);
+            ListOrderEventsResponse result = apiInstance.listOrderEvents(orderId, limit, startingAfter, endingBefore);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#listOrderEvents");
@@ -599,10 +592,13 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
 
 ### Return type
 
-[**ListOrderEvents200Response**](ListOrderEvents200Response.md)
+[**ListOrderEventsResponse**](ListOrderEventsResponse.md)
 
 
 ### Authorization
@@ -617,19 +613,17 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## listOrderEventsWithHttpInfo
 
-> ApiResponse<ListOrderEvents200Response> listOrderEventsWithHttpInfo(orderId)
+> ApiResponse<ListOrderEventsResponse> listOrderEventsWithHttpInfo(orderId, limit, startingAfter, endingBefore)
 
 List order events
 
@@ -662,8 +656,11 @@ public class Example {
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String orderId = "orderId_example"; // String |
+        Integer limit = 25; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
         try {
-            ApiResponse<ListOrderEvents200Response> response = apiInstance.listOrderEventsWithHttpInfo(orderId);
+            ApiResponse<ListOrderEventsResponse> response = apiInstance.listOrderEventsWithHttpInfo(orderId, limit, startingAfter, endingBefore);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -684,10 +681,13 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
 
 ### Return type
 
-ApiResponse<[**ListOrderEvents200Response**](ListOrderEvents200Response.md)>
+ApiResponse<[**ListOrderEventsResponse**](ListOrderEventsResponse.md)>
 
 
 ### Authorization
@@ -702,20 +702,18 @@ ApiResponse<[**ListOrderEvents200Response**](ListOrderEvents200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## listOrders
 
-> ListOrders200Response listOrders(externalOrderId, patientExternalId)
+> ListOrdersResponse listOrders(externalOrderId, patientExternalId, limit, startingAfter, endingBefore, practiceId, status)
 
 List platform orders
 
@@ -748,8 +746,13 @@ public class Example {
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String externalOrderId = "externalOrderId_example"; // String |
         String patientExternalId = "patientExternalId_example"; // String |
+        Integer limit = 100; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
+        String practiceId = "practiceId_example"; // String |
+        String status = "blocked"; // String |
         try {
-            ListOrders200Response result = apiInstance.listOrders(externalOrderId, patientExternalId);
+            ListOrdersResponse result = apiInstance.listOrders(externalOrderId, patientExternalId, limit, startingAfter, endingBefore, practiceId, status);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#listOrders");
@@ -769,10 +772,15 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **externalOrderId** | **String**|  | [optional] |
 | **patientExternalId** | **String**|  | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 100] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
+| **practiceId** | **String**|  | [optional] |
+| **status** | **String**|  | [optional] [enum: blocked, cancelled, delivered, draft, processing, shipped, submitted] |
 
 ### Return type
 
-[**ListOrders200Response**](ListOrders200Response.md)
+[**ListOrdersResponse**](ListOrdersResponse.md)
 
 
 ### Authorization
@@ -787,19 +795,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## listOrdersWithHttpInfo
 
-> ApiResponse<ListOrders200Response> listOrdersWithHttpInfo(externalOrderId, patientExternalId)
+> ApiResponse<ListOrdersResponse> listOrdersWithHttpInfo(externalOrderId, patientExternalId, limit, startingAfter, endingBefore, practiceId, status)
 
 List platform orders
 
@@ -833,8 +838,13 @@ public class Example {
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String externalOrderId = "externalOrderId_example"; // String |
         String patientExternalId = "patientExternalId_example"; // String |
+        Integer limit = 100; // Integer |
+        String startingAfter = "startingAfter_example"; // String |
+        String endingBefore = "endingBefore_example"; // String |
+        String practiceId = "practiceId_example"; // String |
+        String status = "blocked"; // String |
         try {
-            ApiResponse<ListOrders200Response> response = apiInstance.listOrdersWithHttpInfo(externalOrderId, patientExternalId);
+            ApiResponse<ListOrdersResponse> response = apiInstance.listOrdersWithHttpInfo(externalOrderId, patientExternalId, limit, startingAfter, endingBefore, practiceId, status);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -856,10 +866,15 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **externalOrderId** | **String**|  | [optional] |
 | **patientExternalId** | **String**|  | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 100] |
+| **startingAfter** | **String**|  | [optional] |
+| **endingBefore** | **String**|  | [optional] |
+| **practiceId** | **String**|  | [optional] |
+| **status** | **String**|  | [optional] [enum: blocked, cancelled, delivered, draft, processing, shipped, submitted] |
 
 ### Return type
 
-ApiResponse<[**ListOrders200Response**](ListOrders200Response.md)>
+ApiResponse<[**ListOrdersResponse**](ListOrdersResponse.md)>
 
 
 ### Authorization
@@ -874,24 +889,21 @@ ApiResponse<[**ListOrders200Response**](ListOrders200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## submitOrder
 
-> CreateOrder200Response submitOrder(orderId, idempotencyKey)
+> SubmitOrderResponse submitOrder(orderId, idempotencyKey)
 
 Submit order
 
-Validates and submits an immutable order to the Affinity review queue.
+Checks a test draft and submits it to the test review queue.
 
 ### Example
 
@@ -923,7 +935,7 @@ public class Example {
         String orderId = "orderId_example"; // String |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreateOrder200Response result = apiInstance.submitOrder(orderId, idempotencyKey);
+            SubmitOrderResponse result = apiInstance.submitOrder(orderId, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#submitOrder");
@@ -942,11 +954,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**SubmitOrderResponse**](SubmitOrderResponse.md)
 
 
 ### Authorization
@@ -961,23 +973,22 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## submitOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> submitOrderWithHttpInfo(orderId, idempotencyKey)
+> ApiResponse<SubmitOrderResponse> submitOrderWithHttpInfo(orderId, idempotencyKey)
 
 Submit order
 
-Validates and submits an immutable order to the Affinity review queue.
+Checks a test draft and submits it to the test review queue.
 
 ### Example
 
@@ -1010,7 +1021,7 @@ public class Example {
         String orderId = "orderId_example"; // String |
         String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.submitOrderWithHttpInfo(orderId, idempotencyKey);
+            ApiResponse<SubmitOrderResponse> response = apiInstance.submitOrderWithHttpInfo(orderId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1031,11 +1042,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
+ApiResponse<[**SubmitOrderResponse**](SubmitOrderResponse.md)>
 
 
 ### Authorization
@@ -1050,24 +1061,23 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 
 ## updateOrder
 
-> CreateOrder200Response updateOrder(orderId, idempotencyKey, updateOrderRequest)
+> UpdateOrderResponse updateOrder(orderId, updateOrderRequest, idempotencyKey)
 
 Update draft order
 
-Updates an order while it remains a draft.
+Updates a test order that is in the draft state.
 
 ### Example
 
@@ -1097,10 +1107,10 @@ public class Example {
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String orderId = "orderId_example"; // String |
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest(); // UpdateOrderRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            CreateOrder200Response result = apiInstance.updateOrder(orderId, idempotencyKey, updateOrderRequest);
+            UpdateOrderResponse result = apiInstance.updateOrder(orderId, updateOrderRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PlatformOrdersApi#updateOrder");
@@ -1119,12 +1129,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **updateOrderRequest** | [**UpdateOrderRequest**](UpdateOrderRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-[**CreateOrder200Response**](CreateOrder200Response.md)
+[**UpdateOrderResponse**](UpdateOrderResponse.md)
 
 
 ### Authorization
@@ -1139,23 +1149,22 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 ## updateOrderWithHttpInfo
 
-> ApiResponse<CreateOrder200Response> updateOrderWithHttpInfo(orderId, idempotencyKey, updateOrderRequest)
+> ApiResponse<UpdateOrderResponse> updateOrderWithHttpInfo(orderId, updateOrderRequest, idempotencyKey)
 
 Update draft order
 
-Updates an order while it remains a draft.
+Updates a test order that is in the draft state.
 
 ### Example
 
@@ -1186,10 +1195,10 @@ public class Example {
 
         PlatformOrdersApi apiInstance = new PlatformOrdersApi(defaultClient);
         String orderId = "orderId_example"; // String |
-        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest(); // UpdateOrderRequest |
+        String idempotencyKey = "idempotencyKey_example"; // String | Unique operation key required for every mutation.
         try {
-            ApiResponse<CreateOrder200Response> response = apiInstance.updateOrderWithHttpInfo(orderId, idempotencyKey, updateOrderRequest);
+            ApiResponse<UpdateOrderResponse> response = apiInstance.updateOrderWithHttpInfo(orderId, updateOrderRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1210,12 +1219,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **orderId** | **String**|  | |
-| **idempotencyKey** | **String**| Unique operation key required for every mutation. | |
 | **updateOrderRequest** | [**UpdateOrderRequest**](UpdateOrderRequest.md)|  | |
+| **idempotencyKey** | **String**| Unique operation key required for every mutation. | [optional] |
 
 ### Return type
 
-ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
+ApiResponse<[**UpdateOrderResponse**](UpdateOrderResponse.md)>
 
 
 ### Authorization
@@ -1230,13 +1239,12 @@ ApiResponse<[**CreateOrder200Response**](CreateOrder200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 

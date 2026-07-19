@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PracticeId** | **NullableString** |  |
+**PracticeId** | **string** |  |
 **ExternalOrderId** | **string** |  |
 **PharmacyOrganizationId** | **string** |  |
 **PrescriptionId** | **string** |  |
 **PrescriptionVersionId** | **string** |  |
 **RegisteredLocationId** | **string** |  |
-**ShippingAddress** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  |
+**ShippingAddress** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  |
 
 ## Methods
 
 ### NewCreateOrderRequestAnyOf1
 
-`func NewCreateOrderRequestAnyOf1(practiceId NullableString, externalOrderId string, pharmacyOrganizationId string, prescriptionId string, prescriptionVersionId string, registeredLocationId string, shippingAddress CreateOrderRequestAnyOf1ShippingAddress, ) *CreateOrderRequestAnyOf1`
+`func NewCreateOrderRequestAnyOf1(practiceId string, externalOrderId string, pharmacyOrganizationId string, prescriptionId string, prescriptionVersionId string, registeredLocationId string, shippingAddress CreateOrderRequestAnyOfPatientAddress, ) *CreateOrderRequestAnyOf1`
 
 NewCreateOrderRequestAnyOf1 instantiates a new CreateOrderRequestAnyOf1 object
 This constructor will assign default values to properties that have it defined,
@@ -51,16 +51,6 @@ and a boolean to check if the value has been set.
 SetPracticeId sets PracticeId field to given value.
 
 
-### SetPracticeIdNil
-
-`func (o *CreateOrderRequestAnyOf1) SetPracticeIdNil(b bool)`
-
- SetPracticeIdNil sets the value for PracticeId to be an explicit nil
-
-### UnsetPracticeId
-`func (o *CreateOrderRequestAnyOf1) UnsetPracticeId()`
-
-UnsetPracticeId ensures that no value is present for PracticeId, not even an explicit nil
 ### GetExternalOrderId
 
 `func (o *CreateOrderRequestAnyOf1) GetExternalOrderId() string`
@@ -163,20 +153,20 @@ SetRegisteredLocationId sets RegisteredLocationId field to given value.
 
 ### GetShippingAddress
 
-`func (o *CreateOrderRequestAnyOf1) GetShippingAddress() CreateOrderRequestAnyOf1ShippingAddress`
+`func (o *CreateOrderRequestAnyOf1) GetShippingAddress() CreateOrderRequestAnyOfPatientAddress`
 
 GetShippingAddress returns the ShippingAddress field if non-nil, zero value otherwise.
 
 ### GetShippingAddressOk
 
-`func (o *CreateOrderRequestAnyOf1) GetShippingAddressOk() (*CreateOrderRequestAnyOf1ShippingAddress, bool)`
+`func (o *CreateOrderRequestAnyOf1) GetShippingAddressOk() (*CreateOrderRequestAnyOfPatientAddress, bool)`
 
 GetShippingAddressOk returns a tuple with the ShippingAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingAddress
 
-`func (o *CreateOrderRequestAnyOf1) SetShippingAddress(v CreateOrderRequestAnyOf1ShippingAddress)`
+`func (o *CreateOrderRequestAnyOf1) SetShippingAddress(v CreateOrderRequestAnyOfPatientAddress)`
 
 SetShippingAddress sets ShippingAddress field to given value.
 

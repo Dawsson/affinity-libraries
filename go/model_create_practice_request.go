@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -12,6 +12,7 @@ Contact: support@joinaffinityai.com
 package affinity
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,18 +22,18 @@ var _ MappedNullable = &CreatePracticeRequest{}
 
 // CreatePracticeRequest struct for CreatePracticeRequest
 type CreatePracticeRequest struct {
-	Address              CreatePracticeRequestAddress                             `json:"address"`
-	Attestations         CreatePracticeRequestAttestations                        `json:"attestations"`
-	ComplianceContact    NullableListPractices200ResponseDataInnerContactsPrimary `json:"complianceContact,omitempty"`
-	ExternalId           NullableString                                           `json:"externalId,omitempty"`
-	LegalName            NullableString                                           `json:"legalName,omitempty"`
-	Name                 NullableString                                           `json:"name"`
-	Prescribers          []CreatePracticeRequestPrescribersInner                  `json:"prescribers,omitempty"`
-	PrimaryContact       NullableListPractices200ResponseDataInnerContactsPrimary `json:"primaryContact,omitempty"`
-	SupportEmail         NullableString                                           `json:"supportEmail,omitempty"`
-	SupportPhone         NullableString                                           `json:"supportPhone,omitempty"`
-	Timezone             NullableString                                           `json:"timezone,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Address           CreateOrderRequestAnyOfPatientAddress          `json:"address"`
+	Attestations      CreatePracticeRequestAttestations              `json:"attestations"`
+	ComplianceContact NullableCreatePracticeRequestComplianceContact `json:"complianceContact,omitempty"`
+	ExternalId        NullableString                                 `json:"externalId,omitempty"`
+	LegalName         NullableString                                 `json:"legalName,omitempty"`
+	Metadata          map[string]interface{}                         `json:"metadata,omitempty"`
+	Name              string                                         `json:"name"`
+	Prescribers       []CreatePracticeRequestPrescribersInner        `json:"prescribers,omitempty"`
+	PrimaryContact    NullableCreatePracticeRequestComplianceContact `json:"primaryContact,omitempty"`
+	SupportEmail      NullableString                                 `json:"supportEmail,omitempty" validate:"regexp=^(?!\\\\.)(?!.*\\\\.\\\\.)([A-Za-z0-9_'+\\\\-\\\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\\\-]*\\\\.)+[A-Za-z]{2,}$"`
+	SupportPhone      NullableString                                 `json:"supportPhone,omitempty"`
+	Timezone          *string                                        `json:"timezone,omitempty"`
 }
 
 type _CreatePracticeRequest CreatePracticeRequest
@@ -41,11 +42,13 @@ type _CreatePracticeRequest CreatePracticeRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreatePracticeRequest(address CreatePracticeRequestAddress, attestations CreatePracticeRequestAttestations, name NullableString) *CreatePracticeRequest {
+func NewCreatePracticeRequest(address CreateOrderRequestAnyOfPatientAddress, attestations CreatePracticeRequestAttestations, name string) *CreatePracticeRequest {
 	this := CreatePracticeRequest{}
 	this.Address = address
 	this.Attestations = attestations
 	this.Name = name
+	var timezone string = "America/Detroit"
+	this.Timezone = &timezone
 	return &this
 }
 
@@ -54,13 +57,15 @@ func NewCreatePracticeRequest(address CreatePracticeRequestAddress, attestations
 // but it doesn't guarantee that properties required by API are set
 func NewCreatePracticeRequestWithDefaults() *CreatePracticeRequest {
 	this := CreatePracticeRequest{}
+	var timezone string = "America/Detroit"
+	this.Timezone = &timezone
 	return &this
 }
 
 // GetAddress returns the Address field value
-func (o *CreatePracticeRequest) GetAddress() CreatePracticeRequestAddress {
+func (o *CreatePracticeRequest) GetAddress() CreateOrderRequestAnyOfPatientAddress {
 	if o == nil {
-		var ret CreatePracticeRequestAddress
+		var ret CreateOrderRequestAnyOfPatientAddress
 		return ret
 	}
 
@@ -69,7 +74,7 @@ func (o *CreatePracticeRequest) GetAddress() CreatePracticeRequestAddress {
 
 // GetAddressOk returns a tuple with the Address field value
 // and a boolean to check if the value has been set.
-func (o *CreatePracticeRequest) GetAddressOk() (*CreatePracticeRequestAddress, bool) {
+func (o *CreatePracticeRequest) GetAddressOk() (*CreateOrderRequestAnyOfPatientAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,7 +82,7 @@ func (o *CreatePracticeRequest) GetAddressOk() (*CreatePracticeRequestAddress, b
 }
 
 // SetAddress sets field value
-func (o *CreatePracticeRequest) SetAddress(v CreatePracticeRequestAddress) {
+func (o *CreatePracticeRequest) SetAddress(v CreateOrderRequestAnyOfPatientAddress) {
 	o.Address = v
 }
 
@@ -106,9 +111,9 @@ func (o *CreatePracticeRequest) SetAttestations(v CreatePracticeRequestAttestati
 }
 
 // GetComplianceContact returns the ComplianceContact field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreatePracticeRequest) GetComplianceContact() ListPractices200ResponseDataInnerContactsPrimary {
+func (o *CreatePracticeRequest) GetComplianceContact() CreatePracticeRequestComplianceContact {
 	if o == nil || IsNil(o.ComplianceContact.Get()) {
-		var ret ListPractices200ResponseDataInnerContactsPrimary
+		var ret CreatePracticeRequestComplianceContact
 		return ret
 	}
 	return *o.ComplianceContact.Get()
@@ -117,7 +122,7 @@ func (o *CreatePracticeRequest) GetComplianceContact() ListPractices200ResponseD
 // GetComplianceContactOk returns a tuple with the ComplianceContact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreatePracticeRequest) GetComplianceContactOk() (*ListPractices200ResponseDataInnerContactsPrimary, bool) {
+func (o *CreatePracticeRequest) GetComplianceContactOk() (*CreatePracticeRequestComplianceContact, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,8 +138,8 @@ func (o *CreatePracticeRequest) HasComplianceContact() bool {
 	return false
 }
 
-// SetComplianceContact gets a reference to the given NullableListPractices200ResponseDataInnerContactsPrimary and assigns it to the ComplianceContact field.
-func (o *CreatePracticeRequest) SetComplianceContact(v ListPractices200ResponseDataInnerContactsPrimary) {
+// SetComplianceContact gets a reference to the given NullableCreatePracticeRequestComplianceContact and assigns it to the ComplianceContact field.
+func (o *CreatePracticeRequest) SetComplianceContact(v CreatePracticeRequestComplianceContact) {
 	o.ComplianceContact.Set(&v)
 }
 
@@ -234,30 +239,60 @@ func (o *CreatePracticeRequest) UnsetLegalName() {
 	o.LegalName.Unset()
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *CreatePracticeRequest) GetMetadata() map[string]interface{} {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreatePracticeRequest) GetMetadataOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return map[string]interface{}{}, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *CreatePracticeRequest) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *CreatePracticeRequest) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
+}
+
 // GetName returns the Name field value
-// If the value is explicit nil, the zero value for string will be returned
 func (o *CreatePracticeRequest) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Name.Get()
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreatePracticeRequest) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return &o.Name, true
 }
 
 // SetName sets field value
 func (o *CreatePracticeRequest) SetName(v string) {
-	o.Name.Set(&v)
+	o.Name = v
 }
 
 // GetPrescribers returns the Prescribers field value if set, zero value otherwise.
@@ -293,9 +328,9 @@ func (o *CreatePracticeRequest) SetPrescribers(v []CreatePracticeRequestPrescrib
 }
 
 // GetPrimaryContact returns the PrimaryContact field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreatePracticeRequest) GetPrimaryContact() ListPractices200ResponseDataInnerContactsPrimary {
+func (o *CreatePracticeRequest) GetPrimaryContact() CreatePracticeRequestComplianceContact {
 	if o == nil || IsNil(o.PrimaryContact.Get()) {
-		var ret ListPractices200ResponseDataInnerContactsPrimary
+		var ret CreatePracticeRequestComplianceContact
 		return ret
 	}
 	return *o.PrimaryContact.Get()
@@ -304,7 +339,7 @@ func (o *CreatePracticeRequest) GetPrimaryContact() ListPractices200ResponseData
 // GetPrimaryContactOk returns a tuple with the PrimaryContact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreatePracticeRequest) GetPrimaryContactOk() (*ListPractices200ResponseDataInnerContactsPrimary, bool) {
+func (o *CreatePracticeRequest) GetPrimaryContactOk() (*CreatePracticeRequestComplianceContact, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -320,8 +355,8 @@ func (o *CreatePracticeRequest) HasPrimaryContact() bool {
 	return false
 }
 
-// SetPrimaryContact gets a reference to the given NullableListPractices200ResponseDataInnerContactsPrimary and assigns it to the PrimaryContact field.
-func (o *CreatePracticeRequest) SetPrimaryContact(v ListPractices200ResponseDataInnerContactsPrimary) {
+// SetPrimaryContact gets a reference to the given NullableCreatePracticeRequestComplianceContact and assigns it to the PrimaryContact field.
+func (o *CreatePracticeRequest) SetPrimaryContact(v CreatePracticeRequestComplianceContact) {
 	o.PrimaryContact.Set(&v)
 }
 
@@ -421,47 +456,36 @@ func (o *CreatePracticeRequest) UnsetSupportPhone() {
 	o.SupportPhone.Unset()
 }
 
-// GetTimezone returns the Timezone field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *CreatePracticeRequest) GetTimezone() string {
-	if o == nil || IsNil(o.Timezone.Get()) {
+	if o == nil || IsNil(o.Timezone) {
 		var ret string
 		return ret
 	}
-	return *o.Timezone.Get()
+	return *o.Timezone
 }
 
 // GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreatePracticeRequest) GetTimezoneOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timezone) {
 		return nil, false
 	}
-	return o.Timezone.Get(), o.Timezone.IsSet()
+	return o.Timezone, true
 }
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *CreatePracticeRequest) HasTimezone() bool {
-	if o != nil && o.Timezone.IsSet() {
+	if o != nil && !IsNil(o.Timezone) {
 		return true
 	}
 
 	return false
 }
 
-// SetTimezone gets a reference to the given NullableString and assigns it to the Timezone field.
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
 func (o *CreatePracticeRequest) SetTimezone(v string) {
-	o.Timezone.Set(&v)
-}
-
-// SetTimezoneNil sets the value for Timezone to be an explicit nil
-func (o *CreatePracticeRequest) SetTimezoneNil() {
-	o.Timezone.Set(nil)
-}
-
-// UnsetTimezone ensures that no value is present for Timezone, not even an explicit nil
-func (o *CreatePracticeRequest) UnsetTimezone() {
-	o.Timezone.Unset()
+	o.Timezone = &v
 }
 
 func (o CreatePracticeRequest) MarshalJSON() ([]byte, error) {
@@ -485,7 +509,10 @@ func (o CreatePracticeRequest) ToMap() (map[string]interface{}, error) {
 	if o.LegalName.IsSet() {
 		toSerialize["legalName"] = o.LegalName.Get()
 	}
-	toSerialize["name"] = o.Name.Get()
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
+	toSerialize["name"] = o.Name
 	if !IsNil(o.Prescribers) {
 		toSerialize["prescribers"] = o.Prescribers
 	}
@@ -498,14 +525,9 @@ func (o CreatePracticeRequest) ToMap() (map[string]interface{}, error) {
 	if o.SupportPhone.IsSet() {
 		toSerialize["supportPhone"] = o.SupportPhone.Get()
 	}
-	if o.Timezone.IsSet() {
-		toSerialize["timezone"] = o.Timezone.Get()
+	if !IsNil(o.Timezone) {
+		toSerialize["timezone"] = o.Timezone
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -535,30 +557,15 @@ func (o *CreatePracticeRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varCreatePracticeRequest := _CreatePracticeRequest{}
 
-	err = json.Unmarshal(data, &varCreatePracticeRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreatePracticeRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreatePracticeRequest(varCreatePracticeRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "address")
-		delete(additionalProperties, "attestations")
-		delete(additionalProperties, "complianceContact")
-		delete(additionalProperties, "externalId")
-		delete(additionalProperties, "legalName")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "prescribers")
-		delete(additionalProperties, "primaryContact")
-		delete(additionalProperties, "supportEmail")
-		delete(additionalProperties, "supportPhone")
-		delete(additionalProperties, "timezone")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

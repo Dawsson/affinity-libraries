@@ -33,5 +33,5 @@ result, err := affinityClient.Webhooks.ListEndpoints(ctx)
 var result = affinity.webhooks().listEndpoints();
 ```
 
-Mutation methods additionally require an idempotency key. Consult the generated model types for the
-request and response fields accepted by the current dated API contract.
+Mutation methods generate an idempotency key automatically. Pass one through mutation options only
+when retrying the same logical request. Consult the generated model types for current fields.

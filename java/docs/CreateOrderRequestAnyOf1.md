@@ -9,11 +9,11 @@
 |------------ | ------------- | ------------- | -------------|
 |**practiceId** | **String** |  |  |
 |**externalOrderId** | **String** |  |  |
-|**pharmacyOrganizationId** | **UUID** |  |  |
-|**prescriptionId** | **UUID** |  |  |
-|**prescriptionVersionId** | **UUID** |  |  |
-|**registeredLocationId** | **UUID** |  |  |
-|**shippingAddress** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  |  |
+|**pharmacyOrganizationId** | **String** |  |  |
+|**prescriptionId** | **String** |  |  |
+|**prescriptionVersionId** | **String** |  |  |
+|**registeredLocationId** | **String** |  |  |
+|**shippingAddress** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  |  |
 
 
 

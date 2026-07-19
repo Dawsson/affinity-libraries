@@ -11,11 +11,11 @@ Method | HTTP request | Description
 
 
 # **create_practice**
-> CreatePractice200Response create_practice(idempotency_key, create_practice_request)
+> CreatePracticeResponse create_practice(create_practice_request, idempotency_key=idempotency_key)
 
 Create practice
 
-Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+Creates a practice for the platform. Send Idempotency-Key when you retry the same request.
 
 ### Example
 
@@ -24,8 +24,8 @@ Creates a platform-owned practice. Send Idempotency-Key to safely retry network 
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_practice200_response import CreatePractice200Response
 from affinity_sdk.models.create_practice_request import CreatePracticeRequest
+from affinity_sdk.models.create_practice_response import CreatePracticeResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -55,12 +55,12 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PracticesApi(api_client)
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
     create_practice_request = {"address":{"city":"Los Angeles","country":"US","line1":"100 Practice Way","line2":null,"postalCode":"90001","state":"CA"},"attestations":{"authorizedPracticeRelationship":true,"authorizedPhiTransfer":true,"minimumNecessaryPhi":true,"providerDataAccuracy":true},"complianceContact":null,"externalId":"practice_123","legalName":"Example Medical Group PLLC","metadata":{},"name":"Example Medical Group","prescribers":[{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"}],"primaryContact":{"email":"operations@example-practice.com","name":"Jordan Lee","phone":null},"supportEmail":"support@example-practice.com","supportPhone":null,"timezone":"America/Los_Angeles"} # CreatePracticeRequest |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Create practice
-        api_response = api_instance.create_practice(idempotency_key, create_practice_request)
+        api_response = api_instance.create_practice(create_practice_request, idempotency_key=idempotency_key)
         print("The response of PracticesApi->create_practice:\n")
         pprint(api_response)
     except Exception as e:
@@ -74,12 +74,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
  **create_practice_request** | [**CreatePracticeRequest**](CreatePracticeRequest.md)|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**CreatePracticeResponse**](CreatePracticeResponse.md)
 
 ### Authorization
 
@@ -94,24 +94,22 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_practice**
-> CreatePractice200Response get_practice(practice_id)
+> GetPracticeResponse get_practice(practice_id)
 
 Read practice
 
-Reads a platform-owned practice by id.
+Returns one practice that belongs to the platform.
 
 ### Example
 
@@ -120,7 +118,7 @@ Reads a platform-owned practice by id.
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_practice200_response import CreatePractice200Response
+from affinity_sdk.models.get_practice_response import GetPracticeResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -172,7 +170,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**GetPracticeResponse**](GetPracticeResponse.md)
 
 ### Authorization
 
@@ -187,20 +185,18 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_practices**
-> ListPractices200Response list_practices()
+> ListPracticesResponse list_practices(limit=limit, starting_after=starting_after, ending_before=ending_before)
 
 List practices
 
@@ -211,7 +207,7 @@ List practices
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.list_practices200_response import ListPractices200Response
+from affinity_sdk.models.list_practices_response import ListPracticesResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -241,10 +237,13 @@ configuration.api_key['affinityApiKey'] = os.environ["API_KEY"]
 with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PracticesApi(api_client)
+    limit = 25 # int |  (optional) (default to 25)
+    starting_after = 'starting_after_example' # str |  (optional)
+    ending_before = 'ending_before_example' # str |  (optional)
 
     try:
         # List practices
-        api_response = api_instance.list_practices()
+        api_response = api_instance.list_practices(limit=limit, starting_after=starting_after, ending_before=ending_before)
         print("The response of PracticesApi->list_practices:\n")
         pprint(api_response)
     except Exception as e:
@@ -255,11 +254,16 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int**|  | [optional] [default to 25]
+ **starting_after** | **str**|  | [optional]
+ **ending_before** | **str**|  | [optional]
 
 ### Return type
 
-[**ListPractices200Response**](ListPractices200Response.md)
+[**ListPracticesResponse**](ListPracticesResponse.md)
 
 ### Authorization
 
@@ -274,24 +278,21 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_practice**
-> CreatePractice200Response update_practice(practice_id, idempotency_key)
+> UpdatePracticeResponse update_practice(practice_id, update_practice_request, idempotency_key=idempotency_key)
 
 Update practice
 
-Updates a platform-owned practice. Send Idempotency-Key for safe retries.
+Updates one practice that belongs to the platform. Send Idempotency-Key when you retry the same request.
 
 ### Example
 
@@ -300,7 +301,8 @@ Updates a platform-owned practice. Send Idempotency-Key for safe retries.
 
 ```python
 import affinity_sdk
-from affinity_sdk.models.create_practice200_response import CreatePractice200Response
+from affinity_sdk.models.update_practice_request import UpdatePracticeRequest
+from affinity_sdk.models.update_practice_response import UpdatePracticeResponse
 from affinity_sdk.rest import ApiException
 from pprint import pprint
 
@@ -331,11 +333,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = affinity_sdk.PracticesApi(api_client)
     practice_id = 'practice_id_example' # str |
-    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation.
+    update_practice_request = affinity_sdk.UpdatePracticeRequest() # UpdatePracticeRequest |
+    idempotency_key = 'idempotency_key_example' # str | Unique operation key required for every mutation. (optional)
 
     try:
         # Update practice
-        api_response = api_instance.update_practice(practice_id, idempotency_key)
+        api_response = api_instance.update_practice(practice_id, update_practice_request, idempotency_key=idempotency_key)
         print("The response of PracticesApi->update_practice:\n")
         pprint(api_response)
     except Exception as e:
@@ -350,11 +353,12 @@ with affinity_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **practice_id** | **str**|  |
- **idempotency_key** | **str**| Unique operation key required for every mutation. |
+ **update_practice_request** | [**UpdatePracticeRequest**](UpdatePracticeRequest.md)|  |
+ **idempotency_key** | **str**| Unique operation key required for every mutation. | [optional]
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**UpdatePracticeResponse**](UpdatePracticeResponse.md)
 
 ### Authorization
 
@@ -362,22 +366,21 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful response |  -  |
-**400** | Bad request |  -  |
-**401** | Unauthorized |  -  |
-**403** | Forbidden |  -  |
-**404** | Not found |  -  |
-**409** | Conflict |  -  |
-**422** | The request could not be completed. |  -  |
-**429** | Too many requests |  -  |
-**500** | Internal server error |  -  |
+**200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+**500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

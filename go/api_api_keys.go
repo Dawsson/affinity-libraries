@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -27,14 +27,14 @@ type ApiGetApiAccessRequest struct {
 	ApiService *APIKeysAPIService
 }
 
-func (r ApiGetApiAccessRequest) Execute() (*GetApiAccess200Response, *http.Response, error) {
+func (r ApiGetApiAccessRequest) Execute() (*GetApiAccessResponse, *http.Response, error) {
 	return r.ApiService.GetApiAccessExecute(r)
 }
 
 /*
 GetApiAccess Read API key access
 
-Returns the authenticated API key subject, mode, and scopes.
+Returns the subject, mode, and scopes for the API key.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetApiAccessRequest
@@ -48,13 +48,13 @@ func (a *APIKeysAPIService) GetApiAccess(ctx context.Context) ApiGetApiAccessReq
 
 // Execute executes the request
 //
-//	@return GetApiAccess200Response
-func (a *APIKeysAPIService) GetApiAccessExecute(r ApiGetApiAccessRequest) (*GetApiAccess200Response, *http.Response, error) {
+//	@return GetApiAccessResponse
+func (a *APIKeysAPIService) GetApiAccessExecute(r ApiGetApiAccessRequest) (*GetApiAccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetApiAccess200Response
+		localVarReturnValue *GetApiAccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "APIKeysAPIService.GetApiAccess")
@@ -122,7 +122,7 @@ func (a *APIKeysAPIService) GetApiAccessExecute(r ApiGetApiAccessRequest) (*GetA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GetApiAccess400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -133,7 +133,7 @@ func (a *APIKeysAPIService) GetApiAccessExecute(r ApiGetApiAccessRequest) (*GetA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetApiAccess400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,40 +144,7 @@ func (a *APIKeysAPIService) GetApiAccessExecute(r ApiGetApiAccessRequest) (*GetA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetApiAccess400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetApiAccess400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v GetApiAccess400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -188,7 +155,7 @@ func (a *APIKeysAPIService) GetApiAccessExecute(r ApiGetApiAccessRequest) (*GetA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v GetApiAccess400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -199,7 +166,7 @@ func (a *APIKeysAPIService) GetApiAccessExecute(r ApiGetApiAccessRequest) (*GetA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GetApiAccess400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

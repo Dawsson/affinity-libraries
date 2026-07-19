@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -23,9 +23,13 @@ import (
 type CatalogAPIService service
 
 type ApiListCatalogItemsRequest struct {
-	ctx        context.Context
-	ApiService *CatalogAPIService
-	query      *string
+	ctx           context.Context
+	ApiService    *CatalogAPIService
+	query         *string
+	limit         *int32
+	startingAfter *string
+	endingBefore  *string
+	route         *string
 }
 
 func (r ApiListCatalogItemsRequest) Query(query string) ApiListCatalogItemsRequest {
@@ -33,14 +37,34 @@ func (r ApiListCatalogItemsRequest) Query(query string) ApiListCatalogItemsReque
 	return r
 }
 
-func (r ApiListCatalogItemsRequest) Execute() (*ListCatalogItems200Response, *http.Response, error) {
+func (r ApiListCatalogItemsRequest) Limit(limit int32) ApiListCatalogItemsRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiListCatalogItemsRequest) StartingAfter(startingAfter string) ApiListCatalogItemsRequest {
+	r.startingAfter = &startingAfter
+	return r
+}
+
+func (r ApiListCatalogItemsRequest) EndingBefore(endingBefore string) ApiListCatalogItemsRequest {
+	r.endingBefore = &endingBefore
+	return r
+}
+
+func (r ApiListCatalogItemsRequest) Route(route string) ApiListCatalogItemsRequest {
+	r.route = &route
+	return r
+}
+
+func (r ApiListCatalogItemsRequest) Execute() (*ListCatalogItemsResponse, *http.Response, error) {
 	return r.ApiService.ListCatalogItemsExecute(r)
 }
 
 /*
 ListCatalogItems List catalog items
 
-Searches the Affinity catalog across all connected compounders and routing restrictions.
+Lists the catalog items that are eligible for the authenticated account and mode.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListCatalogItemsRequest
@@ -54,13 +78,13 @@ func (a *CatalogAPIService) ListCatalogItems(ctx context.Context) ApiListCatalog
 
 // Execute executes the request
 //
-//	@return ListCatalogItems200Response
-func (a *CatalogAPIService) ListCatalogItemsExecute(r ApiListCatalogItemsRequest) (*ListCatalogItems200Response, *http.Response, error) {
+//	@return ListCatalogItemsResponse
+func (a *CatalogAPIService) ListCatalogItemsExecute(r ApiListCatalogItemsRequest) (*ListCatalogItemsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListCatalogItems200Response
+		localVarReturnValue *ListCatalogItemsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogAPIService.ListCatalogItems")
@@ -76,6 +100,26 @@ func (a *CatalogAPIService) ListCatalogItemsExecute(r ApiListCatalogItemsRequest
 
 	if r.query != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 50
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+		r.limit = &defaultValue
+	}
+	if r.startingAfter != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "form", "")
+	}
+	if r.endingBefore != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "form", "")
+	}
+	if r.route != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "route", r.route, "form", "")
+	} else {
+		var defaultValue string = "all"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "route", defaultValue, "form", "")
+		r.route = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -131,7 +175,7 @@ func (a *CatalogAPIService) ListCatalogItemsExecute(r ApiListCatalogItemsRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ListCatalogItems400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -142,7 +186,7 @@ func (a *CatalogAPIService) ListCatalogItemsExecute(r ApiListCatalogItemsRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ListCatalogItems400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,40 +197,7 @@ func (a *CatalogAPIService) ListCatalogItemsExecute(r ApiListCatalogItemsRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ListCatalogItems400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ListCatalogItems400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ListCatalogItems400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v Error
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -197,7 +208,7 @@ func (a *CatalogAPIService) ListCatalogItemsExecute(r ApiListCatalogItemsRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ListCatalogItems400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -208,7 +219,7 @@ func (a *CatalogAPIService) ListCatalogItemsExecute(r ApiListCatalogItemsRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v ListCatalogItems400Response
+			var v Problem
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -16,5 +16,5 @@ public final class Affinity {
   }
   public AccountResource account() { return account; } public CatalogResource catalog() { return catalog; } public OrdersResource orders() { return orders; } public PracticesResource practices() { return practices; } public WebhooksResource webhooks() { return webhooks; }
   private static String normalizeHost(String host) { String value = host.contains("://") ? host : "https://" + host; return value.replaceAll("/+$", ""); }
-  public static final class Options { private String apiVersion = "2026-07-09"; private String host = "https://api.joinaffinityai.com"; public Options apiVersion(String value) { apiVersion=value; return this; } public Options host(String value) { host=value; return this; } }
+  public static final class Options { private String apiVersion = "2026-07-19"; private String host = "https://api.joinaffinityai.com"; public Options apiVersion(String value) { apiVersion=value; return this; } public Options host(String value) { host=value; return this; } }
 }

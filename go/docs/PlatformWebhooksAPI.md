@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreateWebhookEndpoint
 
-> CreateWebhookEndpoint200Response CreateWebhookEndpoint(ctx).IdempotencyKey(idempotencyKey).CreateWebhookEndpointRequest(createWebhookEndpointRequest).Execute()
+> CreateWebhookEndpointResponse CreateWebhookEndpoint(ctx).CreateWebhookEndpointRequest(createWebhookEndpointRequest).IdempotencyKey(idempotencyKey).Execute()
 
 Create webhook endpoint
 
@@ -34,17 +34,17 @@ import (
 )
 
 func main() {
-	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
 	createWebhookEndpointRequest := *openapiclient.NewCreateWebhookEndpointRequest() // CreateWebhookEndpointRequest |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.CreateWebhookEndpoint(context.Background()).IdempotencyKey(idempotencyKey).CreateWebhookEndpointRequest(createWebhookEndpointRequest).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.CreateWebhookEndpoint(context.Background()).CreateWebhookEndpointRequest(createWebhookEndpointRequest).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.CreateWebhookEndpoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateWebhookEndpoint`: CreateWebhookEndpoint200Response
+	// response from `CreateWebhookEndpoint`: CreateWebhookEndpointResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlatformWebhooksAPI.CreateWebhookEndpoint`: %v\n", resp)
 }
 ```
@@ -60,12 +60,12 @@ Other parameters are passed through a pointer to a apiCreateWebhookEndpointReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idempotencyKey** | **string** | Unique operation key required for every mutation. |
  **createWebhookEndpointRequest** | [**CreateWebhookEndpointRequest**](CreateWebhookEndpointRequest.md) |  |
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
 
 ### Return type
 
-[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Response.md)
+[**CreateWebhookEndpointResponse**](CreateWebhookEndpointResponse.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWebhookEndpoint
 
-> DeleteWebhookEndpoint200Response DeleteWebhookEndpoint(ctx, endpointId).IdempotencyKey(idempotencyKey).Execute()
+> DeleteWebhookEndpointResponse DeleteWebhookEndpoint(ctx, endpointId).IdempotencyKey(idempotencyKey).Execute()
 
 Disable webhook endpoint
 
@@ -101,7 +101,7 @@ import (
 
 func main() {
 	endpointId := "endpointId_example" // string |
-	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.DeleteWebhookEndpoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWebhookEndpoint`: DeleteWebhookEndpoint200Response
+	// response from `DeleteWebhookEndpoint`: DeleteWebhookEndpointResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlatformWebhooksAPI.DeleteWebhookEndpoint`: %v\n", resp)
 }
 ```
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Response.md)
+[**DeleteWebhookEndpointResponse**](DeleteWebhookEndpointResponse.md)
 
 ### Authorization
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookEvent
 
-> GetWebhookEvent200Response GetWebhookEvent(ctx, eventId).Execute()
+> GetWebhookEventResponse GetWebhookEvent(ctx, eventId).Execute()
 
 Read webhook event attempts
 
@@ -179,7 +179,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.GetWebhookEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetWebhookEvent`: GetWebhookEvent200Response
+	// response from `GetWebhookEvent`: GetWebhookEventResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlatformWebhooksAPI.GetWebhookEvent`: %v\n", resp)
 }
 ```
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetWebhookEvent200Response**](GetWebhookEvent200Response.md)
+[**GetWebhookEventResponse**](GetWebhookEventResponse.md)
 
 ### Authorization
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ## ListWebhookEndpoints
 
-> ListWebhookEndpoints200Response ListWebhookEndpoints(ctx).Execute()
+> ListWebhookEndpointsResponse ListWebhookEndpoints(ctx).Limit(limit).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List webhook endpoints
 
@@ -238,31 +238,40 @@ import (
 )
 
 func main() {
+	limit := int32(56) // int32 |  (optional) (default to 25)
+	startingAfter := "startingAfter_example" // string |  (optional)
+	endingBefore := "endingBefore_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.ListWebhookEndpoints(context.Background()).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.ListWebhookEndpoints(context.Background()).Limit(limit).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.ListWebhookEndpoints``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListWebhookEndpoints`: ListWebhookEndpoints200Response
+	// response from `ListWebhookEndpoints`: ListWebhookEndpointsResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlatformWebhooksAPI.ListWebhookEndpoints`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListWebhookEndpointsRequest struct via the builder pattern
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int32** |  | [default to 25]
+ **startingAfter** | **string** |  |
+ **endingBefore** | **string** |  |
+
 ### Return type
 
-[**ListWebhookEndpoints200Response**](ListWebhookEndpoints200Response.md)
+[**ListWebhookEndpointsResponse**](ListWebhookEndpointsResponse.md)
 
 ### Authorization
 
@@ -280,7 +289,7 @@ Other parameters are passed through a pointer to a apiListWebhookEndpointsReques
 
 ## ListWebhookEvents
 
-> ListWebhookEvents200Response ListWebhookEvents(ctx).Execute()
+> ListWebhookEventsResponse ListWebhookEvents(ctx).Limit(limit).Status(status).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List webhook events
 
@@ -297,31 +306,42 @@ import (
 )
 
 func main() {
+	limit := int32(56) // int32 |  (optional) (default to 25)
+	status := "status_example" // string |  (optional) (default to "all")
+	startingAfter := "startingAfter_example" // string |  (optional)
+	endingBefore := "endingBefore_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.ListWebhookEvents(context.Background()).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.ListWebhookEvents(context.Background()).Limit(limit).Status(status).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.ListWebhookEvents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListWebhookEvents`: ListWebhookEvents200Response
+	// response from `ListWebhookEvents`: ListWebhookEventsResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlatformWebhooksAPI.ListWebhookEvents`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListWebhookEventsRequest struct via the builder pattern
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int32** |  | [default to 25]
+ **status** | **string** |  | [default to &quot;all&quot;]
+ **startingAfter** | **string** |  |
+ **endingBefore** | **string** |  |
+
 ### Return type
 
-[**ListWebhookEvents200Response**](ListWebhookEvents200Response.md)
+[**ListWebhookEventsResponse**](ListWebhookEventsResponse.md)
 
 ### Authorization
 
@@ -339,7 +359,7 @@ Other parameters are passed through a pointer to a apiListWebhookEventsRequest s
 
 ## ReplayWebhookEvent
 
-> ReplayWebhookEvent200Response ReplayWebhookEvent(ctx, eventId).IdempotencyKey(idempotencyKey).Execute()
+> ReplayWebhookEventResponse ReplayWebhookEvent(ctx, eventId).IdempotencyKey(idempotencyKey).Execute()
 
 Replay webhook event
 
@@ -357,7 +377,7 @@ import (
 
 func main() {
 	eventId := "eventId_example" // string |
-	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -366,7 +386,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.ReplayWebhookEvent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ReplayWebhookEvent`: ReplayWebhookEvent200Response
+	// response from `ReplayWebhookEvent`: ReplayWebhookEventResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlatformWebhooksAPI.ReplayWebhookEvent`: %v\n", resp)
 }
 ```
@@ -391,7 +411,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ReplayWebhookEvent200Response**](ReplayWebhookEvent200Response.md)
+[**ReplayWebhookEventResponse**](ReplayWebhookEventResponse.md)
 
 ### Authorization
 
@@ -409,7 +429,7 @@ Name | Type | Description  | Notes
 
 ## RotateWebhookEndpointSecret
 
-> CreateWebhookEndpoint200Response RotateWebhookEndpointSecret(ctx, endpointId).IdempotencyKey(idempotencyKey).Execute()
+> RotateWebhookEndpointSecretResponse RotateWebhookEndpointSecret(ctx, endpointId).IdempotencyKey(idempotencyKey).Execute()
 
 Rotate webhook signing secret
 
@@ -427,7 +447,7 @@ import (
 
 func main() {
 	endpointId := "endpointId_example" // string |
-	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -436,7 +456,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.RotateWebhookEndpointSecret``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RotateWebhookEndpointSecret`: CreateWebhookEndpoint200Response
+	// response from `RotateWebhookEndpointSecret`: RotateWebhookEndpointSecretResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlatformWebhooksAPI.RotateWebhookEndpointSecret`: %v\n", resp)
 }
 ```
@@ -461,7 +481,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateWebhookEndpoint200Response**](CreateWebhookEndpoint200Response.md)
+[**RotateWebhookEndpointSecretResponse**](RotateWebhookEndpointSecretResponse.md)
 
 ### Authorization
 
@@ -479,7 +499,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWebhookEndpoint
 
-> DeleteWebhookEndpoint200Response UpdateWebhookEndpoint(ctx, endpointId).IdempotencyKey(idempotencyKey).UpdateWebhookEndpointRequest(updateWebhookEndpointRequest).Execute()
+> UpdateWebhookEndpointResponse UpdateWebhookEndpoint(ctx, endpointId).UpdateWebhookEndpointRequest(updateWebhookEndpointRequest).IdempotencyKey(idempotencyKey).Execute()
 
 Update webhook endpoint
 
@@ -497,17 +517,17 @@ import (
 
 func main() {
 	endpointId := "endpointId_example" // string |
-	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation.
 	updateWebhookEndpointRequest := *openapiclient.NewUpdateWebhookEndpointRequest([]string{"EnabledEvents_example"}) // UpdateWebhookEndpointRequest |
+	idempotencyKey := "idempotencyKey_example" // string | Unique operation key required for every mutation. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PlatformWebhooksAPI.UpdateWebhookEndpoint(context.Background(), endpointId).IdempotencyKey(idempotencyKey).UpdateWebhookEndpointRequest(updateWebhookEndpointRequest).Execute()
+	resp, r, err := apiClient.PlatformWebhooksAPI.UpdateWebhookEndpoint(context.Background(), endpointId).UpdateWebhookEndpointRequest(updateWebhookEndpointRequest).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlatformWebhooksAPI.UpdateWebhookEndpoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateWebhookEndpoint`: DeleteWebhookEndpoint200Response
+	// response from `UpdateWebhookEndpoint`: UpdateWebhookEndpointResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlatformWebhooksAPI.UpdateWebhookEndpoint`: %v\n", resp)
 }
 ```
@@ -528,12 +548,12 @@ Other parameters are passed through a pointer to a apiUpdateWebhookEndpointReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **idempotencyKey** | **string** | Unique operation key required for every mutation. |
  **updateWebhookEndpointRequest** | [**UpdateWebhookEndpointRequest**](UpdateWebhookEndpointRequest.md) |  |
+ **idempotencyKey** | **string** | Unique operation key required for every mutation. |
 
 ### Return type
 
-[**DeleteWebhookEndpoint200Response**](DeleteWebhookEndpoint200Response.md)
+[**UpdateWebhookEndpointResponse**](UpdateWebhookEndpointResponse.md)
 
 ### Authorization
 

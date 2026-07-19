@@ -13,12 +13,12 @@ Name | Type | Description | Notes
 **prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  |
 **prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  |
 **quantity** | **int** |  | [optional] [default to 1]
-**replaces_order_id** | **UUID** |  | [optional]
-**pharmacy_organization_id** | **UUID** |  |
-**prescription_id** | **UUID** |  |
-**prescription_version_id** | **UUID** |  |
-**registered_location_id** | **UUID** |  |
-**shipping_address** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  |
+**replaces_order_id** | **str** |  | [optional]
+**pharmacy_organization_id** | **str** |  |
+**prescription_id** | **str** |  |
+**prescription_version_id** | **str** |  |
+**registered_location_id** | **str** |  |
+**shipping_address** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  |
 
 ## Example
 

@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -20,11 +20,8 @@ var _ MappedNullable = &UpdateOrderRequest{}
 
 // UpdateOrderRequest struct for UpdateOrderRequest
 type UpdateOrderRequest struct {
-	Quantity             NullableFloat32 `json:"quantity,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Quantity *float32 `json:"quantity,omitempty"`
 }
-
-type _UpdateOrderRequest UpdateOrderRequest
 
 // NewUpdateOrderRequest instantiates a new UpdateOrderRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -43,47 +40,36 @@ func NewUpdateOrderRequestWithDefaults() *UpdateOrderRequest {
 	return &this
 }
 
-// GetQuantity returns the Quantity field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetQuantity returns the Quantity field value if set, zero value otherwise.
 func (o *UpdateOrderRequest) GetQuantity() float32 {
-	if o == nil || IsNil(o.Quantity.Get()) {
+	if o == nil || IsNil(o.Quantity) {
 		var ret float32
 		return ret
 	}
-	return *o.Quantity.Get()
+	return *o.Quantity
 }
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateOrderRequest) GetQuantityOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
-	return o.Quantity.Get(), o.Quantity.IsSet()
+	return o.Quantity, true
 }
 
 // HasQuantity returns a boolean if a field has been set.
 func (o *UpdateOrderRequest) HasQuantity() bool {
-	if o != nil && o.Quantity.IsSet() {
+	if o != nil && !IsNil(o.Quantity) {
 		return true
 	}
 
 	return false
 }
 
-// SetQuantity gets a reference to the given NullableFloat32 and assigns it to the Quantity field.
+// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
 func (o *UpdateOrderRequest) SetQuantity(v float32) {
-	o.Quantity.Set(&v)
-}
-
-// SetQuantityNil sets the value for Quantity to be an explicit nil
-func (o *UpdateOrderRequest) SetQuantityNil() {
-	o.Quantity.Set(nil)
-}
-
-// UnsetQuantity ensures that no value is present for Quantity, not even an explicit nil
-func (o *UpdateOrderRequest) UnsetQuantity() {
-	o.Quantity.Unset()
+	o.Quantity = &v
 }
 
 func (o UpdateOrderRequest) MarshalJSON() ([]byte, error) {
@@ -96,36 +82,10 @@ func (o UpdateOrderRequest) MarshalJSON() ([]byte, error) {
 
 func (o UpdateOrderRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Quantity.IsSet() {
-		toSerialize["quantity"] = o.Quantity.Get()
+	if !IsNil(o.Quantity) {
+		toSerialize["quantity"] = o.Quantity
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
-}
-
-func (o *UpdateOrderRequest) UnmarshalJSON(data []byte) (err error) {
-	varUpdateOrderRequest := _UpdateOrderRequest{}
-
-	err = json.Unmarshal(data, &varUpdateOrderRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = UpdateOrderRequest(varUpdateOrderRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "quantity")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableUpdateOrderRequest struct {

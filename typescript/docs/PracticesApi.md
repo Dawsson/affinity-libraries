@@ -7,17 +7,17 @@ All URIs are relative to *https://api.joinaffinityai.com*
 | [**createPractice**](PracticesApi.md#createpracticeoperation) | **POST** /v1/practices | Create practice |
 | [**getPractice**](PracticesApi.md#getpractice) | **GET** /v1/practices/{practiceId} | Read practice |
 | [**listPractices**](PracticesApi.md#listpractices) | **GET** /v1/practices | List practices |
-| [**updatePractice**](PracticesApi.md#updatepractice) | **PATCH** /v1/practices/{practiceId} | Update practice |
+| [**updatePractice**](PracticesApi.md#updatepracticeoperation) | **PATCH** /v1/practices/{practiceId} | Update practice |
 
 
 
 ## createPractice
 
-> CreatePractice200Response createPractice(idempotencyKey, createPracticeRequest)
+> CreatePracticeResponse createPractice(createPracticeRequest, idempotencyKey)
 
 Create practice
 
-Creates a platform-owned practice. Send Idempotency-Key to safely retry network failures.
+Creates a practice for the platform. Send Idempotency-Key when you retry the same request.
 
 ### Example
 
@@ -39,10 +39,10 @@ async function example() {
   const api = new PracticesApi(config);
 
   const body = {
-    // string | Unique operation key required for every mutation.
-    idempotencyKey: idempotencyKey_example,
     // CreatePracticeRequest
     createPracticeRequest: {"address":{"city":"Los Angeles","country":"US","line1":"100 Practice Way","line2":null,"postalCode":"90001","state":"CA"},"attestations":{"authorizedPracticeRelationship":true,"authorizedPhiTransfer":true,"minimumNecessaryPhi":true,"providerDataAccuracy":true},"complianceContact":null,"externalId":"practice_123","legalName":"Example Medical Group PLLC","metadata":{},"name":"Example Medical Group","prescribers":[{"credentials":"MD","licenseStates":["CA"],"name":"Alex Morgan","npi":"1234567893"}],"primaryContact":{"email":"operations@example-practice.com","name":"Jordan Lee","phone":null},"supportEmail":"support@example-practice.com","supportPhone":null,"timezone":"America/Los_Angeles"},
+    // string | Unique operation key required for every mutation. (optional)
+    idempotencyKey: idempotencyKey_example,
   } satisfies CreatePracticeOperationRequest;
 
   try {
@@ -62,12 +62,12 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **idempotencyKey** | `string` | Unique operation key required for every mutation. | [Defaults to `undefined`] |
 | **createPracticeRequest** | [CreatePracticeRequest](CreatePracticeRequest.md) |  | |
+| **idempotencyKey** | `string` | Unique operation key required for every mutation. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**CreatePracticeResponse**](CreatePracticeResponse.md)
 
 ### Authorization
 
@@ -82,26 +82,24 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## getPractice
 
-> CreatePractice200Response getPractice(practiceId)
+> GetPracticeResponse getPractice(practiceId)
 
 Read practice
 
-Reads a platform-owned practice by id.
+Returns one practice that belongs to the platform.
 
 ### Example
 
@@ -148,7 +146,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**GetPracticeResponse**](GetPracticeResponse.md)
 
 ### Authorization
 
@@ -163,22 +161,20 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## listPractices
 
-> ListPractices200Response listPractices()
+> ListPracticesResponse listPractices(limit, startingAfter, endingBefore)
 
 List practices
 
@@ -201,8 +197,17 @@ async function example() {
   });
   const api = new PracticesApi(config);
 
+  const body = {
+    // number (optional)
+    limit: 56,
+    // string (optional)
+    startingAfter: startingAfter_example,
+    // string (optional)
+    endingBefore: endingBefore_example,
+  } satisfies ListPracticesRequest;
+
   try {
-    const data = await api.listPractices();
+    const data = await api.listPractices(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -215,11 +220,16 @@ example().catch(console.error);
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | `number` |  | [Optional] [Defaults to `25`] |
+| **startingAfter** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **endingBefore** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
-[**ListPractices200Response**](ListPractices200Response.md)
+[**ListPracticesResponse**](ListPracticesResponse.md)
 
 ### Authorization
 
@@ -234,26 +244,23 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## updatePractice
 
-> CreatePractice200Response updatePractice(practiceId, idempotencyKey)
+> UpdatePracticeResponse updatePractice(practiceId, updatePracticeRequest, idempotencyKey)
 
 Update practice
 
-Updates a platform-owned practice. Send Idempotency-Key for safe retries.
+Updates one practice that belongs to the platform. Send Idempotency-Key when you retry the same request.
 
 ### Example
 
@@ -262,7 +269,7 @@ import {
   Configuration,
   PracticesApi,
 } from '@affinity/sdk';
-import type { UpdatePracticeRequest } from '@affinity/sdk';
+import type { UpdatePracticeOperationRequest } from '@affinity/sdk';
 
 async function example() {
   console.log("🚀 Testing @affinity/sdk SDK...");
@@ -277,9 +284,11 @@ async function example() {
   const body = {
     // string
     practiceId: practiceId_example,
-    // string | Unique operation key required for every mutation.
+    // UpdatePracticeRequest
+    updatePracticeRequest: ...,
+    // string | Unique operation key required for every mutation. (optional)
     idempotencyKey: idempotencyKey_example,
-  } satisfies UpdatePracticeRequest;
+  } satisfies UpdatePracticeOperationRequest;
 
   try {
     const data = await api.updatePractice(body);
@@ -299,11 +308,12 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **practiceId** | `string` |  | [Defaults to `undefined`] |
-| **idempotencyKey** | `string` | Unique operation key required for every mutation. | [Defaults to `undefined`] |
+| **updatePracticeRequest** | [UpdatePracticeRequest](UpdatePracticeRequest.md) |  | |
+| **idempotencyKey** | `string` | Unique operation key required for every mutation. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
-[**CreatePractice200Response**](CreatePractice200Response.md)
+[**UpdatePracticeResponse**](UpdatePracticeResponse.md)
 
 ### Authorization
 
@@ -311,22 +321,21 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`, `application/problem+json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful response |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not found |  -  |
-| **409** | Conflict |  -  |
-| **422** | The request could not be completed. |  -  |
-| **429** | Too many requests |  -  |
-| **500** | Internal server error |  -  |
+| **200** | Successful response |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **400** | Bad request |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **401** | Unauthorized |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **403** | Forbidden |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **404** | Not found |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **409** | Conflict |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **429** | Too many requests |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
+| **500** | Internal server error |  * Affinity-Version -  <br>  * RateLimit-Limit -  <br>  * RateLimit-Remaining -  <br>  * RateLimit-Reset -  <br>  * Request-Id -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

@@ -17,13 +17,13 @@ Name | Type | Description | Notes
 **PrescriptionId** | **string** |  |
 **PrescriptionVersionId** | **string** |  |
 **RegisteredLocationId** | **string** |  |
-**ShippingAddress** | [**CreateOrderRequestAnyOf1ShippingAddress**](CreateOrderRequestAnyOf1ShippingAddress.md) |  |
+**ShippingAddress** | [**CreateOrderRequestAnyOfPatientAddress**](CreateOrderRequestAnyOfPatientAddress.md) |  |
 
 ## Methods
 
 ### NewCreateOrderRequest
 
-`func NewCreateOrderRequest(catalogItemId string, practiceId string, directions string, externalOrderId string, patient CreateOrderRequestAnyOfPatient, prescriber CreateOrderRequestAnyOfPrescriber, prescription CreateOrderRequestAnyOfPrescription, pharmacyOrganizationId string, prescriptionId string, prescriptionVersionId string, registeredLocationId string, shippingAddress CreateOrderRequestAnyOf1ShippingAddress, ) *CreateOrderRequest`
+`func NewCreateOrderRequest(catalogItemId string, practiceId string, directions string, externalOrderId string, patient CreateOrderRequestAnyOfPatient, prescriber CreateOrderRequestAnyOfPrescriber, prescription CreateOrderRequestAnyOfPrescription, pharmacyOrganizationId string, prescriptionId string, prescriptionVersionId string, registeredLocationId string, shippingAddress CreateOrderRequestAnyOfPatientAddress, ) *CreateOrderRequest`
 
 NewCreateOrderRequest instantiates a new CreateOrderRequest object
 This constructor will assign default values to properties that have it defined,
@@ -310,20 +310,20 @@ SetRegisteredLocationId sets RegisteredLocationId field to given value.
 
 ### GetShippingAddress
 
-`func (o *CreateOrderRequest) GetShippingAddress() CreateOrderRequestAnyOf1ShippingAddress`
+`func (o *CreateOrderRequest) GetShippingAddress() CreateOrderRequestAnyOfPatientAddress`
 
 GetShippingAddress returns the ShippingAddress field if non-nil, zero value otherwise.
 
 ### GetShippingAddressOk
 
-`func (o *CreateOrderRequest) GetShippingAddressOk() (*CreateOrderRequestAnyOf1ShippingAddress, bool)`
+`func (o *CreateOrderRequest) GetShippingAddressOk() (*CreateOrderRequestAnyOfPatientAddress, bool)`
 
 GetShippingAddressOk returns a tuple with the ShippingAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingAddress
 
-`func (o *CreateOrderRequest) SetShippingAddress(v CreateOrderRequestAnyOf1ShippingAddress)`
+`func (o *CreateOrderRequest) SetShippingAddress(v CreateOrderRequestAnyOfPatientAddress)`
 
 SetShippingAddress sets ShippingAddress field to given value.
 

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **prescriber** | [**CreateOrderRequestAnyOfPrescriber**](CreateOrderRequestAnyOfPrescriber.md) |  |
 **prescription** | [**CreateOrderRequestAnyOfPrescription**](CreateOrderRequestAnyOfPrescription.md) |  |
 **quantity** | **int** |  | [optional] [default to 1]
-**replaces_order_id** | **UUID** |  | [optional]
+**replaces_order_id** | **str** |  | [optional]
 
 ## Example
 

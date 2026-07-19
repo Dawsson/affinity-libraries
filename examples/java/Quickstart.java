@@ -1,11 +1,11 @@
 import ai.joinaffinity.sdk.Affinity;
 import ai.joinaffinity.sdk.ApiException;
-import ai.joinaffinity.sdk.model.GetApiAccess200Response;
-import ai.joinaffinity.sdk.model.GetPlatformOrganization200Response;
-import ai.joinaffinity.sdk.model.ListCatalogItems200Response;
-import ai.joinaffinity.sdk.model.ListOrders200Response;
-import ai.joinaffinity.sdk.model.ListPractices200Response;
-import ai.joinaffinity.sdk.model.ListWebhookEndpoints200Response;
+import ai.joinaffinity.sdk.model.GetAccountResponse;
+import ai.joinaffinity.sdk.model.GetApiAccessResponse;
+import ai.joinaffinity.sdk.model.ListCatalogItemsResponse;
+import ai.joinaffinity.sdk.model.ListOrdersResponse;
+import ai.joinaffinity.sdk.model.ListPracticesResponse;
+import ai.joinaffinity.sdk.model.ListWebhookEndpointsResponse;
 
 public final class Quickstart {
   public static void main(String[] args) throws Exception {
@@ -18,12 +18,12 @@ public final class Quickstart {
         new Affinity(
             apiKey,
             new Affinity.Options()
-                .apiVersion("2026-07-09")
+                .apiVersion("2026-07-19")
                 .host("api.joinaffinityai.com"));
 
     try {
       // Confirm the key's account, environment, and scopes before reading resources.
-      GetApiAccess200Response access = affinity.account().retrieveAccess();
+      GetApiAccessResponse access = affinity.account().retrieveAccess();
       System.out.printf(
           "Authenticated: livemode=%s scopes=%s serviceAccount=%s%n",
           access.getLivemode(), access.getScopes(), access.getServiceAccount());
@@ -35,19 +35,18 @@ public final class Quickstart {
         throw new IllegalStateException("The service key needs the catalog:read scope");
       }
 
-      GetPlatformOrganization200Response organization =
-          affinity.account().retrieve();
-      ListCatalogItems200Response catalog = affinity.catalog().list("semaglutide");
-      ListPractices200Response practices = affinity.practices().list();
-      ListOrders200Response orders = affinity.orders().list();
-      ListWebhookEndpoints200Response webhooks = affinity.webhooks().listEndpoints();
+      GetAccountResponse organization = affinity.account().retrieve();
+      ListCatalogItemsResponse catalog = affinity.catalog().list("semaglutide");
+      ListPracticesResponse practices = affinity.practices().list();
+      ListOrdersResponse orders = affinity.orders().list();
+      ListWebhookEndpointsResponse webhooks = affinity.webhooks().listEndpoints();
 
       System.out.println("Organization: " + organization.getAccount());
-      System.out.printf("Found %d matching sandbox catalog items%n", catalog.getItems().size());
-      catalog.getItems().stream().limit(3).forEach(item -> System.out.println("Catalog item: " + item));
+      System.out.printf("Found %d matching sandbox catalog items%n", catalog.getData().size());
+      catalog.getData().stream().limit(3).forEach(item -> System.out.println("Catalog item: " + item));
       System.out.printf("Found %d practices%n", practices.getData().size());
-      System.out.printf("Found %d sandbox orders%n", orders.getOrders().size());
-      System.out.printf("Found %d test webhook endpoints%n", webhooks.getEndpoints().size());
+      System.out.printf("Found %d sandbox orders%n", orders.getData().size());
+      System.out.printf("Found %d test webhook endpoints%n", webhooks.getData().size());
       System.out.println("The SDK is authenticated and ready for sandbox integration work.");
     } catch (ApiException error) {
       System.err.println("Affinity API request failed with status " + error.getCode());

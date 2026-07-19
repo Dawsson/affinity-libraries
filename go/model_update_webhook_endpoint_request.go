@@ -3,7 +3,7 @@ Affinity API
 
 Affinity API for software platforms connecting practices to the compounder network. A practice is the customer organization, a provider is an individual clinician or prescriber, and a location is a physical practice site. The API covers practice management, catalog discovery, prescription-order submission, fulfillment tracking, and webhooks.
 
-API version: 2026-07-09
+API version: 2026-07-19
 Contact: support@joinaffinityai.com
 */
 
@@ -12,6 +12,7 @@ Contact: support@joinaffinityai.com
 package affinity
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +22,7 @@ var _ MappedNullable = &UpdateWebhookEndpointRequest{}
 
 // UpdateWebhookEndpointRequest struct for UpdateWebhookEndpointRequest
 type UpdateWebhookEndpointRequest struct {
-	EnabledEvents        []string `json:"enabledEvents"`
-	AdditionalProperties map[string]interface{}
+	EnabledEvents []string `json:"enabledEvents"`
 }
 
 type _UpdateWebhookEndpointRequest UpdateWebhookEndpointRequest
@@ -80,11 +80,6 @@ func (o UpdateWebhookEndpointRequest) MarshalJSON() ([]byte, error) {
 func (o UpdateWebhookEndpointRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabledEvents"] = o.EnabledEvents
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -112,20 +107,15 @@ func (o *UpdateWebhookEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateWebhookEndpointRequest := _UpdateWebhookEndpointRequest{}
 
-	err = json.Unmarshal(data, &varUpdateWebhookEndpointRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateWebhookEndpointRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateWebhookEndpointRequest(varUpdateWebhookEndpointRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "enabledEvents")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

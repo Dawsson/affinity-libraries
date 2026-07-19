@@ -33,7 +33,7 @@ export class Affinity {
       accessToken: apiKey,
       basePath: (host.includes("://") ? host : `https://${host}`).replace(/\/+$/, ""),
       fetchApi: options.fetch,
-      headers: { "Affinity-Version": options.apiVersion ?? "2026-07-09" },
+      headers: { "Affinity-Version": options.apiVersion ?? "2026-07-19" },
     });
     this.account = new AccountResource(
       new APIKeysApi(configuration),
