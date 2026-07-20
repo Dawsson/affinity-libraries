@@ -44,7 +44,7 @@ class ListCatalogItemsResponseDataInner(BaseModel):
     name: StrictStr
     object: StrictStr
     patient_specific_required: StrictBool = Field(alias="patientSpecificRequired")
-    pricing: ListCatalogItemsResponseDataInnerPricing
+    pricing: Optional[ListCatalogItemsResponseDataInnerPricing]
     restricted_states: List[StrictStr] = Field(alias="restrictedStates")
     route: StrictStr
     strength: Optional[StrictStr]
@@ -119,6 +119,11 @@ class ListCatalogItemsResponseDataInner(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of pricing
         if self.pricing:
             _dict['pricing'] = self.pricing.to_dict()
+        # set to None if pricing (nullable) is None
+        # and model_fields_set contains the field
+        if self.pricing is None and "pricing" in self.model_fields_set:
+            _dict['pricing'] = None
+
         # set to None if strength (nullable) is None
         # and model_fields_set contains the field
         if self.strength is None and "strength" in self.model_fields_set:

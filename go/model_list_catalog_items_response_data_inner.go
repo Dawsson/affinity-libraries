@@ -22,24 +22,24 @@ var _ MappedNullable = &ListCatalogItemsResponseDataInner{}
 
 // ListCatalogItemsResponseDataInner struct for ListCatalogItemsResponseDataInner
 type ListCatalogItemsResponseDataInner struct {
-	AllowedStates           []string                                 `json:"allowedStates"`
-	CatalogKind             string                                   `json:"catalogKind"`
-	ColdShip                bool                                     `json:"coldShip"`
-	CompounderId            string                                   `json:"compounderId" validate:"regexp=^cmp_[0-9a-hjkmnp-tv-z]{26}$"`
-	CompounderName          string                                   `json:"compounderName"`
-	Description             string                                   `json:"description"`
-	DosageForm              string                                   `json:"dosageForm"`
-	FacilityType            string                                   `json:"facilityType"`
-	Id                      string                                   `json:"id" validate:"regexp=^cat_[0-9a-hjkmnp-tv-z]{26}$"`
-	IsOrderable             bool                                     `json:"isOrderable"`
-	Livemode                bool                                     `json:"livemode"`
-	Name                    string                                   `json:"name"`
-	Object                  string                                   `json:"object"`
-	PatientSpecificRequired bool                                     `json:"patientSpecificRequired"`
-	Pricing                 ListCatalogItemsResponseDataInnerPricing `json:"pricing"`
-	RestrictedStates        []string                                 `json:"restrictedStates"`
-	Route                   string                                   `json:"route"`
-	Strength                NullableString                           `json:"strength"`
+	AllowedStates           []string                                         `json:"allowedStates"`
+	CatalogKind             string                                           `json:"catalogKind"`
+	ColdShip                bool                                             `json:"coldShip"`
+	CompounderId            string                                           `json:"compounderId" validate:"regexp=^cmp_[0-9a-hjkmnp-tv-z]{26}$"`
+	CompounderName          string                                           `json:"compounderName"`
+	Description             string                                           `json:"description"`
+	DosageForm              string                                           `json:"dosageForm"`
+	FacilityType            string                                           `json:"facilityType"`
+	Id                      string                                           `json:"id" validate:"regexp=^cat_[0-9a-hjkmnp-tv-z]{26}$"`
+	IsOrderable             bool                                             `json:"isOrderable"`
+	Livemode                bool                                             `json:"livemode"`
+	Name                    string                                           `json:"name"`
+	Object                  string                                           `json:"object"`
+	PatientSpecificRequired bool                                             `json:"patientSpecificRequired"`
+	Pricing                 NullableListCatalogItemsResponseDataInnerPricing `json:"pricing"`
+	RestrictedStates        []string                                         `json:"restrictedStates"`
+	Route                   string                                           `json:"route"`
+	Strength                NullableString                                   `json:"strength"`
 }
 
 type _ListCatalogItemsResponseDataInner ListCatalogItemsResponseDataInner
@@ -48,7 +48,7 @@ type _ListCatalogItemsResponseDataInner ListCatalogItemsResponseDataInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListCatalogItemsResponseDataInner(allowedStates []string, catalogKind string, coldShip bool, compounderId string, compounderName string, description string, dosageForm string, facilityType string, id string, isOrderable bool, livemode bool, name string, object string, patientSpecificRequired bool, pricing ListCatalogItemsResponseDataInnerPricing, restrictedStates []string, route string, strength NullableString) *ListCatalogItemsResponseDataInner {
+func NewListCatalogItemsResponseDataInner(allowedStates []string, catalogKind string, coldShip bool, compounderId string, compounderName string, description string, dosageForm string, facilityType string, id string, isOrderable bool, livemode bool, name string, object string, patientSpecificRequired bool, pricing NullableListCatalogItemsResponseDataInnerPricing, restrictedStates []string, route string, strength NullableString) *ListCatalogItemsResponseDataInner {
 	this := ListCatalogItemsResponseDataInner{}
 	this.AllowedStates = allowedStates
 	this.CatalogKind = catalogKind
@@ -416,27 +416,29 @@ func (o *ListCatalogItemsResponseDataInner) SetPatientSpecificRequired(v bool) {
 }
 
 // GetPricing returns the Pricing field value
+// If the value is explicit nil, the zero value for ListCatalogItemsResponseDataInnerPricing will be returned
 func (o *ListCatalogItemsResponseDataInner) GetPricing() ListCatalogItemsResponseDataInnerPricing {
-	if o == nil {
+	if o == nil || o.Pricing.Get() == nil {
 		var ret ListCatalogItemsResponseDataInnerPricing
 		return ret
 	}
 
-	return o.Pricing
+	return *o.Pricing.Get()
 }
 
 // GetPricingOk returns a tuple with the Pricing field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ListCatalogItemsResponseDataInner) GetPricingOk() (*ListCatalogItemsResponseDataInnerPricing, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Pricing, true
+	return o.Pricing.Get(), o.Pricing.IsSet()
 }
 
 // SetPricing sets field value
 func (o *ListCatalogItemsResponseDataInner) SetPricing(v ListCatalogItemsResponseDataInnerPricing) {
-	o.Pricing = v
+	o.Pricing.Set(&v)
 }
 
 // GetRestrictedStates returns the RestrictedStates field value
@@ -537,7 +539,7 @@ func (o ListCatalogItemsResponseDataInner) ToMap() (map[string]interface{}, erro
 	toSerialize["name"] = o.Name
 	toSerialize["object"] = o.Object
 	toSerialize["patientSpecificRequired"] = o.PatientSpecificRequired
-	toSerialize["pricing"] = o.Pricing
+	toSerialize["pricing"] = o.Pricing.Get()
 	toSerialize["restrictedStates"] = o.RestrictedStates
 	toSerialize["route"] = o.Route
 	toSerialize["strength"] = o.Strength.Get()

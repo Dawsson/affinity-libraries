@@ -8016,6 +8016,7 @@ components:
         medicationSubtotalCents: 2147483647
         serviceFeeCents: 2147483647
         orderTotalCents: 2147483647
+      nullable: true
       properties:
         currency:
           enum:

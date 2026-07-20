@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  |
 **Object** | **string** |  |
 **PatientSpecificRequired** | **bool** |  |
-**Pricing** | [**ListCatalogItemsResponseDataInnerPricing**](ListCatalogItemsResponseDataInnerPricing.md) |  |
+**Pricing** | [**NullableListCatalogItemsResponseDataInnerPricing**](ListCatalogItemsResponseDataInnerPricing.md) |  |
 **RestrictedStates** | **[]string** |  |
 **Route** | **string** |  |
 **Strength** | **NullableString** |  |
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewListCatalogItemsResponseDataInner
 
-`func NewListCatalogItemsResponseDataInner(allowedStates []string, catalogKind string, coldShip bool, compounderId string, compounderName string, description string, dosageForm string, facilityType string, id string, isOrderable bool, livemode bool, name string, object string, patientSpecificRequired bool, pricing ListCatalogItemsResponseDataInnerPricing, restrictedStates []string, route string, strength NullableString, ) *ListCatalogItemsResponseDataInner`
+`func NewListCatalogItemsResponseDataInner(allowedStates []string, catalogKind string, coldShip bool, compounderId string, compounderName string, description string, dosageForm string, facilityType string, id string, isOrderable bool, livemode bool, name string, object string, patientSpecificRequired bool, pricing NullableListCatalogItemsResponseDataInnerPricing, restrictedStates []string, route string, strength NullableString, ) *ListCatalogItemsResponseDataInner`
 
 NewListCatalogItemsResponseDataInner instantiates a new ListCatalogItemsResponseDataInner object
 This constructor will assign default values to properties that have it defined,
@@ -342,6 +342,16 @@ and a boolean to check if the value has been set.
 SetPricing sets Pricing field to given value.
 
 
+### SetPricingNil
+
+`func (o *ListCatalogItemsResponseDataInner) SetPricingNil(b bool)`
+
+ SetPricingNil sets the value for Pricing to be an explicit nil
+
+### UnsetPricing
+`func (o *ListCatalogItemsResponseDataInner) UnsetPricing()`
+
+UnsetPricing ensures that no value is present for Pricing, not even an explicit nil
 ### GetRestrictedStates
 
 `func (o *ListCatalogItemsResponseDataInner) GetRestrictedStates() []string`

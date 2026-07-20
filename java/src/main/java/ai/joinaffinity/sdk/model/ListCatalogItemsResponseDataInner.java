@@ -147,7 +147,7 @@ public class ListCatalogItemsResponseDataInner {
   private Boolean patientSpecificRequired;
 
   public static final String JSON_PROPERTY_PRICING = "pricing";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private ListCatalogItemsResponseDataInnerPricing pricing;
 
   public static final String JSON_PROPERTY_RESTRICTED_STATES = "restrictedStates";
@@ -509,7 +509,7 @@ public class ListCatalogItemsResponseDataInner {
   }
 
 
-  public ListCatalogItemsResponseDataInner pricing(@javax.annotation.Nonnull ListCatalogItemsResponseDataInnerPricing pricing) {
+  public ListCatalogItemsResponseDataInner pricing(@javax.annotation.Nullable ListCatalogItemsResponseDataInnerPricing pricing) {
     this.pricing = pricing;
     return this;
   }
@@ -518,17 +518,17 @@ public class ListCatalogItemsResponseDataInner {
    * Get pricing
    * @return pricing
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PRICING, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRICING, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public ListCatalogItemsResponseDataInnerPricing getPricing() {
     return pricing;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PRICING, required = true)
+  @JsonProperty(value = JSON_PROPERTY_PRICING, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPricing(@javax.annotation.Nonnull ListCatalogItemsResponseDataInnerPricing pricing) {
+  public void setPricing(@javax.annotation.Nullable ListCatalogItemsResponseDataInnerPricing pricing) {
     this.pricing = pricing;
   }
 

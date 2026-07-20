@@ -7435,40 +7435,47 @@
                   "type": "boolean"
                 },
                 "pricing": {
-                  "type": "object",
-                  "properties": {
-                    "currency": {
-                      "type": "string",
-                      "const": "USD"
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "currency": {
+                          "type": "string",
+                          "const": "USD"
+                        },
+                        "medicationSubtotalCents": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "orderTotalCents": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "serviceFeeCents": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "serviceFeePercent": {
+                          "type": "number",
+                          "const": 15
+                        }
+                      },
+                      "required": [
+                        "currency",
+                        "medicationSubtotalCents",
+                        "orderTotalCents",
+                        "serviceFeeCents",
+                        "serviceFeePercent"
+                      ],
+                      "additionalProperties": false
                     },
-                    "medicationSubtotalCents": {
-                      "type": "integer",
-                      "minimum": 0,
-                      "maximum": 9007199254740991
-                    },
-                    "orderTotalCents": {
-                      "type": "integer",
-                      "minimum": 0,
-                      "maximum": 9007199254740991
-                    },
-                    "serviceFeeCents": {
-                      "type": "integer",
-                      "minimum": 0,
-                      "maximum": 9007199254740991
-                    },
-                    "serviceFeePercent": {
-                      "type": "number",
-                      "const": 15
+                    {
+                      "type": "null"
                     }
-                  },
-                  "required": [
-                    "currency",
-                    "medicationSubtotalCents",
-                    "orderTotalCents",
-                    "serviceFeeCents",
-                    "serviceFeePercent"
-                  ],
-                  "additionalProperties": false
+                  ]
                 },
                 "restrictedStates": {
                   "type": "array",
